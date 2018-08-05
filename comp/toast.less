@@ -4,7 +4,7 @@
   	z-index: 10000;
 	.toast {
 		&:extend(.raised-1);
-		border-radius: 2px;
+		.borderMixin();
 		top: 35px;
 		width: auto;
 		margin-top: 10px;
@@ -38,8 +38,8 @@
 		}
 
 		@media only screen and (max-width: 600px) {
-		    width: 100%;
-		    border-radius: 0;
+		    width:calc(~"100% - 64px");
+			margin:8px;
 		}
 
 		.toast-action {

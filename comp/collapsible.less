@@ -1,100 +1,160 @@
 .collapsible {
-	border-top: 1px solid #ddd;
-	border-right: 1px solid #ddd;
-  	border-left: 1px solid #ddd;
-  	margin: 0.5rem 0 1rem 0;
-	padding:0px;
-	&:extend(.raised-2);
+	padding: 0;
 
-	.collapsible-header {
-	  	display: -webkit-box;
-	  	display: -webkit-flex;
-	  	display: -ms-flexbox;
-	  	display: flex;
-	  	cursor: pointer;
-	  	-webkit-tap-highlight-color: transparent;
-		line-height: 1.5;
-		padding: 1rem;
-	  	background-color: #fff;
-	  	border-bottom: 1px solid #ddd;
-		position:relative;
-		&::after {
-			&:extend(.transition);
-			content:"\E5CF";
-			font-family:"material icons";
-			font-size:24px;
-			float:right;
-			margin-top:-6px;
-			right:24px;
-			position:absolute;
+	li {
+		.transition();
+		.card();
+		box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24)!important;
+		transition-property: margin,border-radius;
+		border-radius: 0;
+
+		&:first-child {
+			border-radius: @cornerFallback @cornerFallback 0 0;
 		}
-		&.active::after {
-			transform:scaleY(-1);
+
+		&:last-child {
+			border-radius: 0 0 @cornerFallback @cornerFallback;
 		}
-		i {
-		  	width: 2rem;
-		  	font-size: 1.6rem;
-		  	display: inline-block;
-		  	text-align: center;
-		  	margin-right: 1rem;
+
+		&:first-child:last-child {
+			border-radius:@cornerFallback;
 		}
-	}
-	.collapsible-body {
-		display: none;
-		border-bottom: 1px solid #ddd;
-		box-sizing: border-box;
-		padding: 2rem;
-	}
-	&.popout {
-	  	border: none;
-		box-shadow: none;
-		li {
-		 	&:extend(.raised-2);
-			&:extend(.transition);
-		  	&.active {
-			  	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
-			 	margin: 16px 0;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid @dividerColor;
+		}
+		padding: 0;
+		margin: 0;
+		transition-timing-function: linear;
+
+		&.disabled {
+			background: #fdfdfdfd;
+
+			.collapsible-header {
+				pointer-events: none;
+				opacity: 0.54;
 			}
+		}
+
+		.collapsible-header {
+			.transition();
+			padding: 12px 24px;
+			user-select: none;
+			cursor: pointer;
+			font-size: 15px;
+			transition-timing-function: linear;
+			position: relative;
+
+			.subtitle {
+				color: #757575;
+				white-space: normal;
+				display: inline-block;
+				min-width: 60%;
+				float: right;
+				@media @mobile,@tablet {
+					display: block;
+					float: none;
+					min-width: initial;
+				}
+			}
+
+			&::after {
+				.transition();
+				content: "\E5CF";
+				font-family: "material icons";
+				font-size: 24px;
+				right: 18px;
+				position: absolute;
+				color: #757575;
+				top: 50%;
+				transform: translateY(-50%);
+			}
+
+			&.active::after {
+				transform: rotate(180deg);
+				margin-top: -12px;
+			}
+
+			i {
+				position: relative;
+				margin: -8px 0 -8px 12px;
+				transform: translate(-14px, 6px);
+			}
+		}
+
+		.collapsible-body {
+			padding: 12px 24px 24px;
+			font-size: 14px;
+		}
+
+		&.active,
+		&.adjact {
+			border-color: transparent!important;
+		}
+
+		&.active {
+			margin: 12px 0;
+
+			.collapsible-header {
+				padding: 20px 24px;
+			}
+		}
+	}
+
+	&.popout .active {
+		margin: 12px -12px;
+		.borderMixin();
+
+		.collapsible-header {
+			margin: 0px;
 		}
 	}
 }
 
-.sidenav {
-	.collapsible {
+.photon-dark .collapsible li {
+	background: #303030;
+	border-color: #565656;
+}
+
+.sidenav .collapsible {
+	margin: 0;
+	border-radius:0;
+
+	li {
 		border: none;
-		box-shadow: none;
-		margin:0px!important;
-		li {
-			padding: 0;
-		}
+		margin: 0;
+		box-shadow: none!important;
+		border-radius:0;
+
+		background: transparent!important;
+
 		.collapsible-header {
-			color:#000000de;
-			display: block;
-			font-size: 14px;
-			font-weight: 500;
-			height: 48px;
-			line-height: 48px;
-			padding: 0 32px;
-			border:none;
-			&:hover,
-			&.active {
-				background-color: #0000000d;
-			}
-			i {
-  				line-height: inherit;
-			}
+			color: rgba(0, 0, 0, 0.87);
+		    display: block;
+		    font-size: 14px;
+		    font-weight: 500;
+		    height: 48px;
+		    line-height: 48px;
+		    padding: 0 32px;
 			&::after {
-				margin:0;
+				top:auto;
+				transform:rotate(0deg);
+				bottom: 0;
 			}
 		}
-		.collapsible-body {
-  			border: 0;
-			padding:0 2rem;
-			background:#fff;
-			a {
-				margin:0 -32px;
-				padding-left:56px;
+
+		&.active {
+			.collapsible-header,
+			.collapsible-body {
+				box-shadow: inset 0px -1px 0px 0px @dividerColor;
+				&::after {
+					transform:rotate(180deg);
+				}
 			}
+		}
+
+		.collapsible-body {
+			padding: 0!important;
 		}
 	}
 }

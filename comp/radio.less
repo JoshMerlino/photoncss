@@ -5,7 +5,7 @@ input[type="radio"]{
 	-webkit-appearance:none;
 	width:18px;
 	height:18px;
-	border:2px solid @dividerColor;
+	border:2px solid #6d6d6d;
 	border-radius:50%;
 	outline:0;
 	&:checked {
@@ -26,9 +26,9 @@ input[type="radio"]{
 		transform:scale(1);
 	}
 	&:disabled {
-		border-color:@dividerColor;
+		border-color:#b0b0b0;
 		&::after {
-			background:@dividerColor;
+			background:#b0b0b0;
 		}
 	}
 	&.ripple {
@@ -40,7 +40,7 @@ input[type="radio"]{
 			content:"";
 			width:48px;
 			height:48px;
-			background:@dividerColor;
+			background:#b0b0b0;
 			margin:-17px;
 			transform:scale(0);
 			opacity:0;
@@ -53,5 +53,17 @@ input[type="radio"]{
 			opacity:.4;
 			transform:scale(1);
 		}
+	}
+}
+
+.photon-dark input[type="radio"] {
+	&:not(:checked){
+		border-color:#b5b5b5!important;
+	}
+	&:disabled {
+		border-color:#717171!important;
+	}
+	&:disabled::after {
+		background:#717171;
 	}
 }
