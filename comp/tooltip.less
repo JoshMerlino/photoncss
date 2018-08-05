@@ -1,0 +1,26 @@
+.material-tooltip {
+	&:extend(.transition);
+	transition-property:transform,margin;
+
+    padding: 2px 8px;
+    font-size:14px;
+    z-index: 2000;
+    background-color: transparent;
+    border-radius: 2px;
+    color: #fff;
+    position: absolute;
+    text-align: center;
+    max-width: calc(~"100% - 4px");
+    overflow: hidden;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+	transform:scale(0);
+	background:#797979;
+	font-family:roboto;
+	font-weight:400;
+
+	&.active {
+		transform:scale(1);
+	}
+}
