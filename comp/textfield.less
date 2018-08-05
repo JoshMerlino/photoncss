@@ -1,10 +1,13 @@
-.input-field {
+.input-field,
+.dropdown {
 	display:block;
 	position:relative;
-	&.inline {
+	&.inline,
+	&.dropdown {
 		display:inline-block;
 	}
-	input {
+	input,
+	select {
 		padding:16px 0 8px;
 		background:transparent;
 		border:none;
@@ -50,5 +53,8 @@
 	}
 	input:disabled {
 		border-bottom-style: dashed;
+	}
+	&.col {
+		padding:4px;
 	}
 }
