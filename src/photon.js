@@ -877,6 +877,7 @@ var Photon = {
 
 	    options = $.extend(defaults, options);
 
+
 	    return this.each(function() {
 	        var tooltipId = Photon.guid();
 	        var origin = $(this);
@@ -902,7 +903,7 @@ var Photon = {
 	        setAttributes();
 
 	        var renderTooltipEl = function() {
-	            var tooltip = $('<div class="material-tooltip"></div>');
+	            var tooltip = $('<div class="material-tooltip ' + options.position + '"></div>');
 
 	            // Create Text span
 	            if (allowHtml) {
