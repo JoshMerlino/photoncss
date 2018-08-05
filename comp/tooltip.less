@@ -1,5 +1,5 @@
 .material-tooltip {
-	&:extend(.transition);
+	.transition();
 	transition-property:transform,margin;
 
     padding: 2px 8px;
@@ -15,31 +15,13 @@
     left: 0;
     top: 0;
     pointer-events: none;
-	background:#797979;
-	font-family:roboto;
+	background:#676767;
+	font-family:@fontFamily;
 	font-weight:400;
-	&.left {
-		transform:scale(0) translateX(0);
-		&.active {
-			transform:scale(1) translateX(-50%);
-		}
+
+	transform:scale(0);
+	&.active {
+		transform:scale(1);
 	}
-	&.right {
-		transform:scale(0) translateX(0);
-		&.active {
-			transform:scale(1) translateX(50%);
-		}
-	}
-	&.top {
-		transform:scale(0) translateY(0);
-		&.active {
-			transform:scale(1) translateY(-50%);
-		}
-	}
-	&.bottom {
-		transform:scale(0) translateY(0);
-		&.active {
-			transform:scale(1) translateY(50%);
-		}
-	}
+
 }
