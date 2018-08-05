@@ -41,7 +41,7 @@
 	input.containscontent + label,
 	input[placeholder] + label {
 		font-size:12px;
-		top:-56px;
+		top:-56px!important;
 	}
 	input:focus ~ label {
 		color:@accentColor;
@@ -57,6 +57,7 @@
 	}
 	input:disabled {
 		border-bottom-style: dashed;
+		color:rgba(127,127,127,.6);
 	}
 	&.col {
 		padding:4px;
@@ -69,10 +70,26 @@
 		bottom:27px;
 		left:50%;
 	}
+
+	&.pane {
+		background:#e8e8e8;
+		padding:0px;
+		input,
+		label {
+			padding-left:12px;
+			color:#555;
+		}
+		label {
+			top:-40px;
+		}
+	}
+
 }
 
 .col .input-field {
-	padding:2px!important;
+	&:not(.pane){
+		padding:2px!important;
+	}
 	.bar {
 		bottom:22px;
 		position:relative;
@@ -98,6 +115,9 @@ input:-webkit-autofill {
 }
 
 .photon-dark {
+	.input-field.pane {
+		background:#262626;
+	}
 	input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 30px #212121 inset;
 		border-color:@amber-darken1;
