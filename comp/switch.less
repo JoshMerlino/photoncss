@@ -36,6 +36,7 @@ input[type="checkbox"].switch {
 	&.ripple {
 		&::after {
 			&:extend(.transition);
+			transition-property:transform,opacity;
 
 			position:absolute;
 			content:"";
@@ -43,7 +44,7 @@ input[type="checkbox"].switch {
 			height:48px;
 			background:fade(@dividerColor,40%);
 			margin:-17px -15px;
-			border-radius:50%;
+			border-radius:50%!important;
 			transform:scale(0);
 			opacity:0;
 		}
