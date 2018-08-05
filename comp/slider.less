@@ -1,0 +1,67 @@
+.slider {
+	width:240px;
+	height:36px;
+	background-image:linear-gradient(to top, transparent 0%, transparent 48%, @dividerColor 48%, @dividerColor 52%, transparent 52%, transparent 100%);
+	.thumb {
+		background:@accentColor;
+		height:14px;
+		width:14px;
+		top:11px;
+		position:relative;
+		border-radius:50%;
+
+		&:extend(.transition);
+		transition-property:transform,background-color;
+
+		&:active,
+		&:focus {
+			transform:scale(1.2);
+		}
+		&.ripple {
+			&::after {
+				background:@accentColor;
+				position:absolute;
+				content:"";
+				width:32px;
+				height:32px;
+				opacity:0;
+				margin:-9px;
+				border-radius:50%;
+				transform:scale(0);
+				&:extend(.transition);
+				transition-property:transform;
+			}
+			&:active::after,
+			&:focus::after {
+				transform:scale(1);
+				opacity:.4;
+			}
+		}
+	}
+	.track {
+		background:@accentColor;
+		height:2px;
+		width:0px;
+		position:relative;
+		top:17px;
+	}
+
+	.track ~ .thumb {
+		top:9px;
+	}
+	&.disabled {
+		.track {
+			background:@dividerColor;
+		}
+		.thumb {
+			width:10px;
+			height:10px;
+			background:@dividerColor;
+			border:2px solid #fafafa;
+			transform:scale(1)!important;
+			&::after {
+				display:none;
+			}
+		}
+	}
+}
