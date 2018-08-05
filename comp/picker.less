@@ -43,18 +43,6 @@
 			overflow-y: auto;
 			text-align: left;
 
-			&::-webkit-scrollbar-track {
-				background: #f1f1f1;
-			}
-
-			&::-webkit-scrollbar-thumb {
-				background: #888;
-			}
-
-			&::-webkit-scrollbar-thumb:hover {
-				background: #555;
-			}
-
 			.yearsel {
 				display: block;
 				text-align: center;
@@ -98,10 +86,8 @@
 				height: 100%;
 				width: 50%;
 				left: 0;
-				//background: #faa;
 				&:last-child {
 					left: 50%;
-					//background: #aaf;
 				}
 
 				.month {
@@ -436,7 +422,7 @@
 
 					&.active {
 						background: @accentColor;
-						color: #fff;
+						color: @accentTextColor;
 					}
 
 					&.tbpos-0 {
@@ -539,6 +525,39 @@
 				top: 0;
 				left: 200px;
 			}
+		}
+	}
+}
+
+.photon-dark .photon-picker {
+	background:#242424;
+	.bar,
+	.clock {
+		background:#424242!important;
+		.timeblob:not(.active) {
+			color:#fff!important;
+		}
+	}
+	.btn.white {
+		background:#242424!important;
+		box-shadow:inset 0 0 0 1px #525252!important;
+		.waves-ripple {
+			background-color:rgba(255,255,255,.2)!important;
+		}
+	}
+	.pane div {
+		color:#fff!important;
+	}
+	i {
+		color:#fff!important;
+		.waves-ripple {
+			background-color:rgba(255,255,255,.2)!important;
+		}
+	}
+	.yearpick {
+		background:#242424;
+		.yearsel:not(.active) {
+			color:#fff!important;
 		}
 	}
 }

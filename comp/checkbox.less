@@ -58,6 +58,7 @@ input[type="checkbox"]:not(.switch){
 		&::before {
 
 			&:extend(.transition);
+			transition-property:transform,opacity;
 
 			position:absolute;
 			content:"";
@@ -67,7 +68,7 @@ input[type="checkbox"]:not(.switch){
 			margin:-17px;
 			transform:scale(0);
 			opacity:0;
-			border-radius:50%;
+			border-radius:50%!important;
 		}
 		&:checked::before {
 			margin:-24px;

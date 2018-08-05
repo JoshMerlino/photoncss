@@ -157,16 +157,16 @@ hr {
 
 label {
 	position: relative;
-
-	&.for-radio {
-		top: -4px;
+	input[type="checkbox"] ~ &,
+	input[type="radio"] ~ & {
 		margin-left: 24px;
+		top:-6px;
 	}
+	color:#212121;
+}
 
-	&.for-checkbox {
-		top: -6px;
-		margin-left: 24px;
-	}
+body.photon-dark label {
+	color:#fafafa;
 }
 
 a {

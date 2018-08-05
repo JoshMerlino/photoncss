@@ -4,7 +4,6 @@
 	&:extend(.raised-1);
 
 	background:@accentColor;
-	color:#fff;
 	padding:.5rem 2rem;
 	user-select:none;
 	font-size:1rem;
@@ -13,6 +12,7 @@
 	.borderMixin();
 	font-weight:500;
 	margin:4px;
+	color:@accentTextColor;
 
 	&:not(.fab) > i {
 		font-size: inherit;
@@ -75,7 +75,7 @@
 	cursor:pointer;
 	background:@accentColor;
 	padding:8px;
-	color:#fff;
+	color:@accentTextColor;
 	border-radius:50px;
 	font-size:24px;
 	&:extend(.transition);
