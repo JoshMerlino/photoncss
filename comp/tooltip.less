@@ -15,12 +15,31 @@
     left: 0;
     top: 0;
     pointer-events: none;
-	transform:scale(0);
 	background:#797979;
 	font-family:roboto;
 	font-weight:400;
-
-	&.active {
-		transform:scale(1);
+	&.left {
+		transform:scale(0) translateX(0);
+		&.active {
+			transform:scale(1) translateX(-50%);
+		}
+	}
+	&.right {
+		transform:scale(0) translateX(0);
+		&.active {
+			transform:scale(1) translateX(50%);
+		}
+	}
+	&.top {
+		transform:scale(0) translateY(0);
+		&.active {
+			transform:scale(1) translateY(-50%);
+		}
+	}
+	&.bottom {
+		transform:scale(0) translateY(0);
+		&.active {
+			transform:scale(1) translateY(50%);
+		}
 	}
 }
