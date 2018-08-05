@@ -1,4 +1,5 @@
-@bex:0,.91,.71,.94;
+@bex:0,.8,0,1;
+@gex:0,.8,.5,1;
 
 .waves-transition (@transition) {
     -webkit-transition: @transition;
@@ -58,7 +59,7 @@
     }
 
 	&.waves-ink .waves-ripple {
-		.waves-transition(all 400ms cubic-bezier(@bex))!important;
+		.waves-transition(all 400ms cubic-bezier(@gex))!important;
 	}
 
 }
