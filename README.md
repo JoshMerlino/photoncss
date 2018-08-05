@@ -51,7 +51,7 @@
 @import "/src/photon/src/photon";
 ```
 #
-`/src/js/script.less`
+`/src/js/script.js`
 ```javascript
 $(() => Photon.ready());
 ```

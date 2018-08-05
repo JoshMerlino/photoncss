@@ -1,15 +1,11 @@
 .collection {
-	margin: 0.5rem 0 1rem 0;
-	border: 1px solid #e0e0e0;
-	border-radius: 2px;
-	overflow: hidden;
-	position: relative;
-	padding-left:0;
+	.card();
 	.item {
 		background-color: #fff;
 		line-height: 1.5rem;
 		padding: 10px 20px;
 		margin: 0;
+		list-style:none;
 		border-bottom: 1px solid #e0e0e0;
 		span.badge {
 			margin-top: calc(0.75rem - 11px);
@@ -95,5 +91,14 @@
 	.collection {
 		margin: 0;
 		border: none;
+	}
+}
+
+.photon-dark .collection {
+	border-color:#525252;
+	background:#303030!important;
+	.item {
+		background:#303030;
+		border-color:inherit;
 	}
 }
