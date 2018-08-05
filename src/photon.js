@@ -1919,7 +1919,13 @@ window.addEventListener("keydown", function(e) {
 
 			picker.children(".bar").children(".year").click(function(){
 				picker.children(".yearpick").show();
-				picker.children(".panes").hide()
+				picker.children(".panes").hide();
+
+				var sc = 0;
+					sc = picker.children(".yearpick").children(".active").index()*36;
+
+				picker.children(".yearpick")[0].scrollTop = sc;
+
 			});
 
 			for(var i = 1900; i < 2101; i++){
@@ -1929,6 +1935,8 @@ window.addEventListener("keydown", function(e) {
 			}
 
 			picker.children(".yearpick").children(".yearsel").click(function(){
+
+				$(this).addClass("active").siblings().removeClass("active")
 
 				ddate.year = parseInt($(this).text());
 
@@ -2150,7 +2158,7 @@ Photon.ready = Photon.reload = function() {
 		$(this).addClass("for-" + f.attr("type"))
 	})
 
-	$(".input-field input,.input-field.select select").on("focus", function() {
+	$(".input-field input,.input-field.select select").on("focus", function(e) {
 		$(this).parent().append("<div class=\"bar\"></div>");
 		var bar = $(this).siblings(".bar");
 

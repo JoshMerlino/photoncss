@@ -8,6 +8,8 @@ input[type="radio"]{
 	border:2px solid #6d6d6d;
 	border-radius:50%;
 	outline:0;
+	transform: translateY(-2px);
+
 	&:checked {
 		border:2px solid @accentColor;
 	}
@@ -35,6 +37,7 @@ input[type="radio"]{
 		&::before {
 
 			&:extend(.transition);
+			transition-property:transform,opacity;
 
 			position:absolute;
 			content:"";
@@ -44,7 +47,7 @@ input[type="radio"]{
 			margin:-17px;
 			transform:scale(0);
 			opacity:0;
-			border-radius:50%;
+			border-radius:50%!important;
 		}
 		&:checked::before {
 			background:@accentColor;
