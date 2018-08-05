@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:200,300,400,500");
+@import url("https://cdn.rawgit.com/google/material-design-icons/master/iconfont/material-icons.css");
+
+@mobile:~"only screen and (max-width: 529px)";
+@tablet:~"only screen and (min-width: 530px) and (max-width: 949px)";
+@desktop:~"only screen and (min-width: 950px)";
+@desktop-xl:~"only screen and (min-width: 1129px)";
+
+::selection {
+	background:#bbd3fd;
+	color:#000;
+}
+
+* {
+	-webkit-tap-highlight-color:transparent;
+}
+
+body {
+	color:@primaryTextColor;
+	background:#fafafa;
+	font-family:roboto;
+	padding:1rem;
+	outline:0;
+	font-weight:400;
+}
+
+* {
+	outline:0px;
+}
+
+h1,h2,h3,h4,h5,h6 {
+	font-weight:400;
+}
+
+img {
+	user-select:none;
+	display:block;
+	max-width:100%;
+}
+
+.center {
+	text-align:center;
+}
+
+hr {
+	border:none;
+	border-top:1px solid @dividerColor;
+	margin:2rem 0;
+}
+
+.transition {
+	transition:all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+
+.right {
+	float:right;
+}
+
+.center-fixed {
+	position:fixed;
+	top:50%;
+	left:50%;
+	transform:translate(-50%,-50%);
+}
+
+label {
+	position:relative;
+	&.for-radio {
+		top: -4px;
+    	margin-left: 24px;
+	}
+	&.for-checkbox {
+		top: -6px;
+    	margin-left: 24px;
+	}
+}
+
+a {
+	color:@accentColor;
+	text-decoration:none;
+}
+
+ul li {
+	list-style:none;
+}
+
+video,
+iframe {
+	display:block;
+	width:100%;
+	border:none;
+}
+
+@import url("../comp/appbar.less");
+@import url("../comp/badge.less");
+@import url("../comp/button.less");
+@import url("../comp/card.less");
+@import url("../comp/checkbox.less");
+@import url("../comp/collapsible.less");
+@import url("../comp/color.less");
+@import url("../comp/footer.less");
+@import url("../comp/grid.less");
+@import url("../comp/icon.less");
+@import url("../comp/lighting.less");
+@import url("../comp/picker.less");
+@import url("../comp/radio.less");
+@import url("../comp/scrollnav.less");
+@import url("../comp/sidenav.less");
+@import url("../comp/slider.less");
+@import url("../comp/switch.less");
+@import url("../comp/tabs.less");
+@import url("../comp/textfield.less");
+@import url("../comp/toast.less");
+@import url("../comp/tooltip.less");
+@import url("../comp/waves.less");

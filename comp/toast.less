@@ -1,0 +1,71 @@
+.toast-container {
+	display: block;
+  	position: fixed;
+  	z-index: 10000;
+	.toast {
+		&:extend(.raised-1);
+		border-radius: 2px;
+		top: 35px;
+		width: auto;
+		margin-top: 10px;
+		position: relative;
+		max-width: 100%;
+		height: auto;
+		min-height: 48px;
+		line-height: 1.5em;
+		word-break: break-all;
+		background-color: #323232;
+		padding: 2px 24px;
+		font-size: 1.1rem;
+		font-weight: 300;
+		color: #fff;
+		display: -webkit-box;
+		display: -webkit-flex;
+		display: -ms-flexbox;
+		display: flex;
+		-webkit-box-align: center;
+		-webkit-align-items: center;
+		    -ms-flex-align: center;
+		        align-items: center;
+		-webkit-box-pack: justify;
+		-webkit-justify-content: space-between;
+		    -ms-flex-pack: justify;
+		justify-content: space-between;
+		cursor: default;
+
+		&.rounded {
+			border-radius:50px;
+		}
+
+		@media only screen and (max-width: 600px) {
+		    width: 100%;
+		    border-radius: 0;
+		}
+
+		.toast-action {
+		  	color: @primaryColor;
+			margin-right: -16px;
+    		margin-left: 3rem;
+    		border: none;
+			&:extend(.btn.dense);
+		}
+	}
+	@media only screen and (max-width: 600px) {
+    	min-width: 100%;
+    	bottom: 0;
+		left:0;
+		.toast .toast-action:last-child {
+			margin-right:32px;
+		}
+	}
+	@media only screen and (min-width: 601px) and (max-width: 992px) {
+	    left: 5%;
+	    bottom: 7%;
+	    max-width: 90%;
+	}
+	@media only screen and (min-width: 993px) {
+	    top: 10%;
+	    right: 7%;
+	    max-width: 86%;
+	}
+}

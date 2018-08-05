@@ -1,0 +1,110 @@
+.tabs {
+  	position: relative;
+  	overflow-x: auto;
+  	overflow-y: hidden;
+  	height: 48px;
+  	width: 100%;
+  	background-color: #fff;
+  	margin: 0 auto;
+  	white-space: nowrap;
+	padding:0;
+	@media only screen and (max-width: 992px) {
+	    display: -webkit-box;
+	    display: -webkit-flex;
+	    display: -ms-flexbox;
+	    display: flex;
+		a {
+	      	padding: 0 12px;
+	    }
+	}
+	&.tabs-transparent {
+  		background-color: transparent;
+		.tab a,
+		.tab.disabled a,
+		.tab.disabled a:hover {
+		  	color: rgba(255, 255, 255, 0.7);
+		}
+		.tab a:hover,
+		.tab a.active {
+		  	color: #fff;
+		}
+		.indicator {
+  			background-color: #fff;
+		}
+	}
+	&.tabs-fixed-width {
+  		display: -webkit-box;
+  		display: -webkit-flex;
+  		display: -ms-flexbox;
+  		display: flex;
+		.tab {
+  			-webkit-box-flex: 1;
+  			-webkit-flex-grow: 1;
+      		-ms-flex-positive: 1;
+          	flex-grow: 1;
+		}
+	}
+	.tab {
+  		display: inline-block;
+  		line-height: 48px;
+  		height: 48px;
+  		padding: 0;
+  		margin: 0;
+ 		text-transform: uppercase;
+		user-select:none;
+		cursor:pointer;
+		@media only screen and (max-width: 992px) {
+		    -webkit-box-flex: 1;
+		    -webkit-flex-grow: 1;
+			-ms-flex-positive: 1;
+		    flex-grow: 1;
+		}
+		a {
+		  	color:fade(@primaryColor,75%);
+		  	display: block;
+		 	height: 100%;
+		  	padding: 0 24px;
+		  	font-size: 14px;
+		  	text-overflow: ellipsis;
+		  	overflow: hidden;
+		  	transition: color .28s ease;
+			text-align:center;
+			&:hover,
+			&.active {
+				background-color: transparent;
+			  	color:@primaryColor;
+			}
+		}
+		&.disabled a,
+		&.disabled a:hover {
+  			color: rgba(238, 110, 115, 0.7);
+  			cursor: default;
+		}
+	}
+	.indicator {
+  		position: absolute;
+  		bottom: 0;
+  		height: 2px;
+		left:0px;
+  		background-color:@primaryColor;
+  		will-change: left, right;
+	}
+	&::-webkit-scrollbar {
+		height:1px;
+	}
+	&.tabs-accent {
+  		background-color: transparent;
+		.tab a,
+		.tab.disabled a,
+		.tab.disabled a:hover {
+		  	color:fade(@accentColor,70%);
+		}
+		.tab a:hover,
+		.tab a.active {
+		  	color:@accentColor;
+		}
+		.indicator {
+  			background-color:@accentColor;
+		}
+	}
+}

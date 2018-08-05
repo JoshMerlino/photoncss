@@ -1,0 +1,78 @@
+.app-bar {
+	position:fixed;
+	top:0px;
+	left:0px;
+	width:100%;
+	height:64px;
+	background:@primaryColor;
+	color:@textPrimaryColor;
+	z-index:9000;
+	.title {
+		font-size:16px;
+		color:inherit;
+		position:absolute;
+		line-height:64px;
+		top:0px;
+		left:24px;
+		max-width:33%;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		white-space:nowrap;
+	}
+	i {
+		color:inherit;
+		margin:8px;
+		padding:12px;
+		border-radius:50%;
+		.waves-ripple {
+			background:fade(@textPrimaryColor,40%);
+		}
+	}
+	i ~ .title,
+	i ~ .subtitle {
+		left:64px;
+	}
+	.actions {
+		text-align:right;
+		position:absolute;
+		top:0px;
+		right:0px;
+		max-height:64px;
+		i {
+			position:relative;
+			&:not(:last-child){
+				margin:8px 0;
+			}
+			&:last-child {
+				margin-left:0;
+			}
+		}
+	}
+	&.tall {
+		height:112px;
+		.tabs  {
+			position:absolute;
+			bottom:0px
+		}
+	}
+	&.dense {
+		height:48px;
+		padding-left:8px;
+		.title {
+			font-size:14px;
+			padding:14px 0;
+		}
+		i {
+			margin:8px;
+			padding:4px;
+		}
+		.actions {
+			padding-right:8px;
+		}
+	}
+	&:not(.flat) {
+		box-shadow: 0 2px 5px rgba(0,0,0,.26);
+	}
+	overflow:hidden;
+
+}
