@@ -1,0 +1,57 @@
+input[type="radio"]{
+
+	&:extend(.transition);
+
+	-webkit-appearance:none;
+	width:18px;
+	height:18px;
+	border:2px solid @dividerColor;
+	border-radius:50%;
+	outline:0;
+	&:checked {
+		border:2px solid @accentColor;
+	}
+	&::after {
+		&:extend(.transition);
+		width:10px;
+		height:10px;
+		border-radius:50%;
+		position:absolute;
+		content:"";
+		margin:2px;
+		transform:scale(0);
+		background:@accentColor;
+	}
+	&:checked::after {
+		transform:scale(1);
+	}
+	&:disabled {
+		border-color:@dividerColor;
+		&::after {
+			background:@dividerColor;
+		}
+	}
+	&.ripple {
+		&::before {
+
+			&:extend(.transition);
+
+			position:absolute;
+			content:"";
+			width:48px;
+			height:48px;
+			background:@dividerColor;
+			margin:-17px;
+			transform:scale(0);
+			opacity:0;
+			border-radius:50%;
+		}
+		&:checked::before {
+			background:@accentColor;
+		}
+		&:active::before {
+			opacity:.4;
+			transform:scale(1);
+		}
+	}
+}

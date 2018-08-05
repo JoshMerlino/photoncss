@@ -1,0 +1,100 @@
+.collapsible {
+	border-top: 1px solid #ddd;
+	border-right: 1px solid #ddd;
+  	border-left: 1px solid #ddd;
+  	margin: 0.5rem 0 1rem 0;
+	padding:0px;
+	&:extend(.raised-2);
+
+	.collapsible-header {
+	  	display: -webkit-box;
+	  	display: -webkit-flex;
+	  	display: -ms-flexbox;
+	  	display: flex;
+	  	cursor: pointer;
+	  	-webkit-tap-highlight-color: transparent;
+		line-height: 1.5;
+		padding: 1rem;
+	  	background-color: #fff;
+	  	border-bottom: 1px solid #ddd;
+		position:relative;
+		&::after {
+			&:extend(.transition);
+			content:"\E5CF";
+			font-family:"material icons";
+			font-size:24px;
+			float:right;
+			margin-top:-6px;
+			right:24px;
+			position:absolute;
+		}
+		&.active::after {
+			transform:scaleY(-1);
+		}
+		i {
+		  	width: 2rem;
+		  	font-size: 1.6rem;
+		  	display: inline-block;
+		  	text-align: center;
+		  	margin-right: 1rem;
+		}
+	}
+	.collapsible-body {
+		display: none;
+		border-bottom: 1px solid #ddd;
+		box-sizing: border-box;
+		padding: 2rem;
+	}
+	&.popout {
+	  	border: none;
+		box-shadow: none;
+		li {
+		 	&:extend(.raised-2);
+			&:extend(.transition);
+		  	&.active {
+			  	box-shadow: 0 5px 11px 0 rgba(0, 0, 0, 0.18), 0 4px 15px 0 rgba(0, 0, 0, 0.15);
+			 	margin: 16px 0;
+			}
+		}
+	}
+}
+
+.sidenav {
+	.collapsible {
+		border: none;
+		box-shadow: none;
+		margin:0px!important;
+		li {
+			padding: 0;
+		}
+		.collapsible-header {
+			color:#000000de;
+			display: block;
+			font-size: 14px;
+			font-weight: 500;
+			height: 48px;
+			line-height: 48px;
+			padding: 0 32px;
+			border:none;
+			&:hover,
+			&.active {
+				background-color: #0000000d;
+			}
+			i {
+  				line-height: inherit;
+			}
+			&::after {
+				margin:0;
+			}
+		}
+		.collapsible-body {
+  			border: 0;
+			padding:0 2rem;
+			background:#fff;
+			a {
+				margin:0 -32px;
+				padding-left:56px;
+			}
+		}
+	}
+}

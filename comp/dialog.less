@@ -1,0 +1,57 @@
+.dialog {
+	&:extend(.transition);
+	box-shadow:
+		0 10px 20px rgba(0,0,0,0.19),
+		0 6px 6px rgba(0,0,0,0.23),
+		0px 0px 0px 9999px rgba(0,0,0,0.28);
+	width:312px;
+	border-radius:2px;
+	&:extend(.center-fixed);
+	padding:1.5rem;
+	overflow:hidden;
+	background:#fdfdfd;
+	opacity:0;
+	z-index:100000;
+	&.active {
+		opacity:1;
+	}
+	.actions {
+		float: right;
+		margin: -24px -12px;
+		margin-top:24px;
+	}
+	.title {
+		display: block;
+		font-weight: 500;
+		margin-bottom: 12px;
+	}
+	&.singlechoice,
+	&.multichoice {
+		.title {
+			margin-bottom:18px;
+		}
+	}
+	.formview {
+		max-height:300px;
+		overflow-y:auto;
+		margin:0 -24px;
+		padding:0 24px;
+		span {
+			padding: 6px 24px;
+			margin: 0 -24px;
+			display:block;
+		}
+	}
+	&.prog {
+		padding:0px;
+		svg {
+			margin:-10px 0;
+		}
+		.msg {
+			line-height:85px;
+			font-size:14px;
+			position: absolute;
+    		left: 100px;
+		}
+	}
+}
