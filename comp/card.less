@@ -2,16 +2,14 @@
   	&:extend(.transition);
 	&:extend(.raised-1);
 	transition-property:box-shadow;
+	overflow:hidden;
 
   	padding: 24px;
  	margin: 0.5rem 0 1rem 0;
-  	border-radius: 2px;
+  	.borderMixin();
   	background-color: #fff;
 	&:hover {
 		.raised-2();
-	}
-	&:active {
-		.raised-3();
 	}
 }
 
@@ -21,14 +19,12 @@
 	&:hover {
 		.raised-2();
 	}
-	&:active {
-		.raised-3();
-	}
 	transition-property:box-shadow;
+	overflow:hidden;
   	position: relative;
   	margin: 0.5rem 0 1rem 0;
   	background-color: #fff;
-  	border-radius: 2px;
+  	.borderMixin();
 	.card-title {
   		font-size: 24px;
  		font-weight: 300;
@@ -64,6 +60,7 @@
 		  	bottom: 0;
 			left: 0;
 		  	right: 0;
+			text-align:right!important;
 		}
 	}
 	&.horizontal {
@@ -86,7 +83,7 @@
 		.card-image {
 		  	max-width: 50%;
 			img {
-			  	border-radius: 2px 0 0 2px;
+			  	border-radius: @cornerFallback 0 0 @cornerFallback;
 			  	max-width: 100%;
 			  	width: auto;
 			}
@@ -147,7 +144,7 @@
 	}
 	.card-content {
 	 	padding: 24px;
-	 	border-radius: 0 0 2px 2px;
+	 	border-radius: 0 0 @cornerFallback @cornerFallback;
 		p {
 		  	margin: 0;
 		  	color: inherit;
@@ -167,7 +164,7 @@
 	  	border-top: 1px solid rgba(160, 160, 160, 0.2);
 	  	padding: 16px 24px;
 		&:last-child {
-		  	border-radius: 0 0 2px 2px;
+		  	border-radius: 0 0 @cornerFallback @cornerFallback;
 		}
 		a:not(.btn) {
 		 	color:@primaryColor;
@@ -206,4 +203,11 @@
 
 .row .col .card {
 	margin:4px;
+}
+
+.photon-dark {
+	.card,
+	.card-panel {
+		background:#303030;
+	}
 }

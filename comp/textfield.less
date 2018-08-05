@@ -2,9 +2,17 @@
 .dropdown {
 	display:block;
 	position:relative;
+
+	padding: 14px 0!important;
+	height: 60px!important;
+	border-radius:@cornerFallback @cornerFallback 0 0;
+
 	&.inline,
 	&.dropdown {
 		display:inline-block;
+		overflow:hidden;
+		padding-top:4px;
+		margin-bottom:-30px;
 	}
 	input,
 	select {
@@ -16,15 +24,11 @@
 		color:#212121;
 		border-bottom:1px solid @dividerColor;
 		caret-color:@accentColor;
-		font-family:roboto;
+		font-family:@fontFamily;
 		display:block;
 		width:-webkit-fill-available;
 		.transition();
 		transition-property:box-shadow;
-		&:focus {
-			box-shadow:0px 2px 0px 0px @accentColor;
-			border-color:transparent;
-		}
 	}
 	label {
 		color:#c1c1c1;
@@ -56,5 +60,53 @@
 	}
 	&.col {
 		padding:4px;
+	}
+	.bar {
+		background:@accentColor;
+		position:absolute;
+		height:2px;
+		width:0px;
+		bottom:27px;
+		left:50%;
+	}
+}
+
+.col .input-field {
+	padding:2px!important;
+	.bar {
+		bottom:22px;
+		position:relative;
+	}
+}
+
+.photon-dark {
+	input,
+	select {
+		border-color:#545454;
+		color:#fafafa;
+	}
+}
+
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #fafafa inset;
+	border-color:@amber-darken1;
+}
+
+.dialog input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #fff inset;
+	border-color:@amber-darken1;
+}
+
+.photon-dark {
+	input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 30px #212121 inset;
+		border-color:@amber-darken1;
+		-webkit-text-fill-color:#fafafa;
+	}
+
+	.dialog input:-webkit-autofill {
+		-webkit-box-shadow: 0 0 0 30px #242424 inset;
+		border-color:@amber-darken1;
+		-webkit-text-fill-color:#fafafa;
 	}
 }

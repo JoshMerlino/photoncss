@@ -77,7 +77,7 @@
 		}
 		&.disabled a,
 		&.disabled a:hover {
-  			color: rgba(238, 110, 115, 0.7);
+  			color: fade(@primaryColor,50%);
   			cursor: default;
 		}
 	}
@@ -107,4 +107,8 @@
   			background-color:@accentColor;
 		}
 	}
+}
+
+.tab-content {
+	display:none;
 }
