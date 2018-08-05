@@ -405,6 +405,9 @@ var Photon = {
 			if ($(this).children("input").val().length > 0) {
 				$(this).children("input").addClass("containscontent")
 			}
+		});
+		$(".input-field.backboard").each(function(){
+			if($(this).children("label").length == 1) $(this).addClass("containslabel")
 		})
 	}
 }
