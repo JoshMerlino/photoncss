@@ -1,4 +1,8 @@
-# [0.4.4] - 04/14/2018 @JoshMerlino
+# [0.4.5] - 05/02/2018 @JoshMerlino
+
+### Important
+New theme engine for external themes.
 
 ### Changed
-- Tooltips
+- Collections
+- Colors
