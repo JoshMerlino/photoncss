@@ -31,7 +31,7 @@
 		<link rel="stylesheet/less" type="text/css" href="/src/less/style.less" />
 		<script src="/src/js/less.js" type="text/javascript"></script>
 		<script src="/src/js/jquery.js"></script>
-		<script src="https://cdn.rawgit.com/PhotonCSS/Photon/master/src/photon.js"></script>
+		<script src="https://cdn.rawgit.com/PhotonCSS/Photon/beta/src/photon.js"></script>
 	</head>
 	<body>
 		<!-- Elements go here -->
@@ -42,8 +42,8 @@
 #
 `/src/less/style.less`
 ```css
-@import "/src/photon/src/theme";
-@import "https://cdn.rawgit.com/PhotonCSS/Photon/master/src/photon";
+@import "/src/less/theme";
+@import "https://cdn.rawgit.com/PhotonCSS/Photon/beta/src/photon";
 ```
 
 ### Create custom themes [here](https://photon-css.000webhostapp.com/theme)
