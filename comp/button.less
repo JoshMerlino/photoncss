@@ -9,10 +9,15 @@
 	font-size:1rem;
 	display:inline-block;
 	text-transform:uppercase;
+	font-family:@fontFamily;
 	.borderMixin();
 	font-weight:500;
 	margin:4px;
 	color:@accentTextColor;
+
+	&.stdcase {
+		text-transform:capitalize;
+	}
 
 	&:not(.fab) > i {
 		font-size: inherit;
@@ -132,6 +137,8 @@
 		}
 		span {
 			font-size:16px!important;
+
+			text-transform:uppercase;
 			font-family:@fontFamily;
 			font-weight:500;
 			top:-6px;
