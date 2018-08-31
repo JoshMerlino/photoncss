@@ -386,11 +386,9 @@ var Photon = {
 			$("head").append("<meta name=\"theme-color\" content=\"" + c + "\"/>")
 		},
 		setDarkTheme: function(a) {
-			if (a == true) {
-				$("body").addClass("photon-dark")
-			} else {
-				$("body").removeClass("photon-dark")
-			}
+			less.modifyVars({
+				"@photonDarkTheme":a
+			})
 		}
 	},
 	guid: function() {
