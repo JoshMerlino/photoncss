@@ -1,7 +1,8 @@
 .toast-container {
 	display: block;
-  	position: fixed;
-  	z-index: 10000;
+	position: fixed;
+	z-index: 10000;
+
 	.toast {
 		&:extend(.raised-1);
 		.borderMixin();
@@ -9,6 +10,7 @@
 		width: auto;
 		margin-top: 10px;
 		position: relative;
+		min-width:128px;
 		max-width: 100%;
 		height: auto;
 		min-height: 48px;
@@ -25,47 +27,73 @@
 		display: flex;
 		-webkit-box-align: center;
 		-webkit-align-items: center;
-		    -ms-flex-align: center;
-		        align-items: center;
+		-ms-flex-align: center;
+		align-items: center;
 		-webkit-box-pack: justify;
 		-webkit-justify-content: space-between;
-		    -ms-flex-pack: justify;
+		-ms-flex-pack: justify;
 		justify-content: space-between;
 		cursor: default;
 
 		&.rounded {
-			border-radius:50px;
+			border-radius: 50px;
 		}
-
 		@media only screen and (max-width: 600px) {
-		    width:calc(~"100% - 64px");
-			margin:8px;
+			width: calc(~"100% - 64px");
+			margin: 8px;
 		}
 
 		.toast-action {
-		  	color: @primaryColor;
+			color: @primaryColor;
 			margin-right: -16px;
-    		margin-left: 3rem;
-    		border: none;
+			margin-left: 3rem;
+			border: none;
 			&:extend(.btn.dense);
 		}
 	}
 	@media only screen and (max-width: 600px) {
-    	min-width: 100%;
-    	bottom: 0;
-		left:0;
+		min-width: 100%;
+		bottom: 0;
+		left: 0;
+
 		.toast .toast-action:last-child {
-			margin-right:32px;
+			margin-right: 32px;
 		}
 	}
 	@media only screen and (min-width: 601px) and (max-width: 992px) {
-	    left: 5%;
-	    bottom: 7%;
-	    max-width: 90%;
+		left: 5%;
+		bottom: 7%;
+		max-width: 90%;
 	}
 	@media only screen and (min-width: 993px) {
-	    top: 10%;
-	    right: 7%;
-	    max-width: 86%;
+		top: 10%;
+		right: 7%;
+		max-width: 86%;
+	}
+}
+
+.toast .note {
+	margin: -2px -30px;
+	width: calc(~"100% + 56px");
+
+	.header {
+		padding:0;
+
+		&::before {
+			top:2px;
+			position: relative
+		}
+
+		&::after {
+			color:#212121;
+			top:-5px;
+			margin-left:2px;
+		}
+	}
+	.content {
+		color:#212121;
+		font-weight:400;
+		white-space:normal;
+		word-break: break-word;
 	}
 }
