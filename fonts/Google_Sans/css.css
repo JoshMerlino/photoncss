@@ -1,0 +1,9 @@
+@font-face {
+	font-family: 'Google Sans';
+	font-style: oblique;
+	font-weight: 500;
+	src:
+		local('Open Sans'),
+		local('OpenSans'),
+		url("Gsans.woff2") format('woff2');
+}
