@@ -23,6 +23,11 @@
 		&::-webkit-scrollbar {
 			width:4px;
 		}
+		&::-webkit-scrollbar-track {
+			border-bottom-right-radius:5px;
+
+		}
+
 		.option {
 			padding: 12px 24px;
 			.option {
@@ -35,7 +40,7 @@
 	}
 }
 
-.photon-dark, when (@photonDarkTheme = true) { 
+.photon-dark, when (@photonDarkTheme = true) {
 	.options {
 		background:#242424!important;
 		.option {

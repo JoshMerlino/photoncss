@@ -1434,7 +1434,7 @@ window.addEventListener("keydown", function(e) {
 
 					// Insert as text;
 				} else {
-					if(this.options.className.split(" ").includes("note")){
+					if((this.options.className.split(" ") || "").includes("note")){
 						toast.innerHTML = "<div class='" + this.options.className + "'><div class='header'></div><div class='content'>" + this.message + "</div></div>"
 					} else {
 						toast.innerHTML = this.message;
@@ -1703,7 +1703,7 @@ window.addEventListener("keydown", function(e) {
 
 	Photon.Toast = Toast;
 	Photon.toast = function(message, displayLength, className, completeCallback) {
-		return new Toast(message, displayLength, className, completeCallback);
+		return new Toast(message, displayLength = 3750, className = "", completeCallback);
 	};
 })(jQuery, Photon.Vel);
 
