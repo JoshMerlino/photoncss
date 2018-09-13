@@ -134,7 +134,7 @@
 			right:-1px;
 			bottom:-1px;
 			pointer-events:none;
-			border:2px solid @accentColor;
+			border:1px solid @accentColor;
 			border-radius:@cornerFallback;
 			z-index:3;
 			opacity:0;
@@ -142,6 +142,7 @@
 
 		input:focus ~ .borders {
 			opacity:1;
+			border-width:2px;
 		}
 	}
 
@@ -157,7 +158,7 @@
 	}
 }
 
-.photon-dark {
+.photon-dark, when (@photonDarkTheme = true) { 
 	input,
 	select {
 		border-color:#545454;
@@ -182,7 +183,7 @@ input:-webkit-autofill {
 	border-color:@amber-darken1;
 }
 
-.photon-dark {
+.photon-dark, when (@photonDarkTheme = true) { 
 	.input-field.backboard {
 		background:#262626;
 	}

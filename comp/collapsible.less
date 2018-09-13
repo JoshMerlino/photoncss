@@ -17,7 +17,7 @@
 		}
 
 		&:first-child:last-child {
-			border-radius:@cornerFallback;
+			border-radius: @cornerFallback;
 		}
 
 		&:not(:last-child) {
@@ -85,6 +85,10 @@
 		.collapsible-body {
 			padding: 12px 24px 24px;
 			font-size: 14px;
+
+			&.row {
+				margin-bottom: 0!important;
+			}
 		}
 
 		&.active,
@@ -106,55 +110,59 @@
 		.borderMixin();
 
 		.collapsible-header {
-			margin: 0px;
+			margin: 0;
 		}
 	}
 }
 
-.photon-dark .collapsible li {
-	background: #303030;
-	border-color: #565656;
+.photon-dark,
+when (@photonDarkTheme = true) {
+	.collapsible li {
+		background: #303030;
+		border-color: #565656;
+	}
 }
 
 .sidenav .collapsible {
 	margin: 0;
-	border-radius:0;
+	border-radius: 0;
 
 	li {
 		border: none;
 		margin: 0;
 		box-shadow: none!important;
-		border-radius:0;
-
+		border-radius: 0;
 		background: transparent!important;
 
 		.collapsible-header {
 			color: rgba(0, 0, 0, 0.87);
-		    display: block;
-		    font-size: 14px;
-		    font-weight: 500;
-		    height: 48px;
-		    line-height: 48px;
-		    padding: 0 32px;
+			display: block;
+			font-size: 14px;
+			font-weight: 500;
+			height: 48px;
+			line-height: 48px;
+			padding: 0 32px;
+
 			&::after {
-				top:auto;
-				transform:rotate(0deg);
+				top: auto;
+				transform: rotate(0deg);
 				bottom: 0;
 			}
 		}
 
 		&.active {
-			.collapsible-header,
-			.collapsible-body {
-				box-shadow: inset 0px -1px 0px 0px @dividerColor;
+			.collapsible-body,
+			.collapsible-header {
+				box-shadow: inset 0 -1px 0 0 @dividerColor;
+
 				&::after {
-					transform:rotate(180deg);
+					transform: rotate(180deg);
 				}
 			}
 		}
 
 		.collapsible-body {
-			padding: 0!important;
+			padding: 0!important !important;
 		}
 	}
 }
