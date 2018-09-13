@@ -86,6 +86,7 @@
 				height: 100%;
 				width: 50%;
 				left: 0;
+
 				&:last-child {
 					left: 50%;
 				}
@@ -273,9 +274,10 @@
 					left: 18px;
 					right: 18px;
 					width: calc(~"100% - 36px");
-					div::before,
-					div::after {
-						margin:-5px;
+
+					div::after,
+					div::before {
+						margin: -5px;
 					}
 				}
 			}
@@ -529,35 +531,47 @@
 	}
 }
 
-.photon-dark .photon-picker {
-	background:#242424;
-	.bar,
-	.clock {
-		background:#424242!important;
-		.timeblob:not(.active) {
-			color:#fff!important;
+.photon-dark,
+when (@photonDarkTheme = true) {
+	.photon-picker {
+		background: #242424;
+
+		.bar,
+		.clock {
+			background: #424242!important;
+
+			.timeblob:not(.active) {
+				color: #fff!important;
+			}
 		}
-	}
-	.btn.white {
-		background:#242424!important;
-		box-shadow:inset 0 0 0 1px #525252!important;
-		.waves-ripple {
-			background-color:rgba(255,255,255,.2)!important;
+
+		.btn.white {
+			background: #242424!important;
+			box-shadow: inset 0 0 0 1px #525252!important;
+
+			.waves-ripple {
+				background-color: rgba(255,255,255,.2)!important;
+			}
 		}
-	}
-	.pane div {
-		color:#fff!important;
-	}
-	i {
-		color:#fff!important;
-		.waves-ripple {
-			background-color:rgba(255,255,255,.2)!important;
+
+		.pane div {
+			color: #fff!important;
 		}
-	}
-	.yearpick {
-		background:#242424;
-		.yearsel:not(.active) {
-			color:#fff!important;
+
+		i {
+			color: #fff!important;
+
+			.waves-ripple {
+				background-color: rgba(255,255,255,.2)!important;
+			}
+		}
+
+		.yearpick {
+			background: #242424;
+
+			.yearsel:not(.active) {
+				color: #fff!important;
+			}
 		}
 	}
 }
