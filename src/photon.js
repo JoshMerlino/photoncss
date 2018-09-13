@@ -450,6 +450,31 @@ window.addEventListener("keydown", function(e) {
 						$(this).hide();
 					}
 				})
+			}).keydown(function(e){
+				if(e.which == 38){
+					selopt --;
+					if(selopt < 0) selopt = 0;
+
+					var opt = $(acopt.children(".option")[selopt]);
+						opt.addClass("active").siblings().removeClass("active");
+					input.val(opt.text()).addClass("containscontent");
+				} else if(e.which == 40){
+					selopt ++;
+					if(selopt >= acopt.children(".option").length) selopt = acopt.children(".option").length -1;
+
+					var opt = $(acopt.children(".option")[selopt]);
+						opt.addClass("active").siblings().removeClass("active");
+					input.val(opt.text()).addClass("containscontent");
+				};
+
+				var p = acopt.children(".option.active").index() * 44 - 64;
+				acopt.animate({
+					scrollTop: p
+				}, {
+					duration: 175,
+					queue: false
+				})
+
 			})
 
 			$("body").click(function(){
