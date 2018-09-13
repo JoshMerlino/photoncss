@@ -20,6 +20,9 @@
 			max-height:240px;
 			opacity:1;
 		}
+		&::-webkit-scrollbar {
+			width:4px;
+		}
 		.option {
 			padding: 12px 24px;
 			.option {
@@ -32,7 +35,7 @@
 	}
 }
 
-.photon-dark {
+.photon-dark, when (@photonDarkTheme = true) { 
 	.options {
 		background:#242424!important;
 		.option {

@@ -1,72 +1,80 @@
-input[type="radio"]{
-
+input[type="radio"] {
 	&:extend(.transition);
-
-	-webkit-appearance:none;
-	width:18px;
-	height:18px;
-	border:2px solid #6d6d6d;
-	border-radius:50%;
-	outline:0;
+	-webkit-appearance: none;
+	width: 18px;
+	height: 18px;
+	border: 2px solid #6d6d6d;
+	border-radius: 50%;
+	outline: 0;
 	transform: translateY(-2px);
 
 	&:checked {
-		border:2px solid @accentColor;
+		border: 2px solid @accentColor;
 	}
+
 	&::after {
 		&:extend(.transition);
-		width:10px;
-		height:10px;
-		border-radius:50%;
-		position:absolute;
-		content:"";
-		margin:2px;
-		transform:scale(0);
-		background:@accentColor;
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		position: absolute;
+		content: "";
+		margin: 2px;
+		transform: scale(0);
+		background: @accentColor;
 	}
+
 	&:checked::after {
-		transform:scale(1);
+		transform: scale(1);
 	}
+
 	&:disabled {
-		border-color:#b0b0b0;
+		border-color: #b0b0b0;
+
 		&::after {
-			background:#b0b0b0;
+			background: #b0b0b0;
 		}
 	}
+
 	&.ripple {
 		&::before {
-
 			&:extend(.transition);
-			transition-property:transform,opacity;
+			transition-property: transform,opacity;
+			position: absolute;
+			content: "";
+			width: 48px;
+			height: 48px;
+			background: #b0b0b0;
+			margin: -17px;
+			transform: scale(0);
+			opacity: 0;
+			border-radius: 50%!important;
+		}
 
-			position:absolute;
-			content:"";
-			width:48px;
-			height:48px;
-			background:#b0b0b0;
-			margin:-17px;
-			transform:scale(0);
-			opacity:0;
-			border-radius:50%!important;
-		}
 		&:checked::before {
-			background:@accentColor;
+			background: @accentColor;
 		}
+
 		&:active::before {
-			opacity:.4;
-			transform:scale(1);
+			opacity: 0.4;
+			transform: scale(1);
 		}
 	}
 }
 
-.photon-dark input[type="radio"] {
-	&:not(:checked){
-		border-color:#b5b5b5!important;
-	}
-	&:disabled {
-		border-color:#717171!important;
-	}
-	&:disabled::after {
-		background:#717171;
+.photon-dark,
+when (@photonDarkTheme = true) {
+	input[type="radio"] {
+		&:not(:checked) {
+			border-color: #b5b5b5!important;
+		}
+
+		&:disabled {
+			border-color: #717171!important;
+		}
+
+		&:disabled::after {
+			background: #717171;
+		}
 	}
 }
