@@ -1,7 +1,10 @@
-@import "https://fonts.googleapis.com/css?family=Roboto:200,300,400,500";
-@import "https://fonts.googleapis.com/css?family=@{fontImport}:200,300,400,500";
+@import (optional) "./photon/fonts/Google_Sans/css.css";
+@import (optional) "./photon/fonts/Icon_Font/material-icons.css";
+@import (optional) "./photon/fonts/Roboto/css.css";
+@import (optional) "./photon/fonts/Roboto_Condensed/css.css";
+@import (optional) "./photon/fonts/Roboto_Mono/css.css";
+@import (optional) "./photon/fonts/Roboto_Slab/css.css";
 
-@import "https://cdn.rawgit.com/google/material-design-icons/master/iconfont/material-icons.css";
 @mobile: ~"only screen and (max-width: 529px)";
 @tablet: ~"only screen and (min-width: 530px) and (max-width: 949px)";
 @desktop: ~"only screen and (min-width: 950px)";
@@ -61,12 +64,8 @@
 	background: #555;
 }
 
-.borderMixin(@mx:1,@ma:0){
-	border-radius:
-		((extract(@cornerLevels,1) * @mx) + @ma)
-		((extract(@cornerLevels,2) * @mx) + @ma)
-		((extract(@cornerLevels,4) * @mx) + @ma)
-		((extract(@cornerLevels,3) * @mx) + @ma);
+.borderMixin(@mx:1, @ma:0) {
+	border-radius: ((extract(@cornerLevels,1) * @mx) + @ma) ((extract(@cornerLevels,2) * @mx) + @ma) ((extract(@cornerLevels,4) * @mx) + @ma) ((extract(@cornerLevels,3) * @mx) + @ma);
 }
 
 * {
@@ -81,7 +80,8 @@ body {
 	outline: 0;
 	font-weight: 400;
 
-	&.photon-dark {
+	&.photon-dark,
+	when (@photonDarkTheme = true) {
 		background: #212121;
 		color: #fafafa;
 
@@ -157,10 +157,11 @@ hr {
 
 label {
 	position: relative;
+
 	input[type="checkbox"] ~ &,
 	input[type="radio"] ~ & {
 		margin-left: 24px;
-		top:-6px;
+		top: -6px;
 	}
 }
 
