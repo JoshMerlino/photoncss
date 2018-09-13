@@ -2,7 +2,6 @@
 .dropdown {
 	display:block;
 	position:relative;
-
 	padding: 14px 0!important;
 	height: 60px!important;
 	border-radius:@cornerFallback @cornerFallback 0 0;
@@ -11,8 +10,8 @@
 	&.dropdown {
 		display:inline-block;
 		overflow:hidden;
-		padding-top:4px;
-		margin-bottom:-30px;
+		padding-top:12px;
+		margin-bottom:-42px;
 	}
 	input,
 	select {
@@ -33,7 +32,7 @@
 	label {
 		color:#c1c1c1;
 		position:relative;
-		top:-30px;
+		top:-28px;
 		user-select:none;
 		&:extend(.transition);
 	}
@@ -74,6 +73,7 @@
 	&.backboard {
 		background:#e8e8e8;
 		padding:0px;
+		height:58px!important;
 		input,
 		label {
 			padding-left:16px;
@@ -96,7 +96,7 @@
 		}
 		&.containslabel {
 			.bar {
-				bottom:23px!important;
+				bottom:21px!important;
 			}
 			input {
 				padding:16px 16px 8px;
@@ -110,7 +110,8 @@
 		position:relative;
 		input {
 			border:none;
-			padding: 16px 0 8px 16px;
+			padding: 4px 0 8px 16px;
+			margin:1px;
 		}
 		label {
 			margin-left:10px;
@@ -122,7 +123,7 @@
 		}
 		input:focus ~ label,
 		input.containscontent ~ label {
-			top:-60px!important;
+			top:-58px!important;
 			background:#fafafa;
 		}
 
@@ -149,16 +150,14 @@
 }
 
 .col .input-field {
-	&:not(.backboard){
-		padding:2px!important;
-	}
+	padding:0 2px;
 	.bar {
-		bottom:22px;
+		bottom:20px;
 		position:relative;
 	}
 }
 
-.photon-dark, when (@photonDarkTheme = true) { 
+.photon-dark, when (@photonDarkTheme = true) {
 	input,
 	select {
 		border-color:#545454;
@@ -183,7 +182,7 @@ input:-webkit-autofill {
 	border-color:@amber-darken1;
 }
 
-.photon-dark, when (@photonDarkTheme = true) { 
+.photon-dark, when (@photonDarkTheme = true) {
 	.input-field.backboard {
 		background:#262626;
 	}
