@@ -2185,7 +2185,19 @@ Photon.ready = Photon.reload = function() {
 
 	$("label").each(function() {
 		var f = $("#" + $(this).attr("for"));
-		$(this).addClass("for-" + f.attr("type"))
+		$(this).addClass("for-" + f.attr("type"));
+
+		$(this).on("mousedown",function(){
+			Waves.ripple(f.siblings(".ripple"),{
+				wait: 1e10
+			})
+		}).on("mouseup",function(){
+			Waves.calm(f.siblings(".ripple"))
+		})
+	});
+
+	$(".switch .ripple").click(function(){
+		$(this).siblings("input").prop("checked",!$(this).siblings("input").prop("checked"))
 	})
 
 	$(".input-field input,.input-field.select select").on("focus", function(e) {
@@ -2300,6 +2312,10 @@ Photon.ready = Photon.reload = function() {
 				}
 			}
 		})
+	})
+
+	$(".checkbox,.radio").children(".ripple").click(function(){
+		$(this).siblings("input").click()
 	})
 
 }
