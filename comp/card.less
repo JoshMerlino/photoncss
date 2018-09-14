@@ -28,6 +28,7 @@
 	.card-title {
   		font-size: 24px;
  		font-weight: 300;
+		font-family:Google Sans;
 		.activator {
   			cursor: pointer;
 		}
@@ -169,9 +170,9 @@
 		a:not(.btn) {
 		 	color:@primaryColor;
 		  	margin-right: 24px;
-		  	-webkit-transition: color .3s ease;
-		  	transition: color .3s ease;
-		  	text-transform: uppercase;
+		  	-webkit-transition: color 150ms ease;
+		  	transition: color 150ms ease;
+			font-family:Google Sans!important;
 			user-select:none;
 			cursor:pointer;
 			&:hover {
@@ -205,7 +206,7 @@
 	margin:4px;
 }
 
-.photon-dark, when (@photonDarkTheme = true) { 
+.photon-dark, when (@photonDarkTheme = true) {
 	.card,
 	.card-panel {
 		background:#303030;
