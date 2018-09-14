@@ -35,28 +35,35 @@
 			cursor: pointer;
 			.transition();
 			transition-property: transform;
+			transition-timing-function: linear;
 
 			&:active {
 				transform: scale(1.33);
+
+				.ripple {
+					transform: scale(.75);
+				}
 			}
 
-			&.ripple {
-				&::before {
-					&:extend(.transition);
-					position: absolute;
-					content: "";
-					width: 50px;
-					height: 50px;
-					background: @accentColor;
-					margin: -17px;
-					transform: scale(0);
+			.ripple {
+				position: absolute;
+				width: 48px;
+				height: 48px;
+				margin: -39px -10px -39px -15px!important;
+				top: 22.5px;
+				left: -1px;
+				.transition();
+				transition-property: transform;
+				transition-timing-function: linear;
+
+				&::after {
 					opacity: 0;
-					border-radius: 50%;
+					pointer-events: none;
+					content: "-";
 				}
 
-				&:active::before {
-					opacity: 0.4;
-					transform: scale(0.7);
+				.waves-ripple {
+					background: fade(@accentColor,40%);
 				}
 			}
 		}

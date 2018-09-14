@@ -778,6 +778,7 @@ window.addEventListener("keydown", function(e) {
 		this.each(function() {
 
 			var thumb = $(this).children(".thumb");
+			var ripple = $(this).children(".thumb").children(".ripple");
 			var track = $(this).children(".determinate");
 			var slider = $(this);
 
@@ -787,6 +788,14 @@ window.addEventListener("keydown", function(e) {
 			track.width(value + "%");
 
 			thumb.on("mousedown touchstart", function() {
+				startDrag();
+			});
+
+			ripple.on("mousedown touchstart", function() {
+				startDrag();
+			});
+
+			function startDrag(){
 				$("body").on("mousemove touchmove", function(e) {
 
 					e.preventDefault();
@@ -802,7 +811,7 @@ window.addEventListener("keydown", function(e) {
 					slider.attr("value",o);
 
 				});
-			});
+			}
 
 			slider.click(function(e) {
 				var x = e.pageX;
