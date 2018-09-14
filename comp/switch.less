@@ -1,60 +1,79 @@
-input[type="checkbox"].switch {
-	&:extend(.transition);
+.switch {
+	margin:4px 0;
 
-	-webkit-appearance:none;
-	width:36px;
-	height:14px;
-	border-radius:10px;
-	outline:0;
-	background:fade(@dividerColor,50%);
-	&:checked {
-		background:fade(@accentColor,50%);
-		&::before {
-			margin:-2px 18px;
-			background:@accentColor;
-		}
-	}
-	&:disabled {
-		background:#aaaa;
-		&::before {
-			background:#454545;
-		}
-	}
-	&::before {
+	input[type="checkbox"].switch {
 		&:extend(.transition);
-		&:extend(.raised-1);
+		-webkit-appearance: none;
+		margin-top: -2px;
+		width: 36px;
+		height: 14px;
+		border-radius: 10px;
+		outline: 0;
+		background: fade(@dividerColor,50%);
 
-		position:absolute;
-		content:"";
-		width:18px;
-		height:18px;
-		background:#fafafa;
-		border-radius:50%;
-		transform:scale(1.2);
-		margin:-2px 0;
-	}
-	&.ripple {
-		&::after {
+		&:checked {
+			background: fade(@accentColor,50%);
+
+			&::before {
+				margin: -2px 18px;
+				background: @accentColor;
+			}
+		}
+
+		&:disabled {
+			background: #aaaa;
+
+			&::before {
+				background: #454545;
+			}
+		}
+
+		&::before {
 			&:extend(.transition);
-			transition-property:transform,opacity;
+			&:extend(.raised-1);
+			position: absolute;
+			content: "";
+			width: 18px;
+			height: 18px;
+			background: #fafafa;
+			border-radius: 50%;
+			transform: scale(1.2);
+			margin: -2px 0;
+		}
+	}
+	position: relative;
 
-			position:absolute;
-			content:"";
-			width:48px;
-			height:48px;
-			background:fade(@dividerColor,40%);
-			margin:-17px -15px;
-			border-radius:50%!important;
-			transform:scale(0);
-			opacity:0;
+	.ripple {
+		position: absolute;
+		width: 48px;
+		height: 48px;
+		margin: -39px -10px;
+		margin-left:-15px!important;
+		.transition();
+		transition-property:margin-left;
+
+		&::after {
+			opacity: 0;
+			pointer-events: none;
+			content: "-";
 		}
-		&:checked::after {
-			background:fade(@accentColor,40%);
-			margin:-17px 3px;
+	}
+
+	input:checked ~ .ripple {
+		margin-left:3px!important;
+		.waves-ripple {
+			background: fade(@accentColor,40%);
 		}
-		&:active::after {
-			transform:scale(1);
-			opacity:1;
-		}
+	}
+
+	input:disabled ~ .ripple {
+		display: none;
+	}
+}
+
+.photon-dark,
+when (@photonDarkTheme = true) {
+	input[type="checkbox"].switch:not(:checked)::before {
+		background: #bdbdbd;
 	}
 }

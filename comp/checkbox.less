@@ -53,31 +53,29 @@ input[type="checkbox"]:not(.switch) {
 		transform: scale(1);
 		margin: -9px;
 	}
+}
 
-	&.ripple {
-		&::before {
-			&:extend(.transition);
-			transition-property: transform,opacity;
-			position: absolute;
-			content: "";
-			width: 48px;
-			height: 48px;
-			background: #b0b0b0;
-			margin: -17px;
-			transform: scale(0);
+.checkbox {
+	position:relative;
+	.ripple {
+		position: absolute;
+		width: 48px;
+		height: 48px;
+		margin: -40px -11px;
+
+		&::after {
 			opacity: 0;
-			border-radius: 50%!important;
+			pointer-events: none;
+			content: "-";
 		}
+	}
 
-		&:checked::before {
-			margin: -24px;
-			background: @accentColor;
-		}
+	input:checked ~ .ripple .waves-ripple {
+		background:fade(@accentColor,40%);
+	}
 
-		&:active::before {
-			opacity: 0.4;
-			transform: scale(1);
-		}
+	input:disabled ~ .ripple {
+		display:none;
 	}
 }
 
