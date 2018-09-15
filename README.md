@@ -20,6 +20,7 @@
    |- /less
       |- style.less
       |- theme.less
+   |- /photon ...
 ```
 
 ### Importing styles and scripts
@@ -31,7 +32,7 @@
 		<link rel="stylesheet/less" type="text/css" href="/src/less/style.less" />
 		<script src="/src/js/less.js" type="text/javascript"></script>
 		<script src="/src/js/jquery.js"></script>
-		<script src="https://cdn.rawgit.com/PhotonCSS/Photon/beta/src/photon.js"></script>
+		<script src="/src/photon/src/photon.js"></script>
 	</head>
 	<body>
 		<!-- Elements go here -->
@@ -43,11 +44,10 @@
 `/src/less/style.less`
 ```css
 @import "/src/less/theme";
-@import "https://cdn.rawgit.com/PhotonCSS/Photon/beta/src/photon";
+@import "/src/photon/src/photon";
 ```
 
 ### Create custom themes [here](https://photon-css.000webhostapp.com/theme)
-### View pre-made themes [here](https://github.com/PhotonCSS/themes)
 
 #
 `/src/js/script.js`
