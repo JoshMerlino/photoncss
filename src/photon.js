@@ -881,9 +881,9 @@ window.addEventListener("keydown", function(e) {
 			function right(){
 				step ++;
 				if(step == max){
-					nav.children(".btn").last().hide();
+					nav.children(".btn").last().addClass("disabled");
 				} else {
-					nav.children(".btn").first().show();
+					nav.children(".btn").first().removeClass("disabled");
 				}
 
 				common(1);
@@ -892,9 +892,9 @@ window.addEventListener("keydown", function(e) {
 
 				step --;
 				if(step == 1){
-					nav.children(".btn").first().hide();
+					nav.children(".btn").first().addClass("disabled");
 				} else {
-					nav.children(".btn").last().show();
+					nav.children(".btn").last().removeClass("disabled");
 				}
 
 				common(-1);
@@ -921,7 +921,7 @@ window.addEventListener("keydown", function(e) {
 				} else {
 					left();
 				}
-			}).first().hide();
+			}).first().addClass("disabled");
 
 			var oe = 0;
 			content.on("touchstart",function(e){
@@ -2206,7 +2206,7 @@ Photon.ready = Photon.reload = function() {
 	});
 
 	$(".switch .ripple").click(function(){
-		$(this).siblings("input").prop("checked",!$(this).siblings("input").prop("checked"))
+		$(this).siblings("input").prop("checked",!$(this).siblings("input").prop("checked")).change()
 	})
 
 	$(".input-field input,.input-field.select select").on("focus", function(e) {
