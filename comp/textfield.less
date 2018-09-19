@@ -66,7 +66,6 @@
 		position:absolute;
 		height:2px;
 		width:0px;
-		bottom:27px;
 		left:50%;
 	}
 
@@ -91,13 +90,7 @@
 		label ~ input {
 			padding:16px 0 8px;
 		}
-		.bar {
-			bottom:2px!important;
-		}
 		&.containslabel {
-			.bar {
-				bottom:21px!important;
-			}
 			input {
 				padding:16px 16px 8px;
 			}
@@ -152,7 +145,6 @@
 .col .input-field {
 	padding:0 2px;
 	.bar {
-		bottom:20px;
 		position:relative;
 	}
 }
@@ -177,7 +169,7 @@ input:-webkit-autofill {
 	border-color:@amber-darken1;
 }
 
-.dialog input:-webkit-autofill {
+.photon-dialog input:-webkit-autofill {
 	-webkit-box-shadow: 0 0 0 30px #fff inset;
 	border-color:@amber-darken1;
 }
@@ -192,9 +184,25 @@ input:-webkit-autofill {
 		-webkit-text-fill-color:#fafafa;
 	}
 
-	.dialog input:-webkit-autofill {
+	.photon-dialog input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 30px #242424 inset;
 		border-color:@amber-darken1;
 		-webkit-text-fill-color:#fafafa;
+	}
+
+	.photon-dialog input {
+		color:#f0f0f0!important;
+	}
+}
+
+.input-field {
+	.bar {
+		bottom:1px;
+	}
+	label ~ .bar {
+		bottom:20px;
+	}
+	.options ~ .bar {
+		bottom:29px;
 	}
 }
