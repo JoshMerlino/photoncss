@@ -69,84 +69,10 @@
 		left:50%;
 	}
 
-	&.backboard {
-		background:#e8e8e8;
-		padding:0px;
-		height:58px!important;
-		input,
-		label {
-			padding-left:16px;
-			color:#555;
-		}
-		input::placeholder {
-			color:#555;
-		}
-		input {
-			padding:8px 16px 16px;
-		}
-		label {
-			top:-40px;
-		}
-		label ~ input {
-			padding:16px 0 8px;
-		}
-		&.containslabel {
-			input {
-				padding:16px 16px 8px;
-			}
-		}
-	}
-
-	&.outlined {
-		border:1px solid @dividerColor;
-		border-radius:@cornerFallback;
-		position:relative;
-		input {
-			border:none;
-			padding: 4px 0 8px 16px;
-			margin:1px;
-		}
-		label {
-			margin-left:10px;
-			padding:0 6px;
-			z-index:4
-		}
-		.bar {
-			display:none;
-		}
-		input:focus ~ label,
-		input.containscontent ~ label {
-			top:-58px!important;
-			background:#fafafa;
-		}
-
-		.borders {
-			.transition();
-			position:absolute;
-			top:-1px;
-			left:-1px;
-			right:-1px;
-			bottom:-1px;
-			pointer-events:none;
-			border:1px solid @accentColor;
-			border-radius:@cornerFallback;
-			z-index:3;
-			opacity:0;
-		}
-
-		input:focus ~ .borders {
-			opacity:1;
-			border-width:2px;
-		}
-	}
-
 }
 
 .col .input-field {
 	padding:0 2px;
-	.bar {
-		position:relative;
-	}
 }
 
 .photon-dark, when (@photonDarkTheme = true) {
@@ -154,13 +80,6 @@
 	select {
 		border-color:#545454;
 		color:#fafafa;
-	}
-	.outlined {
-		border-color:#545454;
-		input:focus ~ label,
-		input.containscontent ~ label {
-			background:#212121;
-		}
 	}
 }
 
@@ -175,9 +94,6 @@ input:-webkit-autofill {
 }
 
 .photon-dark, when (@photonDarkTheme = true) {
-	.input-field.backboard {
-		background:#262626;
-	}
 	input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 30px #212121 inset;
 		border-color:@amber-darken1;
@@ -193,16 +109,18 @@ input:-webkit-autofill {
 	.photon-dialog input {
 		color:#f0f0f0!important;
 	}
+
 }
 
-.input-field {
+.input-field .bar {
+	bottom:29px;
+}
+
+.col .input-field {
 	.bar {
 		bottom:1px;
 	}
-	label ~ .bar {
-		bottom:20px;
-	}
-	.options ~ .bar {
-		bottom:29px;
+	&.inline .bar {
+		bottom:29px!important;
 	}
 }
