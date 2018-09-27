@@ -1,8 +1,9 @@
 <p align="center">
   <img src="/img/icon.png?raw=true" width="20%">
 </p>
-<h1 align="center">Photon CSS v2.0.0</h1>
+<h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
+<h5 align="center" version>v2.0.0</h5>
 
 <hr>
 <br>
