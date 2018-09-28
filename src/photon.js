@@ -2353,3 +2353,7 @@ setInterval(function() {
 	})
 
 })
+
+setInterval(() => Waves.ripple($(".waves-pulse"),{
+	wait:750
+}),1250)
