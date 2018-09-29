@@ -647,7 +647,7 @@ window.addEventListener("keydown", function(e) {
 				});
 			}
 
-			$(this).children("li").first().children(".collapsible-header").click().click()
+			setTimeout(() => $(this).children("li").first().children(".collapsible-header").click().click(),200)
 
 		});
 	};
