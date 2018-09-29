@@ -646,6 +646,9 @@ window.addEventListener("keydown", function(e) {
 					collapsibleOpen($(this), true);
 				});
 			}
+
+			$(this).children("li").first().children(".collapsible-header").click().click()
+
 		});
 	};
 	$.fn.scrollnav = function() {
