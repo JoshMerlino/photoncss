@@ -2065,7 +2065,7 @@ window.addEventListener("keydown", function(e) {
 			});
 
 			picker.children(".actions").children(".btn").click(function(){
-				var seldate = [ddate.year,ddate.month+1,ddate.day];
+				var seldate = [ddate.month+1,ddate.day,ddate.year];
 				if($(this).hasClass("ok")){
 					cb(seldate);
 				} else {
@@ -2288,7 +2288,7 @@ Photon.ready = Photon.reload = function() {
 		$(this).toggleClass("active");
 	})
 
-	$(".waves-ink").bind("mousedown", function(e) {
+	$(".waves-ink").off("mousedown").bind("mousedown", function(e) {
 		$(this).children(".waves-ripple").fadeOut(500);
 		e.stopPropagation();
 		Waves.ripple(this, {
