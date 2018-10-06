@@ -2329,7 +2329,41 @@ Photon.ready = Photon.reload = function() {
 
 	$(".checkbox,.radio").children(".ripple").click(function(){
 		$(this).siblings("input").click()
-	})
+	});
+
+	;(function(){
+		var track = 0;
+		var start = 0;
+
+		$(".tabs-swipeable").on("touchstart", function(e) {
+
+			e.preventDefault();
+			start = e.touches[0].clientX;
+
+		}).on("touchmove", function(e) {
+
+			e.preventDefault();
+			track = e.changedTouches[0].pageX;
+
+		}).on("touchend",function(e){
+
+			var swipeleft = ((start - track) > 100)
+			var swiperight = ((start - track) < -100);
+
+			if(swiperight){
+				$("a[href=\"#" + $(this).attr("id") + "\"]").parent().prev().children("a").click()
+			}
+			if(swipeleft){
+				$("a[href=\"#" + $(this).attr("id") + "\"]").parent().next().children("a").click()
+			}
+
+			start = 0;
+			track = 0;
+
+		})
+	}())
+
+
 
 }
 
