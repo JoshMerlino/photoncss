@@ -1,0 +1,42 @@
+table {
+	.card();
+	display:block;
+	overflow-x:auto;
+	tbody th,
+	tbody td {
+		text-align:left;
+		&:nth-child(2n+1):not(:first-child){
+			text-align:right;
+		}
+	}
+	tbody {
+		display:block;
+		tr:first-child {
+			box-shadow:0 2px 0 #e0e0e0!important;
+			th {
+				color:#6a6a6a;
+				font-size:14px;
+				font-weight:500;
+				padding:0 24px;
+			}
+		}
+		tr {
+			line-height:48px;
+			&:not(:last-child){
+				box-shadow:0 1px 0 #e0e0e0;
+			}
+			td,th {
+				padding:0 24px;
+				white-space:nowrap;
+				img {
+					width:36px;
+					position: absolute;
+					margin-top: -18px;
+				}
+				&.mono {
+					font-family:roboto mono;
+				}
+			}
+		}
+	}
+}
