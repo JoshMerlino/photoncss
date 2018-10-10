@@ -2367,7 +2367,9 @@ Photon.ready = Photon.reload = function() {
 
 }
 
-$(document).ready(() => Photon.ready());
+less.pageLoadFinished.then(() => {
+	Photon.ready()
+})
 
 setInterval(function() {
 	if ($("footer").length == 1) {
