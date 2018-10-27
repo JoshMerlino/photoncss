@@ -1752,9 +1752,9 @@ window.addEventListener("keydown", function(e) {
 		alert: function(a, b = () => {}) {
 
 			$(".photon-dialog").remove();
-			$("body").append("<div class=\"photon-dialog alert\"><div class=\"content\"></div><a class=\"btn waves-effect waves-light\">ok</a></div>")
+			$("body").append("<div class=\"photon-dialog alert\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-light\">ok</a></div>")
 
-			$(".photon-dialog .content").text(a);
+			$(".photon-dialog .dx-content").text(a);
 			$(".photon-dialog .btn").click(function() {
 				$(".photon-dialog").removeClass("active")
 				setTimeout(() => {
@@ -1768,9 +1768,9 @@ window.addEventListener("keydown", function(e) {
 		confirm: function(a, b = () => {}) {
 
 			$(".photon-dialog").remove();
-			$("body").append("<div class=\"photon-dialog confirm\"><div class=\"content\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
+			$("body").append("<div class=\"photon-dialog confirm\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
 
-			$(".photon-dialog .content").text(a);
+			$(".photon-dialog .dx-content").text(a);
 			$(".photon-dialog .btn").click(function() {
 				$(".photon-dialog").removeClass("active")
 				setTimeout(() => {
@@ -1784,9 +1784,9 @@ window.addEventListener("keydown", function(e) {
 		prompt: function(a, b = () => {}) {
 
 			$(".photon-dialog").remove();
-			$("body").append("<div class=\"photon-dialog prompt\"><div class=\"content\"></div><div class=\"input-field\"><input type=\"text\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
+			$("body").append("<div class=\"photon-dialog prompt\"><div class=\"dx-content\"></div><div class=\"input-field\"><input type=\"text\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
 
-			$(".photon-dialog .content").text(a);
+			$(".photon-dialog .dx-content").text(a);
 			$(".photon-dialog .btn").click(function() {
 				$(".photon-dialog").removeClass("active")
 				setTimeout(() => {
