@@ -1,5 +1,18 @@
 .input-field.select {
 	overflow:visible!important;
+	&::after {
+		position: absolute;
+		top: 24px;
+		right:0;
+		content: "\E5CF";
+		font-family: "Material Icons";
+		font-size: 24px;
+		color: #696969;
+		pointer-events: none;
+	}
+	input {
+		cursor:pointer!important;
+	}
 	.options {
 		.transition();
 		background:#fff;
