@@ -33,11 +33,6 @@ var Photon = {
 		setBarColor: function(c) {
 			$("head meta[name='theme-color']").remove();
 			$("head").append("<meta name=\"theme-color\" content=\"" + c + "\"/>")
-		},
-		setDarkTheme: function(a) {
-			less.modifyVars({
-				"@photonDarkTheme":a
-			})
 		}
 	},
 	guid: function() {
@@ -2016,9 +2011,7 @@ Photon.ready = Photon.reload = function() {
 
 }
 
-less.pageLoadFinished.then(() => {
-	Photon.ready()
-})
+$(() => Photon.ready());
 
 setInterval(function() {
 	if ($("footer").length == 1) {
