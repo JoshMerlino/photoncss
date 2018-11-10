@@ -122,7 +122,15 @@ h4,
 h5,
 h6 {
 	font-weight: 400;
-	font-family:Google Sans
+	font-family:@secondaryFont;
+	display:block;
+	overflow-x: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
+p {
+	margin:0;
 }
 
 img {
@@ -203,7 +211,6 @@ video {
 @import "../comp/select.less";
 @import "../comp/sidenav.less";
 @import "../comp/slider.less";
-@import "../comp/stepper.less";
 @import "../comp/switch.less";
 @import "../comp/tabs.less";
 @import "../comp/textfield.less";
