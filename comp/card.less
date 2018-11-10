@@ -206,9 +206,9 @@
 	margin:4px;
 }
 
-.photon-dark, when (@photonDarkTheme = true) {
-	.card,
-	.card-panel {
-		background:#303030;
+.card,
+.card-panel {
+	& when (@photonDarkTheme = true) {
+		background: #303030;
 	}
 }

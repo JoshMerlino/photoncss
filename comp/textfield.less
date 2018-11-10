@@ -75,25 +75,11 @@
 	padding:0 2px;
 }
 
-.photon-dark, when (@photonDarkTheme = true) {
+body when (@photonDarkTheme = true) {
 	input,
 	select {
-		border-color:#545454;
-		color:#fafafa;
+		color:#fafafa!important;
 	}
-}
-
-input:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0 30px #fafafa inset;
-	border-color:@amber-darken1;
-}
-
-.photon-dialog input:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0 30px #fff inset;
-	border-color:@amber-darken1;
-}
-
-.photon-dark, when (@photonDarkTheme = true) {
 	input:-webkit-autofill {
 		-webkit-box-shadow: 0 0 0 30px #212121 inset;
 		border-color:@amber-darken1;
@@ -109,7 +95,16 @@ input:-webkit-autofill {
 	.photon-dialog input {
 		color:#f0f0f0!important;
 	}
+}
 
+input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #fafafa inset;
+	border-color:@amber-darken1;
+}
+
+.photon-dialog input:-webkit-autofill {
+	-webkit-box-shadow: 0 0 0 30px #fff inset;
+	border-color:@amber-darken1;
 }
 
 .input-field .bar {

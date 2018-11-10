@@ -10,38 +10,6 @@
 @desktop: ~"only screen and (min-width: 950px)";
 @desktop-xl: ~"only screen and (min-width: 1129px)";
 
-.photon-darkPrimaryColor {
-	--speccolor: @darkPrimaryColor;
-}
-
-.photon-primaryColor {
-	--speccolor: @primaryColor;
-}
-
-.photon-lightPrimaryColor {
-	--speccolor: @lightPrimaryColor;
-}
-
-.photon-textPrimaryColor {
-	--speccolor: @textPrimaryColor;
-}
-
-.photon-accentColor {
-	--speccolor: @accentColor;
-}
-
-.photon-primaryTextColor {
-	--speccolor: @primaryTextColor;
-}
-
-.photon-secondaryTextColor {
-	--speccolor: @secondaryTextColor;
-}
-
-.photon-dividerColor {
-	--speccolor: @dividerColor;
-}
-
 ::selection {
 	background: #bbd3fd;
 	color: #000;
@@ -79,35 +47,34 @@ body {
 	padding: 1rem;
 	outline: 0;
 	font-weight: 400;
+}
 
-	&.photon-dark,
-	when (@photonDarkTheme = true) {
-		background: #212121;
-		color: #fafafa;
+body when (@photonDarkTheme = true) {
+	background: #212121;
+	color: #fafafa;
 
-		h1,
-		hr + .subheader {
-			color: #aaa!important;
-		}
+	h1,
+	hr + .subheader {
+		color: #aaa!important;
+	}
 
-		hr {
-			border-color: #545454;
-		}
+	hr {
+		border-color: #545454;
+	}
 
-		&::-webkit-scrollbar-track,
-		::-webkit-scrollbar-track {
-			background: #262626;
-		}
+	&::-webkit-scrollbar-track,
+	::-webkit-scrollbar-track {
+		background: #262626;
+	}
 
-		&::-webkit-scrollbar-thumb,
-		::-webkit-scrollbar-thumb {
-			background: #545454;
-		}
+	&::-webkit-scrollbar-thumb,
+	::-webkit-scrollbar-thumb {
+		background: #545454;
+	}
 
-		&::-webkit-scrollbar-thumb:hover,
-		::-webkit-scrollbar-thumb:hover {
-			background: #767676;
-		}
+	&::-webkit-scrollbar-thumb:hover,
+	::-webkit-scrollbar-thumb:hover {
+		background: #767676;
 	}
 }
 
@@ -127,10 +94,6 @@ h6 {
 	overflow-x: hidden;
 	text-overflow:ellipsis;
 	white-space: nowrap;
-}
-
-p {
-	margin:0;
 }
 
 img {

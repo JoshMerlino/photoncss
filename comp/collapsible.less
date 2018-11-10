@@ -115,11 +115,13 @@
 	}
 }
 
-.photon-dark,
-when (@photonDarkTheme = true) {
+body when (@photonDarkTheme = true) {
 	.collapsible li {
 		background: #303030;
 		border-color: #565656;
+		&.disabled {
+			background:#242424;
+		}
 	}
 }
 
