@@ -7,15 +7,15 @@
 	user-select:none;
 	font-size:18px;
 	display:inline-block;
-	text-transform:capitalize;
-	font-family:Google Sans;
+	text-transform:@assetTransform;
+	font-family:@secondaryFont;
 	.borderMixin();
 	font-weight:500;
 	margin:4px;
 	color:@accentTextColor;
 
 	&.stdcase {
-		text-transform:capitalize;
+		text-transform:@assetTransform;
 	}
 
 	&:not(.fab) > i {
@@ -137,8 +137,8 @@
 		}
 		div:not(.waves-ripple) {
 
-			text-transform:capitalize!important;
-			font-family:Google Sans!important;
+			text-transform:@assetTransform;
+			font-family:@secondaryFont;
 			display:inline-block;
 			font-weight:500;
 			font-size: 18px;
