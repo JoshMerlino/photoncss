@@ -1178,7 +1178,7 @@ window.addEventListener("keydown", function(e) {
 
 					// Insert as text;
 				} else {
-					if(this.options.className.split(" ").includes("note")){
+					if((this.options.className || "").split(" ").includes("note")){
 						toast.innerHTML = "<div class='" + this.options.className + "'><div class='header'></div><div class='content'>" + this.message + "</div></div>"
 					} else {
 						toast.innerHTML = this.message;
