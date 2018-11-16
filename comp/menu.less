@@ -1,0 +1,80 @@
+.photon-menu {
+
+	.raised-1();
+	.transition();
+	.borderMixin();
+
+	background:#fff;
+	position:fixed;
+	top:0;
+	left:0;
+	z-index:2000000;
+	user-select:none;
+
+	transform-origin:top left;
+	transform:scale(.8);
+	opacity: 0;
+	overflow: hidden;
+
+	&.ds-n {
+		opacity:0;
+		transition:none;
+	}
+
+	.option {
+		.transition();
+		line-height:32px;
+		padding:0 10px;
+		@media @mobile {
+			line-height: 24px;
+		}
+		&:not(.title):hover {
+			background:#52525216;
+		}
+		&.submenu {
+			padding-right:36px;
+			position:relative;
+			&::after {
+				content: "play_arrow";
+			    font-family: Material Icons;
+			    color: #757575;
+			    position: absolute;
+			    top: 50%;
+			    right: 16px;
+			    font-size: 20px;
+			    transform: translateY(-50%) scaleX(0.6);
+			}
+		}
+	}
+
+	&.vel .option {
+		line-height:48px;
+		padding:0 16px;
+		padding-right:24px;
+		@media @mobile {
+			line-height:32px;
+		}
+	}
+
+	.option.title {
+		opacity:.54;
+	}
+
+	.separator {
+		border-bottom:1px solid #52525252;
+	}
+
+	&.active {
+		transform:scale(1);
+		opacity: 1;
+	}
+
+	&.rtl {
+		transform-origin: top right;
+	}
+
+	min-width:112px;
+	@media @mobile {
+		min-width:168px;
+	}
+}
