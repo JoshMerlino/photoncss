@@ -11,6 +11,7 @@ var Photon = {
 			$("head").append("<meta name=\"theme-color\" content=\"" + c + "\"/>")
 		}
 	},
+	events:{},
 	guid: function() {
 		function s4() {
 			return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
@@ -1451,8 +1452,6 @@ window.addEventListener("keydown", function(e) {
 	};
 })(jQuery, Photon.Vel);
 
-
-// Dialogs
 ;(function() {
 
 	Photon.dialog = {
@@ -1515,7 +1514,6 @@ window.addEventListener("keydown", function(e) {
 
 }())
 
-// Pickers
 ;(function() {
 
 	Photon.picker = {};
@@ -1885,6 +1883,215 @@ window.addEventListener("keydown", function(e) {
 
 }());
 
+;(function(){
+
+	Photon.Menu = class Menu {
+
+		MenuItem(title,options){
+			const defaults = {
+				click(){},
+				title:"",
+				type:"menu-item"
+			}
+
+			if(typeof title == "object") {
+				options = title
+			} else {
+				options.title = title;
+			}
+
+
+
+			options = {defaults,...options};
+			return options;
+		}
+
+		show(){
+
+			const defaults = {
+				title:false,
+				classes:[],
+				recursiveDelay:300,
+				autoDestroy:true
+			}
+
+			var options = {...defaults,...this.options}
+			if(options.classes.indexOf("photon-menu") <= -1){
+				options.classes.push("photon-menu")
+			}
+
+			var {X,Y} = {
+				X: arguments[0],
+				Y: arguments[1]
+			}
+
+			if(X < 8) X = 8;
+			if(Y < 8) Y = 8;
+
+			if(this.MenuItems().length < 1){
+				console.warn("Menu contains no instance of MenuItems");
+				return false;
+			}
+
+			const MenuItems = this.MenuItems();
+
+			var Items = "";
+
+			if(options.title){
+				Items += `<div class="option title">${options.title}</div>`;
+				Items += `<div class="option separator"></div>`;
+			}
+
+			var submenus = [];
+
+			for (var itm of MenuItems) {
+				const guid = Photon.guid();
+				if(itm.type == "separator"){
+					Items += `<div class="option separator"></div>`;
+				} else {
+					Items += `<div id="${guid}" class="option waves-effect${itm.type == "submenu" ? " submenu":""}" id="${guid}"${itm.type != "submenu" ? " onclick=\"try { if(Photon.events[\'" + guid + "\']()){$('.photon-menu').each(function(){$(this).removeClass('vel');setTimeout(() => $(this).removeClass('active'),50);setTimeout(() => $(this).remove(),200)})}; } catch(E) { void E; }; \"":""}>${itm.title}</div>`;
+					Photon.events[guid] = itm.click;
+
+					const sbmn = itm.submenu;
+
+					if(itm.type == "submenu"){
+						submenus.push(guid)
+						Photon.events[guid] = function(x,y){
+							const Submenu = new class Submenu extends Photon["Menu"] {
+								MenuItems(){
+									const {MenuItem} = this;
+									return sbmn
+								}
+							}
+
+							Submenu.options = options;
+							Submenu.options.title = false;
+
+							if(Submenu.options.classes.indexOf("submenu") <= -1){
+								Submenu.options.classes.push("submenu");
+							}
+
+							Submenu.show(x,y);
+						};
+					}
+
+				}
+			}
+
+			const guid = Photon.guid();
+
+			$("body").append(`<div class="active ds-n ${options.classes.join(" ")}" id="${guid}">${Items}</div>`);
+
+			for (var sb of submenus) {
+				const nguid = Photon.guid();
+				$("#" + sb).mouseover(function(){
+					Photon.events[nguid] = setTimeout(() => {
+						subMenuShow($(this),sb);
+					},options.recursiveDelay);
+				}).mouseleave(function(){
+					clearTimeout(Photon.events[nguid]);
+				})
+			}
+
+			const subMenuShow = (el,sb) => {
+				var {x,y} = {
+					x:el.parent().offset().left + el.width() + 40,
+					y:el.parent().offset().top + el.offset().top - $("html").scrollTop() * 2 - Y
+				}
+
+				if(x + W > window.innerWidth -8) {
+					x = x - W - el.width() - 40;
+				}
+
+				if(y + H > window.innerHeight -8) {
+					y = y - H - el.height();
+				}
+
+				Photon.events[sb](x,y);
+
+			}
+
+			const {W,H} = {
+				W:$("#" + guid).width(),
+				H:$("#" + guid).height()
+			};
+
+			if(X > window.innerWidth/2){
+				$("#" + guid).addClass("rtl")
+			}
+
+			if(X + W > window.innerWidth){
+				X = window.innerWidth - 16 - W;
+			}
+
+			if(Y + H > window.innerHeight){
+				Y = window.innerHeight - 16 - H;
+			}
+
+			$("#" + guid).css({
+				"left":X,
+				"top":Y
+			})
+
+			if(options.autoDestroy){
+				$("body").click(function(e){
+					if(!$(e.target).parents(".photon-menu").hasClass("active")){
+						$(".photon-menu").each(function(){
+							$(this).removeClass("vel");
+							setTimeout(() => $(this).removeClass("active"),50)
+							setTimeout(() => $(this).remove(),200)
+						})
+					}
+				});
+
+				const guid = Photon.guid();
+				$(".photon-menu,.option").mouseleave(function(e){
+					var i = $(this).index();
+
+					if($(this).hasClass("option")) i = $(this).parent().index() +1;
+
+					var destroy = true;
+					$(".photon-menu").not(this).mouseenter(function(e){
+						destroy = false
+					});
+
+					if($(this).hasClass("submenu")) {
+						destroy = true;
+						i --;
+					}
+
+					setTimeout(() => {
+						$(".photon-menu").each(function(){
+							if($(this).index() > i && destroy){
+								$(this).removeClass("vel");
+								setTimeout(() => $(this).removeClass("active"),50)
+								setTimeout(() => $(this).remove(),200)
+							}
+						})
+					},150)
+				}).mouseenter(function(){
+					const l = $(".photon-menu").eq($(this).index() - $(".photon-menu").first().index() +1);
+
+					setTimeout(() => {
+						l.removeClass("vel");
+						setTimeout(() => l.removeClass("active"),50)
+						setTimeout(() => l.remove(),200)
+					},350)
+				})
+
+			}
+
+			$("#" + guid).removeClass("active");
+
+			setTimeout(() => $("#" + guid).removeClass("ds-n").addClass("active"),5)
+			setTimeout(() => $("#" + guid).addClass("vel"),50);
+
+		}
+
+	}
+
+}())
+
 Photon.ready = Photon.reload = function() {
 
 	$(".autocomplete").autocomplete();
@@ -1898,6 +2105,14 @@ Photon.ready = Photon.reload = function() {
 	$(".tooltipped").tooltip();
 
 	Waves.init();
+
+	setInterval(() => {
+		$(document.body).mousemove(function(e){
+			window.cursor = {};
+		    window.cursor.X = e.pageX;
+		    window.cursor.Y = e.pageY;
+		})
+	})
 
 	$("iframe[src^='https://youtube.com/embed'],iframe[src^='http://youtube.com/embed']").each(function() {
 		$(this).attr("height", $(this).width() * (9 / 16));
