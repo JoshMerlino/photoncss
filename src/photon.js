@@ -2004,7 +2004,7 @@ window.addEventListener("keydown", function(e) {
 				autoDestroy:true
 			}
 
-			var options = $.extend(efaults,this.options);
+			var options = $.extend(defaults,this.options);
 			if(options.classes.indexOf("photon-menu") <= -1){
 				options.classes.push("photon-menu")
 			}
