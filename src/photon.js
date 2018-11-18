@@ -1508,6 +1508,95 @@ window.addEventListener("keydown", function(e) {
 				}
 			}).focus();
 			setTimeout(() => $(".photon-dialog").addClass("active"), 100);
+		},
+		select:function(a,choices,b = () => {}){
+
+			const group = Photon.guid();
+
+			var opts = "";
+			for (opt of choices) {
+				const guid = Photon.guid();
+				opts += `<div class="radio-btn">
+					<input type="radio" id="${guid}" name="${group}"${choices.indexOf(opt) == 0 ? " checked":""}>
+					<label for="${guid}">${opt}</label>
+					<div class="ripple waves-effect waves-ink"></div>
+				</div>`;
+			}
+
+			$(".photon-dialog").remove();
+			$("body").append(`<div class=\"photon-dialog singleselect\">
+			<div class=\"dx-content\"></div>
+			<div class="options">${opts}</div>
+			<a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
+
+			Photon.reload();
+
+			$(".photon-dialog .dx-content").text(a);
+			$(".photon-dialog .btn").click(function() {
+				$(".photon-dialog").removeClass("active")
+				var opta;
+				setTimeout(() => {
+					$(`[name="${group}"]`).each(function(){
+						if($(this).prop("checked")){
+							opta = $(this).siblings("label").text();
+						}
+					})
+					$(".photon-dialog").remove();
+
+					if($(this).hasClass("ok")){
+						b(opta);
+					} else {
+						b(false);
+					}
+				}, Photon.speed);
+			});
+
+			setTimeout(() => $(".photon-dialog").addClass("active"), 100);
+
+		},
+		multiple:function(a,choices,b = () => {}){
+
+			const group = Photon.guid();
+
+			var opts = "";
+			for (opt of choices) {
+				const guid = Photon.guid();
+				opts += `<div class="checkbox">
+					<input type="checkbox" id="${guid}" name="${group}">
+					<label for="${guid}">${opt}</label>
+					<div class="ripple waves-effect waves-ink"></div>
+				</div>`;
+			}
+
+			$(".photon-dialog").remove();
+			$("body").append(`<div class=\"photon-dialog multiple\">
+			<div class=\"dx-content\"></div>
+			<div class="options">${opts}</div>
+			<a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
+
+			Photon.reload();
+
+			$(".photon-dialog .dx-content").text(a);
+			$(".photon-dialog .btn").click(function() {
+				$(".photon-dialog").removeClass("active")
+				var opta = [];
+				setTimeout(() => {
+					$(`[name="${group}"]`).each(function(){
+						if($(this).prop("checked")){
+							opta.push($(this).siblings("label").text());
+						}
+					})
+					$(".photon-dialog").remove();
+
+					if($(this).hasClass("ok")){
+						b(opta);
+					} else {
+						b(false);
+					}
+				}, Photon.speed);
+			});
+
+			setTimeout(() => $(".photon-dialog").addClass("active"), 100);
 
 		}
 	}

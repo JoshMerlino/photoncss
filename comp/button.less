@@ -52,6 +52,8 @@
 
 	&.flat {
 		background:transparent;
+		.transition();
+		transition-property:background;
 		color:@accentColor;
 		box-shadow:none!important;
 		&.disabled {
@@ -59,6 +61,9 @@
 			opacity:.54;
 			color:#212121;
 			box-shadow:none!important;
+		}
+		&:hover {
+			background:fade(@accentColor,6%);
 		}
 	}
 	&:not(.fab).large {
