@@ -56,6 +56,21 @@
 		}
 	}
 
+	&.singleselect,
+	&.multiple {
+		text-align:right!important;
+		.options {
+			text-align:left;
+			padding:0 2rem;
+			max-height:240px;
+			overflow-y:auto;
+			.radio-btn,
+			.checkbox {
+				padding:4px 0;
+			}
+		}
+	}
+
 	& when (@photonDarkTheme = true) {
 		background: #242424;
 
