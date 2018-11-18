@@ -1991,7 +1991,7 @@ window.addEventListener("keydown", function(e) {
 
 
 
-			options = {defaults,...options};
+			options = $.extend(defaults,options);
 			return options;
 		}
 
