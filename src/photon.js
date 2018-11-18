@@ -2323,10 +2323,6 @@ Photon.ready = Photon.reload = function() {
 		})
 	}, Photon.speed);
 
-	if($("head").children("meta[name='theme-color']").length == 0){
-		Photon.theme.setBarColor(Photon.theme.getTheme()["darkPrimaryColor"]);
-	}
-
 	$(() => {
 		$(".collapsible").each(function() {
 			if($(this).data("collapsible") == "expandable"){
