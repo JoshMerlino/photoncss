@@ -119,7 +119,7 @@ window.addEventListener("keydown", function(e) {
 				link.addClass("photon-init");
 
 				if(href[0] == "/"){
-					href = window.location.hostname + href;
+					href = window.location.protocol + "//" + window.location.hostname + href;
 				}
 
 				$.ajax({
