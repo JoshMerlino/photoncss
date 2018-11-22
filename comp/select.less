@@ -1,5 +1,5 @@
 .input-field.select {
-	overflow:visible!important;
+	overflow-y:visible!important;
 	&::after {
 		position: absolute;
 		top: 24px;
@@ -39,6 +39,15 @@
 			&.active {
 				background:rgba(127,127,127,.2);
 			}
+		}
+	}
+	&.box {
+		.options {
+			margin-top:-5px;
+		}
+		&::after {
+			right:1rem;
+			top:20px;
 		}
 	}
 }
