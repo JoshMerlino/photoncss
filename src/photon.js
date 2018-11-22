@@ -111,12 +111,16 @@ window.addEventListener("keydown", function(e) {
 	$.fn.autolink = function(){
 		this.each(function(){
 			if(!$(this).hasClass("photon-init")){
-				const href = $(this).attr("href");
+				var href = $(this).attr("href");
 				const content = $(this).text();
 				const link = $(this);
 
 				link.html(`<div class="progress"><div class="indeterminate"></div></div>`);
 				link.addClass("photon-init");
+
+				if(href[0] == "/"){
+					href = window.location.hostname + href;
+				}
 
 				$.ajax({
 				    url: "https://photoncss.herokuapp.com/service/api/pageinfo",
@@ -469,9 +473,7 @@ window.addEventListener("keydown", function(e) {
 			thumb.css("left", value + "%");
 			track.width(value + "%");
 
-			thumb.on("mousedown touchstart", function() {
-				startDrag();
-			});
+			thumb.off("mousedown touchstart").on("mousedown touchstart", startDrag);
 
 			function startDrag(){
 				Waves.ripple(ripple, {
@@ -2266,6 +2268,7 @@ Photon.ready = Photon.reload = function() {
 		$(this).addClass("for-" + f.attr("type"));
 
 		$(this).on("mousedown",function(){
+			Waves.calm(f.siblings(".ripple"))
 			Waves.ripple(f.siblings(".ripple"),{
 				wait: 1e10
 			})
@@ -2273,7 +2276,6 @@ Photon.ready = Photon.reload = function() {
 			Waves.calm(f.siblings(".ripple"))
 		})
 	});
-
 	$(".switch .ripple").click(function(){
 		$(this).siblings("input").prop("checked",!$(this).siblings("input").prop("checked")).change()
 	})
@@ -2433,16 +2435,22 @@ $(() => {
 	!Photon.autoready && Photon.ready();
 })
 
-Photon.loop = () => {
+Photon.animationFrame = () => {
+	requestAnimationFrame(Photon.animationFrame);
+
 	$(".card-image.parallax").each(function() {
 		var t = $(this).children("img")
 		var px = ($("html").scrollTop() - t.offset().top * .75) / 20;
 		t[0].style.transform = "scale(2) translateY(" + px + "px)";
 	});
-	requestAnimationFrame(Photon.loop);
+
+	$(".collapsible").each(function(){
+		$(this).children().removeClass("adjact");
+		$(this).children(".active").prev("li").addClass("adjact");
+	})
 }
 
-Photon.loop();
+Photon.animationFrame();
 
 setInterval(() => Waves.ripple($(".waves-pulse"),{
 	wait:750
