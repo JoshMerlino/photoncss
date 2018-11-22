@@ -20,7 +20,8 @@
 	height: 4px;
 }
 
-::-webkit-scrollbar-track {
+::-webkit-scrollbar-track,
+::-webkit-scrollbar-corner {
 	background: #f1f1f1;
 }
 
@@ -63,7 +64,9 @@ body when (@photonDarkTheme = true) {
 	}
 
 	&::-webkit-scrollbar-track,
-	::-webkit-scrollbar-track {
+	::-webkit-scrollbar-track,
+	&::-webkit-scrollbar-corner,
+	::-webkit-scrollbar-corner {
 		background: #262626;
 	}
 
@@ -154,6 +157,7 @@ video {
 }
 @import "../comp/appbar.less";
 @import "../comp/autocomplete.less";
+@import "../comp/autolink.less";
 @import "../comp/badge.less";
 @import "../comp/button.less";
 @import "../comp/card.less";
