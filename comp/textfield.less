@@ -28,6 +28,7 @@
 		width:-webkit-fill-available;
 		.transition();
 		transition-property:box-shadow;
+		position: relative;
 	}
 	label {
 		color:#c1c1c1;
@@ -35,6 +36,7 @@
 		top:-28px;
 		user-select:none;
 		&:extend(.transition);
+		display: block;
 	}
 	input:focus + label,
 	input.containscontent + label,
@@ -69,6 +71,37 @@
 		left:50%;
 	}
 
+	&.box {
+		background:#f0f0f0;
+		padding:0!important;
+		padding-bottom:1px!important;
+		margin-bottom:-24px;
+
+		.borderMixin();
+
+		input,
+		label {
+			padding-left:1rem;
+			padding-right:1rem;
+			transform:translateY(16px);
+			border-bottom-width:2px;
+		}
+
+		.bar {
+			margin-bottom: -29px;
+		}
+
+		label {
+			top:-40px;
+		}
+
+		input:focus + label,
+		input.containscontent + label,
+		input[placeholder] + label {
+			top:-48px!important;
+		}
+	}
+
 }
 
 .col .input-field {
@@ -76,35 +109,22 @@
 }
 
 body when (@photonDarkTheme = true) {
+
+	.input-field.box {
+		background:#363636;
+	}
+
 	input,
 	select {
 		color:#fafafa!important;
 	}
-	input:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0 30px #212121 inset;
-		border-color:@amber-darken1;
-		-webkit-text-fill-color:#fafafa;
-	}
-
-	.photon-dialog input:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0 30px #242424 inset;
-		border-color:@amber-darken1;
-		-webkit-text-fill-color:#fafafa;
-	}
 
 	.photon-dialog input {
 		color:#f0f0f0!important;
+		.photon-dialog input {
+			color:#f0f0f0!important;
+		}
 	}
-}
-
-input:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0 30px #fafafa inset;
-	border-color:@amber-darken1;
-}
-
-.photon-dialog input:-webkit-autofill {
-	-webkit-box-shadow: 0 0 0 30px #fff inset;
-	border-color:@amber-darken1;
 }
 
 .input-field .bar {

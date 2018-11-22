@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.2.7</h5>
+<h5 align="center" version>v3.4.8</h5>
 
 <hr>
 <br>
@@ -11,7 +11,7 @@
 # Using in production
 
 ## Important
-you should no longer use LESS in production. We recommend you change your setup to the following. LESS in production is now depreciated but works. Were trying to make Photon as fast as possible, so doing this will cut down on around a second (on a high end computer) of load times.
+you should no longer use LESS in production. We recommend you change your setup to the following. LESS in production is now depreciated but works. Were trying to make Photon as fast as possible, so doing this will cut down on around a second (on a high end computer) of load times. You can get a pre-compiled version of Photon [here](https://photoncss.herokuapp.com/theme).
 
 ### Sample file setup
 ```
