@@ -2247,6 +2247,8 @@ $(() => {
 
 Photon.ready = Photon.reload = function() {
 
+	console.trace()
+
 	$(".autocomplete").autocomplete();
 	$(".autolink").autolink();
 	$(".collapsible").collapsible();
@@ -2332,7 +2334,7 @@ Photon.ready = Photon.reload = function() {
 			})
 		} else if ($(this).attr("type").toLowerCase() == "number") {
 			$(this).val($(this).val() || "0").addClass("containscontent");
-			$(this).bind("mousewheel", function(e) {
+			$(this).off("mousewheel").on("mousewheel", function(e) {
 				var v = parseInt($(this).val());
 				e.preventDefault();
 
