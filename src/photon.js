@@ -2245,9 +2245,7 @@ $(() => {
 	});
 })
 
-Photon.ready = Photon.reload = function() {
-
-	console.trace()
+Photon.ready = Photon.reload = function(loaded = () => {}) {
 
 	$(".autocomplete").autocomplete();
 	$(".autolink").autolink();
@@ -2430,7 +2428,7 @@ Photon.ready = Photon.reload = function() {
 		})
 	}())
 
-
+	loaded();
 
 }
 
