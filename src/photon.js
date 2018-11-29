@@ -420,44 +420,64 @@ window.addEventListener("keydown", function(e) {
 		return this;
 	}
 	$.fn.sidenav = function(a) {
-		var i = this;
+		const i = this;
+		var touch = 0;
+
 		if (a) {
 			switch (a.toLowerCase()) {
 				case "open":
 					i.addClass("active");
-					$(".sidenav--xdiv").remove();
-					$("body").append("<div class='sidenav--xdiv'></div>");
 					break;
 				case "close":
 					i.addClass("active");
-					$(".sidenav--xdiv").remove();
 					break;
 			}
 		}
 
-		$(".sidenav--xdiv").on("touchstart mousedown", function() {
+		$("body").click(function(e){
+			if($(e.target).is($(".sidenav,.sidenav--draghandle"))){
+				return;
+			}
+
 			i.removeClass("active");
-			$(this).remove();
+			$(".sidenav--draghandle").css({
+				left:0
+			})
+
+			$(".sidenav").animate({
+				left:0
+			},Photon.speed)
+
 		})
 
 		$(".sidenav--draghandle").remove();
 		$("body").append("<div class='sidenav--draghandle'></div>");
 		$(".sidenav--draghandle").on("touchmove", function(e) {
 			e.preventDefault();
-			$(this).css({
-				left: (e.changedTouches[0].pageX > 300) ? 300 : e.changedTouches[0].pageX
-			})
+			touch = e.changedTouches[0].pageX;
 
-			if (e.changedTouches[0].pageX > 50) {
-				$(this).css({
-					left: 300
-				})
-				i.sidenav("open")
-			}
-		}).on("touchcancel touchend", function() {
+			i.addClass("active");
 			$(this).css({
-				left: 0
-			})
+				left: touch
+			});
+			$(i).css({
+				left: touch > 300 ? 300:touch
+			});
+
+		}).on("touchcancel touchend", function() {
+			i.animate({
+				left:touch > 150 ? 300:0
+			},Photon.speed);
+			if(touch > 150) {
+				$(this).css({
+					left:300
+				})
+			} else {
+				i.removeClass("active");
+				$(this).css({
+					left:0
+				})
+			}
 		})
 		return this;
 	}
