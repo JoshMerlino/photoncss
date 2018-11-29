@@ -421,64 +421,76 @@ window.addEventListener("keydown", function(e) {
 	}
 	$.fn.sidenav = function(a) {
 		const i = this;
+		const guid = Photon.guid();
+
+		i.attr("data-sn",guid)
+
 		var touch = 0;
+
+		$(".sidenav--draghandle").remove();
+		$("body").append(`<div class="sidenav--draghandle"></div>`)
 
 		if (a) {
 			switch (a.toLowerCase()) {
 				case "open":
-					i.addClass("active");
+					i.addClass("active").animate({
+						left:300
+					},Photon.speed,"swing");
+					$(".sidenav--draghandle").css({
+						left:300,
+						width:"100%"
+					});
 					break;
 				case "close":
-					i.addClass("active");
+					i.animate({
+						left:0
+					},Photon.speed,"swing",function(){
+						$(this).removeClass("active")
+					});
+					$(".sidenav--draghandle").css({
+						left:0,
+						width:"32px"
+					});
 					break;
 			}
 		}
 
-		$("body").click(function(e){
-			if($(e.target).is($(".sidenav,.sidenav--draghandle"))){
-				return;
-			}
-
-			i.removeClass("active");
-			$(".sidenav--draghandle").css({
-				left:0
-			})
-
-			$(".sidenav").animate({
-				left:0
-			},Photon.speed)
-
-		})
-
-		$(".sidenav--draghandle").remove();
-		$("body").append("<div class='sidenav--draghandle'></div>");
-		$(".sidenav--draghandle").on("touchmove", function(e) {
+		$(".sidenav--draghandle").on("touchmove",function(e){
 			e.preventDefault();
 			touch = e.changedTouches[0].pageX;
+			touch = touch > 300 ? 300:touch;
+			touch = touch < 0 ? 0:touch;
 
-			i.addClass("active");
 			$(this).css({
-				left: touch
-			});
-			$(i).css({
-				left: touch > 300 ? 300:touch
-			});
+				"left":touch
+			})
 
-		}).on("touchcancel touchend", function() {
+			i.addClass("active").css({
+				"left":touch
+			})
+		}).on("touchend",function(){
 			i.animate({
-				left:touch > 150 ? 300:0
-			},Photon.speed);
-			if(touch > 150) {
-				$(this).css({
-					left:300
-				})
-			} else {
-				i.removeClass("active");
-				$(this).css({
-					left:0
-				})
+				"left":touch > 200 ? 300:0
+			},Photon.speed,"swing");
+			$(this).css({
+				"left":touch > 200 ? 300:0,
+				"width":touch > 200 ? "100%":10
+			});
+			if(touch < 200){
+				i.removeClass("active")
 			}
+		}).click(function(){
+			i.animate({
+				left:0
+			},Photon.speed,"swing",function(){
+				$(this).removeClass("active")
+			});
+			$(this).css({
+				"left":0,
+				"width":10
+			});
 		})
+
 		return this;
 	}
 	$.fn.slider = function(s = "",g) {
