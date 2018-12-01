@@ -470,13 +470,13 @@ window.addEventListener("keydown", function(e) {
 			})
 		}).on("touchend",function(){
 			i.animate({
-				"left":touch > 200 ? 300:0
+				"left":touch > 100 ? 300:0
 			},Photon.speed,"swing");
 			$(this).css({
-				"left":touch > 200 ? 300:0,
-				"width":touch > 200 ? "100%":10
+				"left":touch > 100 ? 300:0,
+				"width":touch > 100 ? "100%":10
 			});
-			if(touch < 200){
+			if(touch < 100){
 				i.removeClass("active")
 			}
 		}).click(function(){
@@ -2275,6 +2275,9 @@ $(() => {
 		window.cursor.X = e.pageX;
 		window.cursor.Y = e.pageY;
 	});
+
+	Photon.autoready && Photon.ready();
+
 })
 
 Photon.ready = Photon.reload = function(loaded = () => {}) {
@@ -2467,10 +2470,6 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
 setInterval(() => Waves.ripple($(".waves-pulse"),{
 	wait:750
 }),1250)
-
-$(() => {
-	!Photon.autoready && Photon.ready();
-})
 
 $(() => (function animation(){
 	requestAnimationFrame(animation);
