@@ -2430,8 +2430,22 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
 		})
 	})
 
-	$(".checkbox,.radio-btn").children(".ripple").click(function(){
-		$(this).siblings("input").click()
+	$(".checkbox,.radio-btn").children("input").on("mousedown touchstart",function(){
+		Waves.calm($(this).siblings(".ripple"));
+		Waves.ripple($(this).siblings(".ripple"),{
+			wait:1e10
+		});
+	}).on("mouseup",function(){
+		Waves.calm($(this).siblings(".ripple"));
+	}).on("touchstart",function(){
+		$(this).parent().addClass("held");
+		Waves.calm($(this).siblings(".ripple"));
+		Waves.ripple($(this).siblings(".ripple"),{
+			wait:1e10
+		});
+	}).on("touchend",function(){
+		$(this).parent().removeClass("held");
+		Waves.calm($(this).siblings(".ripple"));
 	});
 
 	;(function(){
