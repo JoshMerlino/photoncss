@@ -1,5 +1,6 @@
 input[type="radio"] {
 	&:extend(.transition);
+	transition-duration:300ms;
 	-webkit-appearance: none;
 	width: 18px;
 	height: 18px;
@@ -9,11 +10,12 @@ input[type="radio"] {
 	transform: translateY(-2px);
 
 	&:checked {
-		border: 2px solid @accentColor;
+		border: 9px solid @accentColor;
 	}
 
 	&::after {
 		&:extend(.transition);
+		transition-duration:300ms;
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
@@ -22,10 +24,13 @@ input[type="radio"] {
 		margin: 2px;
 		transform: scale(0);
 		background: @accentColor;
+		border:0px solid #fafafa;
 	}
 
 	&:checked::after {
 		transform: scale(1);
+		border-width:2px;
+		margin:-7px;
 	}
 
 	&:disabled {
@@ -44,7 +49,9 @@ input[type="radio"] {
 		width: 48px;
 		height: 48px;
 		margin: -39px -10px;
-
+		z-index:-1;
+		pointer-events:none;
+		border-radius:50%;
 		&::after {
 			opacity: 0;
 			pointer-events: none;
@@ -59,12 +66,21 @@ input[type="radio"] {
 	input:disabled ~ .ripple {
 		display:none;
 	}
+
+	transform-origin:center center;
+	&.held input {
+		transform:scale(0.939393) translateY(-2px);
+	}
 }
 
 body when (@photonDarkTheme = true) {
 	input[type="radio"] {
-		&:not(:checked) {
+		&:not(:checked){
 			border-color: #b5b5b5!important;
+		}
+
+		&::after {
+			border-color: #212121!important;
 		}
 
 		&:disabled {
