@@ -426,6 +426,7 @@ window.addEventListener("keydown", function(e) {
 		i.attr("data-sn",guid)
 
 		var touch = 0;
+		var og = 0;
 
 		$(".sidenav--draghandle").remove();
 		$("body").append(`<div class="sidenav--draghandle"></div>`)
@@ -455,7 +456,9 @@ window.addEventListener("keydown", function(e) {
 			}
 		}
 
-		$(".sidenav--draghandle").on("touchmove",function(e){
+		$(".sidenav--draghandle").on("touchstart",function(e){
+			og = e.changedTouches[0].pageX;
+		}).on("touchmove",function(e){
 			e.preventDefault();
 			touch = e.changedTouches[0].pageX;
 			touch = touch > 300 ? 300:touch;
@@ -470,13 +473,13 @@ window.addEventListener("keydown", function(e) {
 			})
 		}).on("touchend",function(){
 			i.animate({
-				"left":touch > 100 ? 300:0
+				"left":touch > 150 ? 300:0
 			},Photon.speed,"swing");
 			$(this).css({
-				"left":touch > 100 ? 300:0,
-				"width":touch > 100 ? "100%":10
+				"left":touch > 150 ? 300:0,
+				"width":touch > 150 ? "100%":10
 			});
-			if(touch < 100){
+			if(touch < 150){
 				i.removeClass("active")
 			}
 		}).click(function(){
