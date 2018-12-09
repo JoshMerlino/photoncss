@@ -1697,7 +1697,7 @@ function(a) {
                     y = h / 2 - y;
                     f = (x * dx + y * dy + ((h + w) / 2) * dj) / d;
 
-					f -= 0.212121;
+					f -= 0.2022;
 
                     if (h == w) {
                         var q = w - (h - (w - x) - (h - y))
@@ -1706,6 +1706,11 @@ function(a) {
 
                     if (a.hasClass("waves-ink")) {
                         return 0.475
+                    }
+
+					if (a.hasClass("waves-touch")) {
+						a.removeClass("waves-touch");
+                        return f/1.33
                     }
                     return f;
                 };
@@ -4575,7 +4580,7 @@ window.addEventListener("keydown", function(e) {
                     if ($(this).hasClass("option")) i = $(this).parent().index() + 1;
 
                     var destroy = true;
-                    $(".photon-menu").not(this).mouseenter(function(e) {
+                    $(".photon-menu").not(this).mouseenter(function() {
                         destroy = false
                     });
 
@@ -4627,7 +4632,13 @@ Photon.Waves = {
         }).on("mouseup mouseleave", function() {
             Waves.calm(this);
         }).bind("touchstart", function(e) {
-            e.stopPropagation()
+			e.stopPropagation();
+        });
+
+		$(".waves-effect").on("touchstart", function() {
+			$(this).children(".waves-ripple").remove();
+        }).on("touchend", function() {
+			$(this).addClass("waves-touch");
         })
     }
 };
@@ -4679,7 +4690,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
         $(this).siblings("input").prop("checked", !$(this).siblings("input").prop("checked")).change()
     })
 
-    $(".input-field input,.input-field.select select").focus(function(e) {
+    $(".input-field input,.input-field.select select").focus(function() {
         $(this).parent().append("<div class=\"bar\"></div>");
         var bar = $(this).siblings(".bar");
 
@@ -4711,7 +4722,6 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
             $(this).removeClass("containscontent");
         }
     }).each(function() {
-        var t = $(this).parent();
         if ($(this).val() != "") {
             $(this).addClass("containscontent");
         } else {
@@ -4719,7 +4729,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
         }
         if ($(this).attr("type").toLowerCase() == "password" && !$(this).is(":disabled")) {
             var id = Photon.guid();
-            $("#" + id).click(function(e) {
+            $("#" + id).click(function() {
                 var i = $(this).siblings("input");
                 if (i.attr("type").toLowerCase() == "password") {
                     i.attr("type", "text");
@@ -4825,7 +4835,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
             e.preventDefault();
             track = e.changedTouches[0].pageX;
 
-        }).on("touchend", function(e) {
+        }).on("touchend", function() {
 
             var swipeleft = ((start - track) > 100)
             var swiperight = ((start - track) < -100);
@@ -4853,6 +4863,12 @@ setInterval(() => Waves.ripple($(".waves-pulse"), {
 
 $(() => (function animation() {
     requestAnimationFrame(animation);
+
+	$(".app-bar").each(function(){
+		if($(this).children(".title").children(".subtitle").length == 1){
+			$(this).children(".title").css("margin-top","-10px");
+		}
+	})
 
     $(".card-image.parallax").each(function() {
         var t = $(this).children("img")
