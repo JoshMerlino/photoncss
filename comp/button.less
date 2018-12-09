@@ -1,7 +1,7 @@
 .btn {
 
 	&:extend(.transition);
-	&:extend(.raised-1);
+	&:extend(.raised-2);
     background:@accentColor;
 	padding:.5rem 2rem;
 	user-select:none;
@@ -29,17 +29,16 @@
 	}
 
 	&:hover {
-		&:extend(.raised-2);
 		background:lighten(@accentColor,5%);
 	}
 
 	&:active {
-		&:extend(.raised-3);
+		&:extend(.raised-8);
 		background:lighten(@accentColor,10%);
 	}
 
 	&.dense {
-		padding:.5rem 16px;
+		padding:.5rem 12px;
 	}
 
 	&.disabled {
