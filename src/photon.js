@@ -1697,8 +1697,6 @@ function(a) {
                     y = h / 2 - y;
                     f = (x * dx + y * dy + ((h + w) / 2) * dj) / d;
 
-					f -= 0.2022;
-
                     if (h == w) {
                         var q = w - (h - (w - x) - (h - y))
                         return (w - Math.abs(q - w)) / 50
