@@ -2721,7 +2721,7 @@ window.addEventListener("keydown", function(e) {
                     input.val(opt.text()).addClass("containscontent");
                 };
 
-                var p = acopt.children(".option.active").index() * 44 - 64;
+                var p = acopt.children(".option.active").index() * 43 - 64;
                 acopt.animate({
                     scrollTop: p
                 }, {
