@@ -1578,6 +1578,13 @@ function(a) {
     $.fn.actualHeight = function() {
         return this.height() + parseInt(this.css("padding-top")) + parseInt(this.css("padding-bottom"))
     }
+	$.fn.retab = function() {
+		var i = 0;
+		this.each(function(){
+			$(this).attr("tabindex","0");
+			i++;
+		})
+	}
 }(jQuery));
 (function() {
     $.nest = function(nest) {
@@ -3883,7 +3890,7 @@ window.addEventListener("keydown", function(e) {
         alert: function(a, b = () => {}) {
 
             $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog alert\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-light\">ok</a></div>")
+            $("body").append("<div class=\"photon-dialog alert\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-accent flat dense\">ok</a></div>")
 
             $(".photon-dialog .dx-content").text(a);
             $(".photon-dialog .btn").click(function() {
@@ -3899,7 +3906,7 @@ window.addEventListener("keydown", function(e) {
         confirm: function(a, b = () => {}) {
 
             $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog confirm\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
+            $("body").append("<div class=\"photon-dialog confirm\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>")
 
             $(".photon-dialog .dx-content").text(a);
             $(".photon-dialog .btn").click(function() {
@@ -3915,7 +3922,7 @@ window.addEventListener("keydown", function(e) {
         prompt: function(a, b = () => {}) {
 
             $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog prompt\"><div class=\"dx-content\"></div><div class=\"input-field\"><input type=\"text\"></div><a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>")
+            $("body").append("<div class=\"photon-dialog prompt\"><div class=\"dx-content\"></div><div class=\"input-field\"><input type=\"text\"></div><a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>")
 
             $(".photon-dialog .dx-content").text(a);
             $(".photon-dialog .btn").click(function() {
@@ -3952,7 +3959,7 @@ window.addEventListener("keydown", function(e) {
             $("body").append(`<div class=\"photon-dialog singleselect\">
 			<div class=\"dx-content\"></div>
 			<div class="options">${opts}</div>
-			<a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
+			<a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>`);
 
             Photon.reload();
 
@@ -3997,7 +4004,7 @@ window.addEventListener("keydown", function(e) {
             $("body").append(`<div class=\"photon-dialog multiple\">
 			<div class=\"dx-content\"></div>
 			<div class="options">${opts}</div>
-			<a class=\"btn waves-effect waves-light ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
+			<a class=\"btn waves-effect waves-light dense ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
 
             Photon.reload();
 
@@ -4035,7 +4042,7 @@ window.addEventListener("keydown", function(e) {
 
     Photon.picker.date = function(cb = () => {}) {
 
-        $("body").append('<div class="date photon-picker"><div class=bar><div class=year></div><div class=date></div></div><div class=yearpick></div><div class=nav><i class="waves-effect material-icons waves-ink right">chevron_right</i> <i class="waves-effect material-icons waves-ink left">chevron_left</i></div><div class=panes><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div></div><div class=actions><a class="waves-effect btn ok waves-light">ok</a><a class="waves-effect btn dense grey-text text-darken-2 white">cancel</a></div></div>');
+        $("body").append('<div class="date photon-picker"><div class=bar><div class=year></div><div class=date></div></div><div class=yearpick></div><div class=nav><i class="waves-effect material-icons waves-ink right">chevron_right</i> <i class="waves-effect material-icons waves-ink left">chevron_left</i></div><div class=panes><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div></div><div class=actions><a class="btn waves-effect waves-accent flat dense ok">ok</a><a class="btn waves-effect waves-accent flat dense cancel">cancel</a></div></div>');
 
         setTimeout(() => $(".photon-picker").addClass("active"), 100);
 
@@ -4308,7 +4315,7 @@ window.addEventListener("keydown", function(e) {
 
     Photon.picker.time = function(cb = () => {}) {
 
-        $("body").append('<div class="time photon-picker"><div class=bar><div class=time><div class="active hour">12</div><div class=colan>:</div><div class=minute>30</div></div><div class=ampm><div class="active am">AM</div><div class=pm>PM</div></div></div><div class=clocks><div class="active hour clock"><div class=hand></div></div><div class="clock minute"><div class=hand></div></div></div><div class=actions><a class="btn waves-effect ok waves-light">ok</a><a class="btn waves-effect dense grey-text text-darken-2 white">cancel</a></div></div>');
+        $("body").append('<div class="time photon-picker"><div class=bar><div class=time><div class="active hour">12</div><div class=colan>:</div><div class=minute>30</div></div><div class=ampm><div class="active am">AM</div><div class=pm>PM</div></div></div><div class=clocks><div class="active hour clock"><div class=hand></div></div><div class="clock minute"><div class=hand></div></div></div><div class=actions><a class="btn waves-effect waves-accent flat dense ok">ok</a><a class="btn waves-effect waves-accent flat dense cencel">cancel</a></div></div>');
 
         setTimeout(() => $(".photon-picker").addClass("active"), 100);
 
@@ -4398,227 +4405,6 @@ window.addEventListener("keydown", function(e) {
 
 }());
 
-;
-(function() {
-
-    Photon.Menu = class Menu {
-
-        MenuItem(title, options) {
-            const defaults = {
-                click() {},
-                title: "",
-                type: "menu-item"
-            }
-
-            if (typeof title == "object") {
-                options = title
-            } else {
-                options.title = title;
-            }
-
-
-
-            options = $.extend(defaults, options);
-            return options;
-        }
-
-        show() {
-
-            const defaults = {
-                title: false,
-                classes: [],
-                recursiveDelay: 300,
-                autoDestroy: true
-            }
-
-            var options = $.extend(defaults, this.options);
-            if (options.classes.indexOf("photon-menu") <= -1) {
-                options.classes.push("photon-menu")
-            }
-
-            var {
-                X,
-                Y
-            } = {
-                X: arguments[0],
-                Y: arguments[1]
-            }
-
-            if (X < 8) X = 8;
-            if (Y < 8) Y = 8;
-
-            if (this.MenuItems().length < 1) {
-                console.warn("Menu contains no instance of MenuItems");
-                return false;
-            }
-
-            const MenuItems = this.MenuItems();
-
-            var Items = "";
-
-            if (options.title) {
-                Items += `<div class="option title">${options.title}</div>`;
-                Items += `<div class="option separator"></div>`;
-            }
-
-            var submenus = [];
-
-            for (var itm of MenuItems) {
-                const guid = Photon.guid();
-                if (itm.type == "separator") {
-                    Items += `<div class="option separator"></div>`;
-                } else {
-                    Items += `<div id="${guid}" class="option waves-effect${itm.type == "submenu" ? " submenu":""}" id="${guid}"${itm.type != "submenu" ? " onclick=\"try { if(Photon.events[\'" + guid + "\']()){$('.photon-menu').each(function(){$(this).removeClass('vel');setTimeout(() => $(this).removeClass('active'),50);setTimeout(() => $(this).remove(),200)})}; } catch(E) { void E; }; \"":""}>${itm.title}</div>`;
-                    Photon.events[guid] = itm.click;
-
-                    const sbmn = itm.submenu;
-
-                    if (itm.type == "submenu") {
-                        submenus.push(guid)
-                        Photon.events[guid] = function(x, y) {
-                            const Submenu = new class Submenu extends Photon["Menu"] {
-                                MenuItems() {
-                                    const {
-                                        MenuItem
-                                    } = this;
-                                    return sbmn
-                                }
-                            }
-
-                            Submenu.options = options;
-                            Submenu.options.title = false;
-
-                            if (Submenu.options.classes.indexOf("submenu") <= -1) {
-                                Submenu.options.classes.push("submenu");
-                            }
-
-                            Submenu.show(x, y);
-                        };
-                    }
-
-                }
-            }
-
-            const guid = Photon.guid();
-
-            $("body").append(`<div class="active ds-n ${options.classes.join(" ")}" id="${guid}">${Items}</div>`);
-
-            for (var sb of submenus) {
-                const nguid = Photon.guid();
-                $("#" + sb).mouseover(function() {
-                    Photon.events[nguid] = setTimeout(() => {
-                        subMenuShow($(this), sb);
-                    }, options.recursiveDelay);
-                }).mouseleave(function() {
-                    clearTimeout(Photon.events[nguid]);
-                })
-            }
-
-            const subMenuShow = (el, sb) => {
-                var {
-                    x,
-                    y
-                } = {
-                    x: el.parent().offset().left + el.width() + 40,
-                    y: el.parent().offset().top + el.offset().top - $("html").scrollTop() * 2 - Y
-                }
-
-                if (x + W > window.innerWidth - 8) {
-                    x = x - W - el.width() - 40;
-                }
-
-                if (y + H > window.innerHeight - 8) {
-                    y = y - H - el.height();
-                }
-
-                Photon.events[sb](x, y);
-
-            }
-
-            const {
-                W,
-                H
-            } = {
-                W: $("#" + guid).width(),
-                H: $("#" + guid).height()
-            };
-
-            if (X > window.innerWidth / 2) {
-                $("#" + guid).addClass("rtl")
-            }
-
-            if (X + W > window.innerWidth) {
-                X = window.innerWidth - 16 - W;
-            }
-
-            if (Y + H > window.innerHeight) {
-                Y = window.innerHeight - 16 - H;
-            }
-
-            $("#" + guid).css({
-                "left": X,
-                "top": Y
-            })
-
-            if (options.autoDestroy) {
-                $("body").click(function(e) {
-                    if (!$(e.target).parents(".photon-menu").hasClass("active")) {
-                        $(".photon-menu").each(function() {
-                            $(this).removeClass("vel");
-                            setTimeout(() => $(this).removeClass("active"), 50)
-                            setTimeout(() => $(this).remove(), 200)
-                        })
-                    }
-                });
-
-                const guid = Photon.guid();
-                $(".photon-menu,.option").mouseleave(function(e) {
-                    var i = $(this).index();
-
-                    if ($(this).hasClass("option")) i = $(this).parent().index() + 1;
-
-                    var destroy = true;
-                    $(".photon-menu").not(this).mouseenter(function() {
-                        destroy = false
-                    });
-
-                    if ($(this).hasClass("submenu")) {
-                        destroy = true;
-                        i--;
-                    }
-
-                    setTimeout(() => {
-                        $(".photon-menu").each(function() {
-                            if ($(this).index() > i && destroy) {
-                                $(this).removeClass("vel");
-                                setTimeout(() => $(this).removeClass("active"), 50)
-                                setTimeout(() => $(this).remove(), 200)
-                            }
-                        })
-                    }, 150)
-                }).mouseenter(function() {
-                    const l = $(".photon-menu").eq($(this).index() - $(".photon-menu").first().index() + 1);
-
-                    setTimeout(() => {
-                        l.removeClass("vel");
-                        setTimeout(() => l.removeClass("active"), 50)
-                        setTimeout(() => l.remove(), 200)
-                    }, 350)
-                })
-
-            }
-
-            $("#" + guid).removeClass("active");
-
-            setTimeout(() => $("#" + guid).removeClass("ds-n").addClass("active"), 5)
-            setTimeout(() => $("#" + guid).addClass("vel"), 50);
-
-        }
-
-    }
-
-}())
-
 Photon.Waves = {
     reload: () => {
         $(".waves-ink").off("mousedown").bind("mousedown", function(e) {
@@ -4656,7 +4442,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
 
     $(".autocomplete").autocomplete();
     $(".autolink").autolink();
-    $(".collapsible").collapsible();
+	$(".collapsible").collapsible();
     $(".scrollnav").scrollnav();
     $(".select").select();
     $(".sidenav").sidenav();
