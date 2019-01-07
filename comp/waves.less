@@ -64,11 +64,24 @@
 
 }
 
+.waves-effect.waves-primaryDark .waves-ripple {
+	background:fade(@darkPrimaryColor,40%)!important;
+}
 .waves-effect.waves-primary .waves-ripple {
-	background:fade(@primaryColor,40%);
+	background:fade(@primaryColor,40%)!important;
+}
+.waves-effect.waves-primaryLight .waves-ripple {
+	background:fade(@lightPrimaryColor,40%)!important;
+}
+
+.waves-effect.waves-accentDark .waves-ripple {
+	background:fade(@darkAccentColor,40%)!important;
 }
 .waves-effect.waves-accent .waves-ripple {
-	background:fade(@accentColor,40%);
+	background:fade(@accentColor,40%)!important;
+}
+.waves-effect.waves-accentLight .waves-ripple {
+	background:fade(@lightAccentColor,40%)!important;
 }
 
 .waves-effect.waves-red.waves-lighten-5 .waves-ripple {
@@ -1085,10 +1098,4 @@
 
 .waves-effect.waves-blue-grey.waves-darken-4 .waves-ripple {
 	background:rgba(38,50,56,.6)!important;
-}
-
-.btn:not(.flat){
-	.waves-ripple {
-		background:fade(@accentTextColor,40%);
-	}
 }
