@@ -91,7 +91,7 @@ h3,
 h4,
 h5,
 h6 {
-	font-weight: 400;
+	font-weight: 500;
 	font-family:@secondaryFont;
 	display:block;
 	overflow-x: hidden;
@@ -149,12 +149,18 @@ ul li {
 	list-style: none;
 }
 
+ol li {
+	line-height:1.5;
+	vertical-align:middle;
+}
+
 iframe,
 video {
 	display: block;
 	width: 100%;
 	border: none;
 }
+
 @import "../comp/appbar.less";
 @import "../comp/autocomplete.less";
 @import "../comp/autolink.less";
@@ -170,7 +176,6 @@ video {
 @import "../comp/grid.less";
 @import "../comp/icon.less";
 @import "../comp/lighting.less";
-@import "../comp/menu.less";
 @import "../comp/note.less";
 @import "../comp/picker.less";
 @import "../comp/progress.less";
