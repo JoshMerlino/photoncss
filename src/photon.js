@@ -4663,6 +4663,20 @@ $(() => (function animation() {
     $(".collapsible").each(function() {
         $(this).children().removeClass("adjact");
         $(this).children(".active").prev("li").addClass("adjact");
-    })
+    });
+
+	if($("html").height() < window.innerHeight){
+		$("footer").css({
+			"position":"fixed",
+			"width":"100%",
+			"bottom":"24px"
+		})
+	} else {
+		$("footer").css({
+			"position":"static",
+			"width":"auto",
+			"bottom":"auto"
+		})
+	}
 
 }()));
