@@ -3883,526 +3883,138 @@ window.addEventListener("keydown", function(e) {
     };
 })(jQuery, Photon.Vel);
 
-;
-(function() {
-
-    Photon.dialog = {
-        alert: function(a, b = () => {}) {
-
-            $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog alert\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-accent flat dense\">ok</a></div>")
-
-            $(".photon-dialog .dx-content").text(a);
-            $(".photon-dialog .btn").click(function() {
-                $(".photon-dialog").removeClass("active")
-                setTimeout(() => {
-                    $(".photon-dialog").remove();
-                    b();
-                }, Photon.speed);
-            })
-            setTimeout(() => $(".photon-dialog").addClass("active"), 100);
-
-        },
-        confirm: function(a, b = () => {}) {
-
-            $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog confirm\"><div class=\"dx-content\"></div><a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>")
-
-            $(".photon-dialog .dx-content").text(a);
-            $(".photon-dialog .btn").click(function() {
-                $(".photon-dialog").removeClass("active")
-                setTimeout(() => {
-                    $(".photon-dialog").remove();
-                    b($(this).hasClass("ok"));
-                }, Photon.speed);
-            })
-            setTimeout(() => $(".photon-dialog").addClass("active"), 100);
-
-        },
-        prompt: function(a, b = () => {}) {
-
-            $(".photon-dialog").remove();
-            $("body").append("<div class=\"photon-dialog prompt\"><div class=\"dx-content\"></div><div class=\"input-field\"><input type=\"text\"></div><a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>")
-
-            $(".photon-dialog .dx-content").text(a);
-            $(".photon-dialog .btn").click(function() {
-                $(".photon-dialog").removeClass("active")
-                setTimeout(() => {
-                    $(".photon-dialog").remove();
-                    b($(this).siblings(".input-field").children("input").val() || false);
-                }, Photon.speed);
-            });
-
-            Photon.reload();
-            $(".photon-dialog .input-field input").keypress(function(e) {
-                if (e.which == 13) {
-                    $(".photon-dialog .ok").click()
-                }
-            }).focus();
-            setTimeout(() => $(".photon-dialog").addClass("active"), 100);
-        },
-        select: function(a, choices, b = () => {}) {
-
-            const group = Photon.guid();
-
-            var opts = "";
-            for (opt of choices) {
-                const guid = Photon.guid();
-                opts += `<div class="radio-btn">
-					<input type="radio" id="${guid}" name="${group}"${choices.indexOf(opt) == 0 ? " checked":""}>
-					<label for="${guid}">${opt}</label>
-					<div class="ripple waves-effect waves-ink"></div>
-				</div>`;
-            }
-
-            $(".photon-dialog").remove();
-            $("body").append(`<div class=\"photon-dialog singleselect\">
-			<div class=\"dx-content\"></div>
-			<div class="options">${opts}</div>
-			<a class=\"btn waves-effect waves-accent flat dense ok\">ok</a><a class=\"btn waves-effect waves-accent flat dense\">cancel</a></div>`);
-
-            Photon.reload();
-
-            $(".photon-dialog .dx-content").text(a);
-            $(".photon-dialog .btn").click(function() {
-                $(".photon-dialog").removeClass("active")
-                var opta;
-                setTimeout(() => {
-                    $(`[name="${group}"]`).each(function() {
-                        if ($(this).prop("checked")) {
-                            opta = $(this).siblings("label").text();
-                        }
-                    })
-                    $(".photon-dialog").remove();
-
-                    if ($(this).hasClass("ok")) {
-                        b(opta);
-                    } else {
-                        b(false);
-                    }
-                }, Photon.speed);
-            });
-
-            setTimeout(() => $(".photon-dialog").addClass("active"), 100);
-
-        },
-        multiple: function(a, choices, b = () => {}) {
-
-            const group = Photon.guid();
-
-            var opts = "";
-            for (opt of choices) {
-                const guid = Photon.guid();
-                opts += `<div class="checkbox">
-					<input type="checkbox" id="${guid}" name="${group}">
-					<label for="${guid}">${opt}</label>
-					<div class="ripple waves-effect waves-ink"></div>
-				</div>`;
-            }
-
-            $(".photon-dialog").remove();
-            $("body").append(`<div class=\"photon-dialog multiple\">
-			<div class=\"dx-content\"></div>
-			<div class="options">${opts}</div>
-			<a class=\"btn waves-effect waves-light dense ok\">ok</a><a class=\"btn waves-effect white grey-text text-darken-2 dense\">cancel</a></div>`);
-
-            Photon.reload();
-
-            $(".photon-dialog .dx-content").text(a);
-            $(".photon-dialog .btn").click(function() {
-                $(".photon-dialog").removeClass("active")
-                var opta = [];
-                setTimeout(() => {
-                    $(`[name="${group}"]`).each(function() {
-                        if ($(this).prop("checked")) {
-                            opta.push($(this).siblings("label").text());
-                        }
-                    })
-                    $(".photon-dialog").remove();
-
-                    if ($(this).hasClass("ok")) {
-                        b(opta);
-                    } else {
-                        b(false);
-                    }
-                }, Photon.speed);
-            });
-
-            setTimeout(() => $(".photon-dialog").addClass("active"), 100);
-
-        }
-    }
-
-}())
-
-;
-(function() {
-
-    Photon.picker = {};
-
-    Photon.picker.date = function(cb = () => {}) {
-
-        $("body").append('<div class="date photon-picker"><div class=bar><div class=year></div><div class=date></div></div><div class=yearpick></div><div class=nav><i class="waves-effect material-icons waves-ink right">chevron_right</i> <i class="waves-effect material-icons waves-ink left">chevron_left</i></div><div class=panes><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div><div class=pane><div class=month></div><div class=smtwtfs><div>S</div><div>M</div><div>T</div><div>W</div><div>T</div><div>F</div><div>S</div></div><div class=calendar></div></div></div><div class=actions><a class="btn waves-effect waves-accent flat dense ok">ok</a><a class="btn waves-effect waves-accent flat dense cancel">cancel</a></div></div>');
-
-        setTimeout(() => $(".photon-picker").addClass("active"), 100);
-
-        $(".photon-picker.date").each(function() {
-            var picker = $(this);
-
-            var months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-            var ddate = {
-                "month": new Date().getMonth(),
-                "year": new Date().getYear() + 1900,
-                "day": new Date().getDate().toString()
-            }
-
-            function getCD(i) {
-                if (ddate.year == new Date().getYear() + 1900) {
-                    if (ddate.month == new Date().getMonth()) {
-                        if (i == new Date().getDate().toString()) {
-                            return " class=\"today\"";
-                        }
-                    }
-                };
-                return "";
-            }
-
-            var p1 = picker.children(".panes").children().first();
-            var p2 = picker.children(".panes").children().last();
-
-            var fd = new Date(ddate.year, ddate.month, 1).getDay();
-            for (var i = 1; i < fd; i++) {
-                p1.children(".calendar").append("<div class=\"empty\">0</div>")
-            }
-
-            var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-            for (var i = 1; i < ld; i++) {
-                p1.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-            }
-
-            p1.children(".month").text(months[ddate.month]);
-            propClicks();
-
-            function goPrevMonth() {
-
-                p2.children(".month").text(months[ddate.month]);
-
-                p2.children(".calendar").empty();
-                var fd = new Date(ddate.year, ddate.month, 1).getDay();
-                for (var i = 1; i < fd; i++) {
-                    p2.children(".calendar").append("<div class=\"empty\">0</div>")
-                }
-
-                var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-                for (var i = 0; i < ld; i++) {
-                    if (i == 0) {
-                        p2.children(".calendar").append("<div class=\"empty\">0</div>")
-                    } else {
-                        p2.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-                    }
-                }
-
-                ddate.month--;
-                if (ddate.month == -1) {
-                    ddate.month = 11;
-                    ddate.year--;
-                }
-
-                p1.children(".month").text(months[ddate.month])
-
-                p1.children(".calendar").empty();
-                var fd = new Date(ddate.year, ddate.month, 1).getDay();
-                for (var i = 1; i < fd; i++) {
-                    p1.children(".calendar").append("<div class=\"empty\">0</div>")
-                }
-
-                var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-                for (var i = 0; i < ld; i++) {
-                    if (i == 0) {
-                        p1.children(".calendar").append("<div class=\"empty\">0</div>")
-                    } else {
-                        p1.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-                    }
-                }
-            }
-
-            function goNextMonth() {
-
-                p1.children(".month").text(months[ddate.month]);
-                p2.children(".calendar").empty();
-                var fd = new Date(ddate.year, ddate.month, 1).getDay();
-                for (var i = 1; i < fd; i++) {
-                    p2.children(".calendar").append("<div class=\"empty\">0</div>")
-                }
-
-                var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-                for (var i = 0; i < ld; i++) {
-                    if (i == 0) {
-                        p2.children(".calendar").append("<div class=\"empty\">0</div>")
-                    } else {
-                        p2.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-                    }
-                }
-
-                ddate.month++;
-                if (ddate.month == 12) {
-                    ddate.month = 0;
-                    ddate.year++;
-                }
-
-                p2.children(".month").text(months[ddate.month])
-                setTimeout(() => p1.children(".month").text(months[ddate.month]), Photon.speed * 2)
-
-                p1.children(".calendar").empty();
-                var fd = new Date(ddate.year, ddate.month, 1).getDay();
-                for (var i = 1; i < fd; i++) {
-                    p1.children(".calendar").append("<div class=\"empty\">0</div>")
-                }
-
-                var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-                for (var i = 0; i < ld; i++) {
-                    if (i == 0) {
-                        p1.children(".calendar").append("<div class=\"empty\">0</div>")
-                    } else {
-                        p1.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-                    }
-                }
-
-            }
-
-            function propClicks() {
-                picker.children(".panes").children(".pane").children(".calendar").children("div").click(function() {
-                    var blob = $(this);
-
-                    blob.addClass("active").siblings().removeClass("active");
-                    ddate.day = parseInt(blob.text());
-
-                    picker.children(".bar").children(".year").text(ddate.year)
-                    picker.children(".bar").children(".date").text(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date(ddate.year, ddate.month, ddate.day).getDay()] + ", " + months[ddate.month].substr(0, 3) + " " + ddate.day);
-
-                });
-
-                picker.children(".bar").children(".year").text(ddate.year)
-                picker.children(".bar").children(".date").text(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"][new Date(ddate.year, ddate.month, ddate.day).getDay()] + ", " + months[ddate.month].substr(0, 3) + " " + ddate.day);
-            }
-
-            picker.children(".bar").children(".year").click(function() {
-                picker.children(".yearpick").show();
-                picker.children(".panes").hide();
-
-                var sc = 0;
-                sc = picker.children(".yearpick").children(".active").index() * 36;
-
-                picker.children(".yearpick")[0].scrollTop = sc;
-
-            });
-
-            for (var i = 1900; i < 2101; i++) {
-                var g = "";
-                if (i == new Date().getYear() + 1900) g = " active";
-                picker.children(".yearpick").append("<div class=\"yearsel waves-effect waves-dark" + g + "\">" + i + "</div>");
-            }
-
-            picker.children(".yearpick").children(".yearsel").click(function() {
-
-                $(this).addClass("active").siblings().removeClass("active")
-
-                ddate.year = parseInt($(this).text());
-
-                p1.children(".calendar").empty();
-                var fd = new Date(ddate.year, ddate.month, 1).getDay();
-                for (var i = 1; i < fd; i++) {
-                    p1.children(".calendar").append("<div class=\"empty\">0</div>")
-                }
-
-                var ld = new Date(ddate.year, ddate.month + 1, 0).getDate() + 1;
-                for (var i = 1; i < ld; i++) {
-                    p1.children(".calendar").append("<div" + getCD(i) + ">" + i + "</div>")
-                }
-                picker.children(".bar").children(".year").text(ddate.year);
-
-                picker.children(".yearpick").hide();
-                picker.children(".panes").show()
-            })
-
-            picker.children(".nav").children().click(function() {
-                if ($(this).hasClass("left")) {
-
-                    if (picker.hasClass("picker-v")) {
-                        picker.children(".panes").css({
-                            "right": "0",
-                            "left": "-100%"
-                        }).animate({
-                            "left": "0",
-                            "right": "-100%"
-                        }, {
-                            queue: false,
-                            duration: Photon.speed * 2
-                        });
-                    } else {
-                        picker.children(".panes").css({
-                            "right": "0",
-                            "left": 0 - picker.width() + 200
-                        }).animate({
-                            "left": "200px",
-                            "right": 0 - picker.width() + 200
-                        }, {
-                            queue: false,
-                            duration: Photon.speed * 2
-                        });
-                    }
-
-                    goPrevMonth();
-                    propClicks();
-
-                } else if ($(this).hasClass("right")) {
-
-                    if (picker.hasClass("picker-v")) {
-                        picker.children(".panes").animate({
-                            "right": "0",
-                            "left": "-100%"
-                        }, {
-                            queue: false,
-                            duration: Photon.speed * 2,
-                            complete: function() {
-                                $(this).css({
-                                    "left": "0",
-                                    "right": "-100%"
-                                });
-                            }
-                        });
-                    } else {
-                        picker.children(".panes").animate({
-                            "right": "0",
-                            "left": 0 - picker.width() + 200
-                        }, {
-                            queue: false,
-                            duration: Photon.speed * 2,
-                            complete: function() {
-                                $(this).css({
-                                    "left": "200px",
-                                    "right": 0 - picker.width() + 200
-                                });
-                            }
-                        });
-                    }
-
-                    goNextMonth();
-                    propClicks();
-
-                }
-            });
-
-            picker.children(".actions").children(".btn").click(function() {
-                var seldate = [ddate.month + 1, ddate.day, ddate.year];
-                if ($(this).hasClass("ok")) {
-                    cb(seldate);
-                } else {
-                    cb(false);
-                }
-
-                picker.removeClass("active");
-                setTimeout(() => picker.remove(), Photon.speed);
-
-            })
-
-            Photon.ready();
-
-        })
-
-    }
-
-    Photon.picker.time = function(cb = () => {}) {
-
-        $("body").append('<div class="time photon-picker"><div class=bar><div class=time><div class="active hour">12</div><div class=colan>:</div><div class=minute>30</div></div><div class=ampm><div class="active am">AM</div><div class=pm>PM</div></div></div><div class=clocks><div class="active hour clock"><div class=hand></div></div><div class="clock minute"><div class=hand></div></div></div><div class=actions><a class="btn waves-effect waves-accent flat dense ok">ok</a><a class="btn waves-effect waves-accent flat dense cencel">cancel</a></div></div>');
-
-        setTimeout(() => $(".photon-picker").addClass("active"), 100);
-
-        $(".photon-picker.time").each(function() {
-
-            var picker = $(this);
-
-            picker.children(".bar").children(".time").click(function() {
-                $(this).children(".hour,.minute").toggleClass("active")
-                picker.children(".clocks").children(".clock").toggleClass("active");
-            })
-
-            picker.children(".bar").children(".ampm").click(function() {
-                $(this).children().toggleClass("active")
-            });
-
-            picker.children(".clocks").children().each(function() {
-
-                var poses,
-                    clock = $(this);
-
-                if ($(this).hasClass("hour")) {
-                    poses = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-                } else {
-                    poses = ["00", "05", "10", "15", "20", "25", "30", "35", "40", "45", "50", "55"];
-                }
-
-                for (var i = 0; i < 12; i++) {
-                    clock.append("<div class=\"timeblob tbpos-" + i + "\">" + poses[i] + "</div>")
-                }
-
-            });
-
-            picker.children(".clocks").children(".hour").children(".timeblob").first().addClass("active");
-            picker.children(".clocks").children(".minute").children(".timeblob").eq(6).addClass("active");
-
-            picker.children(".clocks").children(".hour").children(".hand").css("transform", "translate(-50%,-50%) rotate(-90deg)");
-            picker.children(".clocks").children(".minute").children(".hand").css("transform", "translate(-50%,-50%) rotate(90deg)");
-
-            picker.children(".clocks").children(".clock").children(".timeblob").click(function() {
-                $(this).addClass("active").siblings(".timeblob").removeClass("active");
-
-                var deg = parseInt($(this).attr("class").split(" ")[1].split("-")[1]) * 30 - 90;
-                $(this).siblings(".hand").css("transform", "translate(-50%,-50%) rotate(" + deg + "deg)");
-
-                var nv = $(this).text();
-                nv = nv.length < 2 ? "0" + nv : nv;
-
-                setTimeout(function() {
-                    picker.children(".bar").children(".time").children(".hour,.minute").toggleClass("active")
-                    picker.children(".clocks").children(".clock").toggleClass("active");
-
-                    setTimeout(() => picker.children(".bar").children(".time").children().not(".active").not(".colan").text(nv), 10)
-
-                }, Photon.speed)
-
-            });
-
-            picker.children(".actions").children(".btn").click(function() {
-                var time = picker.children(".bar").children(".time").text() + picker.children(".bar").children(".ampm").children(".active").text().toLowerCase();
-                if ($(this).hasClass("ok")) {
-                    cb(time);
-                } else {
-                    cb(false);
-                }
-
-                picker.removeClass("active");
-                setTimeout(() => picker.remove(), Photon.speed);
-
-            })
-
-            Photon.ready();
-
-        });
-
-    }
-
-    setInterval(function() {
-        $(".photon-picker").each(function() {
-            if (window.innerWidth > window.innerHeight) {
-                $(this).addClass("picker-h").removeClass("picker-v");
-            } else {
-                $(this).addClass("picker-v").removeClass("picker-h");
-            }
-        })
-    }, 100)
-
+;(function(){
+	Photon.dialog = class PhotonDialog {
+		guid =  Photon.guid();
+
+		constructor(options) {
+			this.options = $.extend({
+				title:"This page says:",
+				size:"auto",
+				transition:"fade",
+				label:"",
+				actions:[]
+			},options);
+		}
+
+		destroy(dialog = $("#" + this.guid)) {
+			requestAnimationFrame(() => {
+				dialog.parent().removeClass("active");
+				setTimeout(() => dialog.parent().remove(),200);
+			});
+		}
+
+		open() {
+
+			const Super = this;
+
+			$(".photon-dialog").remove();
+			$("body").append(`<div class="photon-dialog"><div class="dialog" id="${this.guid}"></div></div>`);
+
+			const dialog = $("#" + this.guid);
+			dialog.parent().click(function(e){
+				if($(e.target).hasClass("photon-dialog") && Super.options.type != "progress") Super.destroy(dialog);
+			});
+
+			dialog.addClass("transition-" + this.options.transition);
+			requestAnimationFrame(() => dialog.parent().addClass("active"));
+
+			if(this.options.type == "alert"){
+				dialog.append(`<div class="title">${this.options.title}</div>`);
+				dialog.append(`<div class="body">${this.options.message}</div>`);
+			} else if (this.options.type == "form"){
+				this.promptguid = Photon.guid();
+				dialog.append(`<div class="title">${this.options.title}</div>`);
+				dialog.append(`<div class="body"><p>${this.options.message}</p><div class="input-field"><input type="text" id="${this.promptguid}" /><label for="${this.promptguid}">${this.options.label}</label></div></div>`);
+				this.value = () => $("#" + this.promptguid).val();
+				Photon.reload()
+			} else if (this.options.type == "progress"){
+				let progid = Photon.guid();
+				let aid = Photon.guid();
+				dialog.append(`<div class="body">${this.options.message}<div class="progress"><div class="determinate" id="${progid}"></div></div><div class="assets" id="${aid}">0/0</div></div>`);
+				this.options.size = "progress";
+
+				this.asset = 0;
+				this.increment = function(value = 1){
+					this.asset += value;
+					const percent = this.asset/this.options.assets;
+					$("#" + progid).css("width",percent * 100 + "%").css("transition","none");
+					$("#" + aid).text(`${this.asset}/${this.options.assets}`);
+					if(percent == 1){
+						this.increment = function(){};
+						this.destroy();
+					}
+				}
+			} else if (this.options.type == "radio"){
+
+				this.options.size = "choice";
+				dialog.append(`<div class="title">${this.options.title}</div>`);
+
+				const group = Photon.guid();
+				const ouid = Photon.guid();
+
+				dialog.append(`<div class="body"><div class="options" id="${ouid}"></div></div>`);
+				const options = $("#" + ouid);
+				for (let option of this.options.options) {
+					let uuid = Photon.guid();
+					options.append(`<div class="radio-btn"><input type="radio" id="${uuid}" name="${group}"${option.default ? " checked":""}><label for="${uuid}">${option.name}</label><div class="ripple waves-effect waves-ink"></div></div>`);
+
+					if(option.select) {
+						$("#" + uuid).change(function(){
+							if($(this).prop("checked")) option.select()
+						})
+					}
+				}
+
+				Photon.reload();
+
+				$("[name='" + group + "']").change(function(){
+					$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0])
+				});
+
+				this.value = () => $("[for='" + $("[name='" + group + "']:checked").attr("id") + "']").text();
+
+			} else if (this.options.type == "checkbox"){
+
+				this.options.size = "choice";
+				dialog.append(`<div class="title">${this.options.title}</div>`);
+
+				const group = Photon.guid();
+				const ouid = Photon.guid();
+
+				dialog.append(`<div class="body"><div class="options" id="${ouid}"></div></div>`);
+				const options = $("#" + ouid);
+				for (let option of this.options.options) {
+					let uuid = Photon.guid();
+					options.append(`<div class="checkbox"><input type="checkbox" id="${uuid}" name="${group}"${option.selected ? " checked":""}><label for="${uuid}">${option.name}</label><div class="ripple waves-effect waves-ink"></div></div>`);
+				}
+
+				Photon.reload();
+
+				$("[name='" + group + "']").change(function(){
+					$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0])
+				});
+
+				this.value = () => {
+					let ops = [];
+					$("[name='" + group + "']:checked").each(function(){
+						ops.push($(this).siblings("label").text());
+					});
+					return ops;
+				}
+			}
+
+			dialog.addClass("size-" + this.options.size);
+			this.options.actions.length > 0 && dialog.append(`<div class="actions"></div>`);
+
+			for (let action of this.options.actions) {
+				action.acid = Photon.guid()
+				dialog.children(".actions").append(`<a id="${action.acid}" class="btn flat waves-effect waves-accent">${action.name}</a>`);
+				action.click && $(`#${action.acid}`).click(() => action.click(this))
+			}
+		}
+
+	};
 }());
 
 Photon.Waves = {
