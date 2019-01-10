@@ -1,75 +1,156 @@
 .photon-dialog {
-	position: fixed;
-	background: #fff;
-	top: 50%;
-	left: 50%;
-	max-width: 480px;
-	width: calc(~"100% - 24px");
-	min-height: 64px;
-	transform: scale(.8) translate(-60%,-60%);
-	opacity: 0;
-	.borderMixin(1.5);
-	box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22), 0 0 0 9999px rgba(0,0,0,0.38);
-	z-index: 1000000;
-	text-align: right;
-	overflow: hidden;
+	position:fixed;
+  	display: grid;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	background:#0000007f;
+	z-index:5000000;
+	opacity:0;
 	.transition();
+	.dialog {
+		background:#fff;
+		margin:auto;
+		height:200px;
+		width:500px;
+		box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
+		.borderMixin();
+		.transition()
+	}
+
+	.dialog {
+		&.transition-slide {
+			transform:translateY(100%);
+		}
+		&.transition-scale {
+			transform:scale(0.8);
+		}
+	}
 
 	&.active {
-		transform: scale(1) translate(-50%,-50%);
-		opacity: 1;
-	}
-
-	.dx-content {
-		font-size: 16px;
-		max-height: 128px;
-		padding: 2rem 2rem 1rem;
-		text-align: left;
-		overflow-y: auto;
-		color: #212121!important;
-	}
-
-	.btn {
-		min-width:0;
-
-		&.ok {
-			margin-right: -8px;
-		}
-	}
-
-	.input-field {
-		margin: -2rem 2rem;
-
-		input {
-			color: #212121;
-		}
-
-		.bar {
-			bottom: 29px!important;
-		}
-	}
-
-	&.singleselect,
-	&.multiple {
-		text-align:right!important;
-		.options {
-			text-align:left;
-			padding:8px 2rem;
-			max-height:240px;
-			overflow-y:auto;
-			margin:-8px 0;
-			.radio-btn,
-			.checkbox {
-				padding:4px 0;
+		opacity:1;
+		.dialog {
+			&.transition-slide {
+				transform:translateY(0);
+			}
+			&.transition-scale {
+				transform:scale(1);
 			}
 		}
 	}
 
-	& when (@photonDarkTheme = true) {
-		background: #242424;
-
-		.dx-content {
-			color: #fafafa!important;
+	.dialog {
+		height:auto;
+		width:calc(~"100% - 32px");
+		&.size-auto {
+			max-width: 600px;
+			max-height: 440px;
+			min-height: 200px;
+		}
+		&.size-choice,
+		&.size-medium {
+			max-width: 360px;
+			max-height: 440px;
+			min-height: 200px;
+		}
+		&.size-dense {
+			max-width: 268px;
+			max-height: 440px;
+			min-height: 200px;
+		}
+		&.size-progress {
+			max-width: 268px;
+			padding-top:24px;
+			padding-bottom:12px;
+			.progress {
+				margin-bottom:0;
+			}
+			.assets {
+				font-size:14px;
+				text-align:right;
+				margin-bottom: -16px;
+			}
 		}
 	}
+
+	.dialog {
+		.title {
+			color: rgba(0, 0, 0, 0.87);
+			font-size: 1.25rem;
+			font-family: @fontFamily;
+			font-weight: 500;
+			line-height: 1.6;
+			letter-spacing: 0.0075em;
+			margin:24px;
+		}
+		.body {
+			padding:24px;
+			padding-top:0;
+			line-height: 1.5;
+			color: rgba(0, 0, 0, 0.54);
+			font-size: 1rem;
+			font-family:@fontFamily;
+			font-weight: 400;
+			letter-spacing: 0.00938em;
+			margin-top:-4px;
+			p {
+				margin:0;
+				margin-bottom:12px;
+			}
+			.input-field {
+				margin-top: -12px;
+    			margin-bottom: -32px;
+			}
+		}
+		.actions {
+			direction:rtl;
+			padding:4px;
+			padding-bottom:0;
+			.btn {
+				margin:4px;
+				padding:0 8px;
+			}
+		}
+		.options {
+			max-height:300px;
+			overflow-y: auto;
+			margin:0 -24px;
+			padding:0 24px;
+			margin-bottom:-24px;
+			padding-top:6px;
+			.radio-btn,
+			.checkbox {
+				padding-top:8px;
+				padding-bottom:8px;
+				label {
+					color:#303030;
+				}
+				.ripple {
+					z-index:2000000;
+					transform:translateY(-3px);
+				}
+			}
+		}
+	}
+
+	.dialog when (@photonDarkTheme = true) {
+		background:#414141;
+		.title {
+			color:#fff;
+		}
+		.body {
+			color:rgba(255,255,255,.7);
+			input::after {
+				border-color:#414141!important;
+				color:#414141;
+			}
+			.checkbox label,
+			.radio-btn label {
+				color:rgba(255,255,255,.7)!important;
+			}
+		}
+	}
+
+
 }
