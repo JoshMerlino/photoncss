@@ -4249,6 +4249,10 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
         })
     }())
 
+	$(".input-field.box").click(function(){
+		$(this).children("input").focus()
+	})
+
     loaded();
 
 }
@@ -4290,5 +4294,24 @@ $(() => (function animation() {
 			"bottom":"auto"
 		})
 	}
+
+	$(".app-bar.parallax").each(function(){
+		const st = $("html").scrollTop();
+
+		let padding = (260 - st) - 64;
+		if(padding < 0) padding = 0;
+
+		let opacity = 1 - st/260;
+		let filter = "none";
+		if(opacity > 0.73) opacity = 0.73;
+		if(opacity < 0.19) {
+			opacity = 0.19;
+			filter = "blur(4px)";
+		}
+
+		$(this).height(260 - st);
+		$(this).children("img").css("opacity",opacity).css("filter",filter);
+		$(this).children(".app-bar").css("margin-top",padding);
+	})
 
 }()));
