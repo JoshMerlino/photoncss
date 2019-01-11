@@ -84,4 +84,24 @@
 	}
 	overflow:hidden;
 
+	&.parallax {
+		height:260px;
+		min-height:64px;
+		img {
+			position:absolute;
+			top: 50%;
+		    left: 0;
+		    right: 0;
+		    transform: translateY(-50%);
+		}
+		.app-bar {
+			position: relative;
+			bottom:0;
+			left:0;
+			right:0;
+			background:transparent!important;
+			box-shadow:none!important;
+		}
+	}
+
 }
