@@ -4304,9 +4304,12 @@ $(() => (function animation() {
 		let opacity = 1 - st/260;
 		let filter = "none";
 		if(opacity > 0.73) opacity = 0.73;
-		if(opacity < 0.19) {
-			opacity = 0.19;
+		if(opacity < 0.26) {
+			opacity = 0.26;
 			filter = "blur(4px)";
+			$(this).removeClass("flat")
+		} else {
+			$(this).addClass("flat")
 		}
 
 		$(this).height(260 - st);
