@@ -2664,7 +2664,7 @@ window.addEventListener("keydown", function(e) {
                 });
             }
 
-            
+
 
         });
     };
@@ -4018,6 +4018,27 @@ window.addEventListener("keydown", function(e) {
 						ops.push($(this).siblings("label").text());
 					});
 					return ops;
+				}
+			} else if (this.options.type == "user") {
+				this.options.size = "dense";
+				dialog.append(`<div class="title">${this.options.title}</div>`);
+
+				dialog.append(`<div class="users"></div>`);
+
+				let img = "data:image/svg+xml;base64," + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="#1e88e5"><circle fill="#bbdefb" cx="20" cy="20" r="20"/><g transform="translate(5,4) scale(1.25)"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/><path d="M0 0h24v24H0z" fill="none"/></g></svg>`);
+				for (let user of this.options.users || []) {
+					let xuid = Photon.guid();
+					dialog.children(".users").append(`<div id="${xuid}" class="user waves-effect"><img src="${user.image || img}" alt="" /><span class="desc">${user.desc}</span></div>`)
+					user.click && $(`#${xuid}`).click(() => user.click(this))
+				}
+
+				if(this.options.methods.length > 0 && this.options.users.length > 0) dialog.children(".users").append(`<hr />`);
+
+				let add = "data:image/svg+xml;base64," + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="#fff"><circle fill="#c1c1c1" cx="20" cy="20" r="20"/><g transform="translate(5,5) scale(1.25)"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/></g></svg>`);
+				for (let method of this.options.methods || []) {
+					let xuid = Photon.guid();
+					dialog.children(".users").append(`<div id="${xuid}" class="user method waves-effect"><img src="${method.image || add}" alt="" /><span class="desc">${method.name}</span></div>`)
+					method.click && $(`#${xuid}`).click(() => method.click(this))
 				}
 			}
 
