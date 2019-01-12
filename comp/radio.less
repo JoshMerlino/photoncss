@@ -1,27 +1,25 @@
 input[type="radio"] {
 	&:extend(.transition);
-	transition-duration:300ms;
 	-webkit-appearance: none;
-	width: 18px;
-	height: 18px;
+	width: 20px;
+	height: 20px;
 	border: 2px solid #6d6d6d;
 	border-radius: 50%;
 	outline: 0;
 	transform: translateY(-2px);
 
 	&:checked {
-		border: 9px solid @accentColor;
+		border: 2px solid @accentColor;
 	}
 
 	&::after {
 		&:extend(.transition);
-		transition-duration:300ms;
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
 		position: absolute;
 		content: "";
-		margin: 2px;
+		margin: 3px;
 		transform: scale(0);
 		background: @accentColor;
 		border:0px solid #fafafa;
@@ -29,8 +27,6 @@ input[type="radio"] {
 
 	&:checked::after {
 		transform: scale(1);
-		border-width:2px;
-		margin:-7px;
 	}
 
 	&:disabled {
@@ -48,7 +44,7 @@ input[type="radio"] {
 		position: absolute;
 		width: 48px;
 		height: 48px;
-		margin: -39px -10px;
+		margin: -40px -9px;
 		z-index:-1;
 		pointer-events:none;
 		border-radius:50%;
