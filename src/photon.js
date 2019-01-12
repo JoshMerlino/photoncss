@@ -3892,8 +3892,9 @@ window.addEventListener("keydown", function(e) {
 				title:"This page says:",
 				size:"auto",
 				transition:"fade",
-				label:"",
-				actions:[]
+				actions:[],
+				inputs:[],
+				assets:1
 			},options);
 		}
 
@@ -3925,8 +3926,24 @@ window.addEventListener("keydown", function(e) {
 			} else if (this.options.type == "form"){
 				this.promptguid = Photon.guid();
 				dialog.append(`<div class="title">${this.options.title}</div>`);
-				dialog.append(`<div class="body"><p>${this.options.message}</p><div class="input-field"><input type="text" id="${this.promptguid}" /><label for="${this.promptguid}">${this.options.label}</label></div></div>`);
-				this.value = () => $("#" + this.promptguid).val();
+				dialog.append(`<div class="body">${this.options.message.length > 0 ? "<p>":""}${this.options.message}${this.options.message.length > 0  ?"</p>":""}</div>`);
+
+				let slug = str => {
+					str = str.toLowerCase();
+					str = str.replace(/\s|\@|\!|\#|\$|\%|\^|\&|\*\|9|\)|\(/g,"-")
+				}
+
+				for (let input of this.options.inputs) {
+					dialog.children(".body").append(`<div class="input-field"><input type="${input.type || "text"}" id="${input.id || slug(input.label)}" /><label for="${input.id || slug(input.label)}">${input.label}</label></div>`)
+				}
+
+				this.value = () => {
+					let resp = {};
+					dialog.children(".body").children(".input-field").each(function(){
+						resp[$(this).children("input").attr("id")] = $(this).children("input").val()
+					});
+					return resp;
+				};
 				Photon.reload()
 			} else if (this.options.type == "progress"){
 				let progid = Photon.guid();
