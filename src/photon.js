@@ -2664,7 +2664,7 @@ window.addEventListener("keydown", function(e) {
                 });
             }
 
-            setTimeout(() => $(this).children("li").first().children(".collapsible-header").click().click(), 200)
+            
 
         });
     };
@@ -4200,20 +4200,6 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
             $(this).children(".tab").first().children("a").click()
         })
     }, Photon.speed);
-
-    $(() => {
-        $(".collapsible").each(function() {
-            if ($(this).data("collapsible") == "expandable") {
-                $(this).children().not(".active").children(".collapsible-header").click().click()
-            } else {
-                if ($(this).children(".active").length != 0) {
-                    $(this).children(".active").first().children(".collapsible-header").click().click()
-                } else {
-                    $(this).children().first().children(".collapsible-header").click().click()
-                }
-            }
-        })
-    })
 
     $(".checkbox,.radio-btn").children("input").on("mousedown touchstart", function() {
         Waves.calm($(this).siblings(".ripple"));
