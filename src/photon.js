@@ -3885,8 +3885,6 @@ window.addEventListener("keydown", function(e) {
 
 ;(function(){
 	Photon.dialog = class PhotonDialog {
-		guid =  Photon.guid();
-
 		constructor(options) {
 			this.options = $.extend({
 				title:"This page says:",
@@ -3897,6 +3895,8 @@ window.addEventListener("keydown", function(e) {
 				assets:1,
 				force:false
 			},options);
+
+			this.guid = Photon.guid();
 		}
 
 		destroy(dialog = $("#" + this.guid)) {
