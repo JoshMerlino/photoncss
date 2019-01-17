@@ -3894,7 +3894,8 @@ window.addEventListener("keydown", function(e) {
 				transition:"fade",
 				actions:[],
 				inputs:[],
-				assets:1
+				assets:1,
+				force:false
 			},options);
 		}
 
@@ -3914,7 +3915,9 @@ window.addEventListener("keydown", function(e) {
 
 			const dialog = $("#" + this.guid);
 			dialog.parent().click(function(e){
-				if($(e.target).hasClass("photon-dialog") && Super.options.type != "progress") Super.destroy(dialog);
+				if(!Super.options.force) {
+					if($(e.target).hasClass("photon-dialog") && Super.options.type != "progress") Super.destroy(dialog);
+				}
 			});
 
 			dialog.addClass("transition-" + this.options.transition);
@@ -4305,7 +4308,7 @@ $(() => (function animation() {
         $(this).children(".active").prev("li").addClass("adjact");
     });
 
-	if($("html").height() < window.innerHeight){
+	if($("html").height() + 140 < window.innerHeight){
 		$("footer").css({
 			"position":"fixed",
 			"width":"100%",
