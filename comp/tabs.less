@@ -17,6 +17,22 @@
 	      	padding: 0 12px;
 	    }
 	}
+
+	&.tabs-top .indicator {
+		top:0;
+		bottom:auto;
+	}
+
+	&.tabs-new {
+		.indicator {
+			height:6px;
+			border-radius:3px;
+			margin-bottom:-3px;
+		}
+		&.tabs-top .indicator {
+			margin-top:-3px;
+		}
+	}
 	&.tabs-transparent {
   		background-color: transparent;
 		.tab a,
@@ -88,6 +104,7 @@
 		left:0px;
   		background-color:@primaryColor;
   		will-change: left, right;
+		overflow:hidden;
 	}
 	&::-webkit-scrollbar {
 		height:1px;
