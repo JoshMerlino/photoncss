@@ -3052,13 +3052,21 @@ window.addEventListener("keydown", function(e) {
                     // Finds right attribute for indicator based on active tab.
                     // el: jQuery Object
                     var calcRightPos = function(el) {
-                        return Math.ceil($tabs_width - el.position().left - el[0].getBoundingClientRect().width - $this.scrollLeft());
+						try {
+                        	return Math.ceil($tabs_width - el.position().left - el[0].getBoundingClientRect().width - $this.scrollLeft()) + ($this.hasClass("tabs-new") ? 24:0);
+						} catch(e) {
+							void e;
+						}
                     };
 
                     // Finds left attribute for indicator based on active tab.
                     // el: jQuery Object
                     var calcLeftPos = function(el) {
-                        return Math.floor(el.position().left + $this.scrollLeft());
+						try {
+                       		return Math.floor(el.position().left + $this.scrollLeft()) + ($this.hasClass("tabs-new") ? 24:0);
+						} catch(e) {
+							void e;
+						}
                     };
 
                     // Animates Indicator to active tab.
@@ -3078,7 +3086,7 @@ window.addEventListener("keydown", function(e) {
                                 duration: transition,
                                 queue: false,
                                 easing: 'easeOutQuad',
-                                delay: 90
+                                delay: $this.hasClass("tabs-new") ? 240:90
                             });
                         } else {
                             $indicator.velocity({
@@ -4123,9 +4131,6 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
             Waves.calm(f.siblings(".ripple"))
         })
     });
-    $(".switch .ripple").click(function() {
-        $(this).siblings("input").prop("checked", !$(this).siblings("input").prop("checked")).change()
-    })
 
     $(".input-field input,.input-field.select select").focus(function() {
         $(this).parent().append("<div class=\"bar\"></div>");
@@ -4225,7 +4230,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
         })
     }, Photon.speed);
 
-    $(".checkbox,.radio-btn").children("input").on("mousedown touchstart", function() {
+    $(".checkbox,.radio-btn,.switch").children("input").on("mousedown touchstart", function() {
         Waves.calm($(this).siblings(".ripple"));
         Waves.ripple($(this).siblings(".ripple"), {
             wait: 1e10
