@@ -3102,7 +3102,7 @@ window.addEventListener("keydown", function(e) {
                                 duration: transition,
                                 queue: false,
                                 easing: 'easeOutQuad',
-                                delay: 90
+                                delay: $this.hasClass("tabs-new") ? 240:90
                             });
                         }
                     };
