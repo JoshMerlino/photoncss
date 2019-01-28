@@ -93,7 +93,7 @@
   	background-color: transparent!important;
 	animation: rotate 1s linear infinite;
 	&.fast {
-		animation: rotate 300ms linear infinite;
+		animation: rotate-fast 4000ms cubic-bezier(.4,.2,.4,.8) infinite;
 	}
 	circle {
 	  	stroke-dasharray: 1,200;
@@ -118,6 +118,11 @@
 	@keyframes rotate {
 	  	100% {
 	    	transform: rotate(360deg);
+	  	}
+	}
+	@keyframes rotate-fast {
+	  	100% {
+	    	transform: rotate(3600deg);
 	  	}
 	}
 	@keyframes dash {

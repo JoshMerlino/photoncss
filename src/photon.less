@@ -50,11 +50,20 @@ body {
 	font-weight: 400;
 }
 
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+	color:rgba(0,0,0,.78);
+	font-family:@fontFamily;
+	display:block;
+	overflow-x: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+}
+
 body when (@photonDarkTheme = true) {
 	background: #212121;
 	color: #fafafa;
 
-	h1,
 	hr + .subheader {
 		color: #aaa!important;
 	}
@@ -79,24 +88,14 @@ body when (@photonDarkTheme = true) {
 	::-webkit-scrollbar-thumb:hover {
 		background: #767676;
 	}
+
+	h1, h2, h3, h4, h5, h6 {
+		color:rgba(245,245,245,.78);
+	}
 }
 
 * {
 	outline: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	font-weight: 500;
-	font-family:@secondaryFont;
-	display:block;
-	overflow-x: hidden;
-	text-overflow:ellipsis;
-	white-space: nowrap;
 }
 
 img {
@@ -162,7 +161,6 @@ video {
 }
 
 @import "../comp/appbar.less";
-@import "../comp/autocomplete.less";
 @import "../comp/autolink.less";
 @import "../comp/badge.less";
 @import "../comp/button.less";
