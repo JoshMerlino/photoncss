@@ -33,8 +33,15 @@ input[type="checkbox"]:not(.switch) {
 		-moz-transform:translateY(-2px)!important;
 	}
 
-	&.indeterminate::after {
-		content: "\E15B";
+	&.indeterminate {
+		border: 2px solid #6d6d6d;
+		&::after {
+			content: "\E15B";
+			color:#6d6d6d;
+		}
+		&:checked::after {
+			margin:-2px;
+		}
 	}
 
 	&.rounded {
@@ -99,6 +106,13 @@ input[type="checkbox"]:not(.switch) {
 
 		&::after {
 			color: #212121;
+		}
+
+		&.indeterminate {
+			border: 2px solid #b5b5b5;
+			&::after {
+				color:#b5b5b5;
+			}
 		}
 	}
 }
