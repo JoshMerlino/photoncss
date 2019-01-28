@@ -1572,10 +1572,10 @@ function(a) {
     }(window.jQuery || window.Zepto || window, window, window ? window.document : undefined)
 });
 (function() {
-    $.fn.actualWidth = function() {
+    $.fn.realwidth = function() {
         return this.width() + parseInt(this.css("padding-left")) + parseInt(this.css("padding-right"))
     };
-    $.fn.actualHeight = function() {
+    $.fn.realheight = function() {
         return this.height() + parseInt(this.css("padding-top")) + parseInt(this.css("padding-bottom"))
     }
 	$.fn.retab = function() {
@@ -1690,8 +1690,8 @@ function(a) {
                         dx = 1.019,
                         dy = 0.350,
                         f = 1,
-                        h = a.actualHeight(),
-                        w = a.actualWidth(),
+                        h = a.realheight(),
+                        w = a.realwidth(),
                         x = relativeX,
                         y = relativeY;
                     if (x > w / 2) {
@@ -2392,75 +2392,6 @@ window.addEventListener("keydown", function(e) {
 
 ;
 (function() {
-
-    $.fn.autocomplete = function() {
-        this.each(function() {
-
-            var input = $(this).children("input");
-            var acopt = $(this).children(".options");
-
-            var selopt = -1;
-
-            $(this).children("label").click(function(e) {
-                acopt.addClass("active");
-                $(this).keyup();
-                e.stopPropagation();
-            })
-            input.focus(function() {
-                acopt.addClass("active");
-                $(this).keyup();
-            }).click(function(e) {
-                e.stopPropagation();
-            }).keyup(function() {
-                var v = $(this).val();
-
-                $(this).siblings(".options").children(".option").each(function() {
-                    if ($(this).text().toLowerCase().indexOf(v.toLowerCase()) > -1) {
-                        $(this).show();
-                    } else {
-                        $(this).hide();
-                    }
-                })
-            }).keydown(function(e) {
-                if (e.which == 38) {
-                    selopt--;
-                    if (selopt < 0) selopt = 0;
-
-                    var opt = $(acopt.children(".option")[selopt]);
-                    opt.addClass("active").siblings().removeClass("active");
-                    input.val(opt.text()).addClass("containscontent");
-                } else if (e.which == 40) {
-                    selopt++;
-                    if (selopt >= acopt.children(".option").length) selopt = acopt.children(".option").length - 1;
-
-                    var opt = $(acopt.children(".option")[selopt]);
-                    opt.addClass("active").siblings().removeClass("active");
-                    input.val(opt.text()).addClass("containscontent");
-                };
-
-                var p = acopt.children(".option.active").index() * 44 - 64;
-                acopt.animate({
-                    scrollTop: p
-                }, {
-                    duration: 175,
-                    queue: false
-                })
-
-            })
-
-            $("body").click(function() {
-                acopt.removeClass("active");
-            });
-
-            acopt.children(".option").click(function(e) {
-                input.val($(this).text());
-                Photon.updateTextFields();
-            });
-
-        });
-
-        return this;
-    }
     $.fn.autolink = function() {
         this.each(function() {
             if (!$(this).hasClass("photon-init")) {
@@ -2677,7 +2608,7 @@ window.addEventListener("keydown", function(e) {
                         scrollTop: stop.offset().top - stop.height() - 64
                     })
                 } catch (w) {
-                    void(w)
+                    void w;
                 }
             })
             $(this).children("li").children("a[href]").click(function() {
@@ -2696,13 +2627,13 @@ window.addEventListener("keydown", function(e) {
 
             input.attr("readonly", "true")
 
-            $(this).children("label").click(function(e) {
+            $(this).children("label,input").mouseup(function(e) {
                 acopt.addClass("active");
                 $(this).keyup();
                 e.stopPropagation();
             })
-            input.focus(function() {
-                acopt.addClass("active");
+            input.focus(function(e) {
+				$(this).siblings("label").click()
                 Photon.disableArrowKeyScrolling = true;
                 $(this).keyup();
             }).blur(function() {
@@ -3256,253 +3187,82 @@ window.addEventListener("keydown", function(e) {
 
     };
     $.fn.tooltip = function(options) {
-        var timeout = null,
-            margin = 5;
 
-        // Defaults
-        var defaults = {
-            delay: 750,
-            tooltip: '',
-            position: 'bottom',
-            html: false
-        };
+		options = $.extend({
+			delay: 0,
+			position: "bottom",
+			tooltip: "",
+			classes: []
+		}, options);
 
-        // Remove tooltip from the activator
-        if (options === "remove") {
-            this.each(function() {
-                $('#' + $(this).attr('data-tooltip-id')).remove();
-                $(this).removeAttr('data-tooltip-id');
-                $(this).off('mouseenter.tooltip mouseleave.tooltip');
-            });
-            return false;
-        }
+        return this.each(function(){
 
-        options = $.extend(defaults, options);
+			const descriptor = $(this);
 
-        return this.each(function() {
-            var tooltipId = Photon.guid();
-            var origin = $(this);
+			options["delay"] = parseInt($(this).data("delay")) || options["delay"];
+			options["position"] = $(this).data("position") || options["position"];
+			options["tooltip"] = $(this).data("tooltip") || options["tooltip"];
+			options["classes"] = ($(this).data("tooltipclass") || "").split(" ") || options["classes"];
 
-            // Destroy old tooltip
-            if (origin.attr('data-tooltip-id')) {
-                $('#' + origin.attr('data-tooltip-id')).remove();
-            }
+			const guid = Photon.guid();
+			if(options.position.toLowerCase() == "bottom") {
+				let center = descriptor.offset().left
+				pos = [descriptor.offset().top,center];
+			}
 
-            origin.attr('data-tooltip-id', tooltipId);
+			$(this).mouseenter(function(){
+				setTimeout(() => $("#" + guid).addClass("active"),options.delay);
+			}).mouseleave(function(){
+				setTimeout(() => $("#" + guid).removeClass("active"),options.delay);
+			});
 
-            // Get attributes.
-            var allowHtml, tooltipDelay, tooltipPosition, tooltipText, tooltipEl, backdrop;
-            var setAttributes = function() {
-                allowHtml = origin.attr('data-html') ? origin.attr('data-html') === 'true' : options.html;
-                tooltipDelay = origin.attr('data-delay');
-                tooltipDelay = tooltipDelay === undefined || tooltipDelay === '' ? options.delay : tooltipDelay;
-                tooltipPosition = origin.attr('data-position');
-                tooltipPosition = tooltipPosition === undefined || tooltipPosition === '' ? options.position : tooltipPosition;
-                tooltipText = origin.attr('data-tooltip');
-                tooltipText = tooltipText === undefined || tooltipText === '' ? options.tooltip : tooltipText;
-            };
-            setAttributes();
+			$("body").append(`<div class="material-tooltip" id="${guid}">${options.tooltip}</div>`);
+			const tooltip = $("#" + guid);
 
-            var renderTooltipEl = function() {
-                var tooltip = $('<div class="material-tooltip"></div>');
+			let proX = pos => {
+				if(pos < 4) pos = 4;
+				if(pos > window.innerWidth - 4) pos = window.innerWidth - 4;
+				return pos;
+			}
 
-                // Create Text span
-                if (allowHtml) {
-                    tooltipText = $('<span></span>').html(tooltipText);
-                } else {
-                    tooltipText = $('<span></span>').text(tooltipText);
-                }
+			let proY = pos => {
+				if(pos < 4) pos = 4;
+				if(pos > window.innerHeight - 4) pos = window.innerHeight - 4;
+				return pos;
+			}
 
-                // Create tooltip
-                tooltip.append(tooltipText).appendTo($('body')).attr('id', tooltipId);
+			for (let classes of options.classes) tooltip.addClass(classes);
+			if(options.position.toLowerCase() == "top") {
+				tooltip.addClass("tt-top");
+				(function position(){
+					tooltip.css("top", proY(descriptor.offset().top - tooltip.realheight() - 4));
+					tooltip.css("left", proX(descriptor.offset().left + descriptor.realwidth()/2 - tooltip.realwidth()/2));
+					requestAnimationFrame(position);
+				}())
+			} else if(options.position.toLowerCase() == "left") {
+				tooltip.addClass("tt-left");
+				(function position(){
+					tooltip.css("top", proY(descriptor.offset().top + descriptor.realheight()/2 - tooltip.realheight()/2));
+					tooltip.css("left", proX(descriptor.offset().left - tooltip.realwidth() - 4));
+					requestAnimationFrame(position);
+				}())
+			} else if(options.position.toLowerCase() == "right") {
+				tooltip.addClass("tt-right");
+				(function position(){
+					tooltip.css("top", proY(descriptor.offset().top + descriptor.realheight()/2 - tooltip.realheight()/2));
+					tooltip.css("left", proX(descriptor.offset().left + descriptor.realwidth() + 4));
+					requestAnimationFrame(position);
+				}())
+			} else {
+				tooltip.addClass("tt-bottom");
+				(function position(){
+					tooltip.css("top", proY(descriptor.offset().top + descriptor.realheight() + 4));
+					tooltip.css("left", proX(descriptor.offset().left + descriptor.realwidth()/2 - tooltip.realwidth()/2));
+					requestAnimationFrame(position);
+				}())
+			}
 
-                // Create backdrop
-                backdrop = $('<div class="backdrop"></div>');
-                backdrop.appendTo(tooltip);
-                return tooltip;
-            };
-            tooltipEl = renderTooltipEl();
-
-            // Destroy previously binded events
-            origin.off('mouseenter.tooltip mouseleave.tooltip');
-            // Mouse In
-            var started = false,
-                timeoutRef;
-            origin.on({
-                'mouseenter.tooltip': function(e) {
-                    var showTooltip = function() {
-                        setAttributes();
-                        started = true;
-                        tooltipEl.velocity('stop');
-                        backdrop.velocity('stop');
-                        tooltipEl.css({
-                            visibility: 'visible',
-                            left: '0px',
-                            top: '0px'
-                        });
-
-                        // Tooltip positioning
-                        var originWidth = origin.outerWidth();
-                        var originHeight = origin.outerHeight();
-                        var tooltipHeight = tooltipEl.outerHeight();
-                        var tooltipWidth = tooltipEl.outerWidth();
-                        var tooltipVerticalMovement = '0px';
-                        var tooltipHorizontalMovement = '0px';
-                        var backdropOffsetWidth = backdrop[0].offsetWidth;
-                        var backdropOffsetHeight = backdrop[0].offsetHeight;
-                        var scaleXFactor = 8;
-                        var scaleYFactor = 8;
-                        var scaleFactor = 0;
-                        var targetTop, targetLeft, newCoordinates;
-
-                        if (tooltipPosition === "top") {
-                            // Top Position
-                            targetTop = origin.offset().top - tooltipHeight - margin;
-                            targetLeft = origin.offset().left + originWidth / 2 - tooltipWidth / 2;
-                            newCoordinates = repositionWithinScreen(targetLeft, targetTop, tooltipWidth, tooltipHeight);
-                            tooltipVerticalMovement = '-10px';
-                            backdrop.css({
-                                bottom: 0,
-                                left: 0,
-                                borderRadius: '14px 14px 0 0',
-                                transformOrigin: '50% 100%',
-                                marginTop: tooltipHeight,
-                                marginLeft: tooltipWidth / 2 - backdropOffsetWidth / 2
-                            });
-                        }
-                        // Left Position
-                        else if (tooltipPosition === "left") {
-                            targetTop = origin.offset().top + originHeight / 2 - tooltipHeight / 2;
-                            targetLeft = origin.offset().left - tooltipWidth - margin;
-                            newCoordinates = repositionWithinScreen(targetLeft, targetTop, tooltipWidth, tooltipHeight);
-
-                            tooltipHorizontalMovement = '-10px';
-                            backdrop.css({
-                                top: '-7px',
-                                right: 0,
-                                width: '14px',
-                                height: '14px',
-                                borderRadius: '14px 0 0 14px',
-                                transformOrigin: '95% 50%',
-                                marginTop: tooltipHeight / 2,
-                                marginLeft: tooltipWidth
-                            });
-                        }
-                        // Right Position
-                        else if (tooltipPosition === "right") {
-                            targetTop = origin.offset().top + originHeight / 2 - tooltipHeight / 2;
-                            targetLeft = origin.offset().left + originWidth + margin;
-                            newCoordinates = repositionWithinScreen(targetLeft, targetTop, tooltipWidth, tooltipHeight);
-
-                            tooltipHorizontalMovement = '+10px';
-                            backdrop.css({
-                                top: '-7px',
-                                left: 0,
-                                width: '14px',
-                                height: '14px',
-                                borderRadius: '0 14px 14px 0',
-                                transformOrigin: '5% 50%',
-                                marginTop: tooltipHeight / 2,
-                                marginLeft: '0px'
-                            });
-                        } else {
-                            // Bottom Position
-                            targetTop = origin.offset().top + origin.outerHeight() + margin;
-                            targetLeft = origin.offset().left + originWidth / 2 - tooltipWidth / 2;
-                            newCoordinates = repositionWithinScreen(targetLeft, targetTop, tooltipWidth, tooltipHeight);
-                            tooltipVerticalMovement = '+10px';
-                            backdrop.css({
-                                top: 0,
-                                left: 0,
-                                marginLeft: tooltipWidth / 2 - backdropOffsetWidth / 2
-                            });
-                        }
-
-                        // Set tooptip css placement
-                        tooltipEl.css({
-                            top: newCoordinates.y,
-                            left: newCoordinates.x
-                        });
-
-                        // Calculate Scale to fill
-                        scaleXFactor = Math.SQRT2 * tooltipWidth / parseInt(backdropOffsetWidth);
-                        scaleYFactor = Math.SQRT2 * tooltipHeight / parseInt(backdropOffsetHeight);
-                        scaleFactor = Math.max(scaleXFactor, scaleYFactor);
-
-                        tooltipEl.velocity({
-                            translateY: tooltipVerticalMovement,
-                            translateX: tooltipHorizontalMovement
-                        }, {
-                            duration: 350,
-                            queue: false
-                        }).velocity({
-                            opacity: 1
-                        }, {
-                            duration: 300,
-                            delay: 50,
-                            queue: false
-                        });
-                        backdrop.css({
-                            visibility: 'visible'
-                        }).velocity({
-                            opacity: 1
-                        }, {
-                            duration: 25,
-                            delay: 0,
-                            queue: false
-                        }).velocity({
-                            scaleX: scaleFactor,
-                            scaleY: scaleFactor
-                        }, {
-                            duration: 300,
-                            delay: 0,
-                            queue: false,
-                            easing: 'easeInOutQuad'
-                        });
-                    };
-
-                    timeoutRef = setTimeout(showTooltip, tooltipDelay); // End Interval
-
-                    // Mouse Out
-                },
-                'mouseleave.tooltip': function() {
-                    // Reset State
-                    started = false;
-                    clearTimeout(timeoutRef);
-
-                    // Animate back
-                    setTimeout(function() {
-                        if (started !== true) {
-                            tooltipEl.velocity({
-                                opacity: 0,
-                                translateY: 0,
-                                translateX: 0
-                            }, {
-                                duration: 225,
-                                queue: false
-                            });
-                            backdrop.velocity({
-                                opacity: 0,
-                                scaleX: 1,
-                                scaleY: 1
-                            }, {
-                                duration: 225,
-                                queue: false,
-                                complete: function() {
-                                    backdrop.css({
-                                        visibility: 'hidden'
-                                    });
-                                    tooltipEl.css({
-                                        visibility: 'hidden'
-                                    });
-                                    started = false;
-                                }
-                            });
-                        }
-                    }, 225);
-                }
-            });
-        });
+		});
     };
 
     var repositionWithinScreen = function(x, y, width, height) {
@@ -3904,14 +3664,24 @@ window.addEventListener("keydown", function(e) {
 				force:false
 			},options);
 
+			this.resolved = false;
 			this.guid = Photon.guid();
 		}
 
 		destroy(dialog = $("#" + this.guid)) {
-			requestAnimationFrame(() => {
-				dialog.parent().removeClass("active");
-				setTimeout(() => dialog.parent().remove(),200);
-			});
+			if(!(this.options.type == "progress" || this.options.force) || this.resolved) {
+				requestAnimationFrame(() => {
+					dialog.parent().removeClass("active");
+					setTimeout(() => dialog.parent().remove(),200);
+				});
+			} else {
+				this.focus();
+			}
+		}
+
+		focus(dialog = $("#" + this.guid)) {
+			dialog.addClass("enlarge");
+			setTimeout(() => dialog.removeClass("enlarge"),200);
 		}
 
 		open() {
@@ -3923,9 +3693,7 @@ window.addEventListener("keydown", function(e) {
 
 			const dialog = $("#" + this.guid);
 			dialog.parent().click(function(e){
-				if(!Super.options.force) {
-					if($(e.target).hasClass("photon-dialog") && Super.options.type != "progress") Super.destroy(dialog);
-				}
+				if($(e.target).hasClass("photon-dialog")) Super.destroy(dialog);
 			});
 
 			dialog.addClass("transition-" + this.options.transition);
@@ -3955,7 +3723,11 @@ window.addEventListener("keydown", function(e) {
 					});
 					return resp;
 				};
-				Photon.reload()
+				Photon.reload();
+
+				dialog.children(".body").children(".input-field").first().children("input").focus();
+				Photon.updateTextFields();
+
 			} else if (this.options.type == "progress"){
 				let progid = Photon.guid();
 				let aid = Photon.guid();
@@ -3970,6 +3742,7 @@ window.addEventListener("keydown", function(e) {
 					$("#" + aid).text(`${this.asset}/${this.options.assets}`);
 					if(percent == 1){
 						this.increment = function(){};
+						this.resolved = true;
 						this.destroy();
 					}
 				}
@@ -4059,8 +3832,19 @@ window.addEventListener("keydown", function(e) {
 			for (let action of this.options.actions) {
 				action.acid = Photon.guid()
 				dialog.children(".actions").append(`<a id="${action.acid}" class="btn flat waves-effect waves-accent">${action.name}</a>`);
-				action.click && $(`#${action.acid}`).click(() => action.click(this))
+				action.click && $(`#${action.acid}`).click(() => {
+					this.resolved = true;
+					action.click(this);
+				})
 			}
+
+			$("body").keyup(e => {
+				if(e.which == 27){
+					this.destroy();
+				} else if(e.which == 13){
+					dialog.children(".actions").children().first().click()
+				}
+			});
 		}
 
 	};
@@ -4101,7 +3885,6 @@ $(() => {
 
 Photon.ready = Photon.reload = function(loaded = () => {}) {
 
-    $(".autocomplete").autocomplete();
     $(".autolink").autolink();
 	$(".collapsible").collapsible();
     $(".scrollnav").scrollnav();
@@ -4289,64 +4072,68 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
 
 }
 
-setInterval(() => Waves.ripple($(".waves-pulse"), {
-    wait: 750
-}), 1250)
-
-$(() => (function animation() {
-    requestAnimationFrame(animation);
-
-	$(".app-bar").each(function(){
-		if($(this).children(".title").children(".subtitle").length == 1){
-			$(this).children(".title").css("margin-top","-10px");
-		}
+setInterval(function() {
+	Waves.ripple($(".waves-pulse"), {
+    	wait: 750
 	})
+}, 1250);
 
-    $(".card-image.parallax").each(function() {
-        var t = $(this).children("img")
-        var px = ($("html").scrollTop() - t.offset().top * .75) / 20;
-        t[0].style.transform = "scale(2) translateY(" + px + "px)";
-    });
+$(function(){
+	(function animation() {
+	    requestAnimationFrame(animation);
 
-    $(".collapsible").each(function() {
-        $(this).children().removeClass("adjact");
-        $(this).children(".active").prev("li").addClass("adjact");
-    });
-
-	if($("html").height() + 140 < window.innerHeight){
-		$("footer").css({
-			"position":"fixed",
-			"width":"100%",
-			"bottom":"24px"
+		$(".app-bar").each(function(){
+			if($(this).children(".title").children(".subtitle").length == 1){
+				$(this).children(".title").css("margin-top","-10px");
+			}
 		})
-	} else {
-		$("footer").css({
-			"position":"static",
-			"width":"auto",
-			"bottom":"auto"
-		})
-	}
 
-	$(".app-bar.parallax").each(function(){
-		const st = $("html").scrollTop();
+	    $(".card-image.parallax").each(function() {
+	        var t = $(this).children("img")
+	        var px = ($("html").scrollTop() - t.offset().top * .75) / 20;
+	        t[0].style.transform = "scale(2) translateY(" + px + "px)";
+	    });
 
-		let padding = (260 - st) - 64;
-		if(padding < 0) padding = 0;
+	    $(".collapsible").each(function() {
+	        $(this).children().removeClass("adjact");
+	        $(this).children(".active").prev("li").addClass("adjact");
+	    });
 
-		let opacity = 1 - st/260;
-		let filter = "none";
-		if(opacity > 0.73) opacity = 0.73;
-		if(opacity < 0.26) {
-			opacity = 0.26;
-			filter = "blur(4px)";
-			$(this).removeClass("flat")
+		if($("html").height() + 140 < window.innerHeight){
+			$("footer").css({
+				"position":"fixed",
+				"width":"100%",
+				"bottom":"24px"
+			})
 		} else {
-			$(this).addClass("flat")
+			$("footer").css({
+				"position":"static",
+				"width":"auto",
+				"bottom":"auto"
+			})
 		}
 
-		$(this).height(260 - st);
-		$(this).children("img").css("opacity",opacity).css("filter",filter);
-		$(this).children(".app-bar").css("margin-top",padding);
-	})
+		$(".app-bar.parallax").each(function(){
+			const st = $("html").scrollTop();
 
-}()));
+			let padding = (260 - st) - 64;
+			if(padding < 0) padding = 0;
+
+			let opacity = 1 - st/260;
+			let filter = "none";
+			if(opacity > 0.73) opacity = 0.73;
+			if(opacity < 0.26) {
+				opacity = 0.26;
+				filter = "blur(4px)";
+				$(this).removeClass("flat")
+			} else {
+				$(this).addClass("flat")
+			}
+
+			$(this).height(260 - st);
+			$(this).children("img").css("opacity",opacity).css("filter",filter);
+			$(this).children(".app-bar").css("margin-top",padding);
+		})
+
+	}());
+});

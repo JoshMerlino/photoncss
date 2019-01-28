@@ -1,4 +1,7 @@
 .input-field.select {
+	&.inline {
+		display: inline-block;
+	}
 	overflow-y:visible!important;
 	&::after {
 		position: absolute;
@@ -16,7 +19,7 @@
 	.options {
 		.transition();
 		background:#fff;
-		margin-top: -16px;
+		margin-top: -68px;
     	border-radius: 0 0 @cornerFallback @cornerFallback;
 		overflow:hidden;
 		overflow-y:auto;
@@ -26,11 +29,15 @@
 		z-index:2;
 		.raised-3();
 
-		max-height:0;
+		transform:scale(0);
+		max-height:240px;
+		transform-origin: top left;
 		opacity:0;
+		pointer-events:none;
 		&.active {
-			max-height:240px;
 			opacity:1;
+			transform:scale(1);
+			pointer-events:all;
 		}
 		&::-webkit-scrollbar {
 			width:4px;
@@ -50,5 +57,11 @@
 			right:1rem;
 			top:20px;
 		}
+	}
+}
+
+& when (@photonDarkTheme = true) {
+	.select .options .option {
+		color:#212121;
 	}
 }
