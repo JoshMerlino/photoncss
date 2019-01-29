@@ -3657,6 +3657,7 @@ window.addEventListener("keydown", function(e) {
 			this.options = $.extend({
 				title:"This page says:",
 				size:"auto",
+				message:"",
 				transition:"fade",
 				actions:[],
 				inputs:[],
@@ -3832,6 +3833,7 @@ window.addEventListener("keydown", function(e) {
 			for (let action of this.options.actions) {
 				action.acid = Photon.guid()
 				dialog.children(".actions").append(`<a id="${action.acid}" class="btn flat waves-effect waves-accent">${action.name}</a>`);
+				action.role == "primary" && $("#" + action.acid).css("left","4px").css("position","absolute");
 				action.click && $(`#${action.acid}`).click(() => {
 					this.resolved = true;
 					action.click(this);
