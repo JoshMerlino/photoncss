@@ -9,13 +9,14 @@
 	.transition();
 	.dialog {
 		background:#fff;
+		opacity:0;
 		margin:auto;
 		height:200px;
 		width:500px;
 		box-shadow: 0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12);
 		.borderMixin();
 		.transition();
-		transition-property:transform;
+		transition-property:transform,opacity;
 		&.enlarge {
 			transform:scale(1.06);
 			opacity:0.87;
@@ -25,12 +26,15 @@
 	.dialog {
 		&.transition-slide {
 			transform:translateY(100%);
+			opacity:1;
 		}
 		&.transition-grow {
 			transform:scale(0.8);
+			opacity:1;
 		}
 		&.transition-zoom {
 			transform:scale(0);
+			opacity:1;
 		}
 	}
 
