@@ -20,7 +20,6 @@
 		.transition();
 		background:#fff;
 		margin-top: -68px;
-    	border-radius: 0 0 @cornerFallback @cornerFallback;
 		overflow:hidden;
 		overflow-y:auto;
 		position:absolute;
@@ -50,9 +49,6 @@
 		}
 	}
 	&.box {
-		.options {
-			margin-top:-5px;
-		}
 		&::after {
 			right:1rem;
 			top:20px;
@@ -61,7 +57,10 @@
 }
 
 & when (@photonDarkTheme = true) {
-	.select .options .option {
-		color:#212121;
+	.select .options {
+		background:#414141!important;
+		.option {
+			color:#fafafa;
+		}
 	}
 }
