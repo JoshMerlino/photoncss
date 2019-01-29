@@ -5,9 +5,7 @@
 	left:0;
 	right:0;
 	bottom:0;
-	background:rgba(0,0,0,.5);
 	z-index:5000000;
-	opacity:0;
 	.transition();
 	.dialog {
 		background:#fff;
@@ -36,9 +34,12 @@
 		}
 	}
 
-	&.active .dialog {
-		opacity:1;
-		transform:translateY(0) scale(1);
+	&.active {
+		background:rgba(0,0,0,.5);
+		.dialog {
+			opacity:1;
+			transform:translateY(0) scale(1);
+		}
 	}
 
 	.dialog {
