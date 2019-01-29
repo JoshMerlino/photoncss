@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.50.0</h5>
+<h5 align="center" version>v3.51.0</h5>
 
 <hr>
 <br>
@@ -70,3 +70,11 @@ $ lessc -x ./src/less/style.less ./src/css/main.css --source-map
 ```javascript
 $(() => Photon.ready());
 ```
+
+### Updating Photon
+`bash
+cd www/src/
+rm -Rf photon/
+git clone https://github.com/PhotonCSS/Photon.git photon/
+npm run less
+`

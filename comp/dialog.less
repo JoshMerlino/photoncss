@@ -36,16 +36,9 @@
 		}
 	}
 
-	&.active {
+	&.active .dialog {
 		opacity:1;
-		.dialog {
-			&.transition-slide {
-				transform:translateY(0);
-			}
-			&.transition-scale {
-				transform:scale(1);
-			}
-		}
+		transform:translateY(0) scale(1);
 	}
 
 	.dialog {
