@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.51.3</h5>
+<h5 align="center" version>v3.54.0</h5>
 
 <hr>
 <br>
@@ -37,7 +37,7 @@ you should no longer use LESS in production. We recommend you change your setup 
 	<head>
 		<link rel="stylesheet" type="text/css" href="/src/css/main.css" />
 		<script src="/src/js/jquery.js"></script>
-		<script src="/src/photon/src/photon.js"></script>
+		<script src="/src/photon/src/photon.min.js"></script>
 	</head>
 	<body>
 		<!-- Elements go here -->
