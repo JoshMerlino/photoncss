@@ -1287,21 +1287,29 @@ return width;
 				Photon.updateTextFields();
 
 			} else if (this.options.type == "progress"){
-				let progid = Photon.guid();
-				let aid = Photon.guid();
-				dialog.append(`<div class="body">${this.options.message}<div class="progress"><div class="determinate" id="${progid}"></div></div><div class="assets" id="${aid}">0/0</div></div>`);
-				this.options.size = "progress";
+				if (this.options.circular) {
+					let progid = Photon.guid();
+					dialog.append(`<div class="body"><svg class="spinner"><circle cx="50" cy="50" r="20"></circle></svg>${this.options.message}</div>`);
+					this.options.size = "spinner";
 
-				this.asset = 0;
-				this.increment = function(value = 1){
-					this.asset += value;
-					const percent = this.asset/this.options.assets;
-					$("#" + progid).css("width",percent * 100 + "%").css("transition","none");
-					$("#" + aid).text(`${this.asset}/${this.options.assets}`);
-					if(percent == 1){
-						this.increment = function(){};
-						this.resolved = true;
-						this.destroy();
+
+				} else {
+					let progid = Photon.guid();
+					let aid = Photon.guid();
+					dialog.append(`<div class="body">${this.options.message}<div class="progress"><div class="determinate" id="${progid}"></div></div><div class="assets" id="${aid}">0/0</div></div>`);
+					this.options.size = "progress";
+
+					this.asset = 0;
+					this.increment = function(value = 1){
+						this.asset += value;
+						const percent = this.asset/this.options.assets;
+						$("#" + progid).css("width",percent * 100 + "%").css("transition","none");
+						$("#" + aid).text(`${this.asset}/${this.options.assets}`);
+						if(percent == 1){
+							this.increment = function(){};
+							this.resolved = true;
+							this.destroy();
+						}
 					}
 				}
 			} else if (this.options.type == "radio"){
