@@ -1148,10 +1148,7 @@ return width;
 				toast.addClass(args.classes.join(" "));
 
 				requestAnimationFrame(function(){
-					toast.css({
-						"margin-top":"4px",
-						"opacity":1
-					})
+					toast.addClass("active")
 				});
 
 				this.toast = toast;
@@ -1164,18 +1161,19 @@ return width;
 
 				requeue();
 				toast.on("mousedown",function(e){
-					requeue();
 					toast.attr("data-hold",e.pageX);
+				}).click(function(e){
+					e.stopPropagation();
+					$(this).addClass("has-focus").siblings().removeClass("has-focus");
 				})
 
 				let instance = this;
 				$(document.body).on("mouseup",function(){
 					toast.removeAttr("data-hold");
 
-					if(toast.css("opacity") <= 0) {
+					if(toast.css("opacity") <= 0.3) {
 						instance.destroy();
 					} else {
-						requeue();
 						toast.css("transform","translateX(0)");
 						toast.css("opacity", 1);
 					}
@@ -1183,6 +1181,7 @@ return width;
 				}).on("mousemove",function(e){
 
 					if(toast.attr("data-hold")){
+
 						requeue();
 
 						let hold = e.pageX - parseInt(toast.data("hold"));
@@ -1190,16 +1189,30 @@ return width;
 						toast.css("opacity",1 - Math.abs(hold)/100);
 					}
 
-				})
+				}).click(function() {
+					$(".toasts").children(".toast").removeClass("has-focus");
+				}).keydown(function(e) {
+					let aftoast = $(".toasts").children(".toast.has-focus").addClass("ta");
+					if(e.which === 37) {
+						aftoast.css({ "transform" : `translateX(-${aftoast.width()/2}px)` });
+					} else if(e.which === 39){
+						aftoast.css({ "transform" : `translateX(${aftoast.width()/2}px)` });
+					}
+					aftoast.css({ "opacity" : 0 });
+
+					setTimeout(() => {
+						aftoast.addClass("oeff")
+						setTimeout(() => aftoast.remove(),200);
+					}, 150);
+
+				});
 
 			}
 
 			destroy() {
 				let { toast } = this;
-				toast.css({
-					"margin-top":"-42px",
-					"opacity":0
-				});
+				toast.addClass("oeff")
+				toast.next().addClass("has-focus");
 
 				setTimeout(() => toast.remove(),200);
 			}
