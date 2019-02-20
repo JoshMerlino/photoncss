@@ -3,7 +3,7 @@
 	position: fixed;
 	z-index: 10000000;
 
-	@media only screen and (max-width: 600px) {
+	@media @mobile {
 		min-width: 100%;
 		bottom: 0;
 		left: 0;
@@ -12,12 +12,12 @@
 			margin-right: 32px;
 		}
 	}
-	@media only screen and (min-width: 601px) and (max-width: 992px) {
+	@media @tablet {
 		left: 5%;
 		bottom: 7%;
 		max-width: 90%;
 	}
-	@media only screen and (min-width: 993px) {
+	@media @desktop {
 		top: 10%;
 		right: 7%;
 		max-width: 86%;
@@ -37,12 +37,12 @@
 
 		user-select:none;
 
-		margin-top:24px;
 		opacity:0;
 		transition-property:opacity,margin;
 
 		.btn {
-			margin: -16px -12px -11px 8px;
+			margin: -6px -12px -11px 8px;
+			float: right;
 		}
 
 		&.rounded {
@@ -54,6 +54,48 @@
 			margin-right: 12px;
 		    transform: translateY(6px);
 		    margin-top: -8px;
+		}
+
+		&.active {
+			opacity: 1;
+		}
+
+		&.oeff {
+			opacity: 0!important;
+		}
+
+		@media @desktop {
+			margin-top:24px;
+			&.active {
+				margin-top: 4px;
+			}
+			&.oeff {
+				margin-top:-42px;
+			}
+		}
+
+		@media @tablet {
+			margin-bottom:-24px;
+			&.active {
+				margin-bottom: 4px;
+			}
+			&.oeff {
+				margin-bottom:12px;
+			}
+		}
+
+		@media @mobile {
+			margin-bottom:-24px;
+			&.active {
+				margin-bottom: 4px;
+			}
+			&.oeff {
+				margin-bottom:12px;
+			}
+		}
+
+		&.ta {
+			transition-property: all;
 		}
 
 	}
