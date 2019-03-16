@@ -1503,6 +1503,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
         } = window.cursor;
         X = X - $(this).offset().left;
         X = X / $(this).width() * 100;
+		X = X > $(this).parent().width() ? $(this).parent().width() : X;
 
         bar.css({
             left: X + "%"
@@ -1510,7 +1511,7 @@ Photon.ready = Photon.reload = function(loaded = () => {}) {
 
         bar.animate({
             left: 0,
-            width: "100%"
+            width: ($(this).parent().hasClass("outlined") ? $(this).parent().width() - 4:"100%")
         }, Photon.speed, "swing");
     }).blur(function() {
         const b = $(this).siblings(".bar");
@@ -1666,6 +1667,12 @@ $(function(){
 				$(this).children(".title").css("margin-top","-10px");
 			}
 		})
+
+		if($(document).scrollTop() > 0) {
+			$(".app-bar.paper").addClass("raised");
+		} else {
+			$(".app-bar.paper").removeClass("raised");
+		}
 
 	    $(".card-image.parallax").each(function() {
 	        var t = $(this).children("img")
