@@ -4,6 +4,11 @@
 	transition-property:box-shadow;
 	overflow:hidden;
 
+	&.flat {
+		box-shadow: none!important;
+		border: 1px solid #e1e1e1;
+	}
+
   	padding: 24px;
  	margin: 0.5rem 0 1rem 0;
   	.borderMixin();
@@ -19,6 +24,12 @@
 	&:hover {
 		.raised-2();
 	}
+
+	&.flat {
+		box-shadow: none!important;
+		border: 1px solid #e1e1e1;
+	}
+
 	transition-property:box-shadow;
 	overflow:hidden;
   	position: relative;
@@ -134,7 +145,7 @@
 		  	width: 100%;
 		}
 		.card-title {
-		 	color: #fff;
+		 	color: #fafafa;
 		 	position: absolute;
 		  	bottom: 0;
 		  	left: 0;
@@ -148,12 +159,14 @@
 	 	border-radius: 0 0 @cornerFallback @cornerFallback;
 		p {
 		  	margin: 0;
-		  	color: inherit;
+		  	color: #676767;
 		}
 		.card-title {
 		  	display: block;
 		  	line-height: 32px;
 		  	margin-bottom: 8px;
+			font-weight: 400;
+			color:#212121;
 			i {
 			  	line-height: 32px;
 			}
@@ -167,17 +180,13 @@
 		&:last-child {
 		  	border-radius: 0 0 @cornerFallback @cornerFallback;
 		}
-		a:not(.btn) {
-		 	color:@primaryColor;
-		  	margin-right: 24px;
-		  	-webkit-transition: color 150ms ease;
-		  	transition: color 150ms ease;
-			font-family:@secondaryFont!important;
-			user-select:none;
-			cursor:pointer;
-			&:hover {
-			  	color:lighten(@primaryColor,15%);
-			}
+
+		direction: rtl;
+		padding: 4px;
+		padding-bottom: 0;
+
+		a.btn {
+			margin:2px;
 		}
 	}
 	.card-reveal {
@@ -210,5 +219,16 @@
 .card-panel {
 	& when (@photonDarkTheme = true) {
 		background: #303030;
+		&.flat {
+			border-color: #343434;
+		}
+		.card-content {
+			p {
+				color: #b3b3b3;
+			}
+			.card-title{
+				color: #fafafa!important;
+			}
+		}
 	}
 }

@@ -3,6 +3,11 @@
 	color:@accentTextColor;
 	padding:2px 6px;
 	font-size:12px;
-	border-radius:2px;
+	border-radius:24px;
 	font-family:@secondaryFont;
+	&:not(.nofly) {
+		transform: translate(-6px,-8px);
+	}
+	display: inline-block;
+	line-height: 14px;
 }
