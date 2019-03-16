@@ -51,7 +51,7 @@ body {
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font-weight: 500;
+	font-weight: 400;
 	color:rgba(0,0,0,.78);
 	font-family:@fontFamily;
 	display:block;
@@ -69,7 +69,7 @@ body when (@photonDarkTheme = true) {
 	}
 
 	hr {
-		border-color: #545454;
+		border-color: fade(#545454,50%);
 	}
 
 	&::-webkit-scrollbar-track,
@@ -110,7 +110,7 @@ img {
 
 hr {
 	border: none;
-	border-top: 1px solid @dividerColor;
+	border-top: 1px solid fade(@dividerColor,50%);
 	margin: 2rem 0;
 }
 
