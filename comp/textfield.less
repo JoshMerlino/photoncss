@@ -78,7 +78,9 @@
 		background:#f0f0f0;
 		padding:0!important;
 		padding-bottom:1px!important;
-		margin-bottom:-24px;
+		&:not(.select) {
+			margin-bottom:-24px!important;
+		}
 
 		.borderMixin();
 
@@ -96,6 +98,63 @@
 
 		label {
 			top:-40px;
+		}
+
+		input:focus + label,
+		input.containscontent + label,
+		input[placeholder] + label {
+			top:-48px!important;
+		}
+	}
+
+	&.outlined {
+		padding:0!important;
+		padding-bottom:1px!important;
+		&:not(.select) {
+			margin-bottom:-24px!important;
+		}
+
+		.borderMixin();
+
+		input,
+		label {
+			padding-left:1rem;
+			padding-right:1rem;
+			transform:translateY(8px);
+			border-bottom-width:0;
+		}
+
+		label {
+			display: inline-block;
+			background: #fafafa;
+			padding: 0;
+			margin: 0 8px;
+			padding:0 4px;
+		}
+
+		.bar {
+			margin-bottom: -29px;
+			height: calc(100% - 11px);
+			border: 2px solid @accentColor;
+			background: #fafafa;
+			.borderMixin();
+			z-index: -1;
+		}
+
+		&::before {
+			position: absolute;
+			content: "";
+			top: 7px;
+			left: 1px;
+			right: 1px;
+			bottom: 1px;
+			border: 1px solid #e0e0e0;
+			.borderMixin();
+			z-index: -2;
+		}
+
+		label {
+			top:-28px;
 		}
 
 		input:focus + label,
@@ -128,6 +187,18 @@ body when (@photonDarkTheme = true) {
 			color:#f0f0f0!important;
 		}
 	}
+
+	.input-field.outlined {
+		label,
+		.bar {
+			background: #212121;
+		}
+
+		&::before {
+			border: 1px solid #424242;
+		}
+	}
+
 }
 
 .input-field .bar {
