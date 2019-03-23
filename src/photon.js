@@ -1744,6 +1744,11 @@ return width;
 									cmb.addClass("animating");
 									cmp.css("transform","translateX(0)");
 									cma.css("transform","translateX(100%)");
+
+									setTimeout(() => {
+										both.removeClass("animating");
+										cmb.removeClass("animating");
+									},350);
 								} catch(e) {
 									void e;
 								}
@@ -1787,11 +1792,16 @@ return width;
 
 									both.addClass("animating");
 									pri.css("transform","translateX(0)");
-									alt.css("transform","translateX(100%)");
+									alt.css("transform","translateX(-100%)");
 
 									cmb.addClass("animating");
 									cmp.css("transform","translateX(0)");
-									cma.css("transform","translateX(100%)");
+									cma.css("transform","translateX(-100%)");
+
+									setTimeout(() => {
+										both.removeClass("animating");
+										cmb.removeClass("animating");
+									},350);
 
 								} catch(e) {
 									void e;
