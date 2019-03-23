@@ -1304,8 +1304,6 @@ return width;
 					let progid = Photon.guid();
 					dialog.append(`<div class="body"><svg class="spinner"><circle cx="50" cy="50" r="20"></circle></svg>${this.options.message}</div>`);
 					this.options.size = "spinner";
-
-
 				} else {
 					let progid = Photon.guid();
 					let aid = Photon.guid();
@@ -1403,6 +1401,240 @@ return width;
 					dialog.children(".users").append(`<div id="${xuid}" class="user method waves-effect"><img src="${method.image || add}" alt="" /><span class="desc">${method.name}</span></div>`)
 					method.click && $(`#${xuid}`).click(() => method.click(this))
 				}
+			} else if(this.options.type == "date") {
+				this.options.size = "picker";
+				if(!this.options.date || !this.options.date instanceof Date) this.options.date = new Date();
+
+				const FULLMONTHS = ["January","Febuary","March","April","May","June","July","August","September","October","November","December"];
+				const MONTHS = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+				const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
+
+				let format = date => `${DAYS[date.getDay()]}, ${MONTHS[date.getMonth()]} ${date.getDate()}`;
+				let format2 = date => `${FULLMONTHS[this.options.date.getMonth()]} ${this.options.date.getFullYear()}`;
+
+				this.options = $.extend({
+					future: true,
+					past: true,
+					onselect(){}
+				},this.options);
+
+				dialog.addClass("photon-datepicker");
+
+				dialog.append(`<div class="bar"><div class="year">${this.options.date.getFullYear()}</div><div class="date active">${format(this.options.date)}</div></div>`);
+				dialog.append(`<div class="body years"></div>`);
+				dialog.append(`<div class="body calendar active"></div>`);
+
+				dialog.children(".bar").children(".year").click(function(){
+					$(this).addClass("active").siblings().removeClass("active");
+					dialog.children(".body").removeClass("active");
+					dialog.children(".body.years").addClass("active");
+				});
+				dialog.children(".bar").children(".date").click(function(){
+					$(this).addClass("active").siblings().removeClass("active");
+					dialog.children(".body").removeClass("active")
+					dialog.children(".body.calendar").addClass("active");
+				});
+
+				const years = dialog.children(".body.years");
+				const calendar = dialog.children(".body.calendar");
+
+				calendar.append(`<div class="calnav"><i class="material-icons waves-effect waves-ink">chevron_left</i><div class="monthyear alt">ALT</div><div class="monthyear">${format2(this.options.date)}</div><i class="material-icons waves-effect waves-ink right">chevron_right</i></div>`)
+
+				calendar.append(`<div class="cal-slider"></div><div class="cal-slider alt"></div>`)
+				calendar.children(".cal-slider").append(`<div class="headers"><div class="header">S</div><div class="header">M</div><div class="header">T</div><div class="header">W</div><div class="header">T</div><div class="header">F</div><div class="header">S</div></div>`);
+
+				let value = this.options.date;
+
+				const pri = calendar.children(".calnav").children(".monthyear").not(".alt");
+				const alt = calendar.children(".calnav").children(".monthyear.alt").hide();
+				const both = calendar.children(".calnav").children(".monthyear");
+
+				const cmp = calendar.children(".cal-slider").not(".alt");
+				const cma = calendar.children(".cal-slider.alt").hide();
+				const cmb = calendar.children(".cal-slider");
+
+				cmb.append(`<div class="cal"></div>`);
+
+				let selected = new Date(this.options.date);
+
+				let update = date => {
+
+					dialog.children(".bar").children(".year").html(date.getFullYear());
+					dialog.children(".bar").children(".date").html(format(date));
+
+					opts.onselect(date);
+
+					value = date;
+					
+				}
+
+				let opts = this.options;
+				let repop = (cal,date) => {
+
+					let today = new Date();
+
+					cal.empty();
+					years.empty();
+
+					let frange = [date.getFullYear(),date.getFullYear()];
+					if(opts.past) frange[0] -= 100;
+					if(opts.future) frange[1] += 100;
+
+					for (let i = frange[0]; i <= frange[1]; i++) {
+						let classes = ["yearsel","waves-effect"];
+						if(i == opts.date.getFullYear()) {
+							classes.push("selected");
+						}
+
+						years.append(`<div class="${classes.join(" ")}">${i}</div>`);
+					}
+
+					let scroll = 0;
+					let l = 48;
+					years.children().each(function(){
+						if($(this).hasClass("selected")) l = 0;
+						scroll += l;
+					}).click(function(){
+						$(this).addClass("selected").siblings().removeClass("selected");
+						selected.setYear(parseInt($(this).text()));
+						update(selected);
+					});
+
+					years.scrollTop(scroll - 144)
+
+					date.setDate(1);
+					for (let i = 0; i < date.getDay(); i++) {
+						cal.append(`<div class="datecell"></div>`)
+					}
+
+					date.setMonth(date.getMonth() + 1);
+					date.setDate(-1);
+
+					for (let i = 0; i < date.getDate() + 1; i++) {
+						let classes = ["date"];
+
+						if(i + 1 == today.getDate() && date.getMonth() == today.getMonth() && date.getYear() == today.getYear()) {
+							classes.push("today");
+						}
+						if(i + 1 == selected.getDate() && date.getMonth() == selected.getMonth() && date.getYear() == selected.getYear()) {
+							classes.push("selected");
+						}
+
+						let current = new Date(date);
+						current.setDate(i + 1);
+
+						let now = new Date();
+						now.setDate(now.getDate() - 1);
+
+						if(current.getTime() < now.getTime() && !opts.past) classes.push("disabled")
+						if(current.getTime() > now.getTime() + 86400000 && !opts.future) classes.push("disabled")
+
+						cal.append(`<div class="datecell"><div class="${classes.join(" ")}">${i + 1}</div></div>`);
+					}
+
+					cal.children(".datecell").children(".date").not(".disabled").click(function(){
+						cal.children(".datecell").children(".date").removeClass("selected");
+						$(this).addClass("selected");
+
+						selected.setDate(parseInt($(this).text()));
+						selected.setMonth(value.getMonth());
+						selected.setYear(value.getFullYear());
+						update(selected);
+					})
+
+				}
+
+				this.value = () => selected;
+
+				calendar.children(".calnav").children("i").click(function(){
+
+					both.show();
+					cmb.show();
+
+					if($(this).hasClass("right")) {
+
+						value.setMonth(value.getMonth() + 1);
+						repop(cma.children(".cal"),value);
+
+						pri.css("transform","translateX(0)");
+						alt.css("transform","translateX(100%)").text(format2(value));
+						requestAnimationFrame(() => {
+							both.addClass("animating");
+							pri.css("transform","translateX(-100%)");
+							alt.css("transform","translateX(0)");
+							setTimeout(() => {
+								both.removeClass("animating");
+								requestAnimationFrame(() => {
+									pri.css("transform","translateX(0)").text(format2(value));
+									repop(cmp.children(".cal"),value);
+
+									alt.hide();
+								})
+							}, 350);
+						})
+
+						cmp.css("transform","translateX(0)");
+						cma.css("transform","translateX(100%)");
+						requestAnimationFrame(() => {
+							cmb.addClass("animating");
+							cmp.css("transform","translateX(-100%)");
+							cma.css("transform","translateX(0)");
+							setTimeout(() => {
+								cmb.removeClass("animating");
+								requestAnimationFrame(() => {
+									cmp.css("transform","translateX(0)")
+									cma.hide();
+								})
+							}, 350);
+						})
+
+					} else {
+
+						let dc = value.getMonth();
+						value.setMonth(value.getMonth() - 1);
+						if(value.getMonth() == dc) {
+							value.setMonth(value.getMonth() - 1);
+						}
+
+						repop(cma.children(".cal"),value);
+
+						pri.css("transform","translateX(0)");
+						alt.css("transform","translateX(-100%)").text(format2(value));
+						requestAnimationFrame(() => {
+							both.addClass("animating");
+							pri.css("transform","translateX(100%)");
+							alt.css("transform","translateX(0)");
+							setTimeout(() => {
+								both.removeClass("animating");
+								requestAnimationFrame(() => {
+									pri.css("transform","translateX(0)").text(format2(value));
+									repop(cmp.children(".cal"),value);
+
+									alt.hide();
+								})
+							}, 350);
+						})
+
+						cmp.css("transform","translateX(0)");
+						cma.css("transform","translateX(-100%)");
+						requestAnimationFrame(() => {
+							cmb.addClass("animating");
+							cmp.css("transform","translateX(100%)");
+							cma.css("transform","translateX(0)");
+							setTimeout(() => {
+								cmb.removeClass("animating");
+								requestAnimationFrame(() => {
+									cmp.css("transform","translateX(0)")
+									cma.hide();
+								})
+							}, 350);
+						})
+
+					}
+				})
+
+				repop(cmp.children(".cal"),value);
+
 			}
 
 			dialog.addClass("size-" + this.options.size);

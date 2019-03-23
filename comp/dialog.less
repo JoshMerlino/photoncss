@@ -18,9 +18,9 @@
 		.borderMixin();
 		.transition();
 		transition-property:transform;
+		overflow: hidden;
 		&.enlarge {
-			transform:scale(1.1)!important;
-			opacity:0.87;
+			opacity:0.54;
 		}
 	}
 
@@ -89,6 +89,11 @@
 					left: 0;
 				}
 			}
+		}
+		&.size-picker {
+			max-width: 328px;
+			min-height: 480px;
+			max-height: 480px;
 		}
 	}
 
@@ -188,6 +193,172 @@
 		}
 	}
 
+	.dialog.photon-datepicker {
+
+		.bar {
+			background: @accentColor;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 56px;
+			padding: 20px 24px;
+			.year, .date {
+				user-select: none;
+				cursor: pointer;
+				font-weight: 500;
+				color: rgba(255,255,255,.73);
+				.transition();
+				&.active {
+					color:#fff;
+				}
+				&.year {
+					pointer-events: none;
+				}
+				&.date {
+					font-size: 32px;
+					margin-top: 4px;
+				}
+			}
+		}
+
+		.body {
+			position: absolute;
+			top: 100px;
+			left: 0;
+			right: 0;
+			opacity: 0;
+			pointer-events: none;
+			.transition();
+			&.active {
+				pointer-events: all;
+				opacity: 1;
+			}
+
+			&.years {
+				height: 332px;
+				overflow-y: scroll;
+				overflow-x: hidden;
+				padding: 0;
+				border-bottom: 1px solid fade(@dividerColor,50%);
+				.yearsel {
+					text-align: center;
+					font-size: 18px;
+					font-weight: 500;
+					color:#212121;
+					line-height: 48px;
+					&.selected {
+						color:@accentColor;
+					}
+				}
+			}
+
+			&.calendar {
+				.calnav {
+					user-select: none;
+					height: 56px;
+					margin:0 -24px;
+					position: relative;
+					border-left: 32px solid #fff;
+    				border-right: 32px solid #fff;
+					i {
+						position: absolute;
+						background: #fff;
+						top:-4px;
+						&.right {
+							right:-32px;
+						}
+						&:not(.right) {
+							left:-32px;
+						}
+					}
+					.monthyear {
+						font-weight: 500;
+					    color: #303030;
+					    font-size: 1rem;
+					    line-height: 56px;
+					    text-align: center;
+						position: absolute;
+						width: 100%;
+						z-index: -1;
+
+						&.animating {
+							.transition();
+							transition-duration: 350ms!important;
+						}
+
+					}
+				}
+				.cal-slider {
+					position: absolute;
+					top: 56px;
+					left: 0;
+					right: 0;
+					padding:0 24px;
+
+					&.animating {
+						.transition();
+						transition-duration: 350ms!important;
+					}
+
+					.headers {
+						line-height: 36px;
+						margin:0 -14px;
+						.header {
+							width: 14.28%;
+							display: inline-block;
+							font-size: 12px;
+							color: #525252;
+							font-weight: 500;
+							text-align: center;
+						}
+					}
+
+					.cal {
+						line-height: 36px;
+						margin:0 -14px;
+						.datecell {
+							width: 14.28%;
+							display: inline-block;
+							font-size: 12px;
+							font-weight: 500;
+							text-align: center;
+							.date {
+								cursor: pointer;
+								margin: 0 4px;
+								border-radius: 50%;
+								color:#303030;
+								&:hover {
+									background: #f5f5f5;
+								}
+								&.today {
+									color:@accentColor;
+								}
+								&.selected {
+									color:@accentTextColor;
+									background: @accentColor;
+								}
+								&.disabled {
+									pointer-events: none;
+									opacity: 0.38;
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+		}
+
+		.actions {
+			bottom: 0;
+    		right: 0;
+    		position: absolute;
+		}
+
+	}
+
 	.dialog when (@photonDarkTheme = true) {
 		background:#414141;
 		.title {
@@ -201,6 +372,11 @@
 				color:rgba(255,255,255,.7);
 			}
 		}
+
+		.bar {
+			background: #555555!important;
+		}
+
 		.body {
 			color:rgba(255,255,255,.7);
 			input::after {
@@ -211,6 +387,39 @@
 			.radio-btn label {
 				color:rgba(255,255,255,.7)!important;
 			}
+
+			.yearsel:not(.selected) {
+				color:#f0f0f0!important;
+			}
+
+			.calnav {
+				border-color:#414141!important;
+				i {
+					background: #414141!important;
+					color:#d1d1d1;
+					.waves-ripple {
+						background: rgba(255,255,255,.2);
+					}
+				}
+				.monthyear {
+					color:#f0f0f0!important;
+				}
+			}
+			.cal-slider {
+				.headers .header {
+					color:#c1c1c1!important;
+				}
+				.cal .datecell .date {
+					color:#f5f5f5!important;
+					&:not(.selected):hover {
+						background: #505050!important;
+					}
+					&.today:not(.selected) {
+						color:@accentColor!important;
+					}
+				}
+			}
+
 		}
 	}
 
