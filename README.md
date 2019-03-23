@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.57.7</h5>
+<h5 align="center" version>v3.59.7</h5>
 
 <hr>
 <br>
