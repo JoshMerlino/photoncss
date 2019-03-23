@@ -1465,11 +1465,13 @@ return width;
 					opts.onselect(date);
 
 					value = date;
-					
+
 				}
 
 				let opts = this.options;
 				let repop = (cal,date) => {
+
+					value = date;
 
 					let today = new Date();
 
@@ -1496,8 +1498,12 @@ return width;
 						scroll += l;
 					}).click(function(){
 						$(this).addClass("selected").siblings().removeClass("selected");
-						selected.setYear(parseInt($(this).text()));
-						update(selected);
+						value.setYear(parseInt($(this).text()));
+
+						//update(value);
+						repop(cmp.children(".cal"),value);
+						pri.text(format2(value));
+
 					});
 
 					years.scrollTop(scroll - 144)
@@ -1539,7 +1545,9 @@ return width;
 						selected.setDate(parseInt($(this).text()));
 						selected.setMonth(value.getMonth());
 						selected.setYear(value.getFullYear());
-						update(selected);
+
+						update(value);
+
 					})
 
 				}
