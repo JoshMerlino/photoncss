@@ -1410,7 +1410,7 @@ return width;
 				const DAYS = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
 				let format = date => `${DAYS[date.getDay()]}, ${MONTHS[date.getMonth()]} ${date.getDate()}`;
-				let format2 = date => `${FULLMONTHS[this.options.date.getMonth()]} ${this.options.date.getFullYear()}`;
+				let format2 = date => `${FULLMONTHS[date.getMonth()]} ${date.getFullYear()}`;
 
 				this.options = $.extend({
 					future: true,
@@ -1500,7 +1500,6 @@ return width;
 						$(this).addClass("selected").siblings().removeClass("selected");
 						value.setYear(parseInt($(this).text()));
 
-						//update(value);
 						repop(cmp.children(".cal"),value);
 						pri.text(format2(value));
 
@@ -1547,10 +1546,13 @@ return width;
 						selected.setYear(value.getFullYear());
 
 						update(value);
+						bindTouches();
 
-					})
+					});
 
-				}
+					bindTouches();
+
+				};
 
 				this.value = () => selected;
 
@@ -1558,6 +1560,8 @@ return width;
 
 					both.show();
 					cmb.show();
+
+					cmp.children(".cal").unbind("touchstart touchmove touchend");
 
 					if($(this).hasClass("right")) {
 
@@ -1643,6 +1647,191 @@ return width;
 
 				repop(cmp.children(".cal"),value);
 
+				function bindTouches() {
+
+					let initialTouch;
+					let touch;
+					let touchSign;
+					let swipe;
+
+					let cache;
+
+					cmp.children(".cal").bind("touchstart",e => {
+						initialTouch = e.changedTouches[0].clientX;
+						cache = new Date(value);
+					}).bind("touchmove",e => {
+						touch = e.changedTouches[0].clientX;
+						let relative = initialTouch - touch;
+						let touchRelSign;
+
+						if(relative > 0) {
+							touchRelSign = 1;
+						} else if(relative == 0){
+							touchRelSign = 0;
+						} else {
+							touchRelSign = -1;
+						}
+
+						if(touchRelSign !== touchSign) {
+							touchSign = touchRelSign;
+							signFlip();
+						}
+
+						swipe = Math.abs((initialTouch - touch)/dialog.width()) * 100;
+						if(touchSign === 1) {
+
+							pri.css("transform",`translateX(${-swipe}%)`);
+							alt.css("transform",`translateX(${-swipe + 100}%)`);
+
+							cmp.css("transform",`translateX(${-swipe}%)`);
+							cma.css("transform",`translateX(${-swipe + 100}%)`);
+
+						} else if(touchSign === -1) {
+
+							pri.css("transform",`translateX(${swipe}%)`);
+							alt.css("transform",`translateX(${swipe - 100}%)`);
+
+							cmp.css("transform",`translateX(${swipe}%)`);
+							cma.css("transform",`translateX(${swipe - 100}%)`);
+
+						}
+
+					}).bind("touchend",e => {
+
+						swipe = Math.abs((initialTouch - e.changedTouches[0].clientX)/dialog.width()) * 100;
+						cmp.children(".cal").unbind("touchstart touchmove touchend");
+
+						if(touchSign === 1){
+
+							if(swipe > 40) {
+
+								value = cache;
+
+								both.addClass("animating");
+								pri.css("transform","translateX(-100%)");
+								alt.css("transform","translateX(0)");
+								setTimeout(() => {
+									both.removeClass("animating");
+									requestAnimationFrame(() => {
+										pri.css("transform","translateX(0)").text(format2(value));
+										repop(cmp.children(".cal"),value);
+
+										alt.hide();
+									})
+								}, 350);
+
+								cmb.addClass("animating");
+								cmp.css("transform","translateX(-100%)");
+								cma.css("transform","translateX(0)");
+								setTimeout(() => {
+									cmb.removeClass("animating");
+									requestAnimationFrame(() => {
+										cmp.css("transform","translateX(0)")
+										cma.hide();
+									})
+								}, 350);
+
+							} else {
+
+
+								try {
+									cache.setMonth(cache.getMonth() - 1);
+
+									both.addClass("animating");
+									pri.css("transform","translateX(0)");
+									alt.css("transform","translateX(100%)");
+
+									cmb.addClass("animating");
+									cmp.css("transform","translateX(0)");
+									cma.css("transform","translateX(100%)");
+								} catch(e) {
+									void e;
+								}
+
+							}
+
+						} else if(touchSign === -1){
+
+							if(swipe > 40) {
+
+								value = cache;
+
+								both.addClass("animating");
+								pri.css("transform","translateX(100%)");
+								alt.css("transform","translateX(0)");
+								setTimeout(() => {
+									both.removeClass("animating");
+									requestAnimationFrame(() => {
+										pri.css("transform","translateX(0)").text(format2(value));
+										repop(cmp.children(".cal"),value);
+
+										alt.hide();
+									})
+								}, 350);
+
+								cmb.addClass("animating");
+								cmp.css("transform","translateX(100%)");
+								cma.css("transform","translateX(0)");
+								setTimeout(() => {
+									cmb.removeClass("animating");
+									requestAnimationFrame(() => {
+										cmp.css("transform","translateX(0)")
+										cma.hide();
+									})
+								}, 350);
+
+							} else {
+
+								try {
+									cache.setMonth(cache.getMonth() + 1);
+
+									both.addClass("animating");
+									pri.css("transform","translateX(0)");
+									alt.css("transform","translateX(100%)");
+
+									cmb.addClass("animating");
+									cmp.css("transform","translateX(0)");
+									cma.css("transform","translateX(100%)");
+
+								} catch(e) {
+									void e;
+								}
+
+							}
+
+						}
+
+					});
+
+					function signFlip() {
+						try {
+							if(touchSign === 1) {
+								cache.setMonth(cache.getMonth() + 1);
+							} else if(touchSign === -1) {
+								let precache = cache.getMonth();
+								cache.setMonth(cache.getMonth() - 1);
+								if(precache === cache.getMonth()) cache.setMonth(cache.getMonth() - 1);
+							}
+
+							alt.text(format2(cache)).show();
+
+							cma.show();
+							repop(cma.children(".cal"),cache);
+
+							console.log(cache);
+						} catch(e) {
+							void e;
+						}
+					}
+				}
+
+			} else if(this.options.type == "time") {
+				this.options.size = "picker";
+				if(!this.options.time || !this.options.time instanceof Date) this.options.date = new Date();
+
+
+
+				dialog.addClass("photon-timepicker")
 			}
 
 			dialog.addClass("size-" + this.options.size);

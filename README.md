@@ -3,7 +3,7 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.59.9</h5>
+<h5 align="center" version>v3.61.3</h5>
 
 <hr>
 <br>
@@ -48,8 +48,8 @@ you should no longer use LESS in production. We recommend you change your setup 
 <br>
 `/src/less/style.less`
 ```css
-@import "../../src/less/theme";
-@import "../../src/photon/src/photon";
+@import "theme";
+@import "../photon/src/photon";
 ```
 
 ### Compiling to CSS
