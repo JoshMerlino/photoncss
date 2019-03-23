@@ -1753,6 +1753,8 @@ return width;
 									void e;
 								}
 
+								bindTouches();
+
 							}
 
 						} else if(touchSign === -1){
@@ -1807,6 +1809,8 @@ return width;
 									void e;
 								}
 
+								bindTouches();
+
 							}
 
 						}
@@ -1828,7 +1832,6 @@ return width;
 							cma.show();
 							repop(cma.children(".cal"),cache);
 
-							console.log(cache);
 						} catch(e) {
 							void e;
 						}
