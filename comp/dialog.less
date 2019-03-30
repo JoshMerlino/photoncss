@@ -124,6 +124,23 @@
 			.input-field {
 				margin-top: -12px;
     			margin-bottom: -32px;
+				&.outlined {
+					.bar, label {
+						background: #fff;
+					}
+					label {
+						transform: translateY(6px);
+					}
+					input:focus + label,
+					input.containscontent + label,
+					input[placeholder] + label {
+						transform: translateY(0);
+					}
+				}
+
+				&.box:not(:last-child), &.outlined:not(:last-child) {
+					margin-bottom: 16px!important;
+				}
 			}
 		}
 		.actions {
@@ -347,13 +364,11 @@
 			}
 
 		}
-
 		.actions {
 			bottom: 0;
     		right: 0;
     		position: absolute;
 		}
-
 	}
 
 	.dialog when (@photonDarkTheme = true) {
@@ -370,7 +385,17 @@
 			}
 		}
 
-		.bar {
+		.input-field.outlined {
+			.bar, label {
+				background: #414141!important;
+			}
+			&::before {
+				border-color: #525252!important;
+			}
+		}
+
+		&.photon-datepicker .bar,
+		&.photon-timepicker .bar {
 			background: #555555!important;
 		}
 
