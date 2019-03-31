@@ -111,22 +111,18 @@
 	&.paper {
 		color:#212121;
 		background:#fff;
-		border-bottom:1px solid transparent;
 
 		&:not(.raised) {
-			border-color:#e1e1e1;
-			box-shadow: none;
+			box-shadow: 0 1px 0 0 rgba(0,0,0,0.1);
 		}
 		.waves-ripple {
 			background: rgba(0,0,0,0.2)!important;
 		}
-		
+
 		& when (@photonDarkTheme = true) {
 			color:#fafafa;
 			background:#242424;
-			&:not(.raised) {
-				border-color:#323232;
-			}
+
 			.waves-ripple {
 				background: rgba(255,255,255,0.2)!important;
 			}
