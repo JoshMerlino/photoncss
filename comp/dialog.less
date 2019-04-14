@@ -371,6 +371,63 @@
 		}
 	}
 
+	.dialog.photon-timepicker {
+		.bar {
+			background: @accentColor;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			height: 56px;
+			padding: 20px 24px;
+		}
+
+		.clock {
+			position: absolute;
+			width: 300px;
+			height: 300px;
+			background: #f5f5f5;
+			border-radius: 50%;
+			top:96px;
+			margin:14px;
+			.timecell {
+				position: absolute;
+				background: #f00;
+				height: 36px;
+				width: 36px;
+				border-radius: 50%;
+				text-align: center;
+				line-height: 36px;
+				&.dc-pos-0 {
+					top:32px;
+					left:150px;
+					transform: translate(-50%,-50%);
+				}
+				&.dc-pos-6 {
+					bottom: 32px;
+					left:150px;
+					transform: translate(-50%,50%);
+				}
+				&.dc-pos-3 {
+					right: 32px;
+					top:150px;
+					transform: translate(50%,-50%);
+				}
+				&.dc-pos-9 {
+					left: 32px;
+					top:150px;
+					transform: translate(-50%,-50%);
+				}
+			}
+		}
+
+		.actions {
+			bottom: 0;
+    		right: 0;
+    		position: absolute;
+		}
+	}
+
 	.dialog when (@photonDarkTheme = true) {
 		background:#414141;
 		.title {
