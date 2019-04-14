@@ -1387,7 +1387,7 @@ window.addEventListener("keydown", function(e) {
 					dialog.children(".users").append(`<div id="${xuid}" class="user method waves-effect"><img src="${method.image || add}" alt="" /><span class="desc">${method.name}</span></div>`)
 					method.click && $(`#${xuid}`).click(() => method.click(this))
 				}
-			} else if(this.options.type == "date") {
+			} else if (this.options.type == "date") {
 				this.options.size = "picker";
 				if(!this.options.date || !this.options.date instanceof Date) this.options.date = new Date();
 
@@ -1823,6 +1823,17 @@ window.addEventListener("keydown", function(e) {
 						}
 					}
 				}
+
+			} else if (this.options.type == "time") {
+				this.options.size = "picker";
+
+				dialog.addClass("photon-timepicker")
+				dialog.append(`<div class="bar accent"></div>`);
+
+				dialog.append(`<div class="clock"></div>`);
+
+				for (let i = 0; i < 12; i++) dialog.children(".clock").append(`<div class="timecell dc-pos-${i}">${i}</div>`)
+
 			}
 
 			dialog.addClass("size-" + this.options.size);
@@ -2107,7 +2118,7 @@ $(function(){
 	        $(this).children(".active").prev("li").addClass("adjact");
 	    });
 
-		if($("html").height() + 140 < window.innerHeight){
+		if($("html").height() === window.innerHeight){
 			$("footer").css({
 				"position":"fixed",
 				"width":"100%",
