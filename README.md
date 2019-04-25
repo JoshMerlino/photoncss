@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="/img/icon.png?raw=true" width="20%">
+  <img src="https://storage.googleapis.com/photoncss_storage/icon/web_hi_res_512.png" width="20%">
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
