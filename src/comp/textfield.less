@@ -1,3 +1,8 @@
+.input-field.accent {
+	.photon-input(@accentColor);
+	background: transparent!important;
+}
+
 .input-field {
 	display:block;
 	position:relative;
@@ -20,7 +25,7 @@
 		font-size:16px;
 		color:#212121;
 		border-bottom:1px solid @dividerColor;
-		caret-color:@accentColor;
+		caret-color:@primaryColor;
 		font-family:@fontFamily;
 		display:block;
 		width:100%;
@@ -48,7 +53,7 @@
 		transform: translateY(4px);
 	}
 	input:focus ~ label {
-		color:@accentColor;
+		color:@primaryColor;
 	}
 	input::placeholder {
 		color:#cacaca;
@@ -67,23 +72,23 @@
 		padding:4px;
 	}
 	.bar {
-		background:@accentColor;
+		background:@primaryColor;
 		position:absolute;
 		height:2px;
 		width:0px;
 		left:50%;
-		max-width: calc(100% - 4px);
+		max-width: 100%;
 	}
 
 	&.box {
-		background:#f0f0f0;
+		background:#f0f0f0!important;
 		padding:0!important;
 		padding-bottom:1px!important;
 		&:not(.select) {
-			margin-bottom:-24px!important;
+			margin-bottom:0!important;
 		}
 
-		.borderMixin();
+		.photon-border();
 
 		input,
 		label {
@@ -112,10 +117,10 @@
 		padding:0!important;
 		padding-bottom:1px!important;
 		&:not(.select) {
-			margin-bottom:-24px!important;
+			margin-bottom:0!important;
 		}
 
-		.borderMixin();
+		.photon-border();
 
 		input,
 		label {
@@ -136,9 +141,9 @@
 		.bar {
 			margin-bottom: -29px;
 			height: calc(100% - 11px);
-			border: 2px solid @accentColor;
-			background: #fafafa;
-			.borderMixin();
+			border: 2px solid @primaryColor;
+			background: #fafafa!important;
+			.photon-border();
 			z-index: -1;
 		}
 
@@ -150,7 +155,7 @@
 			right: 1px;
 			bottom: 1px;
 			border: 1px solid #e0e0e0;
-			.borderMixin();
+			.photon-border();
 			z-index: -2;
 		}
 
@@ -174,7 +179,7 @@
 body when (@photonDarkTheme = true) {
 
 	.input-field.box {
-		background:#363636;
+		background:#363636!important;
 	}
 
 	input,
@@ -192,7 +197,7 @@ body when (@photonDarkTheme = true) {
 	.input-field.outlined {
 		label,
 		.bar {
-			background: #212121;
+			background: #212121!important;
 		}
 
 		&::before {
