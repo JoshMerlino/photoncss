@@ -4,10 +4,10 @@
   	overflow-y: hidden;
   	height: 48px;
   	width: 100%;
-  	background-color: #fff;
   	margin: 0 auto;
   	white-space: nowrap;
 	padding:0;
+	user-select: none;
 	@media only screen and (max-width: 992px) {
 	    display: -webkit-box;
 	    display: -webkit-flex;
@@ -20,32 +20,41 @@
 
 	&.tabs-top .indicator {
 		top:0;
-		bottom:auto;
+		margin-top:-3px;
 	}
 
-	&.tabs-new {
-		.indicator {
-			height:6px;
-			border-radius:3px;
-			margin-bottom:-3px;
-		}
-		&.tabs-top .indicator {
-			margin-top:-3px;
-		}
-	}
-	&.tabs-transparent {
-  		background-color: transparent;
-		.tab a,
-		.tab.disabled a,
-		.tab.disabled a:hover {
-		  	color: rgba(255, 255, 255, 0.7);
-		}
-		.tab a:hover,
-		.tab a.active {
+	&.tabs-white {
+		.tab a {
 		  	color: #fff;
+		}
+		.tab.disabled a {
+			color: rgba(255, 255, 255, 0.7)!important;
 		}
 		.indicator {
   			background-color: #fff;
+		}
+	}
+	&.tabs-black {
+		.tab a {
+		  	color: #000;
+		}
+		.tab.disabled a {
+			color: rgba(0, 0, 0, 0.7)!important;
+		}
+		.indicator {
+  			background-color: #000;
+		}
+	}
+	&.tabs-accent {
+  		background-color: transparent;
+		.tab a {
+		  	color: @accentColor;
+		}
+		.tab.disabled a {
+			color: fade(@accentColor,70%)!important;
+		}
+		.indicator {
+  			background-color: @accentColor;
 		}
 	}
 	&.tabs-fixed-width {
@@ -66,7 +75,7 @@
   		height: 48px;
   		padding: 0;
   		margin: 0;
- 		text-transform: uppercase;
+ 		text-transform: capitalize;
 		user-select:none;
 		cursor:pointer;
 		@media only screen and (max-width: 992px) {
@@ -76,7 +85,6 @@
 		    flex-grow: 1;
 		}
 		a {
-		  	color:fade(@primaryColor,75%);
 		  	display: block;
 		 	height: 100%;
 		  	padding: 0 24px;
@@ -85,11 +93,12 @@
 		  	overflow: hidden;
 		  	transition: color .28s ease;
 			text-align:center;
-			&:hover,
-			&.active {
-				background-color: transparent;
-			  	color:@primaryColor;
-			}
+			font-family: Google Sans;
+			font-weight: 500;
+		   	color:@primaryColor;
+		   	&.disabled {
+			   color:fade(@primaryColor,70%)
+		   	}
 		}
 		&.disabled a,
 		&.disabled a:hover {
@@ -100,30 +109,14 @@
 	.indicator {
   		position: absolute;
   		bottom: 0;
-  		height: 2px;
 		left:0px;
   		background-color:@primaryColor;
   		will-change: left, right;
 		overflow:hidden;
+		height:6px;
+		border-radius:3px;
+		margin-bottom:-3px;
 		.transition();
-	}
-	&::-webkit-scrollbar {
-		height:1px;
-	}
-	&.tabs-accent {
-  		background-color: transparent;
-		.tab a,
-		.tab.disabled a,
-		.tab.disabled a:hover {
-		  	color:fade(@accentColor,70%);
-		}
-		.tab a:hover,
-		.tab a.active {
-		  	color:@accentColor;
-		}
-		.indicator {
-  			background-color:@accentColor;
-		}
 	}
 }
 

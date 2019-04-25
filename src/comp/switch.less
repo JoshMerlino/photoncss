@@ -1,3 +1,8 @@
+.switch.accent {
+	background: transparent!important;
+	.photon-switch(@accentColor);
+}
+
 .switch {
 	margin:4px 0;
 
@@ -12,11 +17,11 @@
 		background: fade(@dividerColor,50%);
 
 		&:checked {
-			background: fade(@accentColor,50%);
+			background: fade(@primaryColor,50%);
 
 			&::before {
 				margin: -2px 18px;
-				background: @accentColor;
+				background: @primaryColor;
 			}
 		}
 
@@ -63,7 +68,7 @@
 	input:checked ~ .ripple {
 		margin-left:3px!important;
 		.waves-ripple {
-			background: fade(@accentColor,40%);
+			background: fade(@primaryColor,40%);
 		}
 	}
 
