@@ -1,6 +1,6 @@
 .card-panel {
-  	&:extend(.transition);
-	&:extend(.raised-1);
+  	.transition();
+	.raised-1();
 	transition-property:box-shadow;
 	overflow:hidden;
 
@@ -11,7 +11,7 @@
 
   	padding: 24px;
  	margin: 0.5rem 0 1rem 0;
-  	.borderMixin();
+  	.photon-border();
   	background-color: #fff;
 	&:hover {
 		.raised-4();
@@ -35,10 +35,9 @@
   	position: relative;
   	margin: 0.5rem 0 1rem 0;
   	background-color: #fff;
-  	.borderMixin();
+  	.photon-border();
 	.card-title {
   		font-size: 24px;
- 		font-weight: 300;
 		font-family:@secondaryFont;
 		.activator {
   			cursor: pointer;
@@ -165,7 +164,6 @@
 		  	display: block;
 		  	line-height: 32px;
 		  	margin-bottom: 8px;
-			font-weight: 400;
 			color:#212121;
 			i {
 			  	line-height: 32px;
@@ -176,12 +174,9 @@
 	  	position: relative;
 		background-color: inherit;
 	  	border-top: 1px solid rgba(160, 160, 160, 0.2);
-		&:last-child {
-		  	border-radius: 0 0 @cornerFallback @cornerFallback;
-		}
-
 		direction: rtl;
 		padding: 4px;
+		padding-bottom: 0;
 
 		a.btn {
 			margin:2px;

@@ -1,14 +1,15 @@
-@import "../photon/fonts/Google_Sans/css.css";
-@import "../photon/fonts/Icon_Font/material-icons.css";
-@import "../photon/fonts/Roboto/css.css";
-@import "../photon/fonts/Roboto_Condensed/css.css";
-@import "../photon/fonts/Roboto_Mono/css.css";
-@import "../photon/fonts/Roboto_Slab/css.css";
+@import "../../src/photon/fonts/Google_Sans/css.css";
+@import "../../src/photon/fonts/Icon_Font/material-icons.css";
+@import "../../src/photon/fonts/Roboto/css.css";
+@import "../../src/photon/fonts/Roboto_Condensed/css.css";
+@import "../../src/photon/fonts/Roboto_Mono/css.css";
+@import "../../src/photon/fonts/Roboto_Slab/css.css";
 
-@mobile: ~"only screen and (max-width: 529px)";
-@tablet: ~"only screen and (min-width: 530px) and (max-width: 949px)";
-@desktop: ~"only screen and (min-width: 950px)";
-@desktop-xl: ~"only screen and (min-width: 1129px)";
+@mobile: ~"only screen and (max-width: 511px)";
+@tablet: ~"only screen and (min-width: 512px) and (max-width: 1199px)";
+@tablet--and-up: ~"only screen and (min-width: 512px)";
+@desktop: ~"only screen and (min-width: 1200px)";
+@desktop-xl: ~"only screen and (min-width: 1366px)";
 
 ::selection {
 	background: #bbd3fd;
@@ -31,10 +32,6 @@
 
 ::-webkit-scrollbar-thumb:hover {
 	background: #555;
-}
-
-.borderMixin(@mx:1, @ma:0) {
-	border-radius: ((extract(@cornerLevels,1) * @mx) + @ma) ((extract(@cornerLevels,2) * @mx) + @ma) ((extract(@cornerLevels,4) * @mx) + @ma) ((extract(@cornerLevels,3) * @mx) + @ma);
 }
 
 * {
@@ -94,6 +91,11 @@ body when (@photonDarkTheme = true) {
 	}
 }
 
+br {
+	user-select: none;
+	pointer-events: none;
+}
+
 * {
 	outline: 0;
 }
@@ -114,19 +116,20 @@ hr {
 	margin: 2rem 0;
 }
 
-.transition {
-	transition: all 200ms cubic-bezier(.25,.8,.25,1);
-}
-
 .right {
 	float: right;
 }
 
-.center-fixed {
-	position: fixed;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%,-50%);
+.vh-center-wrapper {
+	position:fixed;
+	display: grid;
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	.vh-center {
+		margin:auto;
+	}
 }
 
 label {
@@ -160,31 +163,33 @@ video {
 	border: none;
 }
 
-@import "../comp/appbar.less";
-@import "../comp/autolink.less";
-@import "../comp/badge.less";
-@import "../comp/button.less";
-@import "../comp/card.less";
-@import "../comp/checkbox.less";
-@import "../comp/collapsible.less";
-@import "../comp/collection.less";
-@import "../comp/color.less";
-@import "../comp/dialog.less";
-@import "../comp/footer.less";
-@import "../comp/grid.less";
-@import "../comp/icon.less";
-@import "../comp/lighting.less";
-@import "../comp/note.less";
-@import "../comp/progress.less";
-@import "../comp/radio.less";
-@import "../comp/scrollnav.less";
-@import "../comp/select.less";
-@import "../comp/sidenav.less";
-@import "../comp/slider.less";
-@import "../comp/switch.less";
-@import "../comp/table.less";
-@import "../comp/tabs.less";
-@import "../comp/textfield.less";
-@import "../comp/toast.less";
-@import "../comp/tooltip.less";
-@import "../comp/waves.less";
+@import "mixins";;
+
+@import "comp/autolink";
+@import "comp/badge";
+@import "comp/button";
+@import "comp/card";
+@import "comp/checkbox";
+@import "comp/collapsible";
+@import "comp/collection";
+@import "comp/color";
+@import "comp/dialog";
+@import "comp/footer";
+@import "comp/grid";
+@import "comp/icon";
+@import "comp/lighting";
+@import "comp/note";
+@import "comp/progress";
+@import "comp/radio";
+@import "comp/scrollnav";
+@import "comp/select";
+@import "comp/sidenav";
+@import "comp/slider";
+@import "comp/switch";
+@import "comp/table";
+@import "comp/tabs";
+@import "comp/textfield";
+@import "comp/toast";
+@import "comp/toolbar";
+@import "comp/tooltip";
+@import "comp/waves";

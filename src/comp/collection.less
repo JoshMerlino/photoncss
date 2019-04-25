@@ -7,7 +7,8 @@
 		padding: 10px 20px;
 		margin: 0;
 		list-style: none;
-		border-bottom: 1px solid #e0e0e0;
+		border-bottom: 1px solid @dividerColor;
+		border-color: @dividerColor!important;
 
 		span.badge {
 			margin-top: calc(0.75rem - 11px);
@@ -90,7 +91,7 @@
 	&.with-header {
 		.collection-header {
 			background-color: #fff;
-			border-bottom: 1px solid #e0e0e0;
+			border-bottom: 1px solid @dividerColor;
 			padding: 10px 20px;
 		}
 
@@ -113,9 +114,7 @@
 
 body when (@photonDarkTheme = true) {
 	.collection {
-		border-color: #525252;
 		background: #303030!important;
-
 		.item {
 			background: #303030;
 			border-color: inherit;
