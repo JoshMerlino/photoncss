@@ -1,3 +1,13 @@
+.checkbox.primary {
+	background: transparent!important;
+	.photon-checkbox(@primaryColor, @textPrimaryColor);
+}
+
+.checkbox.accent {
+	background: transparent!important;
+	.photon-checkbox(@accentColor, @accentTextColor);
+}
+
 input[type="checkbox"]:not(.switch) {
 	&:extend(.transition);
 	-webkit-appearance: none;
@@ -10,7 +20,7 @@ input[type="checkbox"]:not(.switch) {
 
 	&:checked {
 		border-width: 9px;
-		border-color: @accentColor;
+		border-color: @primaryColor;
 	}
 
 	&:disabled {
@@ -25,7 +35,7 @@ input[type="checkbox"]:not(.switch) {
 		&:extend(.transition);
 		position: absolute;
 		content: "\E5CA";
-		color: #fff;
+		color: @textPrimaryColor;
 		font-family: "material icons";
 		transform: scale(0);
 		font-size: 18px;
@@ -65,6 +75,7 @@ input[type="checkbox"]:not(.switch) {
 
 .checkbox {
 	position:relative;
+	padding-top: 5px;
 	.ripple {
 		position: absolute;
 		width: 48px;
@@ -81,7 +92,7 @@ input[type="checkbox"]:not(.switch) {
 	}
 
 	input:checked ~ .ripple .waves-ripple {
-		background:fade(@accentColor,40%);
+		background:fade(@primaryColor,40%);
 	}
 
 	input:disabled ~ .ripple {
@@ -99,20 +110,12 @@ input[type="checkbox"]:not(.switch) {
 		&:not(:checked) {
 			border-color: #b5b5b5!important;
 		}
-
 		&:disabled {
 			border-color: #717171!important;
 		}
-
-		&::after {
-			color: #212121;
-		}
-
 		&.indeterminate {
 			border: 2px solid #b5b5b5;
-			&::after {
-				color:#b5b5b5;
-			}
+
 		}
 	}
 }

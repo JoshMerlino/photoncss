@@ -1,5 +1,10 @@
+.slider-field.accent {
+	background: transparent!important;
+	.photon-slider(@accentColor);
+}
+
 .input-field.slider-field {
-	padding: 0!important !important;
+	padding: 0 !important;
 	height: 27px!important;
 	margin: 0 2px;
 
@@ -19,7 +24,7 @@
 		.determinate {
 			height: 2px;
 			width: 50%;
-			background: @accentColor;
+			background: @primaryColor;
 			margin-top: -2px;
 			border-radius: @cornerFallback;
 		}
@@ -27,7 +32,7 @@
 		.thumb {
 			height: 16px;
 			width: 16px;
-			background: @accentColor;
+			background: @primaryColor;
 			border-radius: 50%;
 			margin-top: -9px;
 			margin-left: -8px;
@@ -65,7 +70,7 @@
 				}
 
 				.waves-ripple {
-					background: fade(@accentColor,40%);
+					background: fade(@primaryColor,40%);
 				}
 			}
 		}

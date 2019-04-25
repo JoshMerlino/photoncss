@@ -3,78 +3,12 @@
 </p>
 <h1 align="center">Photon CSS</h1>
 <h3 align="center">The next generation of web design.</h3>
-<h5 align="center" version>v3.61.4</h5>
+<h5 align="center" version>v4.0.0</h5>
 
-<hr>
-<br>
-
-# Using in production
-
-## Important
-you should no longer use LESS in production. We recommend you change your setup to the following. LESS in production is now depreciated but works. Were trying to make Photon as fast as possible, so doing this will cut down on around a second (on a high end computer) of load times. You can get a pre-compiled version of Photon [here](https://photoncss.herokuapp.com/theme).
-
-### Sample file setup
-```
-|- index.html
-|- /src
-   |- /js
-      |- jquery.js
-      |- script.js
-   |- /less
-      |- style.less
-      |- theme.less
-   |- /css
-      |- main.css
-      |- main.css.map
-   |- /photon ...
-```
-
-### Importing styles and scripts
-
-`/index.html`
 ```html
-<html>
-	<head>
-		<link rel="stylesheet" type="text/css" href="/src/css/main.css" />
-		<script src="/src/js/jquery.js"></script>
-		<script src="/src/photon/src/photon.min.js"></script>
-	</head>
-	<body>
-		<!-- Elements go here -->
-		<script src="/src/js/script.js"></script>
-	</body>
-</html>
-```
-<br>
-`/src/less/style.less`
-```css
-@import "theme";
-@import "../photon/src/photon";
-```
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/PhotonCSS/Photon/dist/photon.min.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
 
-### Compiling to CSS
-We strongly recommend using the `lessc` LESS compiler.
-```bash
-$ npm i -g less
+<script src="https://cdn.jsdelivr.net/gh/jquery/jquery/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/PhotonCSS/Photon/dist/photon.min.js"></script>
 ```
-
-To compile your LESS run this in your project root `(/)`
-```bash
-$ lessc -x ./src/less/style.less ./src/css/main.css --source-map
-```
-
-### Create custom themes [here](https://photon-css.000webhostapp.com/theme)
-
-#
-`/src/js/script.js`
-```javascript
-$(() => Photon.ready());
-```
-
-### Updating Photon
-`bash
-cd www/src/
-rm -Rf photon/
-git clone https://github.com/PhotonCSS/Photon.git photon/
-npm run less
-`
