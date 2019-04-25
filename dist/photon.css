@@ -3195,14 +3195,14 @@ input[type="checkbox"]:not(.switch):checked::after {
 .photon-dialog .dialog .actions .btn {
   margin: 4px;
   padding: 0 8px;
-  color: #ff1744 !important;
+  color: #03a9f4 !important;
   background: transparent!important;
 }
 .photon-dialog .dialog .actions .btn:hover {
-  background: rgba(255, 23, 68, 0.12) !important;
+  background: rgba(3, 169, 244, 0.12) !important;
 }
 .photon-dialog .dialog .actions .btn .waves-ripple {
-  background: rgba(255, 23, 68, 0.4) !important;
+  background: rgba(3, 169, 244, 0.4) !important;
 }
 .photon-dialog .dialog .options {
   max-height: 300px;
@@ -3227,22 +3227,22 @@ input[type="checkbox"]:not(.switch):checked::after {
   transform: translateY(-3px);
 }
 .photon-dialog .dialog .options .checkbox input[type="checkbox"]:not(.switch):checked {
-  border-color: #ff1744;
+  border-color: #03a9f4;
 }
 .photon-dialog .dialog .options .checkbox input[type="checkbox"]:not(.switch)::after {
   color: #ffffff;
 }
 .photon-dialog .dialog .options .checkbox input:checked ~ .ripple .waves-ripple {
-  background: rgba(255, 23, 68, 0.4);
+  background: rgba(3, 169, 244, 0.4);
 }
 .photon-dialog .dialog .options .radio input[type="radio"]:not(.switch):checked {
-  border-color: #ff1744;
+  border-color: #03a9f4;
 }
 .photon-dialog .dialog .options .radio input[type="radio"]:not(.switch)::after {
-  background: #ff1744;
+  background: #03a9f4;
 }
 .photon-dialog .dialog .options .radio input:checked ~ .ripple .waves-ripple {
-  background: rgba(255, 23, 68, 0.4);
+  background: rgba(3, 169, 244, 0.4);
 }
 .photon-dialog .dialog .users .user {
   height: 56px;
