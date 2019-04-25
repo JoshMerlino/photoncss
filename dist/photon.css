@@ -3096,18 +3096,15 @@ input[type="checkbox"]:not(.switch):checked::after {
 .photon-dialog .dialog.size-auto {
   max-width: 600px;
   max-height: 440px;
-  min-height: 200px;
 }
 .photon-dialog .dialog.size-choice,
 .photon-dialog .dialog.size-medium {
   max-width: 360px;
   max-height: 440px;
-  min-height: 200px;
 }
 .photon-dialog .dialog.size-dense {
   max-width: 268px;
   max-height: 440px;
-  min-height: 200px;
 }
 .photon-dialog .dialog.size-progress {
   max-width: 268px;
