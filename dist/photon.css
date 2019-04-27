@@ -3169,7 +3169,7 @@ input[type="checkbox"]:not(.switch):checked::after {
 }
 .photon-dialog .dialog .body .input-field.outlined .bar,
 .photon-dialog .dialog .body .input-field.outlined label {
-  background: #fff;
+  background: #fff !important;
 }
 .photon-dialog .dialog .body .input-field.outlined label {
   transform: translateY(6px);
