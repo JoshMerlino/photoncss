@@ -580,18 +580,21 @@ const Photon = {
       }
     }
   },
-  guid: function () {
+
+  guid() {
     let s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 
     return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
   },
-  updateTextFields: function () {
+
+  updateTextFields() {
     $(".input-field").not(".slider-field").each(function () {
       if ($(this).children("input").val().length > 0) {
         $(this).children("input").addClass("containscontent");
       }
     });
   },
+
   Waves: {
     reload() {
       $(".waves-ink").off("mousedown").bind("mousedown", function (e) {
@@ -647,7 +650,7 @@ const Photon = {
 
       if (a.hasClass("waves-touch")) {
         a.removeClass("waves-touch");
-        return f / 1.33;
+        return f / 1.1;
       }
 
       return f;
@@ -2270,7 +2273,7 @@ $(() => {
       $("footer").css({
         "position": "fixed",
         "width": "100%",
-        "bottom": "24px"
+        "bottom": 24 - parseInt($("footer").data("offset") || "0")
       });
     } else {
       $("footer").css({
