@@ -824,7 +824,6 @@ Photon.disableArrowKeyScrolling = false;
 
 			let proY = pos => {
 				if(pos < 4) pos = 4;
-				if(pos > window.innerHeight - 4) pos = window.innerHeight - 4;
 				return pos;
 			}
 
