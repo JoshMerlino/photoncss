@@ -238,15 +238,6 @@ input[type="radio"]::after,
   transform: translateY(-8px);
   left: 0;
 }
-@media only screen and (max-width: 511px) {
-  .autolink {
-    width: -webkit-fill-available;
-  }
-  .autolink .padding-layer .title,
-  .autolink .padding-layer p {
-    width: -webkit-fill-available;
-  }
-}
 .badge {
   background: #ff1744;
   color: #ffffff;
