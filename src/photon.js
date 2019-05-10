@@ -1847,13 +1847,13 @@ $(() => {
 	    });
 
 		if($(document).height() === window.innerHeight){
-			$("footer").css({
+			$("footer").not(".static").css({
 				"position":"fixed",
 				"width":"100%",
-				"bottom":24 - parseInt($("footer").data("offset") || "0")
+				"bottom":24 - parseInt($("footer").not(".static").data("offset") || "0")
 			})
 		} else {
-			$("footer").css({
+			$("footer").not(".static").css({
 				"position":"static",
 				"width":"auto",
 				"bottom":"auto"
