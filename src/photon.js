@@ -428,7 +428,7 @@ Photon.disableArrowKeyScrolling = false;
                     });
                     $(".sidenav--draghandle").css({
                         left: 0,
-                        width: "32px"
+                        width: "10px"
                     });
                     break;
             }
