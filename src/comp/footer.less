@@ -40,5 +40,21 @@ footer {
 
 	& when (@photonDarkTheme = true) {
 		color: rgba(255, 255, 255, 0.8);
+		&.legacy {
+			background: #191919!important;
+		}
+	}
+
+	&.legacy {
+		border: none!important;
+		background: #f5f5f5!important;
+		.footer-copyright {
+			border: none!important;
+			background-color: #0000001a!important;
+		}
+
+		&.dark {
+			background: #191919!important;
+		}
 	}
 }
