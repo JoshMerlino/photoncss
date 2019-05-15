@@ -3505,6 +3505,17 @@ footer.attached-to-bottom {
   bottom: 24px;
   width: 100%;
 }
+footer.legacy {
+  border: none!important;
+  background: #f5f5f5 !important;
+}
+footer.legacy .footer-copyright {
+  border: none!important;
+  background-color: #0000001a !important;
+}
+footer.legacy.dark {
+  background: #191919 !important;
+}
 .row {
   margin-left: auto;
   margin-right: auto;
@@ -4072,7 +4083,7 @@ footer.attached-to-bottom {
     left: 100%;
   }
 }
-@media only screen and (min-width: 1366px) {
+@media only screen and (min-width: 1440px) {
   .row .col.xl1 {
     width: 8.33333333%;
     margin-left: auto;
