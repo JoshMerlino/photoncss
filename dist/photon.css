@@ -6203,7 +6203,11 @@ input[type="radio"]:disabled::after {
   margin: 4px!important;
 }
 .toolbar:not(.flat),
-.app-bar:not(.flat) {
+.app-bar:not(.flat),
+.toolbar:not(.floating),
+.app-bar:not(.floating),
+.toolbar.raised,
+.app-bar.raised {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.26);
 }
 .toolbar.parallax,
