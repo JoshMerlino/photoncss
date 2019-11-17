@@ -86,12 +86,12 @@
 			margin: 4px!important;
 		}
 	}
-	&:not(.flat),
-	&:not(.floating),
+
+	overflow:hidden;
+
 	&.raised {
 		box-shadow: 0 2px 5px rgba(0,0,0,.26);
 	}
-	overflow:hidden;
 
 	&.parallax {
 		height:260px;
@@ -137,6 +137,12 @@
 	.tabs {
 		overflow-x: scroll;
 		height: 52px;
+	}
+
+	&.fixed {
+		position: fixed!important;
+		top: 0!important;
+		bottom: auto!important;
 	}
 
 }
