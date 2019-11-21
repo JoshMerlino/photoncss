@@ -8,7 +8,7 @@
 	position:relative;
 	padding: 14px 0!important;
 	height: 60px!important;
-	border-radius:@cornerFallback @cornerFallback 0 0;
+	border-radius: 4px 4px 0 0;
 
 	&:not(.select).inline {
 		display:inline-block;
@@ -24,7 +24,7 @@
 		outline:0;
 		font-size:16px;
 		color:#212121;
-		border-bottom:1px solid @dividerColor;
+		border-bottom:1px solid #e5e5e5;
 		caret-color:@primaryColor;
 		font-family:@fontFamily;
 		display:block;
@@ -176,8 +176,8 @@
 	padding:0 2px;
 }
 
-body when (@photonDarkTheme = true) {
-
+&.photon--darktheme,
+.photon--darktheme {
 	.input-field.box {
 		background:#363636!important;
 	}
@@ -204,8 +204,40 @@ body when (@photonDarkTheme = true) {
 			border: 1px solid #424242;
 		}
 	}
-
 }
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.input-field.box {
+			background:#363636!important;
+		}
+
+		input,
+		select {
+			color:#fafafa!important;
+		}
+
+		.photon-dialog input {
+			color:#f0f0f0!important;
+			.photon-dialog input {
+				color:#f0f0f0!important;
+			}
+		}
+
+		.input-field.outlined {
+			label,
+			.bar {
+				background: #212121!important;
+			}
+
+			&::before {
+				border: 1px solid #424242;
+			}
+		}
+	}
+}
+
 
 .input-field .bar {
 	bottom:29px;
