@@ -142,9 +142,13 @@ label {
 	}
 }
 
-a {
-	color: @accentColor;
+a[href] {
+	color: @darkPrimaryColor;
 	text-decoration: none;
+	&.ex-link:hover {
+		color: @primaryColor;
+		text-decoration: underline;
+	}
 }
 
 ul li {
