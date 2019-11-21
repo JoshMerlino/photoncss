@@ -18,7 +18,7 @@
 			height: 2px;
 			width: 100%;
 			background: #c1c1c1;
-			border-radius: @cornerFallback;
+			border-radius: 4px;
 		}
 
 		.determinate {
@@ -26,7 +26,7 @@
 			width: 50%;
 			background: @primaryColor;
 			margin-top: -2px;
-			border-radius: @cornerFallback;
+			border-radius: 4px;
 		}
 
 		.thumb {
@@ -80,7 +80,7 @@
 
 			.determinate,
 			.thumb {
-				background: @dividerColor;
+				background: #e5e5e5;
 
 				&.thumb {
 					border: 6px solid #fafafa;
@@ -93,7 +93,7 @@
 
 		&[value="0"] {
 			.thumb {
-				border: 2px solid @dividerColor;
+				border: 2px solid #e5e5e5;
 				transition-property: background;
 				background: #fafafa;
 				margin-top: -11px;
@@ -104,7 +104,8 @@
 	}
 }
 
-body when (@photonDarkTheme = true) {
+&.photon--darktheme,
+.photon--darktheme {
 	.slider-field .slider {
 		&.disabled .thumb {
 			border-color: #212121!important;
@@ -117,6 +118,26 @@ body when (@photonDarkTheme = true) {
 
 		.track {
 			background: #525252!important;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.slider-field .slider {
+			&.disabled .thumb {
+				border-color: #212121!important;
+			}
+
+			&[value="0"] .thumb {
+				background: #212121!important;
+				border-color: #525252;
+			}
+
+			.track {
+				background: #525252!important;
+			}
 		}
 	}
 }

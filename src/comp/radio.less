@@ -80,22 +80,52 @@ input[type="radio"] {
 	}
 }
 
-body when (@photonDarkTheme = true) {
-	input[type="radio"] {
-		&:not(:checked){
-			border-color: #b5b5b5!important;
-		}
+&.photon--darktheme,
+.photon--darktheme {
+	&.checkbox,
+	.checkbox {
+		input[type="radio"] {
+			&:not(:checked){
+				border-color: #b5b5b5!important;
+			}
 
-		&::after {
-			border-color: #212121!important;
-		}
+			&::after {
+				border-color: #212121!important;
+			}
 
-		&:disabled {
-			border-color: #717171!important;
-		}
+			&:disabled {
+				border-color: #717171!important;
+			}
 
-		&:disabled::after {
-			background: #717171;
+			&:disabled::after {
+				background: #717171;
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		&.checkbox,
+		.checkbox {
+			input[type="radio"] {
+				&:not(:checked){
+					border-color: #b5b5b5!important;
+				}
+
+				&::after {
+					border-color: #212121!important;
+				}
+
+				&:disabled {
+					border-color: #717171!important;
+				}
+
+				&:disabled::after {
+					background: #717171;
+				}
+			}
 		}
 	}
 }
