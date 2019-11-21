@@ -481,6 +481,9 @@ Photon.disableArrowKeyScrolling = false;
 																				duration: 175,
 																				queue: false
 																});
+
+																let opt = $(acopt.children(".option")[selopt]);
+																input.val(opt.text()).addClass("containscontent").trigger("change");
 												});
 
 												$("body").click(function () {
@@ -493,7 +496,7 @@ Photon.disableArrowKeyScrolling = false;
 
 																let opt = $(acopt.children(".option")[selopt]);
 																opt.addClass("active").siblings().removeClass("active");
-																input.val(opt.text()).addClass("containscontent");
+																input.val(opt.text()).addClass("containscontent").trigger("change");;
 												});
 
 												let preset = false;
@@ -1828,11 +1831,13 @@ Photon.ready = Photon.reload = () => {
 
 				Photon.Waves.reload();
 
-				setTimeout(() => {
+				requestAnimationFrame(() => {
 								$(".tabs.auto").each(function () {
-												$(this).children(".tab").first().children("a").click();
+												$(this).children(".tab").each(function () {
+																$(this).children("a").click();
+												}).first().children("a").click();
 								});
-				}, Photon.speed);
+				});
 
 				$(".checkbox,.radio-btn,.switch").children("input").on("mousedown touchstart", function () {
 								Waves.calm($(this).siblings(".ripple"));
