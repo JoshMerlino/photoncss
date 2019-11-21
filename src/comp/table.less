@@ -56,8 +56,11 @@
 			}
 		}
 	}
+}
 
-	& when (@photonDarkTheme = true) {
+&.photon--darktheme,
+.photon--darktheme {
+	.card table {
 		thead tr th {
 			color:rgba(255,255,255,.7)!important;
 			border-color:#363636!important;
@@ -65,6 +68,22 @@
 		tbody tr td {
 			color:#fff!important;
 			border-color:#363636!important;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.card table {
+			thead tr th {
+				color:rgba(255,255,255,.7)!important;
+				border-color:#363636!important;
+			}
+			tbody tr td {
+				color:#fff!important;
+				border-color:#363636!important;
+			}
 		}
 	}
 }

@@ -65,11 +65,24 @@
 	}
 }
 
-& when (@photonDarkTheme = true) {
+&.photon--darktheme,
+.photon--darktheme {
 	.select .options {
 		background:#414141!important;
 		.option {
 			color:#fafafa;
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.select .options {
+			background:#414141!important;
+			.option {
+				color:#fafafa;
+			}
 		}
 	}
 }

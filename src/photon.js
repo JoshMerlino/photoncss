@@ -90,52 +90,6 @@ Photon.disableArrowKeyScrolling = false;
 }, false));
 
 ;(function() {
-    $.fn.autolink = function() {
-        this.each(function() {
-            if (!$(this).hasClass("photon-init")) {
-                let href = $(this).attr("href");
-                const content = $(this).text();
-                const link = $(this);
-
-                link.html(`<div class="progress"><div class="indeterminate"></div></div>`);
-                link.addClass("photon-init");
-
-                if (href[0] == "/") {
-                    href = window.location.protocol + "//" + window.location.hostname + href;
-                }
-
-                $.ajax({
-                    url: Photon.API,
-                    type: "POST",
-                    data: {
-                        "url": href
-                    },
-                    success: function(data) {
-                        if (data.error) {
-                            link.html(`<div class="progress offl"><div class="offline"></div></div>`);
-                            return;
-                        }
-
-                        link.html(`<div class="padding-layer"><div class="external-img"><img src="${data.icon}" alt=""/></div><div class="title">${data.title}</div><p>${content}</p><i class="material-icons waves-effect waves-ink">launch</i><div class="ref">${link.data("ref") || ""}</div></div>`);
-                        link.click(function(e) {
-                            if ($(e.target).hasClass("material-icons")) {
-                                e.preventDefault();
-                                window.open(href);
-                            }
-                        });
-                        link.children(".padding-layer").children(".material-icons").tooltip({
-                            "tooltip": "Open in new window",
-                            "position": "bottom"
-                        });
-                        Photon.Waves.reload();
-                    },
-                    error: function() {
-                        link.html(`<div class="progress offl"><div class="offline"></div></div>`);
-                    }
-                });
-            }
-        })
-    };
     $.fn.collapsible = function(options, methodParam) {
         let defaults = {
             accordion: undefined,
@@ -1610,7 +1564,6 @@ Photon.disableArrowKeyScrolling = false;
 
 Photon.ready = Photon.reload = () => {
 
-    $(".autolink").autolink();
 	$(".collapsible").collapsible();
     $(".scrollnav").scrollnav();
     $(".select").select();
