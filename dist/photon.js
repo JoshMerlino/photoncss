@@ -879,7 +879,7 @@ Photon.disableArrowKeyScrolling = false;
 
 												$(this).mouseenter(function () {
 																setTimeout(() => $("#" + guid).addClass("active"), options.delay);
-												}).mouseleave(function () {
+												}).on("mouseleave click contextmenu", function () {
 																setTimeout(() => $("#" + guid).removeClass("active"), options.delay);
 												});
 

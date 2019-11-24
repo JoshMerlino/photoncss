@@ -1,5 +1,6 @@
+.reference,
 .autolink {
-	.paper();
+	.card();
 	position: relative;
 	overflow: hidden;
 	transition-property: background, box-shadow;
@@ -79,7 +80,7 @@
 		}
 
 		p {
-			display: inline-block;
+			display: block;
 			font-family: @fontFamily;
 			font-size: 14px;
 			color: #676767;
@@ -116,10 +117,15 @@
 
 .photon--darktheme,
 &.photon--darktheme {
-	.autolink,
-	&.autolink {
+	.reference,
+	&.reference {
+		background: #303030;
 		&:hover {
 			background: #333333;
+		}
+		p,
+		.ref {
+			color: #9a9a9a!important;
 		}
 		.title {
 			color: #e0e0e0;
@@ -130,10 +136,15 @@
 .photon--systemtheme,
 &.photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.autolink,
-		&.autolink {
+		.reference,
+		&.reference {
+			background: #303030;
 			&:hover {
 				background: #333333;
+			}
+			p,
+			.ref {
+				color: #9a9a9a!important;
 			}
 			.title {
 				color: #e0e0e0;
