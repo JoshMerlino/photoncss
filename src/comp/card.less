@@ -241,34 +241,10 @@
 &.photon--darktheme,
 .photon--darktheme {
 	&.card,
-	&.paper,
 	.card,
+	&.paper,
 	.paper {
-		background: #303030;
-
-		&.flat {
-			border-color: #343434;
-		}
-
-		.card-content {
-			p {
-				color: #b3b3b3;
-			}
-
-			.card-title {
-				color: #fafafa!important;
-			}
-		}
-	}
-}
-
-&.photon--systemtheme,
-.photon--systemtheme {
-	@media (prefers-color-scheme: dark) {
-		&.card,
-		&.paper:not(.toolbar):not(.app-bar),
-		.card,
-		.paper:not(.toolbar):not(.app-bar) {
+		&:not(.toolbar):not(.app-bar) {
 			background: #303030;
 
 			&.flat {
@@ -282,6 +258,34 @@
 
 				.card-title {
 					color: #fafafa!important;
+				}
+			}
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		&.card,
+		.card,
+		&.paper,
+		.paper {
+			&:not(.toolbar):not(.app-bar) {
+				background: #303030;
+
+				&.flat {
+					border-color: #343434;
+				}
+
+				.card-content {
+					p {
+						color: #b3b3b3;
+					}
+
+					.card-title {
+						color: #fafafa!important;
+					}
 				}
 			}
 		}
