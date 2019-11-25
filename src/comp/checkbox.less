@@ -149,3 +149,33 @@ input[type="checkbox"]:not(.switch) {
 		}
 	}
 }
+
+&.photon--darktheme,
+.photon--darktheme {
+	.checkbox,
+	&.checkbox {
+		.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		&.primary {
+			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+		&.accent {
+			.photon-checkbox(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.checkbox,
+		&.checkbox {
+			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			&.primary {
+				.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+			&.accent {
+				.photon-checkbox(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+		}
+	}
+}

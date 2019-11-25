@@ -150,10 +150,10 @@
 &.photon--darktheme,
 .photon--darktheme {
 	.sidenav {
-		background: #303030;
+		background: #242424;
 		color: #fafafa;
 		.divider {
-			border-bottom: 1px solid #414141!important;
+			border-bottom: 1px solid #323232!important;
 		}
 		li a:not(.active) {
 			color: rgba(255,255,255,.70);
@@ -167,6 +167,13 @@
 				background: rgba(255,255,255,.04);
 			}
 		}
+		li a.active {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+			color: lighten(@primaryColor, @darkmodeColorDiff);
+			.waves-ripple {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+			}
+		}
 	}
 }
 
@@ -174,10 +181,10 @@
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
 		.sidenav {
-			background: #303030;
+			background: #242424;
 			color: #fafafa;
 			.divider {
-				border-bottom: 1px solid #414141!important;
+				border-bottom: 1px solid #323232!important;
 			}
 			li a:not(.active) {
 				color: rgba(255,255,255,.70);
@@ -189,6 +196,13 @@
 				}
 				&.waves-effect:hover {
 					background: rgba(255,255,255,.04);
+				}
+			}
+			li a.active {
+				background: fade(lighten(@primaryColor, @darkmodeColorDiff), 10%);
+				color: lighten(@primaryColor, @darkmodeColorDiff);
+				.waves-ripple {
+					background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
 				}
 			}
 		}

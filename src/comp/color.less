@@ -2368,3 +2368,47 @@
 .accent-text {
 	color: @accentColor!important;
 }
+
+&.photon--darktheme,
+.photon--darktheme {
+	.primary {
+		background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		color: #000000b3!important;
+	}
+
+	.primary-text {
+		color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+	}
+
+	.accent {
+		background: lighten(@accentColor, @darkmodeColorDiff)!important;
+		color: #000000b3!important;
+	}
+
+	.accent-text {
+		color: lighten(@accentColor, @darkmodeColorDiff)!important;
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.primary {
+			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			color: #000000b3!important;
+		}
+
+		.primary-text {
+			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+
+		.accent {
+			background: lighten(@accentColor, @darkmodeColorDiff)!important;
+			color: #000000b3!important;
+		}
+
+		.accent-text {
+			color: lighten(@accentColor, @darkmodeColorDiff)!important;
+		}
+	}
+}
