@@ -1649,10 +1649,12 @@ Photon.disableArrowKeyScrolling = false;
 
 Photon.ready = Photon.reload = () => {
 
+				console.trace("Photon Reloaded:");
+
 				$(".collapsible").collapsible();
 				$(".scrollnav").scrollnav();
 				$(".select").select();
-				$(".sidenav").sidenav();
+				$(".sidenav").not(`[data-sn]`).sidenav();
 				$(".slider").slider();
 				$(".tabs").tabs();
 				$(".tooltipped").tooltip();

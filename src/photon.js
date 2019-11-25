@@ -90,7 +90,7 @@ Photon.disableArrowKeyScrolling = false;
 }, false));
 
 ;(function() {
-    $.fn.collapsible = function(options, methodParam) {
+    $.fn.expansionpanel = function(options, methodParam) {
         let defaults = {
             accordion: undefined,
             onOpen: undefined,
@@ -103,11 +103,11 @@ Photon.disableArrowKeyScrolling = false;
         return this.each(function() {
 
             let $this = $(this);
-            let $panel_headers = $(this).find('> li > .collapsible-header');
-            let collapsible_type = $this.data("collapsible");
+            let $panel_headers = $(this).find('> li > .expansion-header');
+            let expansion-panel_type = $this.data("expansion-panel");
 
             function accordionOpen(object) {
-                $panel_headers = $this.find('> li > .collapsible-header');
+                $panel_headers = $this.find('> li > .expansion-header');
 
                 if (object.hasClass('active')) {
                     object.parent().addClass('active');
@@ -116,7 +116,7 @@ Photon.disableArrowKeyScrolling = false;
                 }
 
                 if (object.parent().hasClass('active')) {
-                    object.siblings('.collapsible-body').stop(true, false).slideDown({
+                    object.siblings('.expansion-body').stop(true, false).slideDown({
                         duration: Photon.speed,
                         queue: false,
                         complete: function() {
@@ -124,7 +124,7 @@ Photon.disableArrowKeyScrolling = false;
                         }
                     });
                 } else {
-                    object.siblings('.collapsible-body').stop(true, false).slideUp({
+                    object.siblings('.expansion-body').stop(true, false).slideUp({
                         duration: Photon.speed,
                         queue: false,
                         complete: function() {
@@ -135,7 +135,7 @@ Photon.disableArrowKeyScrolling = false;
 
                 $panel_headers.not(object).removeClass('active').parent().removeClass('active');
 
-                $panel_headers.not(object).parent().children('.collapsible-body').stop(true, false).each(function() {
+                $panel_headers.not(object).parent().children('.expansion-body').stop(true, false).each(function() {
 
                     if ($(this).is(':visible')) {
                         $(this).slideUp({
@@ -143,7 +143,7 @@ Photon.disableArrowKeyScrolling = false;
                             queue: false,
                             complete: function() {
                                 $(this).css('height', '');
-                                execCallbacks($(this).siblings('.collapsible-header'));
+                                execCallbacks($(this).siblings('.expansion-header'));
                             }
                         });
                     }
@@ -158,7 +158,7 @@ Photon.disableArrowKeyScrolling = false;
                 }
 
                 if (object.parent().hasClass('active')) {
-                    object.siblings('.collapsible-body').stop(true, false).slideDown({
+                    object.siblings('.expansion-body').stop(true, false).slideDown({
                         duration: Photon.speed,
                         queue: false,
                         complete: function() {
@@ -166,7 +166,7 @@ Photon.disableArrowKeyScrolling = false;
                         }
                     });
                 } else {
-                    object.siblings('.collapsible-body').stop(true, false).slideUp({
+                    object.siblings('.expansion-body').stop(true, false).slideUp({
                         duration: Photon.speed,
                         queue: false,
                         complete: function() {
@@ -176,12 +176,12 @@ Photon.disableArrowKeyScrolling = false;
                 }
             }
 
-            function collapsibleOpen(object, noToggle) {
+            function expansion-panelOpen(object, noToggle) {
                 if (!noToggle) {
                     object.toggleClass('active');
                 }
 
-                if (options.accordion || collapsible_type === "accordion" || collapsible_type === undefined) {
+                if (options.accordion || expansion-panel_type === "accordion" || expansion-panel_type === undefined) {
                     accordionOpen(object);
                 } else {
                     expandableOpen(object);
@@ -208,11 +208,11 @@ Photon.disableArrowKeyScrolling = false;
             }
 
             function getPanelHeader(object) {
-                return object.closest('li > .collapsible-header');
+                return object.closest('li > .expansion-header');
             }
 
             function removeEventHandlers() {
-                $this.off('click.collapse', '> li > .collapsible-header');
+                $this.off('click.collapse', '> li > .expansion-header');
             }
 
             if (methodName === 'destroy') {
@@ -222,28 +222,28 @@ Photon.disableArrowKeyScrolling = false;
                 methodParam < $panel_headers.length) {
                 let $curr_header = $panel_headers.eq(methodParam);
                 if ($curr_header.length && (methodName === 'open' || (methodName === 'close' && $curr_header.hasClass('active')))) {
-                    collapsibleOpen($curr_header);
+                    expansion-panelOpen($curr_header);
                 }
                 return;
             }
 
             removeEventHandlers();
 
-            $this.on('click.collapse', '> li > .collapsible-header', function(e) {
+            $this.on('click.collapse', '> li > .expansion-header', function(e) {
                 let element = $(e.target);
 
                 if (isChildrenOfPanelHeader(element)) {
                     element = getPanelHeader(element);
                 }
 
-                collapsibleOpen(element);
+                expansion-panelOpen(element);
             });
 
-            if (options.accordion || collapsible_type === "accordion" || collapsible_type === undefined) {
-                collapsibleOpen($panel_headers.filter('.active').first(), true);
+            if (options.accordion || expansion-panel_type === "accordion" || expansion-panel_type === undefined) {
+                expansion-panelOpen($panel_headers.filter('.active').first(), true);
             } else {
                 $panel_headers.filter('.active').each(function() {
-                    collapsibleOpen($(this), true);
+                    expansion-panelOpen($(this), true);
                 });
             }
 
@@ -1564,10 +1564,12 @@ Photon.disableArrowKeyScrolling = false;
 
 Photon.ready = Photon.reload = () => {
 
-	$(".collapsible").collapsible();
+	console.trace("Photon Reloaded:");
+
+	$(".expansion-panel").expansionpanel();
     $(".scrollnav").scrollnav();
     $(".select").select();
-    $(".sidenav").sidenav();
+    $(".sidenav").not(`[data-sn]`).sidenav();
     $(".slider").slider();
     $(".tabs").tabs();
     $(".tooltipped").tooltip();
@@ -1798,7 +1800,7 @@ $(() => {
 	        t[0].style.transform = "scale(2) translateY(" + px + "px)";
 	    });
 
-	    $(".collapsible").each(function() {
+	    $(".expansion-panel").each(function() {
 	        $(this).children().removeClass("adjact");
 	        $(this).children(".active").prev("li").addClass("adjact");
 	    });

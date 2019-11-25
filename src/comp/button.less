@@ -23,10 +23,6 @@
 		background: darken(#e0e0e0,6%);
 	}
 
-	.waves-ripple {
-		background: fade(#212121,40%)!important;
-	}
-
 	&.dense {
 		padding: 0 8px;
 		font-size: 0.8125rem;
@@ -69,6 +65,11 @@
 			box-shadow: none!important;
 			background: fade(#e0e0e0,21%)!important;
 			color: #818181!important;
+		}
+
+		.raised-2();
+		&:active {
+			.raised-6();
 		}
 	}
 
@@ -153,6 +154,74 @@
 				label {
 					font-size: 0.9375rem;
 				}
+			}
+		}
+	}
+}
+
+&.photon--darktheme,
+.photon--darktheme {
+	.btn {
+		.waves-ripple {
+			background: fade(#000, 40%);
+		}
+	}
+	.btn.raised {
+		&.primary {
+			.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+		&.accent {
+			.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+		}
+	}
+	.btn.flat {
+		&.primary {
+			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		&.accent {
+			.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
+		}
+	}
+	.btn.outlined {
+		&.primary {
+			.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		&.accent {
+			.photon-button-outlined(lighten(@accentColor, @darkmodeColorDiff));
+		}
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.btn {
+			.waves-ripple {
+				background: fade(#000, 40%);
+			}
+		}
+		.btn.raised {
+			&.primary {
+				.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+			&.accent {
+				.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
+			}
+		}
+		.btn.flat {
+			&.primary {
+				.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+			}
+			&.accent {
+				.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
+			}
+		}
+		.btn.outlined {
+			&.primary {
+				.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
+			}
+			&.accent {
+				.photon-button-outlined(lighten(@accentColor, @darkmodeColorDiff));
 			}
 		}
 	}
