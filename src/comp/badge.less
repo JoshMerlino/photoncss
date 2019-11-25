@@ -8,3 +8,21 @@
 	display: inline-block;
 	line-height: 14px;
 }
+
+&.photon--darktheme,
+.photon--darktheme {
+	.badge {
+		color: negation(@primaryTextColor, #ffffff);
+		background: lighten(@accentColor, @darkmodeColorDiff);
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.badge {
+			color: negation(@primaryTextColor, #ffffff);
+			background: lighten(@accentColor, @darkmodeColorDiff);
+		}
+	}
+}

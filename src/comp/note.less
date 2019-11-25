@@ -49,3 +49,21 @@
 	&.quote {.photon-note(@grey,"format_quote","Quote")}
 	&.question {.photon-note(@grey,"help","Question")}
 }
+
+&.photon--darktheme,
+.photon--darktheme {
+	&.note,
+	.note {
+		background: #303030;
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		&.note,
+		.note {
+			background: #303030;
+		}
+	}
+}
