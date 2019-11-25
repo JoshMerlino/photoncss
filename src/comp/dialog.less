@@ -666,3 +666,19 @@
 		}
 	}
 }
+
+&.photon--darktheme,
+.photon--darktheme {
+	.dialog .actions .btn	 {
+		.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+	}
+}
+
+&.photon--systemtheme,
+.photon--systemtheme {
+	@media (prefers-color-scheme: dark) {
+		.dialog .actions .bt	n {
+			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+	}
+}
