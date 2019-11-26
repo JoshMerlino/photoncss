@@ -132,8 +132,8 @@ input[type="radio"] {
 
 &.photon--darktheme,
 .photon--darktheme {
-	.radio-btn,
-	&.radio-btn {
+	.radio-btn:not(.no-contrast),
+	&.radio-btn:not(.no-contrast) {
 		.photon-radio(lighten(@primaryColor, @darkmodeColorDiff));
 		&.primary {
 			.photon-radio(lighten(@primaryColor, @darkmodeColorDiff));
@@ -147,8 +147,8 @@ input[type="radio"] {
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.radio-btn,
-		&.radio-btn {
+		.radio-btn:not(.no-contrast),
+		&.radio-btn:not(.no-contrast) {
 			.photon-radio(lighten(@primaryColor, @darkmodeColorDiff));
 			&.primary {
 				.photon-radio(lighten(@primaryColor, @darkmodeColorDiff));
