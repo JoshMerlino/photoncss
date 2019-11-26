@@ -52,18 +52,46 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	&.note,
-	.note {
+	.note,
+	&.note {
 		background: #303030;
+		&:not(.no-contrast) {
+			.photon-note(lighten(@blue, @darkmodeColorDiff),"editor","Note");
+			&.summary {.photon-note(lighten(@light-blue, @darkmodeColorDiff),"format_align_left","Summary")}
+			&.info {.photon-note(lighten(@cyan, @darkmodeColorDiff),"info","Info")}
+			&.tip {.photon-note(lighten(@teal, @darkmodeColorDiff),"whatshot","Tip")}
+			&.success {.photon-note(lighten(@green-accent4, @darkmodeColorDiff),"check","Success")}
+			&.warning {.photon-note(lighten(@orange, @darkmodeColorDiff),"warning","Warning")}
+			&.failure {.photon-note(lighten(@deep-orange, @darkmodeColorDiff),"error_outline","Failure")}
+			&.danger {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Danger")}
+			&.bug {.photon-note(lighten(@red, @darkmodeColorDiff),"bug_report","Bug")}
+			&.example {.photon-note(lighten(@indigo, @darkmodeColorDiff),"slideshow","Example")}
+			&.quote {.photon-note(lighten(@grey, @darkmodeColorDiff),"format_quote","Quote")}
+			&.question {.photon-note(lighten(@grey, @darkmodeColorDiff),"help","Question")}
+		}
 	}
 }
 
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		&.note,
-		.note {
+		.note,
+		&.note {
 			background: #303030;
+			&:not(.no-contrast) {
+				.photon-note(lighten(@blue, @darkmodeColorDiff),"editor","Note");
+				&.summary {.photon-note(lighten(@light-blue, @darkmodeColorDiff),"format_align_left","Summary")}
+				&.info {.photon-note(lighten(@cyan, @darkmodeColorDiff),"info","Info")}
+				&.tip {.photon-note(lighten(@teal, @darkmodeColorDiff),"whatshot","Tip")}
+				&.success {.photon-note(lighten(@green-accent4, @darkmodeColorDiff),"check","Success")}
+				&.warning {.photon-note(lighten(@orange, @darkmodeColorDiff),"warning","Warning")}
+				&.failure {.photon-note(lighten(@deep-orange, @darkmodeColorDiff),"error_outline","Failure")}
+				&.danger {.photon-note(lighten(@red, @darkmodeColorDiff),"error","Danger")}
+				&.bug {.photon-note(lighten(@red, @darkmodeColorDiff),"bug_report","Bug")}
+				&.example {.photon-note(lighten(@indigo, @darkmodeColorDiff),"slideshow","Example")}
+				&.quote {.photon-note(lighten(@grey, @darkmodeColorDiff),"format_quote","Quote")}
+				&.question {.photon-note(lighten(@grey, @darkmodeColorDiff),"help","Question")}
+			}
 		}
 	}
 }

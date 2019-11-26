@@ -95,7 +95,7 @@ input[type="checkbox"]:not(.switch) {
 		}
 	}
 
-	input:checked ~ .ripple .waves-ripple {
+	input:checked:not(.indeterminate) ~ .ripple .waves-ripple {
 		background: fade(@primaryColor,40%);
 	}
 
@@ -105,6 +105,12 @@ input[type="checkbox"]:not(.switch) {
 
 	&.held input {
 		transform: scale(0.888);
+	}
+}
+
+.checkbox-group {
+	.children {
+		padding-left: 2rem;
 	}
 }
 
@@ -152,8 +158,8 @@ input[type="checkbox"]:not(.switch) {
 
 &.photon--darktheme,
 .photon--darktheme {
-	.checkbox,
-	&.checkbox {
+	.checkbox:not(.no-contrast),
+	&.checkbox:not(.no-contrast) {
 		.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 		&.primary {
 			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
@@ -167,8 +173,8 @@ input[type="checkbox"]:not(.switch) {
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.checkbox,
-		&.checkbox {
+		.checkbox:not(.no-contrast),
+		&.checkbox:not(.no-contrast) {
 			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 			&.primary {
 				.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));

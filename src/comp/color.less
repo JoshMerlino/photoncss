@@ -2351,7 +2351,7 @@
 	color: transparent!important;
 }
 
-.primary {
+.primary:not(.checkbox):not(.input-field):not(.radio-btn) {
 	background: @primaryColor!important;
 	color: @primaryTextColor;
 }
@@ -2360,7 +2360,7 @@
 	color: @primaryColor!important;
 }
 
-.accent {
+.accent:not(.checkbox):not(.input-field):not(.radio-btn) {
 	background: @accentColor!important;
 	color: @accentTextColor;
 }
@@ -2371,21 +2371,21 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.primary {
+	.primary:not(.no-contrast) {
 		background: lighten(@primaryColor, @darkmodeColorDiff)!important;
 		color: #000000b3!important;
 	}
 
-	.primary-text {
+	.primary-text:not(.no-contrast) {
 		color: lighten(@primaryColor, @darkmodeColorDiff)!important;
 	}
 
-	.accent {
+	.accent:not(.no-contrast) {
 		background: lighten(@accentColor, @darkmodeColorDiff)!important;
 		color: #000000b3!important;
 	}
 
-	.accent-text {
+	.accent-text:not(.no-contrast) {
 		color: lighten(@accentColor, @darkmodeColorDiff)!important;
 	}
 }
@@ -2393,21 +2393,21 @@
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.primary {
+		.primary:not(.no-contrast) {
 			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
 			color: #000000b3!important;
 		}
 
-		.primary-text {
+		.primary-text:not(.no-contrast) {
 			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
 		}
 
-		.accent {
+		.accent:not(.no-contrast) {
 			background: lighten(@accentColor, @darkmodeColorDiff)!important;
 			color: #000000b3!important;
 		}
 
-		.accent-text {
+		.accent-text:not(.no-contrast) {
 			color: lighten(@accentColor, @darkmodeColorDiff)!important;
 		}
 	}
