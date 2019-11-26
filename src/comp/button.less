@@ -74,7 +74,7 @@
 	}
 
 	&.flat {
-		.photon-button-flat(#676767);
+		.photon-button-flat(#757575);
 
 		&.primary {
 			.photon-button-flat(@primaryColor)
@@ -91,7 +91,7 @@
 	}
 
 	&.outlined {
-		.photon-button-outlined(#676767);
+		.photon-button-outlined(#757575);
 
 		&.primary {
 			.photon-button-outlined(@primaryColor)
@@ -161,12 +161,12 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.btn {
+	.btn:not(.no-contrast) {
 		.waves-ripple {
 			background: fade(#000, 40%);
 		}
 	}
-	.btn.raised {
+	.btn.raised:not(.no-contrast) {
 		&.primary {
 			.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 		}
@@ -174,7 +174,7 @@
 			.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 		}
 	}
-	.btn.flat {
+	.btn.flat:not(.no-contrast) {
 		&.primary {
 			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
 		}
@@ -182,7 +182,7 @@
 			.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
 		}
 	}
-	.btn.outlined {
+	.btn.outlined:not(.no-contrast) {
 		&.primary {
 			.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
 		}
@@ -195,12 +195,12 @@
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.btn {
+		.btn:not(.no-contrast) {
 			.waves-ripple {
 				background: fade(#000, 40%);
 			}
 		}
-		.btn.raised {
+		.btn.raised:not(.no-contrast) {
 			&.primary {
 				.photon-button-raised(lighten(@primaryColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 			}
@@ -208,7 +208,7 @@
 				.photon-button-raised(lighten(@accentColor, @darkmodeColorDiff), negation(@primaryTextColor, #ffffff));
 			}
 		}
-		.btn.flat {
+		.btn.flat:not(.no-contrast) {
 			&.primary {
 				.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
 			}
@@ -216,7 +216,7 @@
 				.photon-button-flat(lighten(@accentColor, @darkmodeColorDiff));
 			}
 		}
-		.btn.outlined {
+		.btn.outlined:not(.no-contrast) {
 			&.primary {
 				.photon-button-outlined(lighten(@primaryColor, @darkmodeColorDiff));
 			}
