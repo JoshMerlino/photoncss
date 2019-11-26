@@ -11,7 +11,7 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.badge {
+	.badge:not(.no-contrast) {
 		color: negation(@primaryTextColor, #ffffff);
 		background: lighten(@accentColor, @darkmodeColorDiff);
 	}
@@ -20,7 +20,7 @@
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.badge {
+		.badge:not(.no-contrast) {
 			color: negation(@primaryTextColor, #ffffff);
 			background: lighten(@accentColor, @darkmodeColorDiff);
 		}
