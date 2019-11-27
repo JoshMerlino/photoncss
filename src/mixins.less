@@ -66,24 +66,24 @@
 }
 
 .photon-note(@color,@icon,@title){
-	border-color: @color;
+	border-color: @color!important;
 	a {
-		color: @color;
+		color: @color!important;
 	}
 	code {
-		color: @color;
+		color: @color!important;
 		border-color: @color!important;
-		background: fade(@color,20%);
+		background: fade(@color,20%)!important;
 	}
 	.header {
-		border-color: fade(@color,20%);
-		background: fade(@color,10%);
+		border-color: fade(@color,20%)!important;
+		background: fade(@color,10%)!important;
 		&::before {
-			content: @icon;
-			color: @color;
+			content: @icon!important;
+			color: @color!important;
 		}
 		&::after {
-			content: @title;
+			content: @title!important;
 		}
 	}
 	hr {
