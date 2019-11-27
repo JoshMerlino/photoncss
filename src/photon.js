@@ -1631,6 +1631,9 @@ Photon.ready = Photon.reload = () => {
 
     ;(function(){
 		$(".input-field input,.input-field.select select").focus(function() {
+
+			if($(this).parent().children(".bar").length > 0) return;
+
 	        $(this).parent().append("<div class=\"bar\"></div>");
 	        let bar = $(this).siblings(".bar");
 
