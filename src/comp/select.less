@@ -67,10 +67,18 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.select .options {
-		background:#414141!important;
-		.option {
-			color:#fafafa;
+	.select {
+		.options {
+			background:#414141!important;
+			.option {
+				color:#fafafa;
+			}
+		}
+		&:not(.no-contrast) {
+			.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+			input {
+				border-color: #525252;
+			}
 		}
 	}
 }
@@ -78,10 +86,18 @@
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.select .options {
-			background:#414141!important;
-			.option {
-				color:#fafafa;
+		.select {
+			.options {
+				background:#414141!important;
+				.option {
+					color:#fafafa;
+				}
+			}
+			&:not(.no-contrast) {
+				.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+				input {
+					border-color: #525252;
+				}
 			}
 		}
 	}
