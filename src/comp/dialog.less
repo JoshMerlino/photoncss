@@ -22,7 +22,7 @@
 		overflow: hidden;
 
 		&.enlarge {
-			opacity: 0.54;
+			transform: scale(1.03)!important;
 		}
 	}
 
@@ -247,7 +247,7 @@
 
 	.dialog.photon-datepicker {
 		.bar {
-			background: @accentColor;
+			background: @primaryColor;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -303,7 +303,7 @@
 					line-height: 48px;
 
 					&.selected {
-						color: @accentColor;
+						color: @primaryColor;
 					}
 				}
 			}
@@ -424,7 +424,7 @@
 
 	.dialog.photon-timepicker {
 		.bar {
-			background: @accentColor;
+			background: @primaryColor;
 			position: absolute;
 			top: 0;
 			left: 0;
@@ -444,7 +444,6 @@
 
 			.timecell {
 				position: absolute;
-				background: #f00;
 				height: 36px;
 				width: 36px;
 				border-radius: 50%;
@@ -567,7 +566,7 @@
 					}
 
 					&.today:not(.selected) {
-						color: @accentColor!important;
+						color: lighten(@accentColor, @darkmodeColorDiff)!important;
 					}
 				}
 			}
@@ -658,7 +657,7 @@
 						}
 
 						&.today:not(.selected) {
-							color: @accentColor!important;
+							color: lighten(@accentColor, @darkmodeColorDiff)!important;
 						}
 					}
 				}
@@ -669,16 +668,84 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.dialog .actions .btn	 {
+	.dialog .actions .btn {
 		.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
 	}
+	.dialog .body .options .checkbox {
+		.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), #414141);
+	}
+	.dialog .body {
+		border-bottom-color: #616161!important;
+		&.calendar .cal-slider .cal .datecell .selected {
+			background: lighten(@accentColor, @darkmodeColorDiff)!important;
+			color: #414141!important;
+		}
+		&.years .yearsel.selected {
+			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+	}
+	.photon-dialog .dialog .body .input-field,
+	.photon-dialog .dialog .body .input-field {
+		.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+		label, .bar {
+			background: #414141!important;
+		}
+	}
+	.photon-dialog .dialog .body .progress {
+		background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+		.determinate {
+			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+		}
+	}
+	.photon-dialog .dialog .body svg circle {
+		stroke: lighten(@primaryColor, @darkmodeColorDiff)!important;
+	}
+}
+
+.photon-dialog .dialog .body .progress {
+	background: fade(@primaryColor, 20%)!important;
+	.determinate {
+		background: @primaryColor!important;
+	}
+}
+.photon-dialog .dialog .body svg circle {
+	stroke: @primaryColor!important;
 }
 
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.dialog .actions .bt	n {
+		.dialog .actions .btn {
 			.photon-button-flat(lighten(@primaryColor, @darkmodeColorDiff));
+		}
+		.dialog .body .options .checkbox {
+			.photon-checkbox(lighten(@primaryColor, @darkmodeColorDiff), #414141);
+		}
+		.dialog .body {
+			border-bottom-color: #616161!important;
+			&.calendar .cal-slider .cal .datecell .selected {
+				background: lighten(@accentColor, @darkmodeColorDiff)!important;
+				color: #414141!important;
+			}
+			&.years .yearsel.selected {
+				color: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			}
+		}
+		.photon-dialog .dialog .body .input-field,
+		.photon-dialog .dialog .body .input-field {
+			.photon-input(lighten(@primaryColor, @darkmodeColorDiff));
+			label, .bar {
+				background: #414141!important;
+			}
+		}
+		.photon-dialog .dialog .body .progress {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff), 20%)!important;
+			.determinate {
+				background: lighten(@primaryColor, @darkmodeColorDiff)!important;
+			}
+		}
+		.photon-dialog .dialog .body svg circle {
+			stroke: lighten(@primaryColor, @darkmodeColorDiff)!important;
 		}
 	}
 }

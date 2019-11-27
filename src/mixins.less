@@ -39,12 +39,12 @@
 }
 
 .photon-checkbox(@color,@text) {
-	input[type="checkbox"]:not(.switch) {
+	input[type="checkbox"]:not(.switch):not(.disabled):not(:disabled) {
 		&:checked {
-			border-color: @color;
+			border-color: @color!important;
 		}
 		&::after {
-			color:@text;
+			color:@text!important;
 		}
 	}
 	input:checked ~ .ripple .waves-ripple {
