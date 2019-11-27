@@ -1705,7 +1705,7 @@ Photon.ready = Photon.reload = () => {
 								$(this).addClass("for-" + f.attr("type"));
 
 								$(this).on("mousedown", function () {
-												Waves.calm(f.siblings(".ripple"));
+												f.siblings(".ripple").children().remove();
 												Waves.ripple(f.siblings(".ripple"), {
 																wait: 1e10
 												});
