@@ -255,7 +255,7 @@ Photon.disableArrowKeyScrolling = false;
 
 												let $this = $(this);
 												let $panel_headers = $(this).find('> li > .expansion-header');
-												let expansionpanel_type = $this.data("type");
+												let expansionpanel_type = $this.data("expansion-panel");
 
 												function accordionOpen(object) {
 																$panel_headers = $this.find('> li > .expansion-header');
@@ -311,6 +311,7 @@ Photon.disableArrowKeyScrolling = false;
 																if (object.parent().hasClass('active')) {
 																				object.siblings('.expansion-body').stop(true, false).slideDown({
 																								duration: Photon.speed,
+																								easing: "linear",
 																								queue: false,
 																								complete: function () {
 																												$(this).css('height', '');
@@ -319,6 +320,7 @@ Photon.disableArrowKeyScrolling = false;
 																} else {
 																				object.siblings('.expansion-body').stop(true, false).slideUp({
 																								duration: Photon.speed,
+																								easing: "linear",
 																								queue: false,
 																								complete: function () {
 																												$(this).css('height', '');
