@@ -94,14 +94,14 @@
 .photon-radio(@color) {
 	input[type="radio"]:not(.switch) {
 		&:checked {
-			border-color: @color;
+			border-color: @color!important;
 		}
 		&::after {
-			background:@color;
+			background: @color!important;
 		}
 	}
 	input:checked ~ .ripple .waves-ripple {
-		background:fade(@color,40%);
+		background:fade(@color, 40%)!important;
 	}
 }
 
