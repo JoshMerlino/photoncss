@@ -89,6 +89,7 @@
 	  	font-size: 14px;
 	  	font-weight: 500;
 	  	line-height: 48px;
+		opacity: .87;
 		&:hover {
 			background:transparent;
 		}
@@ -163,7 +164,7 @@
 			&.subheader {
 				color: rgba(255,255,255,.54)!important;
 			}
-			&.waves-effect:hover {
+			&:not(.divider):hover {
 				background: rgba(255,255,255,.04);
 			}
 		}
@@ -194,7 +195,7 @@
 				&.subheader {
 					color: rgba(255,255,255,.54)!important;
 				}
-				&.waves-effect:hover {
+				&:not(.divider):hover {
 					background: rgba(255,255,255,.04);
 				}
 			}
