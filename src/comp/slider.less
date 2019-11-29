@@ -107,7 +107,7 @@
 &.photon--darktheme,
 .photon--darktheme {
 	.slider-field {
-		.slider {
+		.slider:not(.no-contrast) {
 			.determinate,
 			.thumb {
 				background: lighten(@primaryColor, @darkmodeColorDiff);
@@ -134,7 +134,7 @@
 				background: #525252!important;
 			}
 		}
-		&.accent {
+		&.accent:not(.no-contrast) {
 			.photon-slider(lighten(@accentColor, @darkmodeColorDiff));
 		}
 	}
@@ -144,7 +144,7 @@
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
 		.slider-field {
-			.slider {
+			.slider:not(.no-contrast) {
 				.determinate,
 				.thumb {
 					background: lighten(@primaryColor, @darkmodeColorDiff);
@@ -171,7 +171,7 @@
 					background: #525252!important;
 				}
 			}
-			&.accent {
+			&.accent:not(.no-contrast) {
 				.photon-slider(lighten(@accentColor, @darkmodeColorDiff));
 			}
 		}
