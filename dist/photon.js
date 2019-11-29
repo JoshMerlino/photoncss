@@ -593,21 +593,15 @@ Photon.disableArrowKeyScrolling = false;
 												thumb.off("mousedown touchstart").on("mousedown touchstart", startDrag);
 
 												function startDrag() {
-																Waves.ripple(ripple, {
-																				wait: 1e10
-																});
+																Waves.ripple(ripple, { wait: 1e10 });
 																$("body").on("mousemove touchmove", function (e) {
-
 																				e.preventDefault();
-
-																				let x = e.pageX || e.changedTouches[0].pageX;
+																				let x = e.pageX || (e.changedTouches[0] || { pageX: 0 }).pageX;
 																				let o = (x - slider.offset().left - 3) / slider.width() * 100;
 																				o = o < 0 ? 0 : o;
 																				o = o > 100 ? 100 : o;
-
 																				thumb.css("left", o + "%");
 																				track.width(o + "%");
-
 																				slider.attr("value", o);
 																});
 												}
@@ -618,13 +612,8 @@ Photon.disableArrowKeyScrolling = false;
 																o = o < 0 ? 0 : o;
 																o = o > 100 ? 100 : o;
 
-																thumb.animate({
-																				"left": o + "%"
-																}, Photon.speed, "swing");
-																track.animate({
-																				"width": o + "%"
-																}, Photon.speed, "swing");
-
+																thumb.css({ "left": o + "%" });
+																track.css({ "width": o + "%" });
 																slider.attr("value", o);
 												});
 
