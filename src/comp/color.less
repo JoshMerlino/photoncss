@@ -2351,7 +2351,7 @@
 	color: transparent!important;
 }
 
-.primary:not(.checkbox):not(.radio-btn) {
+.primary:not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 	background: @primaryColor!important;
 	color: @primaryTextColor;
 }
@@ -2360,7 +2360,7 @@
 	color: @primaryColor!important;
 }
 
-.accent:not(.checkbox):not(.radio-btn) {
+.accent:not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 	background: @accentColor!important;
 	color: @accentTextColor;
 }
@@ -2371,7 +2371,7 @@
 
 &.photon--darktheme,
 .photon--darktheme {
-	.primary:not(.no-contrast):not(.checkbox):not(.radio-btn) {
+	.primary:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 		background: lighten(@primaryColor, @darkmodeColorDiff)!important;
 		color: #000000b3!important;
 	}
@@ -2380,7 +2380,7 @@
 		color: lighten(@primaryColor, @darkmodeColorDiff)!important;
 	}
 
-	.accent:not(.no-contrast):not(.checkbox):not(.radio-btn) {
+	.accent:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 		background: lighten(@accentColor, @darkmodeColorDiff)!important;
 		color: #000000b3!important;
 	}
@@ -2393,7 +2393,7 @@
 &.photon--systemtheme,
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
-		.primary:not(.no-contrast):not(.checkbox):not(.radio-btn) {
+		.primary:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 			background: lighten(@primaryColor, @darkmodeColorDiff)!important;
 			color: #000000b3!important;
 		}
@@ -2402,7 +2402,7 @@
 			color: lighten(@primaryColor, @darkmodeColorDiff)!important;
 		}
 
-		.accent:not(.no-contrast):not(.checkbox):not(.radio-btn) {
+		.accent:not(.no-contrast):not(.checkbox):not(.radio-btn):not(.flat):not(.outlined) {
 			background: lighten(@accentColor, @darkmodeColorDiff)!important;
 			color: #000000b3!important;
 		}

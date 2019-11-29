@@ -120,6 +120,65 @@
 	}
 }
 
+.sidenav .expansion-panel {
+	margin: 0;
+
+	li {
+		border: none;
+		margin: 0;
+		box-shadow: none!important;
+		border-radius: 0;
+		background: transparent!important;
+		border-radius: 0!important;
+
+		.expansion-header {
+			color: rgba(0,0,0,0.7);
+			display: block;
+			font-size: 14px;
+			font-weight: 500;
+			height: 48px;
+			padding: 0 32px;
+			width: 224px;
+			border-top-right-radius: 50px;
+			border-bottom-right-radius: 50px;
+
+			&:hover {
+  				background-color: rgba(0, 0, 0, 0.05);
+			}
+
+			&::after {
+				top: auto;
+				transform: rotate(0deg);
+				bottom: 0;
+				left: 4px;
+				right: auto;
+				content: "arrow_right";
+			}
+
+			&.active::after {
+				transform: rotate(90deg);
+			}
+		}
+
+		.expansion-body {
+			padding: 0!important;
+			a {
+				padding-left: 64px;
+				padding-right: 0px;
+				position: relative;
+				&::before {
+					content: "\2022";
+					position: absolute;
+					top: 0;
+					left: 32px;
+					color: inherit;
+					font-size: 36px;
+				}
+			}
+		}
+	}
+}
+
 &.photon--darktheme,
 .photon--darktheme {
 	.expansion-panel li {
@@ -127,6 +186,12 @@
 		border-color: #565656;
 		&.disabled {
 			background:#242424;
+		}
+	}
+	.sidenav .expansion-panel li .expansion-header {
+		color: rgba(255,255,255,.7);
+		&:hover {
+			background-color: rgba(255, 255, 255, 0.05);
 		}
 	}
 }
@@ -141,49 +206,11 @@
 				background:#242424;
 			}
 		}
-	}
-}
-
-.sidenav .expansion-panel {
-	margin: 0;
-
-	li {
-		border: none;
-		margin: 0;
-		box-shadow: none!important;
-		border-radius: 0;
-		background: transparent!important;
-		border-radius: 0!important;
-
-		.expansion-header {
-			color: rgba(0, 0, 0, 0.87);
-			display: block;
-			font-size: 14px;
-			font-weight: 500;
-			height: 48px;
-			line-height: 48px;
-			padding: 0 32px;
-
-			&::after {
-				top: auto;
-				transform: rotate(0deg);
-				bottom: 0;
+		.sidenav .expansion-panel li .expansion-header {
+			color: rgba(255,255,255,.7);
+			&:hover {
+  				background-color: rgba(255, 255, 255, 0.05);
 			}
-		}
-
-		&.active {
-			.expansion-body,
-			.expansion-header {
-				box-shadow: inset 0 -1px 0 0 #e5e5e5;
-
-				&::after {
-					transform: rotate(180deg);
-				}
-			}
-		}
-
-		.expansion-body {
-			padding: 0!important;
 		}
 	}
 }
