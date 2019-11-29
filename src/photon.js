@@ -1714,7 +1714,7 @@ Photon.ready = Photon.reload = () => {
 	            })
 	        }
 	    }).siblings("label").click(function() {
-	        $(this).siblings("input").focus()
+	        $(this).siblings("input:not(:disabled)").focus()
 	    }).each(function() {
 	        $(this).parent().mouseenter();
 	    })
