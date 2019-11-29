@@ -106,14 +106,14 @@
 }
 
 .photon-slider(@color) {
-	.slider {
+	.slider:not([value="0"]) {
 		.determinate,
 		.thumb {
 			background: @color!important;
 		}
-		.ripple .waves-ripple {
-			background: fade(@color, 40%)!important;
-		}
+	}
+	.slider .ripple .waves-ripple {
+		background: fade(@color, 40%)!important;
 	}
 }
 
