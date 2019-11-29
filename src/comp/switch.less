@@ -80,7 +80,22 @@
 &.photon--darktheme,
 .photon--darktheme {
 	input[type="checkbox"].switch:not(:checked)::before {
-		background: #bdbdbd;
+		background: #757575;
+	}
+	input[type="checkbox"].switch {
+		background: #303030;
+	}
+	.switch.accent {
+		.photon-switch(lighten(@accentColor,@darkmodeColorDiff));
+	}
+	input[type="checkbox"].switch:checked {
+		background: fade(lighten(@primaryColor, @darkmodeColorDiff),50%);
+		&::before {
+			background: lighten(@primaryColor, @darkmodeColorDiff);
+		}
+	}
+	input:checked ~ .ripple .waves-ripple {
+		background: fade(lighten(@primaryColor, @darkmodeColorDiff),40%);
 	}
 }
 
@@ -88,7 +103,22 @@
 .photon--systemtheme {
 	@media (prefers-color-scheme: dark) {
 		input[type="checkbox"].switch:not(:checked)::before {
-			background: #bdbdbd;
+			background: #757575;
+		}
+		input[type="checkbox"].switch {
+			background: #303030;
+		}
+		.switch.accent {
+			.photon-switch(lighten(@accentColor,@darkmodeColorDiff));
+		}
+		input[type="checkbox"].switch:checked {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff),50%);
+			&::before {
+				background: lighten(@primaryColor, @darkmodeColorDiff);
+			}
+		}
+		input:checked ~ .ripple .waves-ripple {
+			background: fade(lighten(@primaryColor, @darkmodeColorDiff),40%);
 		}
 	}
 }
