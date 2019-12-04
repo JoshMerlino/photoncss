@@ -128,7 +128,7 @@
 				}) : "object" == typeof exports ? module.exports = e.call(t) : t.Waves = e.call(t);
 }(window);
 
-Photon = {
+const Photon = {
 				activeDialog: undefined,
 				autoready: true,
 				events: {},
@@ -889,7 +889,6 @@ Photon.disableArrowKeyScrolling = false;
 												const guid = Photon.guid();
 												if (options.position.toLowerCase() == "bottom") {
 																let center = descriptor.offset().left;
-																pos = [descriptor.offset().top, center];
 												}
 
 												$(this).mouseenter(function () {
@@ -1941,3 +1940,5 @@ $(() => {
 								});
 				})();
 });
+
+typeof module === "object" && (module.exports = Photon);
