@@ -1661,7 +1661,11 @@ Photon.disableArrowKeyScrolling = false;
 				};
 })();
 
+Photon.lastReload = -500;
 Photon.ready = Photon.reload = () => {
+				if (performance.now() - 500 > Photon.lastReload) {
+								Photon.lastReload = performance.now();
+				} else return false;
 
 				$(".material-tooltip").remove();
 
