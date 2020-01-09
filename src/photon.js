@@ -1577,7 +1577,13 @@ Photon.disableArrowKeyScrolling = false;
 	};
 }());
 
-Photon.ready = Photon.reload = () => {
+Photon.lastReload = -500;
+Photon.ready = Photon.reload = (hard = false) => {
+	if(hard !== true) {
+		if(performance.now() - 500 > Photon.lastReload) {
+			Photon.lastReload = performance.now();
+		} else return false;
+	}
 
 	$(".material-tooltip").remove();
 
@@ -1783,7 +1789,7 @@ Photon.ready = Photon.reload = () => {
 		$(this).children("input").focus()
 	});
 
-}
+});
 
 $(() => {
 
