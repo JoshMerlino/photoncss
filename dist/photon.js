@@ -133,7 +133,6 @@ const Photon = {
 				autoready: true,
 				events: {},
 				speed: 150,
-
 				guid() {
 								let s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
 								return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
@@ -145,7 +144,6 @@ const Photon = {
 												}
 								});
 				},
-
 				Waves: {
 								reload() {
 												$(".waves-ink").off("mousedown").bind("mousedown", function (e) {
@@ -1037,6 +1035,7 @@ Photon.disableArrowKeyScrolling = false;
 																size: "auto",
 																message: "",
 																transition: "fade",
+																list: [],
 																actions: [],
 																inputs: [],
 																assets: 1,
@@ -1104,6 +1103,16 @@ Photon.disableArrowKeyScrolling = false;
 
 																dialog.children(".body").children(".input-field").first().children("input").focus();
 																Photon.updateTextFields();
+												} else if (this.options.type == "icon") {
+																dialog.append(`<div class="title">${this.options.title}</div>`);
+																let bodyHTML = "<div style={{ marginBottom: -22, marginTop: -16 }}>";
+																this.options.list.map(item => {
+																				const guid = Photon.guid();
+																				bodyHTML += `<a id="${guid}" class="link waves-effect" style="margin:0 -24px;padding:0 24px;display:block;height:48px"><i class="material-icons" style="line-height:48px;height:48px">${item.icon}</i><span style="transform:translateY(-6px);display:inline-block;margin-left:16px">${item.label}</span></a>`;
+																				item.hasOwnProperty("click") && setTimeout(() => $("#" + guid).click(item.click));
+																});
+
+																dialog.append(`<div class="body" style="padding-bottom: 0;">${bodyHTML}</div></div>`);
 												} else if (this.options.type == "progress") {
 																if (this.options.circular) {
 																				let progid = Photon.guid();
@@ -1662,10 +1671,12 @@ Photon.disableArrowKeyScrolling = false;
 })();
 
 Photon.lastReload = -500;
-Photon.ready = Photon.reload = () => {
-				if (performance.now() - 500 > Photon.lastReload) {
-								Photon.lastReload = performance.now();
-				} else return false;
+Photon.ready = Photon.reload = (hard = false) => {
+				if (hard !== true) {
+								if (performance.now() - 500 > Photon.lastReload) {
+												Photon.lastReload = performance.now();
+								} else return false;
+				}
 
 				$(".material-tooltip").remove();
 
