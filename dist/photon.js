@@ -1,3 +1,11 @@
+"use strict";
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 ;(function () {
 				$.fn.realwidth = function () {
 								return this.width() + parseInt(this.css("padding-left")) + parseInt(this.css("padding-right"));
@@ -16,13 +24,13 @@
 				};
 })();
 !function (t) {
-				var e = function () {
+				var e = function e() {
 								"use strict";
 								var e = e || {},
 								    n = document.querySelectorAll.bind(document),
 								    o = Object.prototype.toString,
 								    a = "ontouchstart" in t;function i(t) {
-												var e = typeof t;return "function" === e || "object" === e && !!t;
+												var e = typeof t === "undefined" ? "undefined" : _typeof(t);return "function" === e || "object" === e && !!t;
 								}function r(t) {
 												var e,
 												    a = o.call(t);return "[object String]" === a ? n(t) : i(t) && /^\[object (Array|HTMLCollection|NodeList|Object)\]$/.test(a) && t.hasOwnProperty("length") ? t : i(e = t) && e.nodeType > 0 ? [t] : [];
@@ -34,22 +42,26 @@
 																return null !== (e = t) && e === e.window ? t : 9 === t.nodeType && t.defaultView;var e;
 												}(a), { top: o.top + n.pageYOffset - e.clientTop, left: o.left + n.pageXOffset - e.clientLeft };
 								}function u(t) {
-												var e = "";for (var n in t) t.hasOwnProperty(n) && (e += n + ":" + t[n] + ";");return e;
-								}var c = { duration: 5 * $(this).width, delay: 2e3, show: function (t, e, n) {
+												var e = "";for (var n in t) {
+																t.hasOwnProperty(n) && (e += n + ":" + t[n] + ";");
+												}return e;
+								}var c = { duration: 5 * $(this).width, delay: 2e3, show: function show(t, e, n) {
 																if (2 === t.button) return !1;e = e || this;var o = document.createElement("div");o.className = "waves-ripple waves-rippling", e.appendChild(o);var a = s(e),
 																    i = 0,
 																    r = 0;"touches" in t && t.touches.length ? (i = t.touches[0].pageY - a.top, r = t.touches[0].pageX - a.left) : (i = t.pageY - a.top, r = t.pageX - a.left), r = r >= 0 ? r : 0, i = i >= 0 ? i : 0;var l = "scale(" + Photon.Waves.calc(e, r, i) + ")",
 																    d = "translate(0,0)";n && (d = "translate(" + n.x + "px, " + n.y + "px)"), o.setAttribute("data-hold", Date.now()), o.setAttribute("data-x", r), o.setAttribute("data-y", i), o.setAttribute("data-scale", l), o.setAttribute("data-translate", d);var f = { top: i + "px", left: r + "px" };o.classList.add("waves-notransition"), o.setAttribute("style", u(f)), o.classList.remove("waves-notransition"), f["-webkit-transform"] = l + " " + d, f["-moz-transform"] = l + " " + d, f["-ms-transform"] = l + " " + d, f["-o-transform"] = l + " " + d, f.transform = l + " " + d;var v = "mousemove" === t.type ? 750 : c.duration;f["-webkit-transition-duration"] = v + "ms", f["-moz-transition-duration"] = v + "ms", f["-o-transition-duration"] = v + "ms", f["transition-duration"] = v + "ms", o.setAttribute("style", u(f));
-												}, hide: function (t, e) {
-																for (var n = (e = e || this).getElementsByClassName("waves-rippling"), o = 0, i = n.length; o < i; o++) d(t, e, n[o]);a && (e.removeEventListener("touchend", c.hide), e.removeEventListener("touchcancel", c.hide)), e.removeEventListener("mouseup", c.hide), e.removeEventListener("mouseleave", c.hide);
+												}, hide: function hide(t, e) {
+																for (var n = (e = e || this).getElementsByClassName("waves-rippling"), o = 0, i = n.length; o < i; o++) {
+																				d(t, e, n[o]);
+																}a && (e.removeEventListener("touchend", c.hide), e.removeEventListener("touchcancel", c.hide)), e.removeEventListener("mouseup", c.hide), e.removeEventListener("mouseleave", c.hide);
 												} },
-								    l = { input: function (e) {
+								    l = { input: function input(e) {
 																var n = e.parentNode;if ("i" !== n.tagName.toLowerCase() || !n.classList.contains("waves-effect")) {
 																				var o = document.createElement("i");o.className = e.className + " waves-input-wrapper", e.className = "waves-button-input", n.replaceChild(o, e), o.appendChild(e);var a = t.getComputedStyle(e, null),
 																				    i = a.color,
 																				    r = a.backgroundColor;o.setAttribute("style", "color:" + i + ";background:" + r), e.setAttribute("style", "background-color:rgba(0,0,0,0);");
 																}
-												}, img: function (t) {
+												}, img: function img(t) {
 																var e = t.parentNode;if ("i" !== e.tagName.toLowerCase() || !e.classList.contains("waves-effect")) {
 																				var n = document.createElement("i");e.replaceChild(n, t), n.appendChild(t);
 																}
@@ -69,10 +81,10 @@
 																				}, c);
 																}, s);
 												}
-								}var f = { touches: 0, allowEvent: function (t) {
+								}var f = { touches: 0, allowEvent: function allowEvent(t) {
 																var e = !0;return (/^(mousedown|mousemove)$/.test(t.type) && f.touches && (e = !1), e
 																);
-												}, registerEvent: function (t) {
+												}, registerEvent: function registerEvent(t) {
 																var e = t.type;"touchstart" === e ? f.touches += 1 : /^(touchend|touchcancel)$/.test(e) && setTimeout(function () {
 																				f.touches && (f.touches -= 1);
 																}, 500);
@@ -89,12 +101,12 @@
 																				    o = setTimeout(function () {
 																								o = null, c.show(t, e);
 																				}, c.delay),
-																				    i = function (a) {
+																				    i = function i(a) {
 																								o && (clearTimeout(o), o = null, c.show(t, e)), n || (n = !0, c.hide(a, e)), s();
 																				},
-																				    r = function (t) {
+																				    r = function r(t) {
 																								o && (clearTimeout(o), o = null), i(t), s();
-																				};e.addEventListener("touchmove", r, !1), e.addEventListener("touchend", i, !1), e.addEventListener("touchcancel", i, !1);var s = function () {
+																				};e.addEventListener("touchmove", r, !1), e.addEventListener("touchend", i, !1), e.addEventListener("touchcancel", i, !1);var s = function s() {
 																								e.removeEventListener("touchmove", r), e.removeEventListener("touchend", i), e.removeEventListener("touchcancel", i);
 																				};
 																} else c.show(t, e), a && (e.addEventListener("touchend", c.hide, !1), e.addEventListener("touchcancel", c.hide, !1)), e.addEventListener("mouseup", c.hide, !1), e.addEventListener("mouseleave", c.hide, !1);
@@ -102,17 +114,23 @@
 								}return e.init = function (t) {
 												var e = document.body;"duration" in (t = t || {}) && (c.duration = t.duration), "delay" in t && (c.delay = t.delay), a && (e.addEventListener("touchstart", v, !1), e.addEventListener("touchcancel", f.registerEvent, !1), e.addEventListener("touchend", f.registerEvent, !1)), e.addEventListener("mousedown", v, !1);
 								}, e.attach = function (t, e) {
-												var n, a;t = r(t), "[object Array]" === o.call(e) && (e = e.join(" ")), e = e ? " " + e : "";for (var i = 0, s = t.length; i < s; i++) a = (n = t[i]).tagName.toLowerCase(), -1 !== ["input", "img"].indexOf(a) && (l[a](n), n = n.parentElement), -1 === n.className.indexOf("waves-effect") && (n.className += " waves-effect" + e);
+												var n, a;t = r(t), "[object Array]" === o.call(e) && (e = e.join(" ")), e = e ? " " + e : "";for (var i = 0, s = t.length; i < s; i++) {
+																a = (n = t[i]).tagName.toLowerCase(), -1 !== ["input", "img"].indexOf(a) && (l[a](n), n = n.parentElement), -1 === n.className.indexOf("waves-effect") && (n.className += " waves-effect" + e);
+												}
 								}, e.ripple = function (t, e) {
-												var n = (t = r(t)).length;if ((e = e || {}).wait = e.wait || 0, e.position = e.position || null, n) for (var o, a, i, u = {}, l = 0, d = { type: "mousedown", button: 1 }, f = function (t, e) {
+												var n = (t = r(t)).length;if ((e = e || {}).wait = e.wait || 0, e.position = e.position || null, n) for (var o, a, i, u = {}, l = 0, d = { type: "mousedown", button: 1 }, f = function f(t, e) {
 																return function () {
 																				c.hide(t, e);
 																};
-												}; l < n; l++) if (o = t[l], a = e.position || { x: o.clientWidth / 2, y: o.clientHeight / 2 }, i = s(o), u.x = i.left + a.x, u.y = i.top + a.y, d.pageX = u.x, d.pageY = u.y, c.show(d, o), e.wait >= 0 && null !== e.wait) {
-																setTimeout(f({ type: "mouseup", button: 1 }, o), e.wait);
+												}; l < n; l++) {
+																if (o = t[l], a = e.position || { x: o.clientWidth / 2, y: o.clientHeight / 2 }, i = s(o), u.x = i.left + a.x, u.y = i.top + a.y, d.pageX = u.x, d.pageY = u.y, c.show(d, o), e.wait >= 0 && null !== e.wait) {
+																				setTimeout(f({ type: "mouseup", button: 1 }, o), e.wait);
+																}
 												}
 								}, e.calm = function (t) {
-												for (var e = { type: "mouseup", button: 1 }, n = 0, o = (t = r(t)).length; n < o; n++) c.hide(e, t[n]);
+												for (var e = { type: "mouseup", button: 1 }, n = 0, o = (t = r(t)).length; n < o; n++) {
+																c.hide(e, t[n]);
+												}
 								}, e.displayEffect = function (t) {
 												e.init(t);
 								}, e;
@@ -125,27 +143,30 @@
 								});
 				}), "function" == typeof define && define.amd ? define([], function () {
 								return t.Waves = e.call(t), t.Waves;
-				}) : "object" == typeof exports ? module.exports = e.call(t) : t.Waves = e.call(t);
+				}) : "object" == (typeof exports === "undefined" ? "undefined" : _typeof(exports)) ? module.exports = e.call(t) : t.Waves = e.call(t);
 }(window);
 
-const Photon = {
+var Photon = {
 				activeDialog: undefined,
 				autoready: true,
 				events: {},
 				speed: 150,
-				guid() {
-								let s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-								return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+				guid: function guid() {
+								var s4 = function s4() {
+												return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+								};
+								return "" + s4() + s4() + "-" + s4() + "-" + s4() + "-" + s4() + "-" + s4() + s4() + s4();
 				},
-				updateTextFields() {
+				updateTextFields: function updateTextFields() {
 								$(".input-field").not(".slider-field").each(function () {
 												if ($(this).children("input").val().length > 0) {
 																$(this).children("input").addClass("containscontent");
 												}
 								});
 				},
+
 				Waves: {
-								reload() {
+								reload: function reload() {
 												$(".waves-ink").off("mousedown").bind("mousedown", function (e) {
 																$(this).children(".waves-ripple").fadeOut(500);
 																e.stopPropagation();
@@ -164,17 +185,17 @@ const Photon = {
 																$(this).addClass("waves-touch");
 												});
 								},
-								calc(a, relativeX, relativeY) {
+								calc: function calc(a, relativeX, relativeY) {
 												a = $(a);
-												let d = 52;
-												let dj = 0.118;
-												let dx = 1.019;
-												let dy = 0.350;
-												let f = 1;
-												let h = a.realheight();
-												let w = a.realwidth();
-												let x = relativeX;
-												let y = relativeY;
+												var d = 52;
+												var dj = 0.118;
+												var dx = 1.019;
+												var dy = 0.350;
+												var f = 1;
+												var h = a.realheight();
+												var w = a.realwidth();
+												var x = relativeX;
+												var y = relativeY;
 												if (x > w / 2) {
 																x = w - x;
 												}
@@ -185,7 +206,7 @@ const Photon = {
 												y = h / 2 - y;
 												f = (x * dx + y * dy + (h + w) / 2 * dj) / d;
 												if (h == w) {
-																let q = w - (h - (w - x) - (h - y));
+																var q = w - (h - (w - x) - (h - y));
 																return (w - Math.abs(q - w)) / 50;
 												}
 												if (a.hasClass("waves-ink")) {
@@ -202,21 +223,25 @@ const Photon = {
 };
 
 Photon.disableArrowKeyScrolling = false;
-[window, document].map(v => v.addEventListener("keydown", e => {
-				if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
-								Photon.disableArrowKeyScrolling && e.preventDefault();
-				}
-}, false));
+[window, document].map(function (v) {
+				return v.addEventListener("keydown", function (e) {
+								if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+												Photon.disableArrowKeyScrolling && e.preventDefault();
+								}
+				}, false);
+});
 
 ;(function () {
 				$.fn.checkgroup = function () {
 								return this.each(function () {
 
-												const _this = this;
+												var _this = this;
 												$(this).children(".checkbox").children("input[type=\"checkbox\"]").change(function () {
-																const __this = this;
-																setTimeout(() => {
-																				$(this).removeClass("indeterminate");
+																var _this2 = this;
+
+																var __this = this;
+																setTimeout(function () {
+																				$(_this2).removeClass("indeterminate");
 																}, Photon.speed);
 																$(_this).children(".children").children(".checkbox").each(function () {
 																				$(this).children("input[type=\"checkbox\"]").prop("checked", $(__this).prop("checked"));
@@ -224,12 +249,14 @@ Photon.disableArrowKeyScrolling = false;
 												});
 
 												$(this).children(".children").children(".checkbox").children("input[type=\"checkbox\"]").change(function () {
-																let vals = [];
+																var vals = [];
 																$(this).parents(".children").children(".checkbox").each(function () {
 																				vals.push($(this).children("input[type=\"checkbox\"]").prop("checked"));
 																});
 
-																const e = vals.every(v => v === vals[0]);
+																var e = vals.every(function (v) {
+																				return v === vals[0];
+																});
 
 																if (e) {
 																				$(_this).children(".checkbox").children("input[type=\"checkbox\"]").prop("checked", vals[0]).removeClass("indeterminate");
@@ -240,20 +267,20 @@ Photon.disableArrowKeyScrolling = false;
 								});
 				};
 				$.fn.expansionpanel = function (options, methodParam) {
-								let defaults = {
+								var defaults = {
 												accordion: undefined,
 												onOpen: undefined,
 												onClose: undefined
 								};
 
-								let methodName = options;
+								var methodName = options;
 								options = $.extend(defaults, options);
 
 								return this.each(function () {
 
-												let $this = $(this);
-												let $panel_headers = $(this).find('> li > .expansion-header');
-												let expansionpanel_type = $this.data("expansion-panel");
+												var $this = $(this);
+												var $panel_headers = $(this).find('> li > .expansion-header');
+												var expansionpanel_type = $this.data("expansion-panel");
 
 												function accordionOpen(object) {
 																$panel_headers = $this.find('> li > .expansion-header');
@@ -268,7 +295,7 @@ Photon.disableArrowKeyScrolling = false;
 																				object.siblings('.expansion-body').stop(true, false).slideDown({
 																								duration: Photon.speed,
 																								queue: false,
-																								complete: function () {
+																								complete: function complete() {
 																												$(this).css('height', '');
 																								}
 																				});
@@ -276,7 +303,7 @@ Photon.disableArrowKeyScrolling = false;
 																				object.siblings('.expansion-body').stop(true, false).slideUp({
 																								duration: Photon.speed,
 																								queue: false,
-																								complete: function () {
+																								complete: function complete() {
 																												$(this).css('height', '');
 																								}
 																				});
@@ -290,7 +317,7 @@ Photon.disableArrowKeyScrolling = false;
 																								$(this).slideUp({
 																												duration: Photon.speed,
 																												queue: false,
-																												complete: function () {
+																												complete: function complete() {
 																																$(this).css('height', '');
 																																execCallbacks($(this).siblings('.expansion-header'));
 																												}
@@ -311,7 +338,7 @@ Photon.disableArrowKeyScrolling = false;
 																								duration: Photon.speed,
 																								easing: "linear",
 																								queue: false,
-																								complete: function () {
+																								complete: function complete() {
 																												$(this).css('height', '');
 																								}
 																				});
@@ -320,7 +347,7 @@ Photon.disableArrowKeyScrolling = false;
 																								duration: Photon.speed,
 																								easing: "linear",
 																								queue: false,
-																								complete: function () {
+																								complete: function complete() {
 																												$(this).css('height', '');
 																								}
 																				});
@@ -354,7 +381,7 @@ Photon.disableArrowKeyScrolling = false;
 												}
 
 												function isChildrenOfPanelHeader(object) {
-																let panelHeader = getPanelHeader(object);
+																var panelHeader = getPanelHeader(object);
 																return panelHeader.length > 0;
 												}
 
@@ -370,7 +397,7 @@ Photon.disableArrowKeyScrolling = false;
 																removeEventHandlers();
 																return;
 												} else if (methodParam >= 0 && methodParam < $panel_headers.length) {
-																let $curr_header = $panel_headers.eq(methodParam);
+																var $curr_header = $panel_headers.eq(methodParam);
 																if ($curr_header.length && (methodName === 'open' || methodName === 'close' && $curr_header.hasClass('active'))) {
 																				expansionpanelOpen($curr_header);
 																}
@@ -380,7 +407,7 @@ Photon.disableArrowKeyScrolling = false;
 												removeEventHandlers();
 
 												$this.on('click.collapse', '> li > .expansion-header', function (e) {
-																let element = $(e.target);
+																var element = $(e.target);
 
 																if (isChildrenOfPanelHeader(element)) {
 																				element = getPanelHeader(element);
@@ -401,7 +428,7 @@ Photon.disableArrowKeyScrolling = false;
 				$.fn.scrollnav = function () {
 								this.each(function () {
 												$(this).children("li").children("a[data-scrollto]").click(function () {
-																let stop = $($(this).data("scrollto")).offset().top - parseInt($(this).parent().parent().data("offset") || 0) - 64;
+																var stop = $($(this).data("scrollto")).offset().top - parseInt($(this).parent().parent().data("offset") || 0) - 64;
 																window.scroll({
 																				top: stop,
 																				behavior: "smooth"
@@ -416,10 +443,10 @@ Photon.disableArrowKeyScrolling = false;
 				$.fn.select = function () {
 								this.each(function () {
 
-												let input = $(this).children("input");
-												let acopt = $(this).children(".options");
+												var input = $(this).children("input");
+												var acopt = $(this).children(".options");
 
-												let selopt = -1;
+												var selopt = -1;
 
 												input.attr("readonly", "true");
 
@@ -440,19 +467,19 @@ Photon.disableArrowKeyScrolling = false;
 																				selopt--;
 																				if (selopt < 0) selopt = 0;
 
-																				let opt = $(acopt.children(".option")[selopt]);
-																				opt.addClass("active").siblings().removeClass("active");
-																				input.val(opt.text()).addClass("containscontent");
+																				var _opt = $(acopt.children(".option")[selopt]);
+																				_opt.addClass("active").siblings().removeClass("active");
+																				input.val(_opt.text()).addClass("containscontent");
 																} else if (e.which == 40) {
 																				selopt++;
 																				if (selopt >= acopt.children(".option").length) selopt = acopt.children(".option").length - 1;
 
-																				let opt = $(acopt.children(".option")[selopt]);
-																				opt.addClass("active").siblings().removeClass("active");
-																				input.val(opt.text()).addClass("containscontent");
+																				var _opt2 = $(acopt.children(".option")[selopt]);
+																				_opt2.addClass("active").siblings().removeClass("active");
+																				input.val(_opt2.text()).addClass("containscontent");
 																};
 
-																let p = acopt.children(".option.active").index() * 43 - 64;
+																var p = acopt.children(".option.active").index() * 43 - 64;
 																acopt.animate({
 																				scrollTop: p
 																}, {
@@ -460,7 +487,7 @@ Photon.disableArrowKeyScrolling = false;
 																				queue: false
 																});
 
-																let opt = $(acopt.children(".option")[selopt]);
+																var opt = $(acopt.children(".option")[selopt]);
 																input.val(opt.text()).addClass("containscontent").trigger("change");
 												});
 
@@ -472,17 +499,17 @@ Photon.disableArrowKeyScrolling = false;
 
 																selopt = $(this).index();
 
-																let opt = $(acopt.children(".option")[selopt]);
+																var opt = $(acopt.children(".option")[selopt]);
 																opt.addClass("active").siblings().removeClass("active");
 																input.val(opt.text()).addClass("containscontent").trigger("change");;
 												});
 
-												let preset = false;
+												var preset = false;
 												acopt.children(".option").each(function () {
 																if ($(this).hasClass("active")) {
 																				preset = true;
 																				$(this).click();
-																				let p = acopt.children(".option.active").index() * 44 - 64;
+																				var p = acopt.children(".option.active").index() * 44 - 64;
 																				acopt.animate({
 																								scrollTop: p
 																				}, {
@@ -499,16 +526,16 @@ Photon.disableArrowKeyScrolling = false;
 								return this;
 				};
 				$.fn.sidenav = function (a) {
-								const i = this;
-								const guid = Photon.guid();
+								var i = this;
+								var guid = Photon.guid();
 
 								i.attr("data-sn", guid);
 
-								let touch = 0;
-								let og = 0;
+								var touch = 0;
+								var og = 0;
 
 								$(".sidenav--draghandle").remove();
-								$("body").append(`<div class="sidenav--draghandle"></div>`);
+								$("body").append("<div class=\"sidenav--draghandle\"></div>");
 
 								if (a) {
 												switch (a.toLowerCase()) {
@@ -575,15 +602,18 @@ Photon.disableArrowKeyScrolling = false;
 
 								return this;
 				};
-				$.fn.slider = function (s = "", g) {
+				$.fn.slider = function () {
+								var s = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
+								var g = arguments[1];
+
 								this.each(function () {
 
-												let thumb = $(this).children(".thumb");
-												let ripple = $(this).children(".thumb").children(".ripple");
-												let track = $(this).children(".determinate");
-												let slider = $(this);
+												var thumb = $(this).children(".thumb");
+												var ripple = $(this).children(".thumb").children(".ripple");
+												var track = $(this).children(".determinate");
+												var slider = $(this);
 
-												let value = parseInt($(this).attr("value") || "50");
+												var value = parseInt($(this).attr("value") || "50");
 
 												thumb.css("left", value + "%");
 												track.width(value + "%");
@@ -594,8 +624,8 @@ Photon.disableArrowKeyScrolling = false;
 																Waves.ripple(ripple, { wait: 1e10 });
 																$("body").on("mousemove touchmove", function (e) {
 																				e.preventDefault();
-																				let x = e.pageX || (e.changedTouches[0] || { pageX: 0 }).pageX;
-																				let o = (x - slider.offset().left - 3) / slider.width() * 100;
+																				var x = e.pageX || (e.changedTouches[0] || { pageX: 0 }).pageX;
+																				var o = (x - slider.offset().left - 3) / slider.width() * 100;
 																				o = o < 0 ? 0 : o;
 																				o = o > 100 ? 100 : o;
 																				thumb.css("left", o + "%");
@@ -605,8 +635,8 @@ Photon.disableArrowKeyScrolling = false;
 												}
 
 												slider.click(function (e) {
-																let x = e.pageX;
-																let o = (x - slider.offset().left - 3) / slider.width() * 100;
+																var x = e.pageX;
+																var o = (x - slider.offset().left - 3) / slider.width() * 100;
 																o = o < 0 ? 0 : o;
 																o = o > 100 ? 100 : o;
 
@@ -625,11 +655,11 @@ Photon.disableArrowKeyScrolling = false;
 												return parseInt(this.attr("value") || "50");
 								} else if (s.toLowerCase() == "set") {
 
-												let o = g;
+												var o = g;
 
-												let thumb = this.children(".thumb");
-												let track = this.children(".determinate");
-												let slider = this;
+												var thumb = this.children(".thumb");
+												var track = this.children(".determinate");
+												var slider = this;
 
 												thumb.animate({
 																"left": o + "%"
@@ -644,41 +674,42 @@ Photon.disableArrowKeyScrolling = false;
 								return this;
 				};
 				$.fn.tabs = function (methodOrOptions) {
+								var _this3 = this;
 
-								let methods = {
-												init: function (options) {
-																let defaults = {
+								var methods = {
+												init: function init(options) {
+																var defaults = {
 																				onShow: null
 																};
 																options = $.extend(defaults, options);
-																let namespace = function (obj) {
-																				let tagStr = obj.prop('tagName') || '';
-																				let idStr = obj.attr('id') || '';
-																				let classStr = obj.attr('class') || '';
+																var namespace = function (obj) {
+																				var tagStr = obj.prop('tagName') || '';
+																				var idStr = obj.attr('id') || '';
+																				var classStr = obj.attr('class') || '';
 																				return (tagStr + idStr + classStr).replace(/\s/g, '');
 																}($(this));
 
 																return this.each(function (i) {
 
-																				let uniqueNamespace = namespace + i;
-																				let $this = $(this),
+																				var uniqueNamespace = namespace + i;
+																				var $this = $(this),
 																				    window_width = $(window).width();
 
-																				let $active,
-																				    $content,
+																				var $active = void 0,
+																				    $content = void 0,
 																				    $links = $this.find('li.tab a'),
 																				    $tabs_width = $this.width(),
 																				    $tabs_content = $(),
-																				    $tabs_wrapper,
+																				    $tabs_wrapper = void 0,
 																				    $tab_width = Math.max($tabs_width, $this[0].scrollWidth) / $links.length,
-																				    $indicator,
+																				    $indicator = void 0,
 																				    index = 0,
 																				    prev_index = 0,
 																				    clicked = false,
-																				    clickedTimeout,
+																				    clickedTimeout = void 0,
 																				    transition = Photon.speed;
 
-																				let calcRightPos = function (el) {
+																				var calcRightPos = function calcRightPos(el) {
 																								try {
 																												return Math.ceil($tabs_width - el.position().left - el[0].getBoundingClientRect().width - $this.scrollLeft()) + el.realwidth() / 2 - el.textWidth() / 2;
 																								} catch (e) {
@@ -686,7 +717,7 @@ Photon.disableArrowKeyScrolling = false;
 																								}
 																				};
 
-																				let calcLeftPos = function (el) {
+																				var calcLeftPos = function calcLeftPos(el) {
 																								try {
 																												return Math.floor(el.position().left + $this.scrollLeft()) + el.realwidth() / 2 - el.textWidth() / 2;
 																								} catch (e) {
@@ -694,21 +725,25 @@ Photon.disableArrowKeyScrolling = false;
 																								}
 																				};
 
-																				let animateIndicator = function (prev_index) {
+																				var animateIndicator = function animateIndicator(prev_index) {
 																								if (index - prev_index >= 0) {
 																												$indicator.css({
 																																"right": calcRightPos($active)
 																												});
-																												setTimeout(() => $indicator.css({
-																																"left": calcLeftPos($active)
-																												}), $this.hasClass("tabs-new") ? 130 : 60);
+																												setTimeout(function () {
+																																return $indicator.css({
+																																				"left": calcLeftPos($active)
+																																});
+																												}, $this.hasClass("tabs-new") ? 130 : 60);
 																								} else {
 																												$indicator.css({
 																																"left": calcLeftPos($active)
 																												});
-																												setTimeout(() => $indicator.css({
-																																"right": calcRightPos($active)
-																												}), $this.hasClass("tabs-new") ? 130 : 60);
+																												setTimeout(function () {
+																																return $indicator.css({
+																																				"right": calcRightPos($active)
+																																});
+																												}, $this.hasClass("tabs-new") ? 130 : 60);
 																								}
 																				};
 
@@ -788,7 +823,7 @@ Photon.disableArrowKeyScrolling = false;
 
 																								// Make the old tab inactive.
 																								$active.parent().removeClass('active');
-																								let $oldContent = $content;
+																								var $oldContent = $content;
 
 																								// Update the variables with the new link and content
 																								$active = $(this);
@@ -796,7 +831,7 @@ Photon.disableArrowKeyScrolling = false;
 																												return hash.replace(/(:|\.|\[|\]|,|=)/g, "\\$1");
 																								}(this.hash));
 																								$links = $this.find('li.tab a');
-																								let activeRect = $active.position();
+																								var activeRect = $active.position();
 
 																								// Make the tab active.
 																								$active.addClass('active');
@@ -845,22 +880,22 @@ Photon.disableArrowKeyScrolling = false;
 																				});
 																});
 												},
-												select_tab: function (id) {
+												select_tab: function select_tab(id) {
 																this.find('a[href="#' + id + '"]').trigger('click');
 												}
 								};
 
-								requestAnimationFrame(() => {
-												if (this.children(".tab.active").length === 0) {
-																this.children(".tab").first().children("a").click();
+								requestAnimationFrame(function () {
+												if (_this3.children(".tab.active").length === 0) {
+																_this3.children(".tab").first().children("a").click();
 												} else {
-																this.children(".tab.active").children("a").click();
+																_this3.children(".tab.active").children("a").click();
 												}
 								});
 
 								if (methods[methodOrOptions]) {
 												return methods[methodOrOptions].apply(this, Array.prototype.slice.call(arguments, 1));
-								} else if (typeof methodOrOptions === 'object' || !methodOrOptions) {
+								} else if ((typeof methodOrOptions === "undefined" ? "undefined" : _typeof(methodOrOptions)) === 'object' || !methodOrOptions) {
 												return methods.init.apply(this, arguments);
 								} else {
 												$.error('Method ' + methodOrOptions + ' does not exist on jQuery.tabs');
@@ -877,39 +912,66 @@ Photon.disableArrowKeyScrolling = false;
 
 								return this.each(function () {
 
-												const descriptor = $(this);
+												var descriptor = $(this);
 
 												options["delay"] = parseInt($(this).data("delay")) || options["delay"];
 												options["position"] = $(this).data("position") || options["position"];
 												options["tooltip"] = $(this).data("tooltip") || options["tooltip"];
 												options["classes"] = ($(this).data("tooltipclass") || "").split(" ") || options["classes"];
 
-												const guid = Photon.guid();
+												var guid = Photon.guid();
 												if (options.position.toLowerCase() == "bottom") {
-																let center = descriptor.offset().left;
+																var center = descriptor.offset().left;
 												}
 
 												$(this).mouseenter(function () {
-																setTimeout(() => $("#" + guid).addClass("active"), options.delay);
+																setTimeout(function () {
+																				return $("#" + guid).addClass("active");
+																}, options.delay);
 												}).on("mouseleave click contextmenu", function () {
-																setTimeout(() => $("#" + guid).removeClass("active"), options.delay);
+																setTimeout(function () {
+																				return $("#" + guid).removeClass("active");
+																}, options.delay);
 												});
 
-												$("body").append(`<div class="material-tooltip" id="${guid}">${options.tooltip}</div>`);
-												const tooltip = $("#" + guid);
+												$("body").append("<div class=\"material-tooltip\" id=\"" + guid + "\">" + options.tooltip + "</div>");
+												var tooltip = $("#" + guid);
 
-												let proX = pos => {
+												var proX = function proX(pos) {
 																if (pos < 4) pos = 4;
 																if (pos > window.innerWidth - 4) pos = window.innerWidth - 4;
 																return pos;
 												};
 
-												let proY = pos => {
+												var proY = function proY(pos) {
 																if (pos < 4) pos = 4;
 																return pos;
 												};
 
-												for (let classes of options.classes) tooltip.addClass(classes);
+												var _iteratorNormalCompletion = true;
+												var _didIteratorError = false;
+												var _iteratorError = undefined;
+
+												try {
+																for (var _iterator = options.classes[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+																				var classes = _step.value;
+																				tooltip.addClass(classes);
+																}
+												} catch (err) {
+																_didIteratorError = true;
+																_iteratorError = err;
+												} finally {
+																try {
+																				if (!_iteratorNormalCompletion && _iterator.return) {
+																								_iterator.return();
+																				}
+																} finally {
+																				if (_didIteratorError) {
+																								throw _iteratorError;
+																				}
+																}
+												}
+
 												if (options.position.toLowerCase() == "top") {
 																tooltip.addClass("tt-top");
 																(function position() {
@@ -943,8 +1005,12 @@ Photon.disableArrowKeyScrolling = false;
 				};
 
 				Photon.toast = function () {
-								return new class Toast {
-												constructor(args) {
+								return new (function () {
+												function Toast(args) {
+																var _this4 = this;
+
+																_classCallCheck(this, Toast);
+
 																args = this.args = {
 																				content: args[0] || "",
 																				delay: args[1] || 2000,
@@ -952,10 +1018,10 @@ Photon.disableArrowKeyScrolling = false;
 																				guid: Photon.guid()
 																};
 
-																$(".toasts").length == 0 && $(document.body).append(`<div class="toasts"></div>`);
+																$(".toasts").length == 0 && $(document.body).append("<div class=\"toasts\"></div>");
 
-																$(".toasts").append(`<div class="toast" id="${args.guid}"></div>`);
-																let toast = $("#" + args.guid);
+																$(".toasts").append("<div class=\"toast\" id=\"" + args.guid + "\"></div>");
+																var toast = $("#" + args.guid);
 
 																toast.html(args.content);
 																toast.addClass(args.classes.join(" "));
@@ -966,10 +1032,12 @@ Photon.disableArrowKeyScrolling = false;
 
 																this.toast = toast;
 
-																let todest;
-																let requeue = () => {
+																var todest = void 0;
+																var requeue = function requeue() {
 																				clearTimeout(todest);
-																				todest = setTimeout(() => this.destroy(), args.delay);
+																				todest = setTimeout(function () {
+																								return _this4.destroy();
+																				}, args.delay);
 																};
 
 																requeue();
@@ -980,7 +1048,7 @@ Photon.disableArrowKeyScrolling = false;
 																				$(this).addClass("has-focus").siblings().removeClass("has-focus");
 																});
 
-																let instance = this;
+																var instance = this;
 																$(document.body).on("mouseup", function () {
 																				toast.removeAttr("data-hold");
 
@@ -996,40 +1064,51 @@ Photon.disableArrowKeyScrolling = false;
 
 																								requeue();
 
-																								let hold = e.pageX - parseInt(toast.data("hold"));
-																								toast.css("transform", `translateX(${hold}px)`);
+																								var hold = e.pageX - parseInt(toast.data("hold"));
+																								toast.css("transform", "translateX(" + hold + "px)");
 																								toast.css("opacity", 1 - Math.abs(hold) / 100);
 																				}
 																}).click(function () {
 																				$(".toasts").children(".toast").removeClass("has-focus");
 																}).keydown(function (e) {
-																				let aftoast = $(".toasts").children(".toast.has-focus").addClass("ta");
+																				var aftoast = $(".toasts").children(".toast.has-focus").addClass("ta");
 																				if (e.which === 37) {
-																								aftoast.css({ "transform": `translateX(-${aftoast.width() / 2}px)` });
+																								aftoast.css({ "transform": "translateX(-" + aftoast.width() / 2 + "px)" });
 																				} else if (e.which === 39) {
-																								aftoast.css({ "transform": `translateX(${aftoast.width() / 2}px)` });
+																								aftoast.css({ "transform": "translateX(" + aftoast.width() / 2 + "px)" });
 																				}
 																				aftoast.css({ "opacity": 0 });
 
-																				setTimeout(() => {
+																				setTimeout(function () {
 																								aftoast.addClass("oeff");
-																								setTimeout(() => aftoast.remove(), 200);
+																								setTimeout(function () {
+																												return aftoast.remove();
+																								}, 200);
 																				}, 150);
 																});
 												}
 
-												destroy() {
-																let { toast } = this;
-																toast.addClass("oeff");
-																toast.next().addClass("has-focus");
+												_createClass(Toast, [{
+																key: "destroy",
+																value: function destroy() {
+																				var toast = this.toast;
 
-																setTimeout(() => toast.remove(), 200);
-												}
+																				toast.addClass("oeff");
+																				toast.next().addClass("has-focus");
 
-								}(arguments);
+																				setTimeout(function () {
+																								return toast.remove();
+																				}, 200);
+																}
+												}]);
+
+												return Toast;
+								}())(arguments);
 				};
-				Photon.dialog = class Dialog {
-								constructor(options) {
+				Photon.dialog = function () {
+								function Dialog(options) {
+												_classCallCheck(this, Dialog);
+
 												this.options = $.extend({
 																title: "This page says:",
 																size: "auto",
@@ -1045,633 +1124,815 @@ Photon.disableArrowKeyScrolling = false;
 												this.resolved = false;
 												this.guid = Photon.guid();
 								}
-								destroy(dialog = $("#" + this.guid)) {
-												if (!(this.options.type == "progress" || this.options.force) || this.resolved) {
-																requestAnimationFrame(() => {
-																				dialog.parent().removeClass("active");
-																				setTimeout(() => dialog.parent().remove(), 200);
-																});
-												} else {
-																this.focus();
-												}
-												Photon.activeDialog = undefined;
-								}
-								focus(dialog = $("#" + this.guid)) {
-												dialog.addClass("enlarge");
-												setTimeout(() => dialog.removeClass("enlarge"), 150);
-								}
-								open() {
 
-												const Super = this;
+								_createClass(Dialog, [{
+												key: "destroy",
+												value: function destroy() {
+																var dialog = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : $("#" + this.guid);
 
-												$(".photon-dialog").remove();
-												$("body").append(`<div class="photon-dialog"><div class="dialog" id="${this.guid}"></div></div>`);
-
-												const dialog = $("#" + this.guid);
-												dialog.parent().click(function (e) {
-																if ($(e.target).hasClass("photon-dialog")) Super.destroy(dialog);
-												});
-
-												dialog.addClass("transition-" + this.options.transition);
-												requestAnimationFrame(() => dialog.parent().addClass("active"));
-
-												if (this.options.type == "alert") {
-																dialog.append(`<div class="title">${this.options.title}</div>`);
-																dialog.append(`<div class="body">${this.options.message}</div>`);
-												} else if (this.options.type == "form") {
-																this.promptguid = Photon.guid();
-																dialog.append(`<div class="title">${this.options.title}</div>`);
-																dialog.append(`<div class="body">${this.options.message.length > 0 ? "<p>" : ""}${this.options.message}${this.options.message.length > 0 ? "</p>" : ""}</div>`);
-
-																let slug = str => {
-																				str = str.toLowerCase();
-																				str = str.replace(/\s|\@|\!|\#|\$|\%|\^|\&|\*\|9|\)|\(/g, "-");
-																};
-
-																for (let input of this.options.inputs) {
-																				dialog.children(".body").append(`<div class="input-field ${input.variant || "default"}"><input type="${input.type || "text"}" id="${input.id || slug(input.label)}" /><label for="${input.id || slug(input.label)}">${input.label}</label></div>`);
-																}
-
-																this.value = () => {
-																				let resp = {};
-																				dialog.children(".body").children(".input-field").each(function () {
-																								resp[$(this).children("input").attr("id")] = $(this).children("input").val();
+																if (!(this.options.type == "progress" || this.options.force) || this.resolved) {
+																				requestAnimationFrame(function () {
+																								dialog.parent().removeClass("active");
+																								setTimeout(function () {
+																												return dialog.parent().remove();
+																								}, 200);
 																				});
-																				return resp;
-																};
-																Photon.reload();
+																} else {
+																				this.focus();
+																}
+																Photon.activeDialog = undefined;
+												}
+								}, {
+												key: "focus",
+												value: function focus() {
+																var dialog = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : $("#" + this.guid);
 
-																dialog.children(".body").children(".input-field").first().children("input").focus();
-																Photon.updateTextFields();
-												} else if (this.options.type == "icon") {
-																dialog.append(`<div class="title">${this.options.title}</div>`);
-																let bodyHTML = "<div style={{ marginBottom: -22, marginTop: -16 }}>";
-																this.options.list.map(item => {
-																				const guid = Photon.guid();
-																				bodyHTML += `<a id="${guid}" class="link waves-effect" style="margin:0 -24px;padding:0 24px;display:block;height:48px"><i class="material-icons" style="line-height:48px;height:48px">${item.icon}</i><span style="transform:translateY(-6px);display:inline-block;margin-left:16px">${item.label}</span></a>`;
-																				item.hasOwnProperty("click") && setTimeout(() => $("#" + guid).click(item.click));
+																dialog.addClass("enlarge");
+																setTimeout(function () {
+																				return dialog.removeClass("enlarge");
+																}, 150);
+												}
+								}, {
+												key: "open",
+												value: function open() {
+																var _this5 = this;
+
+																var Super = this;
+
+																$(".photon-dialog").remove();
+																$("body").append("<div class=\"photon-dialog\"><div class=\"dialog\" id=\"" + this.guid + "\"></div></div>");
+
+																var dialog = $("#" + this.guid);
+																dialog.parent().click(function (e) {
+																				if ($(e.target).hasClass("photon-dialog")) Super.destroy(dialog);
 																});
 
-																dialog.append(`<div class="body" style="padding-bottom: 0;">${bodyHTML}</div></div>`);
-												} else if (this.options.type == "progress") {
-																if (this.options.circular) {
-																				let progid = Photon.guid();
-																				dialog.append(`<div class="body"><svg class="spinner"><circle cx="50" cy="50" r="20"></circle></svg>${this.options.message}</div>`);
-																				this.options.size = "spinner";
-																} else {
-																				let progid = Photon.guid();
-																				let aid = Photon.guid();
-																				dialog.append(`<div class="body">${this.options.message}<div class="progress"><div class="determinate" id="${progid}"></div></div><div class="assets" id="${aid}">0/0</div></div>`);
-																				this.options.size = "progress";
+																dialog.addClass("transition-" + this.options.transition);
+																requestAnimationFrame(function () {
+																				return dialog.parent().addClass("active");
+																});
 
-																				this.asset = 0;
-																				this.increment = function (value = 1) {
-																								this.asset += value;
-																								const percent = this.asset / this.options.assets;
-																								$("#" + progid).css("width", percent * 100 + "%").css("transition", "none");
-																								$("#" + aid).text(`${this.asset}/${this.options.assets}`);
-																								if (percent == 1) {
-																												this.increment = function () {};
-																												this.resolved = true;
-																												this.destroy();
+																if (this.options.type == "alert") {
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+																				dialog.append("<div class=\"body\">" + this.options.message + "</div>");
+																} else if (this.options.type == "form") {
+																				this.promptguid = Photon.guid();
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+																				dialog.append("<div class=\"body\">" + (this.options.message.length > 0 ? "<p>" : "") + this.options.message + (this.options.message.length > 0 ? "</p>" : "") + "</div>");
+
+																				var slug = function slug(str) {
+																								str = str.toLowerCase();
+																								str = str.replace(/\s|\@|\!|\#|\$|\%|\^|\&|\*\|9|\)|\(/g, "-");
+																				};
+
+																				var _iteratorNormalCompletion2 = true;
+																				var _didIteratorError2 = false;
+																				var _iteratorError2 = undefined;
+
+																				try {
+																								for (var _iterator2 = this.options.inputs[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+																												var input = _step2.value;
+
+																												dialog.children(".body").append("<div class=\"input-field " + (input.variant || "default") + "\"><input type=\"" + (input.type || "text") + "\" id=\"" + (input.id || slug(input.label)) + "\" /><label for=\"" + (input.id || slug(input.label)) + "\">" + input.label + "</label></div>");
+																								}
+																				} catch (err) {
+																								_didIteratorError2 = true;
+																								_iteratorError2 = err;
+																				} finally {
+																								try {
+																												if (!_iteratorNormalCompletion2 && _iterator2.return) {
+																																_iterator2.return();
+																												}
+																								} finally {
+																												if (_didIteratorError2) {
+																																throw _iteratorError2;
+																												}
+																								}
+																				}
+
+																				this.value = function () {
+																								var resp = {};
+																								dialog.children(".body").children(".input-field").each(function () {
+																												resp[$(this).children("input").attr("id")] = $(this).children("input").val();
+																								});
+																								return resp;
+																				};
+																				Photon.reload();
+
+																				dialog.children(".body").children(".input-field").first().children("input").focus();
+																				Photon.updateTextFields();
+																} else if (this.options.type == "icon") {
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+																				var bodyHTML = "<div style={{ marginBottom: -22, marginTop: -16 }}>";
+																				this.options.list.map(function (item) {
+																								var guid = Photon.guid();
+																								bodyHTML += "<a id=\"" + guid + "\" class=\"link waves-effect\" style=\"margin:0 -24px;padding:0 24px;display:block;height:48px\"><i class=\"material-icons\" style=\"line-height:48px;height:48px\">" + item.icon + "</i><span style=\"transform:translateY(-6px);display:inline-block;margin-left:16px\">" + item.label + "</span></a>";
+																								item.hasOwnProperty("click") && setTimeout(function () {
+																												return $("#" + guid).click(item.click);
+																								});
+																				});
+
+																				dialog.append("<div class=\"body\" style=\"padding-bottom: 0;\">" + bodyHTML + "</div></div>");
+																} else if (this.options.type == "progress") {
+																				if (this.options.circular) {
+																								var progid = Photon.guid();
+																								dialog.append("<div class=\"body\"><svg class=\"spinner\"><circle cx=\"50\" cy=\"50\" r=\"20\"></circle></svg>" + this.options.message + "</div>");
+																								this.options.size = "spinner";
+																				} else {
+																								var _progid = Photon.guid();
+																								var aid = Photon.guid();
+																								dialog.append("<div class=\"body\">" + this.options.message + "<div class=\"progress\"><div class=\"determinate\" id=\"" + _progid + "\"></div></div><div class=\"assets\" id=\"" + aid + "\">0/0</div></div>");
+																								this.options.size = "progress";
+
+																								this.asset = 0;
+																								this.increment = function () {
+																												var value = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+																												this.asset += value;
+																												var percent = this.asset / this.options.assets;
+																												$("#" + _progid).css("width", percent * 100 + "%").css("transition", "none");
+																												$("#" + aid).text(this.asset + "/" + this.options.assets);
+																												if (percent == 1) {
+																																this.increment = function () {};
+																																this.resolved = true;
+																																this.destroy();
+																												}
+																								};
+																				}
+																} else if (this.options.type == "radio") {
+
+																				this.options.size = "choice";
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+
+																				var group = Photon.guid();
+																				var ouid = Photon.guid();
+
+																				dialog.append("<div class=\"body\"><div class=\"options\" id=\"" + ouid + "\"></div></div>");
+																				var options = $("#" + ouid);
+																				var _iteratorNormalCompletion3 = true;
+																				var _didIteratorError3 = false;
+																				var _iteratorError3 = undefined;
+
+																				try {
+																								var _loop = function _loop() {
+																												var option = _step3.value;
+
+																												var uuid = Photon.guid();
+																												options.append("<div class=\"radio-btn\"><input type=\"radio\" id=\"" + uuid + "\" name=\"" + group + "\"" + (option.default ? " checked" : "") + "><label for=\"" + uuid + "\">" + option.name + "</label><div class=\"ripple waves-effect waves-ink\"></div></div>");
+
+																												if (option.select) {
+																																$("#" + uuid).change(function () {
+																																				if ($(this).prop("checked")) option.select();
+																																});
+																												}
+																								};
+
+																								for (var _iterator3 = this.options.options[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+																												_loop();
+																								}
+																				} catch (err) {
+																								_didIteratorError3 = true;
+																								_iteratorError3 = err;
+																				} finally {
+																								try {
+																												if (!_iteratorNormalCompletion3 && _iterator3.return) {
+																																_iterator3.return();
+																												}
+																								} finally {
+																												if (_didIteratorError3) {
+																																throw _iteratorError3;
+																												}
+																								}
+																				}
+
+																				Photon.reload();
+
+																				$("[name='" + group + "']").change(function () {
+																								$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0]);
+																				});
+
+																				this.value = function () {
+																								return $("[for='" + $("[name='" + group + "']:checked").attr("id") + "']").text();
+																				};
+																} else if (this.options.type == "checkbox") {
+
+																				this.options.size = "choice";
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+
+																				var _group = Photon.guid();
+																				var _ouid = Photon.guid();
+
+																				dialog.append("<div class=\"body\"><div class=\"options\" id=\"" + _ouid + "\"></div></div>");
+																				var _options = $("#" + _ouid);
+																				var _iteratorNormalCompletion4 = true;
+																				var _didIteratorError4 = false;
+																				var _iteratorError4 = undefined;
+
+																				try {
+																								for (var _iterator4 = this.options.options[Symbol.iterator](), _step4; !(_iteratorNormalCompletion4 = (_step4 = _iterator4.next()).done); _iteratorNormalCompletion4 = true) {
+																												var _option = _step4.value;
+
+																												var _uuid = Photon.guid();
+																												_options.append("<div class=\"checkbox\"><input type=\"checkbox\" id=\"" + _uuid + "\" name=\"" + _group + "\"" + (_option.selected ? " checked" : "") + "><label for=\"" + _uuid + "\">" + _option.name + "</label><div class=\"ripple waves-effect waves-ink\"></div></div>");
+																								}
+																				} catch (err) {
+																								_didIteratorError4 = true;
+																								_iteratorError4 = err;
+																				} finally {
+																								try {
+																												if (!_iteratorNormalCompletion4 && _iterator4.return) {
+																																_iterator4.return();
+																												}
+																								} finally {
+																												if (_didIteratorError4) {
+																																throw _iteratorError4;
+																												}
+																								}
+																				}
+
+																				Photon.reload();
+
+																				$("[name='" + _group + "']").change(function () {
+																								$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0]);
+																				});
+
+																				this.value = function () {
+																								var ops = [];
+																								$("[name='" + _group + "']:checked").each(function () {
+																												ops.push($(this).siblings("label").text());
+																								});
+																								return ops;
+																				};
+																} else if (this.options.type == "user") {
+																				this.options.size = "dense";
+																				dialog.append("<div class=\"title\">" + this.options.title + "</div>");
+
+																				dialog.append("<div class=\"users\"></div>");
+
+																				var img = "data:image/svg+xml;base64," + btoa("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"#1e88e5\"><circle fill=\"#bbdefb\" cx=\"20\" cy=\"20\" r=\"20\"/><g transform=\"translate(5,4) scale(1.25)\"><path d=\"M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z\"/><path d=\"M0 0h24v24H0z\" fill=\"none\"/></g></svg>");
+																				var _iteratorNormalCompletion5 = true;
+																				var _didIteratorError5 = false;
+																				var _iteratorError5 = undefined;
+
+																				try {
+																								var _loop2 = function _loop2() {
+																												var user = _step5.value;
+
+																												var xuid = Photon.guid();
+																												dialog.children(".users").append("<div id=\"" + xuid + "\" class=\"user waves-effect\"><img src=\"" + (user.image || img) + "\" alt=\"\" /><span class=\"desc\">" + user.desc + "</span></div>");
+																												user.click && $("#" + xuid).click(function () {
+																																return user.click(_this5);
+																												});
+																								};
+
+																								for (var _iterator5 = (this.options.users || [])[Symbol.iterator](), _step5; !(_iteratorNormalCompletion5 = (_step5 = _iterator5.next()).done); _iteratorNormalCompletion5 = true) {
+																												_loop2();
+																								}
+																				} catch (err) {
+																								_didIteratorError5 = true;
+																								_iteratorError5 = err;
+																				} finally {
+																								try {
+																												if (!_iteratorNormalCompletion5 && _iterator5.return) {
+																																_iterator5.return();
+																												}
+																								} finally {
+																												if (_didIteratorError5) {
+																																throw _iteratorError5;
+																												}
+																								}
+																				}
+
+																				if (this.options.methods.length > 0 && this.options.users.length > 0) dialog.children(".users").append("<hr />");
+
+																				var add = "data:image/svg+xml;base64," + btoa("<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"#fff\"><circle fill=\"#c1c1c1\" cx=\"20\" cy=\"20\" r=\"20\"/><g transform=\"translate(5,5) scale(1.25)\"><path fill=\"none\" d=\"M0 0h24v24H0V0z\"/><path d=\"M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z\"/></g></svg>");
+																				var _iteratorNormalCompletion6 = true;
+																				var _didIteratorError6 = false;
+																				var _iteratorError6 = undefined;
+
+																				try {
+																								var _loop3 = function _loop3() {
+																												var method = _step6.value;
+
+																												var xuid = Photon.guid();
+																												dialog.children(".users").append("<div id=\"" + xuid + "\" class=\"user method waves-effect\"><img src=\"" + (method.image || add) + "\" alt=\"\" /><span class=\"desc\">" + method.name + "</span></div>");
+																												method.click && $("#" + xuid).click(function () {
+																																return method.click(_this5);
+																												});
+																								};
+
+																								for (var _iterator6 = (this.options.methods || [])[Symbol.iterator](), _step6; !(_iteratorNormalCompletion6 = (_step6 = _iterator6.next()).done); _iteratorNormalCompletion6 = true) {
+																												_loop3();
+																								}
+																				} catch (err) {
+																								_didIteratorError6 = true;
+																								_iteratorError6 = err;
+																				} finally {
+																								try {
+																												if (!_iteratorNormalCompletion6 && _iterator6.return) {
+																																_iterator6.return();
+																												}
+																								} finally {
+																												if (_didIteratorError6) {
+																																throw _iteratorError6;
+																												}
+																								}
+																				}
+																} else if (this.options.type == "date") {
+																				var _bindTouches = function _bindTouches() {
+
+																								var initialTouch = void 0;
+																								var touch = void 0;
+																								var touchSign = void 0;
+																								var swipe = void 0;
+
+																								var cache = void 0;
+
+																								cmp.children(".cal").bind("touchstart", function (e) {
+																												initialTouch = e.changedTouches[0].clientX;
+																												cache = new Date(value);
+																								}).bind("touchmove", function (e) {
+																												touch = e.changedTouches[0].clientX;
+																												var relative = initialTouch - touch;
+																												var touchRelSign = void 0;
+
+																												if (relative > 0) {
+																																touchRelSign = 1;
+																												} else if (relative == 0) {
+																																touchRelSign = 0;
+																												} else {
+																																touchRelSign = -1;
+																												}
+
+																												if (touchRelSign !== touchSign) {
+																																touchSign = touchRelSign;
+																																signFlip();
+																												}
+
+																												swipe = Math.abs((initialTouch - touch) / dialog.width()) * 100;
+																												if (touchSign === 1) {
+
+																																pri.css("transform", "translateX(" + -swipe + "%)");
+																																alt.css("transform", "translateX(" + (-swipe + 100) + "%)");
+
+																																cmp.css("transform", "translateX(" + -swipe + "%)");
+																																cma.css("transform", "translateX(" + (-swipe + 100) + "%)");
+																												} else if (touchSign === -1) {
+
+																																pri.css("transform", "translateX(" + swipe + "%)");
+																																alt.css("transform", "translateX(" + (swipe - 100) + "%)");
+
+																																cmp.css("transform", "translateX(" + swipe + "%)");
+																																cma.css("transform", "translateX(" + (swipe - 100) + "%)");
+																												}
+																								}).bind("touchend", function (e) {
+
+																												swipe = Math.abs((initialTouch - e.changedTouches[0].clientX) / dialog.width()) * 100;
+																												cmp.children(".cal").unbind("touchstart touchmove touchend");
+
+																												if (touchSign === 1) {
+
+																																if (swipe > 40) {
+
+																																				value = cache;
+
+																																				both.addClass("animating");
+																																				pri.css("transform", "translateX(-100%)");
+																																				alt.css("transform", "translateX(0)");
+																																				setTimeout(function () {
+																																								both.removeClass("animating");
+																																								requestAnimationFrame(function () {
+																																												pri.css("transform", "translateX(0)").text(format2(value));
+																																												repop(cmp.children(".cal"), value);
+
+																																												alt.hide();
+																																								});
+																																				}, 350);
+
+																																				cmb.addClass("animating");
+																																				cmp.css("transform", "translateX(-100%)");
+																																				cma.css("transform", "translateX(0)");
+																																				setTimeout(function () {
+																																								cmb.removeClass("animating");
+																																								requestAnimationFrame(function () {
+																																												cmp.css("transform", "translateX(0)");
+																																												cma.hide();
+																																								});
+																																				}, 350);
+																																} else {
+
+																																				try {
+																																								cache.setMonth(cache.getMonth() - 1);
+
+																																								both.addClass("animating");
+																																								pri.css("transform", "translateX(0)");
+																																								alt.css("transform", "translateX(100%)");
+
+																																								cmb.addClass("animating");
+																																								cmp.css("transform", "translateX(0)");
+																																								cma.css("transform", "translateX(100%)");
+
+																																								setTimeout(function () {
+																																												both.removeClass("animating");
+																																												cmb.removeClass("animating");
+																																								}, 350);
+																																				} catch (e) {
+																																								void e;
+																																				}
+
+																																				_bindTouches();
+																																}
+																												} else if (touchSign === -1) {
+
+																																if (swipe > 40) {
+
+																																				value = cache;
+
+																																				both.addClass("animating");
+																																				pri.css("transform", "translateX(100%)");
+																																				alt.css("transform", "translateX(0)");
+																																				setTimeout(function () {
+																																								both.removeClass("animating");
+																																								requestAnimationFrame(function () {
+																																												pri.css("transform", "translateX(0)").text(format2(value));
+																																												repop(cmp.children(".cal"), value);
+
+																																												alt.hide();
+																																								});
+																																				}, 350);
+
+																																				cmb.addClass("animating");
+																																				cmp.css("transform", "translateX(100%)");
+																																				cma.css("transform", "translateX(0)");
+																																				setTimeout(function () {
+																																								cmb.removeClass("animating");
+																																								requestAnimationFrame(function () {
+																																												cmp.css("transform", "translateX(0)");
+																																												cma.hide();
+																																								});
+																																				}, 350);
+																																} else {
+
+																																				try {
+																																								cache.setMonth(cache.getMonth() + 1);
+
+																																								both.addClass("animating");
+																																								pri.css("transform", "translateX(0)");
+																																								alt.css("transform", "translateX(-100%)");
+
+																																								cmb.addClass("animating");
+																																								cmp.css("transform", "translateX(0)");
+																																								cma.css("transform", "translateX(-100%)");
+
+																																								setTimeout(function () {
+																																												both.removeClass("animating");
+																																												cmb.removeClass("animating");
+																																								}, 350);
+																																				} catch (e) {
+																																								void e;
+																																				}
+
+																																				_bindTouches();
+																																}
+																												}
+																								});
+
+																								function signFlip() {
+																												try {
+																																if (touchSign === 1) {
+																																				cache.setMonth(cache.getMonth() + 1);
+																																} else if (touchSign === -1) {
+																																				var precache = cache.getMonth();
+																																				cache.setMonth(cache.getMonth() - 1);
+																																				if (precache === cache.getMonth()) cache.setMonth(cache.getMonth() - 1);
+																																}
+
+																																alt.text(format2(cache)).show();
+
+																																cma.show();
+																																repop(cma.children(".cal"), cache);
+																												} catch (e) {
+																																void e;
+																												}
 																								}
 																				};
-																}
-												} else if (this.options.type == "radio") {
 
-																this.options.size = "choice";
-																dialog.append(`<div class="title">${this.options.title}</div>`);
+																				this.options.size = "picker";
+																				if (!this.options.date || !this.options.date instanceof Date) this.options.date = new Date();
 
-																const group = Photon.guid();
-																const ouid = Photon.guid();
+																				var FULLMONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+																				var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+																				var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-																dialog.append(`<div class="body"><div class="options" id="${ouid}"></div></div>`);
-																const options = $("#" + ouid);
-																for (let option of this.options.options) {
-																				let uuid = Photon.guid();
-																				options.append(`<div class="radio-btn"><input type="radio" id="${uuid}" name="${group}"${option.default ? " checked" : ""}><label for="${uuid}">${option.name}</label><div class="ripple waves-effect waves-ink"></div></div>`);
+																				var format = function format(date) {
+																								return DAYS[date.getDay()] + ", " + MONTHS[date.getMonth()] + " " + date.getDate();
+																				};
+																				var format2 = function format2(date) {
+																								return FULLMONTHS[date.getMonth()] + " " + date.getFullYear();
+																				};
 
-																				if (option.select) {
-																								$("#" + uuid).change(function () {
-																												if ($(this).prop("checked")) option.select();
-																								});
-																				}
-																}
+																				this.options = $.extend({
+																								future: true,
+																								past: true,
+																								onselect: function onselect() {}
+																				}, this.options);
 
-																Photon.reload();
+																				dialog.addClass("photon-datepicker");
 
-																$("[name='" + group + "']").change(function () {
-																				$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0]);
-																});
+																				dialog.append("<div class=\"bar\"><div class=\"year\">" + this.options.date.getFullYear() + "</div><div class=\"date active\">" + format(this.options.date) + "</div></div>");
+																				dialog.append("<div class=\"body years\"></div>");
+																				dialog.append("<div class=\"body calendar active\"></div>");
 
-																this.value = () => $("[for='" + $("[name='" + group + "']:checked").attr("id") + "']").text();
-												} else if (this.options.type == "checkbox") {
-
-																this.options.size = "choice";
-																dialog.append(`<div class="title">${this.options.title}</div>`);
-
-																const group = Photon.guid();
-																const ouid = Photon.guid();
-
-																dialog.append(`<div class="body"><div class="options" id="${ouid}"></div></div>`);
-																const options = $("#" + ouid);
-																for (let option of this.options.options) {
-																				let uuid = Photon.guid();
-																				options.append(`<div class="checkbox"><input type="checkbox" id="${uuid}" name="${group}"${option.selected ? " checked" : ""}><label for="${uuid}">${option.name}</label><div class="ripple waves-effect waves-ink"></div></div>`);
-																}
-
-																Photon.reload();
-
-																$("[name='" + group + "']").change(function () {
-																				$(this).prop("checked") && Waves.ripple($(this).siblings(".ripple")[0]);
-																});
-
-																this.value = () => {
-																				let ops = [];
-																				$("[name='" + group + "']:checked").each(function () {
-																								ops.push($(this).siblings("label").text());
+																				dialog.children(".bar").children(".year").click(function () {
+																								$(this).addClass("active").siblings().removeClass("active");
+																								dialog.children(".body").removeClass("active");
+																								dialog.children(".body.years").addClass("active");
 																				});
-																				return ops;
-																};
-												} else if (this.options.type == "user") {
-																this.options.size = "dense";
-																dialog.append(`<div class="title">${this.options.title}</div>`);
-
-																dialog.append(`<div class="users"></div>`);
-
-																let img = "data:image/svg+xml;base64," + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="#1e88e5"><circle fill="#bbdefb" cx="20" cy="20" r="20"/><g transform="translate(5,4) scale(1.25)"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/><path d="M0 0h24v24H0z" fill="none"/></g></svg>`);
-																for (let user of this.options.users || []) {
-																				let xuid = Photon.guid();
-																				dialog.children(".users").append(`<div id="${xuid}" class="user waves-effect"><img src="${user.image || img}" alt="" /><span class="desc">${user.desc}</span></div>`);
-																				user.click && $(`#${xuid}`).click(() => user.click(this));
-																}
-
-																if (this.options.methods.length > 0 && this.options.users.length > 0) dialog.children(".users").append(`<hr />`);
-
-																let add = "data:image/svg+xml;base64," + btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill="#fff"><circle fill="#c1c1c1" cx="20" cy="20" r="20"/><g transform="translate(5,5) scale(1.25)"><path fill="none" d="M0 0h24v24H0V0z"/><path d="M18 13h-5v5c0 .55-.45 1-1 1s-1-.45-1-1v-5H6c-.55 0-1-.45-1-1s.45-1 1-1h5V6c0-.55.45-1 1-1s1 .45 1 1v5h5c.55 0 1 .45 1 1s-.45 1-1 1z"/></g></svg>`);
-																for (let method of this.options.methods || []) {
-																				let xuid = Photon.guid();
-																				dialog.children(".users").append(`<div id="${xuid}" class="user method waves-effect"><img src="${method.image || add}" alt="" /><span class="desc">${method.name}</span></div>`);
-																				method.click && $(`#${xuid}`).click(() => method.click(this));
-																}
-												} else if (this.options.type == "date") {
-																this.options.size = "picker";
-																if (!this.options.date || !this.options.date instanceof Date) this.options.date = new Date();
-
-																const FULLMONTHS = ["January", "Febuary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-																const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-																const DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-																let format = date => `${DAYS[date.getDay()]}, ${MONTHS[date.getMonth()]} ${date.getDate()}`;
-																let format2 = date => `${FULLMONTHS[date.getMonth()]} ${date.getFullYear()}`;
-
-																this.options = $.extend({
-																				future: true,
-																				past: true,
-																				onselect() {}
-																}, this.options);
-
-																dialog.addClass("photon-datepicker");
-
-																dialog.append(`<div class="bar"><div class="year">${this.options.date.getFullYear()}</div><div class="date active">${format(this.options.date)}</div></div>`);
-																dialog.append(`<div class="body years"></div>`);
-																dialog.append(`<div class="body calendar active"></div>`);
-
-																dialog.children(".bar").children(".year").click(function () {
-																				$(this).addClass("active").siblings().removeClass("active");
-																				dialog.children(".body").removeClass("active");
-																				dialog.children(".body.years").addClass("active");
-																});
-																dialog.children(".bar").children(".date").click(function () {
-																				$(this).addClass("active").siblings().removeClass("active");
-																				dialog.children(".body").removeClass("active");
-																				dialog.children(".body.calendar").addClass("active");
-																});
-
-																const years = dialog.children(".body.years");
-																const calendar = dialog.children(".body.calendar");
-
-																calendar.append(`<div class="calnav"><i class="material-icons waves-effect waves-ink">chevron_left</i><div class="monthyear alt">ALT</div><div class="monthyear">${format2(this.options.date)}</div><i class="material-icons waves-effect waves-ink right">chevron_right</i></div>`);
-
-																calendar.append(`<div class="cal-slider"></div><div class="cal-slider alt"></div>`);
-																calendar.children(".cal-slider").append(`<div class="headers"><div class="header">S</div><div class="header">M</div><div class="header">T</div><div class="header">W</div><div class="header">T</div><div class="header">F</div><div class="header">S</div></div>`);
-
-																let value = this.options.date;
-
-																const pri = calendar.children(".calnav").children(".monthyear").not(".alt");
-																const alt = calendar.children(".calnav").children(".monthyear.alt").hide();
-																const both = calendar.children(".calnav").children(".monthyear");
-
-																const cmp = calendar.children(".cal-slider").not(".alt");
-																const cma = calendar.children(".cal-slider.alt").hide();
-																const cmb = calendar.children(".cal-slider");
-
-																cmb.append(`<div class="cal"></div>`);
-
-																let selected = new Date(this.options.date);
-
-																let update = date => {
-
-																				dialog.children(".bar").children(".year").html(date.getFullYear());
-																				dialog.children(".bar").children(".date").html(format(date));
-
-																				opts.onselect(date);
-
-																				value = date;
-																};
-
-																let opts = this.options;
-																let repop = (cal, date) => {
-
-																				value = date;
-
-																				let today = new Date();
-
-																				cal.empty();
-																				years.empty();
-
-																				let frange = [date.getFullYear(), date.getFullYear()];
-																				if (opts.past) frange[0] -= 100;
-																				if (opts.future) frange[1] += 100;
-
-																				for (let i = frange[0]; i <= frange[1]; i++) {
-																								let classes = ["yearsel", "waves-effect"];
-																								if (i == opts.date.getFullYear()) {
-																												classes.push("selected");
-																								}
-
-																								years.append(`<div class="${classes.join(" ")}">${i}</div>`);
-																				}
-
-																				let scroll = 0;
-																				let l = 48;
-																				years.children().each(function () {
-																								if ($(this).hasClass("selected")) l = 0;
-																								scroll += l;
-																				}).click(function () {
-																								$(this).addClass("selected").siblings().removeClass("selected");
-																								value.setYear(parseInt($(this).text()));
-
-																								repop(cmp.children(".cal"), value);
-																								pri.text(format2(value));
+																				dialog.children(".bar").children(".date").click(function () {
+																								$(this).addClass("active").siblings().removeClass("active");
+																								dialog.children(".body").removeClass("active");
+																								dialog.children(".body.calendar").addClass("active");
 																				});
 
-																				years.scrollTop(scroll - 144);
+																				var years = dialog.children(".body.years");
+																				var calendar = dialog.children(".body.calendar");
 
-																				date.setDate(1);
-																				for (let i = 0; i < date.getDay(); i++) {
-																								cal.append(`<div class="datecell"></div>`);
-																				}
+																				calendar.append("<div class=\"calnav\"><i class=\"material-icons waves-effect waves-ink\">chevron_left</i><div class=\"monthyear alt\">ALT</div><div class=\"monthyear\">" + format2(this.options.date) + "</div><i class=\"material-icons waves-effect waves-ink right\">chevron_right</i></div>");
 
-																				date.setMonth(date.getMonth() + 1);
-																				date.setDate(-1);
+																				calendar.append("<div class=\"cal-slider\"></div><div class=\"cal-slider alt\"></div>");
+																				calendar.children(".cal-slider").append("<div class=\"headers\"><div class=\"header\">S</div><div class=\"header\">M</div><div class=\"header\">T</div><div class=\"header\">W</div><div class=\"header\">T</div><div class=\"header\">F</div><div class=\"header\">S</div></div>");
 
-																				for (let i = 0; i < date.getDate() + 1; i++) {
-																								let classes = ["date"];
+																				var value = this.options.date;
 
-																								if (i + 1 == today.getDate() && date.getMonth() == today.getMonth() && date.getYear() == today.getYear()) {
-																												classes.push("today");
+																				var pri = calendar.children(".calnav").children(".monthyear").not(".alt");
+																				var alt = calendar.children(".calnav").children(".monthyear.alt").hide();
+																				var both = calendar.children(".calnav").children(".monthyear");
+
+																				var cmp = calendar.children(".cal-slider").not(".alt");
+																				var cma = calendar.children(".cal-slider.alt").hide();
+																				var cmb = calendar.children(".cal-slider");
+
+																				cmb.append("<div class=\"cal\"></div>");
+
+																				var selected = new Date(this.options.date);
+
+																				var update = function update(date) {
+
+																								dialog.children(".bar").children(".year").html(date.getFullYear());
+																								dialog.children(".bar").children(".date").html(format(date));
+
+																								_opts.onselect(date);
+
+																								value = date;
+																				};
+
+																				var _opts = this.options;
+																				var repop = function repop(cal, date) {
+
+																								value = date;
+
+																								var today = new Date();
+
+																								cal.empty();
+																								years.empty();
+
+																								var frange = [date.getFullYear(), date.getFullYear()];
+																								if (_opts.past) frange[0] -= 100;
+																								if (_opts.future) frange[1] += 100;
+
+																								for (var i = frange[0]; i <= frange[1]; i++) {
+																												var classes = ["yearsel", "waves-effect"];
+																												if (i == _opts.date.getFullYear()) {
+																																classes.push("selected");
+																												}
+
+																												years.append("<div class=\"" + classes.join(" ") + "\">" + i + "</div>");
 																								}
-																								if (i + 1 == selected.getDate() && date.getMonth() == selected.getMonth() && date.getYear() == selected.getYear()) {
-																												classes.push("selected");
-																								}
 
-																								let current = new Date(date);
-																								current.setDate(i + 1);
+																								var scroll = 0;
+																								var l = 48;
+																								years.children().each(function () {
+																												if ($(this).hasClass("selected")) l = 0;
+																												scroll += l;
+																								}).click(function () {
+																												$(this).addClass("selected").siblings().removeClass("selected");
+																												value.setYear(parseInt($(this).text()));
 
-																								let now = new Date();
-																								now.setDate(now.getDate() - 1);
-
-																								if (current.getTime() < now.getTime() && !opts.past) classes.push("disabled");
-																								if (current.getTime() > now.getTime() + 86400000 && !opts.future) classes.push("disabled");
-
-																								cal.append(`<div class="datecell"><div class="${classes.join(" ")}">${i + 1}</div></div>`);
-																				}
-
-																				cal.children(".datecell").children(".date").not(".disabled").click(function () {
-																								cal.children(".datecell").children(".date").removeClass("selected");
-																								$(this).addClass("selected");
-
-																								selected.setDate(parseInt($(this).text()));
-																								selected.setMonth(value.getMonth());
-																								selected.setYear(value.getFullYear());
-
-																								update(value);
-																								bindTouches();
-																				});
-
-																				bindTouches();
-																};
-
-																this.value = () => selected;
-
-																calendar.children(".calnav").children("i").click(function () {
-
-																				both.show();
-																				cmb.show();
-
-																				cmp.children(".cal").unbind("touchstart touchmove touchend");
-
-																				if ($(this).hasClass("right")) {
-
-																								value.setMonth(value.getMonth() + 1);
-																								repop(cma.children(".cal"), value);
-
-																								pri.css("transform", "translateX(0)");
-																								alt.css("transform", "translateX(100%)").text(format2(value));
-																								requestAnimationFrame(() => {
-																												both.addClass("animating");
-																												pri.css("transform", "translateX(-100%)");
-																												alt.css("transform", "translateX(0)");
-																												setTimeout(() => {
-																																both.removeClass("animating");
-																																requestAnimationFrame(() => {
-																																				pri.css("transform", "translateX(0)").text(format2(value));
-																																				repop(cmp.children(".cal"), value);
-
-																																				alt.hide();
-																																});
-																												}, 350);
+																												repop(cmp.children(".cal"), value);
+																												pri.text(format2(value));
 																								});
 
-																								cmp.css("transform", "translateX(0)");
-																								cma.css("transform", "translateX(100%)");
-																								requestAnimationFrame(() => {
-																												cmb.addClass("animating");
-																												cmp.css("transform", "translateX(-100%)");
-																												cma.css("transform", "translateX(0)");
-																												setTimeout(() => {
-																																cmb.removeClass("animating");
-																																requestAnimationFrame(() => {
-																																				cmp.css("transform", "translateX(0)");
-																																				cma.hide();
-																																});
-																												}, 350);
+																								years.scrollTop(scroll - 144);
+
+																								date.setDate(1);
+																								for (var _i = 0; _i < date.getDay(); _i++) {
+																												cal.append("<div class=\"datecell\"></div>");
+																								}
+
+																								date.setMonth(date.getMonth() + 1);
+																								date.setDate(-1);
+
+																								for (var _i2 = 0; _i2 < date.getDate() + 1; _i2++) {
+																												var _classes = ["date"];
+
+																												if (_i2 + 1 == today.getDate() && date.getMonth() == today.getMonth() && date.getYear() == today.getYear()) {
+																																_classes.push("today");
+																												}
+																												if (_i2 + 1 == selected.getDate() && date.getMonth() == selected.getMonth() && date.getYear() == selected.getYear()) {
+																																_classes.push("selected");
+																												}
+
+																												var current = new Date(date);
+																												current.setDate(_i2 + 1);
+
+																												var now = new Date();
+																												now.setDate(now.getDate() - 1);
+
+																												if (current.getTime() < now.getTime() && !_opts.past) _classes.push("disabled");
+																												if (current.getTime() > now.getTime() + 86400000 && !_opts.future) _classes.push("disabled");
+
+																												cal.append("<div class=\"datecell\"><div class=\"" + _classes.join(" ") + "\">" + (_i2 + 1) + "</div></div>");
+																								}
+
+																								cal.children(".datecell").children(".date").not(".disabled").click(function () {
+																												cal.children(".datecell").children(".date").removeClass("selected");
+																												$(this).addClass("selected");
+
+																												selected.setDate(parseInt($(this).text()));
+																												selected.setMonth(value.getMonth());
+																												selected.setYear(value.getFullYear());
+
+																												update(value);
+																												_bindTouches();
 																								});
-																				} else {
 
-																								let dc = value.getMonth();
-																								value.setMonth(value.getMonth() - 1);
-																								if (value.getMonth() == dc) {
-																												value.setMonth(value.getMonth() - 1);
-																								}
+																								_bindTouches();
+																				};
 
-																								repop(cma.children(".cal"), value);
+																				this.value = function () {
+																								return selected;
+																				};
 
-																								pri.css("transform", "translateX(0)");
-																								alt.css("transform", "translateX(-100%)").text(format2(value));
-																								requestAnimationFrame(() => {
-																												both.addClass("animating");
-																												pri.css("transform", "translateX(100%)");
-																												alt.css("transform", "translateX(0)");
-																												setTimeout(() => {
-																																both.removeClass("animating");
-																																requestAnimationFrame(() => {
-																																				pri.css("transform", "translateX(0)").text(format2(value));
-																																				repop(cmp.children(".cal"), value);
+																				calendar.children(".calnav").children("i").click(function () {
 
-																																				alt.hide();
-																																});
-																												}, 350);
-																								});
+																								both.show();
+																								cmb.show();
 
-																								cmp.css("transform", "translateX(0)");
-																								cma.css("transform", "translateX(-100%)");
-																								requestAnimationFrame(() => {
-																												cmb.addClass("animating");
-																												cmp.css("transform", "translateX(100%)");
-																												cma.css("transform", "translateX(0)");
-																												setTimeout(() => {
-																																cmb.removeClass("animating");
-																																requestAnimationFrame(() => {
-																																				cmp.css("transform", "translateX(0)");
-																																				cma.hide();
-																																});
-																												}, 350);
-																								});
-																				}
-																});
-
-																repop(cmp.children(".cal"), value);
-
-																function bindTouches() {
-
-																				let initialTouch;
-																				let touch;
-																				let touchSign;
-																				let swipe;
-
-																				let cache;
-
-																				cmp.children(".cal").bind("touchstart", e => {
-																								initialTouch = e.changedTouches[0].clientX;
-																								cache = new Date(value);
-																				}).bind("touchmove", e => {
-																								touch = e.changedTouches[0].clientX;
-																								let relative = initialTouch - touch;
-																								let touchRelSign;
-
-																								if (relative > 0) {
-																												touchRelSign = 1;
-																								} else if (relative == 0) {
-																												touchRelSign = 0;
-																								} else {
-																												touchRelSign = -1;
-																								}
-
-																								if (touchRelSign !== touchSign) {
-																												touchSign = touchRelSign;
-																												signFlip();
-																								}
-
-																								swipe = Math.abs((initialTouch - touch) / dialog.width()) * 100;
-																								if (touchSign === 1) {
-
-																												pri.css("transform", `translateX(${-swipe}%)`);
-																												alt.css("transform", `translateX(${-swipe + 100}%)`);
-
-																												cmp.css("transform", `translateX(${-swipe}%)`);
-																												cma.css("transform", `translateX(${-swipe + 100}%)`);
-																								} else if (touchSign === -1) {
-
-																												pri.css("transform", `translateX(${swipe}%)`);
-																												alt.css("transform", `translateX(${swipe - 100}%)`);
-
-																												cmp.css("transform", `translateX(${swipe}%)`);
-																												cma.css("transform", `translateX(${swipe - 100}%)`);
-																								}
-																				}).bind("touchend", e => {
-
-																								swipe = Math.abs((initialTouch - e.changedTouches[0].clientX) / dialog.width()) * 100;
 																								cmp.children(".cal").unbind("touchstart touchmove touchend");
 
-																								if (touchSign === 1) {
+																								if ($(this).hasClass("right")) {
 
-																												if (swipe > 40) {
+																												value.setMonth(value.getMonth() + 1);
+																												repop(cma.children(".cal"), value);
 
-																																value = cache;
-
+																												pri.css("transform", "translateX(0)");
+																												alt.css("transform", "translateX(100%)").text(format2(value));
+																												requestAnimationFrame(function () {
 																																both.addClass("animating");
 																																pri.css("transform", "translateX(-100%)");
 																																alt.css("transform", "translateX(0)");
-																																setTimeout(() => {
+																																setTimeout(function () {
 																																				both.removeClass("animating");
-																																				requestAnimationFrame(() => {
+																																				requestAnimationFrame(function () {
 																																								pri.css("transform", "translateX(0)").text(format2(value));
 																																								repop(cmp.children(".cal"), value);
 
 																																								alt.hide();
 																																				});
 																																}, 350);
+																												});
 
+																												cmp.css("transform", "translateX(0)");
+																												cma.css("transform", "translateX(100%)");
+																												requestAnimationFrame(function () {
 																																cmb.addClass("animating");
 																																cmp.css("transform", "translateX(-100%)");
 																																cma.css("transform", "translateX(0)");
-																																setTimeout(() => {
+																																setTimeout(function () {
 																																				cmb.removeClass("animating");
-																																				requestAnimationFrame(() => {
+																																				requestAnimationFrame(function () {
 																																								cmp.css("transform", "translateX(0)");
 																																								cma.hide();
 																																				});
 																																}, 350);
-																												} else {
+																												});
+																								} else {
 
-																																try {
-																																				cache.setMonth(cache.getMonth() - 1);
-
-																																				both.addClass("animating");
-																																				pri.css("transform", "translateX(0)");
-																																				alt.css("transform", "translateX(100%)");
-
-																																				cmb.addClass("animating");
-																																				cmp.css("transform", "translateX(0)");
-																																				cma.css("transform", "translateX(100%)");
-
-																																				setTimeout(() => {
-																																								both.removeClass("animating");
-																																								cmb.removeClass("animating");
-																																				}, 350);
-																																} catch (e) {
-																																				void e;
-																																}
-
-																																bindTouches();
+																												var dc = value.getMonth();
+																												value.setMonth(value.getMonth() - 1);
+																												if (value.getMonth() == dc) {
+																																value.setMonth(value.getMonth() - 1);
 																												}
-																								} else if (touchSign === -1) {
 
-																												if (swipe > 40) {
+																												repop(cma.children(".cal"), value);
 
-																																value = cache;
-
+																												pri.css("transform", "translateX(0)");
+																												alt.css("transform", "translateX(-100%)").text(format2(value));
+																												requestAnimationFrame(function () {
 																																both.addClass("animating");
 																																pri.css("transform", "translateX(100%)");
 																																alt.css("transform", "translateX(0)");
-																																setTimeout(() => {
+																																setTimeout(function () {
 																																				both.removeClass("animating");
-																																				requestAnimationFrame(() => {
+																																				requestAnimationFrame(function () {
 																																								pri.css("transform", "translateX(0)").text(format2(value));
 																																								repop(cmp.children(".cal"), value);
 
 																																								alt.hide();
 																																				});
 																																}, 350);
+																												});
 
+																												cmp.css("transform", "translateX(0)");
+																												cma.css("transform", "translateX(-100%)");
+																												requestAnimationFrame(function () {
 																																cmb.addClass("animating");
 																																cmp.css("transform", "translateX(100%)");
 																																cma.css("transform", "translateX(0)");
-																																setTimeout(() => {
+																																setTimeout(function () {
 																																				cmb.removeClass("animating");
-																																				requestAnimationFrame(() => {
+																																				requestAnimationFrame(function () {
 																																								cmp.css("transform", "translateX(0)");
 																																								cma.hide();
 																																				});
 																																}, 350);
-																												} else {
-
-																																try {
-																																				cache.setMonth(cache.getMonth() + 1);
-
-																																				both.addClass("animating");
-																																				pri.css("transform", "translateX(0)");
-																																				alt.css("transform", "translateX(-100%)");
-
-																																				cmb.addClass("animating");
-																																				cmp.css("transform", "translateX(0)");
-																																				cma.css("transform", "translateX(-100%)");
-
-																																				setTimeout(() => {
-																																								both.removeClass("animating");
-																																								cmb.removeClass("animating");
-																																				}, 350);
-																																} catch (e) {
-																																				void e;
-																																}
-
-																																bindTouches();
-																												}
+																												});
 																								}
 																				});
 
-																				function signFlip() {
-																								try {
-																												if (touchSign === 1) {
-																																cache.setMonth(cache.getMonth() + 1);
-																												} else if (touchSign === -1) {
-																																let precache = cache.getMonth();
-																																cache.setMonth(cache.getMonth() - 1);
-																																if (precache === cache.getMonth()) cache.setMonth(cache.getMonth() - 1);
-																												}
+																				repop(cmp.children(".cal"), value);
+																} else if (this.options.type == "time") {
+																				this.options.size = "picker";
 
-																												alt.text(format2(cache)).show();
+																				dialog.addClass("photon-timepicker");
+																				dialog.append("<div class=\"bar accent\"></div>");
 
-																												cma.show();
-																												repop(cma.children(".cal"), cache);
-																								} catch (e) {
-																												void e;
+																				dialog.append("<div class=\"clock\"></div>");
+
+																				for (var i = 0; i < 12; i++) {
+																								dialog.children(".clock").append("<div class=\"timecell dc-pos-" + i + "\">" + i + "</div>");
+																				}
+																}
+
+																dialog.addClass("size-" + this.options.size);
+																this.options.actions.length > 0 && dialog.append("<div class=\"actions\"></div>");
+
+																this.$ = dialog;
+																Photon.activeDialog = this;
+
+																var _iteratorNormalCompletion7 = true;
+																var _didIteratorError7 = false;
+																var _iteratorError7 = undefined;
+
+																try {
+																				var _loop4 = function _loop4() {
+																								var action = _step7.value;
+
+																								action.acid = Photon.guid();
+																								dialog.children(".actions").append("<a id=\"" + action.acid + "\" class=\"btn " + (action.variant || "flat") + " waves-effect waves-accent\">" + action.name + "</a>");
+																								action.role == "primary" && $("#" + action.acid).css("left", "4px").css("position", "absolute");
+																								action.click && $("#" + action.acid).click(function () {
+																												_this5.resolved = true;
+																												action.click(_this5);
+																								});
+																				};
+
+																				for (var _iterator7 = this.options.actions[Symbol.iterator](), _step7; !(_iteratorNormalCompletion7 = (_step7 = _iterator7.next()).done); _iteratorNormalCompletion7 = true) {
+																								_loop4();
+																				}
+																} catch (err) {
+																				_didIteratorError7 = true;
+																				_iteratorError7 = err;
+																} finally {
+																				try {
+																								if (!_iteratorNormalCompletion7 && _iterator7.return) {
+																												_iterator7.return();
+																								}
+																				} finally {
+																								if (_didIteratorError7) {
+																												throw _iteratorError7;
 																								}
 																				}
 																}
-												} else if (this.options.type == "time") {
-																this.options.size = "picker";
 
-																dialog.addClass("photon-timepicker");
-																dialog.append(`<div class="bar accent"></div>`);
-
-																dialog.append(`<div class="clock"></div>`);
-
-																for (let i = 0; i < 12; i++) dialog.children(".clock").append(`<div class="timecell dc-pos-${i}">${i}</div>`);
-												}
-
-												dialog.addClass("size-" + this.options.size);
-												this.options.actions.length > 0 && dialog.append(`<div class="actions"></div>`);
-
-												this.$ = dialog;
-												Photon.activeDialog = this;
-
-												for (let action of this.options.actions) {
-																action.acid = Photon.guid();
-																dialog.children(".actions").append(`<a id="${action.acid}" class="btn ${action.variant || "flat"} waves-effect waves-accent">${action.name}</a>`);
-																action.role == "primary" && $("#" + action.acid).css("left", "4px").css("position", "absolute");
-																action.click && $(`#${action.acid}`).click(() => {
-																				this.resolved = true;
-																				action.click(this);
+																$("body").keyup(function (e) {
+																				if (e.which == 27) {
+																								_this5.destroy();
+																				} else if (e.which == 13) {
+																								dialog.children(".actions").children().first().click();
+																				}
 																});
 												}
+								}]);
 
-												$("body").keyup(e => {
-																if (e.which == 27) {
-																				this.destroy();
-																} else if (e.which == 13) {
-																				dialog.children(".actions").children().first().click();
-																}
-												});
-								}
-
-				};
+								return Dialog;
+				}();
 })();
 
 Photon.lastReload = -500;
-Photon.ready = Photon.reload = (hard = false) => {
+Photon.ready = Photon.reload = function () {
+				var hard = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+
 				if (hard !== true) {
 								if (performance.now() - 500 > Photon.lastReload) {
 												Photon.lastReload = performance.now();
@@ -1684,7 +1945,7 @@ Photon.ready = Photon.reload = (hard = false) => {
 				$(".expansion-panel").expansionpanel();
 				$(".scrollnav").scrollnav();
 				$(".select").select();
-				$(".sidenav").not(`[data-sn]`).sidenav();
+				$(".sidenav").not("[data-sn]").sidenav();
 				$(".slider").slider();
 				$(".tabs").tabs();
 				$(".tooltipped").tooltip();
@@ -1697,14 +1958,14 @@ Photon.ready = Photon.reload = (hard = false) => {
 
 				$(".input-field, .checkbox, .radio-btn, .switch").each(function () {
 								if ($(this).children("input").attr("id") === undefined && $(this).children("label").attr("for") === undefined) {
-												let id = Photon.guid();
+												var id = Photon.guid();
 												$(this).children("label").attr("for", id);
 												$(this).children("input").attr("id", id);
 								}
 				});
 
 				$("label").each(function () {
-								let f = $("#" + $(this).attr("for"));
+								var f = $("#" + $(this).attr("for"));
 								$(this).addClass("for-" + f.attr("type"));
 
 								$(this).on("mousedown", function () {
@@ -1723,9 +1984,10 @@ Photon.ready = Photon.reload = (hard = false) => {
 												if ($(this).parent().children(".bar").length > 0) return;
 
 												$(this).parent().append("<div class=\"bar\"></div>");
-												let bar = $(this).siblings(".bar");
+												var bar = $(this).siblings(".bar");
 
-												let { X } = window.cursor;
+												var X = window.cursor.X;
+
 												X = X - $(this).offset().left;
 												X = X / $(this).width() * 100;
 												X = X > $(this).parent().width() ? $(this).parent().width() : X;
@@ -1749,11 +2011,13 @@ Photon.ready = Photon.reload = (hard = false) => {
 																}, Photon.speed, "swing");
 												}
 								}).blur(function () {
-												const b = $(this).siblings(".bar");
+												var b = $(this).siblings(".bar");
 												b.animate({
 																opacity: 0
 												}, Photon.speed, function () {
-																setTimeout(() => b.remove(), Photon.speed);
+																setTimeout(function () {
+																				return b.remove();
+																}, Photon.speed);
 												});
 								}).change(function () {
 												if ($(this).val() != "") {
@@ -1768,9 +2032,9 @@ Photon.ready = Photon.reload = (hard = false) => {
 																$(this).removeClass("containscontent");
 												}
 												if ($(this).attr("type").toLowerCase() == "password" && !$(this).is(":disabled")) {
-																let id = Photon.guid();
+																var id = Photon.guid();
 																$("#" + id).click(function () {
-																				let i = $(this).siblings("input");
+																				var i = $(this).siblings("input");
 																				if (i.attr("type").toLowerCase() == "password") {
 																								i.attr("type", "text");
 																								$(this).html("&#xE8F5;");
@@ -1783,7 +2047,7 @@ Photon.ready = Photon.reload = (hard = false) => {
 												} else if ($(this).attr("type").toLowerCase() == "number") {
 																$(this).val($(this).val() || "0").addClass("containscontent");
 																$(this).off("mousewheel").on("mousewheel", function (e) {
-																				let v = parseInt($(this).val());
+																				var v = parseInt($(this).val());
 																				e.preventDefault();
 
 																				function getDelta(g) {
@@ -1819,7 +2083,7 @@ Photon.ready = Photon.reload = (hard = false) => {
 
 				Photon.Waves.reload();
 
-				requestAnimationFrame(() => {
+				requestAnimationFrame(function () {
 								$(".tabs.auto").each(function () {
 												$(this).children(".tab").each(function () {
 																$(this).children("a").click();
@@ -1846,8 +2110,8 @@ Photon.ready = Photon.reload = (hard = false) => {
 				});
 
 				;(function () {
-								let track = 0;
-								let start = 0;
+								var track = 0;
+								var start = 0;
 
 								$(".tabs-swipeable").on("touchstart", function (e) {
 
@@ -1859,8 +2123,8 @@ Photon.ready = Photon.reload = (hard = false) => {
 												track = e.changedTouches[0].pageX;
 								}).on("touchend", function () {
 
-												let swipeleft = start - track > 100;
-												let swiperight = start - track < -100;
+												var swipeleft = start - track > 100;
+												var swiperight = start - track < -100;
 
 												if (swiperight) {
 																$("a[href=\"#" + $(this).attr("id") + "\"]").parent().prev().children("a").click();
@@ -1879,18 +2143,20 @@ Photon.ready = Photon.reload = (hard = false) => {
 				});
 };
 
-$(() => {
+$(function () {
 
 				Photon.autoready && Photon.ready();
-				$(document.body).mousemove(e => {
+				$(document.body).mousemove(function (e) {
 								window.cursor = {};
 								window.cursor.X = e.pageX;
 								window.cursor.Y = e.pageY;
 				});
 
-				setInterval(() => Waves.ripple($(".waves-pulse"), {
-								wait: 750
-				}), 1250);
+				setInterval(function () {
+								return Waves.ripple($(".waves-pulse"), {
+												wait: 750
+								});
+				}, 1250);
 
 				(function animation() {
 								requestAnimationFrame(animation);
@@ -1908,8 +2174,8 @@ $(() => {
 								}
 
 								$(".card-image.parallax").each(function () {
-												let t = $(this).children("img");
-												let px = ($("html").scrollTop() - t.offset().top * .75) / 20;
+												var t = $(this).children("img");
+												var px = ($("html").scrollTop() - t.offset().top * .75) / 20;
 												t[0].style.transform = "scale(2) translateY(" + px + "px)";
 								});
 
@@ -1933,13 +2199,13 @@ $(() => {
 								}
 
 								$(".toolbar.parallax, .app-bar.parallax").each(function () {
-												const st = $("html").scrollTop();
+												var st = $("html").scrollTop();
 
-												let padding = 260 - st - 64;
+												var padding = 260 - st - 64;
 												if (padding < 0) padding = 0;
 
-												let opacity = 1 - st / 260;
-												let filter = "none";
+												var opacity = 1 - st / 260;
+												var filter = "none";
 												if (opacity > 0.73) opacity = 0.73;
 												if (opacity < 0.26) {
 																opacity = 0.26;
@@ -1956,4 +2222,5 @@ $(() => {
 				})();
 });
 
-typeof module === "object" && (module.exports = Photon);
+(typeof module === "undefined" ? "undefined" : _typeof(module)) === "object" && (module.exports = Photon);
+
