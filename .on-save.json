@@ -1,0 +1,11 @@
+[{
+    "files": "src/*.less",
+    "command": "lessc src/opt/source.less > dist/photon.css && csso dist/photon.css -o dist/photon.min.css",
+	"showError": true,
+	"implementBusySignal": true
+}, {
+    "files": "src/*.js",
+    "command": "babel src/photon.js > dist/photon.js && uglifyjs dist/photon.js -cmo dist/photon.min.js",
+	"showError": true,
+	"implementBusySignal": true
+}]
