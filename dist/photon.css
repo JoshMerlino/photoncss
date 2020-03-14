@@ -7524,8 +7524,8 @@ input[type="radio"]:disabled::after {
   max-width: 136px;
   margin: 8px 0;
 }
-.reference .padding-layer i.tooltipped,
-.autolink .padding-layer i.tooltipped {
+.reference .padding-layer i,
+.autolink .padding-layer i {
   position: absolute;
   bottom: 0;
   right: 0;
