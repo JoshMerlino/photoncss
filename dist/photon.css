@@ -1,9 +1,9 @@
-@import "../../src/photon/fonts/Google_Sans/css.css";
-@import "../../src/photon/fonts/Icon_Font/material-icons.css";
-@import "../../src/photon/fonts/Roboto/css.css";
-@import "../../src/photon/fonts/Roboto_Condensed/css.css";
-@import "../../src/photon/fonts/Roboto_Mono/css.css";
-@import "../../src/photon/fonts/Roboto_Slab/css.css";
+@import "../../fonts/Google_Sans/css.css";
+@import "../../fonts/Icon_Font/material-icons.css";
+@import "../../fonts/Roboto/css.css";
+@import "../../fonts/Roboto_Condensed/css.css";
+@import "../../fonts/Roboto_Mono/css.css";
+@import "../../fonts/Roboto_Slab/css.css";
 ::selection {
   background: #bbd3fd;
   color: #000;

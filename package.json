@@ -1,11 +1,11 @@
 {
     "name": "photon-css",
-    "version": "5.0.0",
+    "version": "6.0.0",
     "description": "PhotonCSS - The next generation of web design.",
-    "main": "index.js",
+    "main": "dist/photon.min/.js",
     "scripts": {
         "test": "node test/main.test.js",
-        "prepublish": "webpack --config webpack.production.js",
+        "prepublish": "webpack --config webpack.production.js && lessc src/less/photon.less > dist/photon.css && csso dist/photon.css -o dist/photon.min.css && uglifyjs dist/photon.js -cmo dist/photon.min.js",
         "dev": "webpack -w --config webpack.development.js"
     },
     "keywords": [
@@ -20,7 +20,10 @@
         "@babel/preset-env": "^7.8.7",
         "babel-loader": "^8.0.6",
         "csso": "^4.0.2",
+        "csso-cli": "^3.0.0",
         "less": "^3.11.1",
+        "react": "^16.13.1",
+        "uglify-js": "^3.8.0",
         "webpack": "^4.42.0",
         "webpack-cli": "^3.3.11"
     }
