@@ -1,6 +1,11 @@
 [{
     "files": "src/*.less",
-    "command": "lessc src/less/opt/source.less > dist/photon.css && csso dist/photon.css -o dist/photon.min.css",
+    "command": "lessc src/less/photon.less > dist/photon.css && csso dist/photon.css -o dist/photon.min.css",
+	"showError": true,
+	"implementBusySignal": true
+}, {
+    "files": "dist/photon.js",
+    "command": "uglifyjs dist/photon.js -cmo dist/photon.min.js",
 	"showError": true,
 	"implementBusySignal": true
 }]
