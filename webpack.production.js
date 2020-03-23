@@ -18,6 +18,6 @@ module.exports = {
 	    },
 	    noEmitOnErrors: true,
 	    checkWasmTypes: true,
-	    minimize: true,
+	    minimize: false,
 	}
 };

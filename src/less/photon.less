@@ -1,9 +1,11 @@
-@import "../../src/photon/fonts/Google_Sans/css.css";
-@import "../../src/photon/fonts/Icon_Font/material-icons.css";
-@import "../../src/photon/fonts/Roboto/css.css";
-@import "../../src/photon/fonts/Roboto_Condensed/css.css";
-@import "../../src/photon/fonts/Roboto_Mono/css.css";
-@import "../../src/photon/fonts/Roboto_Slab/css.css";
+@import (optional) "theme";
+
+@import "../../fonts/Google_Sans/css.css";
+@import "../../fonts/Icon_Font/material-icons.css";
+@import "../../fonts/Roboto/css.css";
+@import "../../fonts/Roboto_Condensed/css.css";
+@import "../../fonts/Roboto_Mono/css.css";
+@import "../../fonts/Roboto_Slab/css.css";
 
 @mobile: ~"only screen and (max-width: 511px)";
 @tablet: ~"only screen and (min-width: 512px) and (max-width: 1279px)";
@@ -222,7 +224,7 @@ video {
 	border: none;
 }
 
-@import "opt/mixins";
+@import "mixins";
 
 @import "comp/badge";
 @import "comp/button";
