@@ -1,6 +1,6 @@
 {
     "name": "photon-css",
-    "version": "6.0.0",
+    "version": "1.0.0",
     "description": "PhotonCSS - The next generation of web design.",
     "main": "dist/photon.min/.js",
     "scripts": {
