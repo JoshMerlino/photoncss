@@ -1,5 +1,6 @@
 import Waves from "./waves.js";
 
+// Define constant Photon global
 const Photon = {
 
 	// Store an instance of the active dialog
