@@ -15,5 +15,12 @@ module.exports = {
                 }
             }
         }]
+    },
+	resolve: {
+		extensions: [".js"],
+        alias: {
+            "photoncss": path.join(__dirname, "./src/js/photon.js"),
+            "@photoncss": path.join(__dirname, "./modules"),
+        }
     }
 }
