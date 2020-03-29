@@ -1,4 +1,5 @@
 import React from "react";
+import Photon from "photoncss";
 
 class Button extends React.Component {
 
@@ -18,7 +19,7 @@ class Button extends React.Component {
 			this.props.variant,
 			this.props.color,
 			this.props.size !== "default" ? this.props.size : "",
-			this.props.waves !== false ? `waves-effect${this.props.waves !== true ? ` waves-${this.props.waves.replace(/\s/g, " waves-")}` : ""}` : "",
+			this.props.waves !== false ? `waves-effect${this.props.waves !== true ? ` ${Photon.prefixColorQuery("waves", this.props.waves)}` : ""}` : "",
 			this.props.disabled ? "disabled" : ""
 		].join(" ").replace(/\s\s/gm, " ");
 	}
