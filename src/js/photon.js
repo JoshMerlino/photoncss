@@ -14,7 +14,7 @@ const Photon = {
         return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
     },
 
-	// Converts a string classname color like 'green accent-2' to a hex value
+	// Converts a string classname color like "green accent-2" to a hex value
 	parseColor(query) {
 
 		// Extract color and shade from query
@@ -79,41 +79,60 @@ const Photon = {
 	// Binds event listeners where needed
 	reload() {
 
-		// Attach waves effect to elements that have not had it attached yet
-		Waves.attach($(".waves-effect").not("[photon-tag]"));
+		// Waves:
+		Waves.attach($(".waves-effect").not("[md]"));
 
 		// Waves ink
-		$(".waves-ink").not("[photon-tag]")
+		$(".waves-ink").not("[md]").each(function() {
+			$(this)
+			  .on("mousedown", function(event) {
 
-		  .on("mousedown", function(event) {
+	  			event.stopPropagation();
+	  			Waves.calm(this);
+	  			Waves.ripple(this, { wait: 1e10 });
 
-			// Stop event spread
-			event.stopPropagation();
+  		  	  })
 
-			// Hide existing waves
-			Waves.calm(this);
+  		  	  .on("mouseup mouseleave", function() {
 
-			// Create a new wave
-			Waves.ripple(this, { wait: 1e10 });
+    			Waves.calm(this);
 
-		  })
+  		  	  })
 
-		  .on("mouseup mouseleave", function() {
+  		      .on("touchstart", function(event) {
 
-			// Hide existing waves
-  			Waves.calm(this);
+    			event.stopPropagation();
 
-		  })
+  		  	  })
 
-		  .on("touchstart", function(event) {
+  			// Flag changed elements as processed
+  			$(this).attr("md", "");
 
-			// Stop event spread
-  			event.stopPropagation();
+		})
 
-		  })
+		// Toolbar:
+		$(".toolbar").not("[md]").each(function() {
 
-		// Flag changed elements as processed
-		$(".waves-effect .waves-ink").not("[photon-tag]").attr("photon-tag", "");
+			// Elevate Effect:
+			if($(this).hasClass("elevate")) {
+
+				const $toolbar = $(this);
+				let $parent = $toolbar.parents().filter(function() { return this.scrollHeight > this.clientHeight })[0];
+					$parent = $parent === document.children[0] ? document : $parent;
+
+				$($parent).scroll(function() {
+					if($(this).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
+					if($(this).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
+				});
+
+				console.log($parent)
+
+				// Flag changed elements as processed
+				$(this).attr("md", "");
+			}
+
+
+		})
 
 	},
 
