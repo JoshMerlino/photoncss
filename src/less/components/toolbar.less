@@ -1,0 +1,121 @@
+.toolbar {
+
+	transition: box-shadow @standard @easeInOut;
+	width: 100%;
+    display: flex;
+    z-index: 1100;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+	height: 64px;
+	padding: 4px 12px;
+	position: relative;
+
+	&.raised {
+		.raised-4();
+	}
+
+	&.flat {
+		box-shadow: none;
+	}
+
+	&.dense {
+		padding: 0 12px;
+		height: 56px;
+		.toolbar-actions {
+			line-height: 56px;
+		}
+	}
+
+	&.fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+	&.primary {
+		color: @primaryTextColor;
+		background: @primaryColor;
+		.waves-ripple {
+			background: fade(@primaryTextColor, 30%);
+		}
+	}
+
+	&.accent {
+		color: @accentTextColor;
+		background: @accentColor;
+		.waves-ripple {
+			background: fade(@accentTextColor, 30%);
+		}
+	}
+
+	.toolbar-title {
+		font-size: 1.25rem;
+		font-family: @secondaryFont;
+		font-weight: 500;
+		line-height: 1.6;
+		margin: 12px;
+		max-width: 50%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: inline-block;
+		&.contains-subtitle {
+			margin: 6px 12px;
+			letter-spacing: .00625em;
+		    font-family: @secondaryFont;
+		    font-size: 1rem;
+		    font-weight: 500;
+		    line-height: 1.5rem;
+			padding: 2px 0;
+			.subtitle {
+				letter-spacing: .025em;
+			    font-family: @secondaryFont;
+			    font-size: .75rem;
+			    font-weight: 400;
+			    line-height: 1rem;
+			}
+		}
+	}
+
+	i.material-icons {
+		padding: 12px;
+		margin: 4px -4px;
+		border-radius: 50%;
+		& + .toolbar-title {
+			transform: translateY(-56px);
+			margin-left: 52px;
+		}
+		transition: background-color @short @easeInOut;
+		&:hover {
+			background: fade(#000, 4%);
+		}
+	}
+
+	.toolbar-actions {
+		position: absolute;
+		top: 0;
+		right: 0;
+		text-align: right;
+		vertical-align: middle;
+		line-height: 64px;
+		max-height: 64px;
+		padding: 0 4px;
+		font-size: 0;
+		.btn {
+			transform: translateY(-7px);
+		}
+		i.material-icons {
+			margin: 8px;
+		}
+	}
+
+	&.prominent {
+		height: 128px;
+		.toolbar-title {
+			margin-top: 64px;
+			font-size: 1.5rem;
+			font-weight: 400;
+		}
+	}
+
+}
