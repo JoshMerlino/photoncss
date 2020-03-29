@@ -14,7 +14,8 @@ class Button extends React.Component {
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { variant, color, size, textColor, waves, disabled, ...rest } = this.props
+		const { variant, color, size, textColor, waves, disabled, ...rest } = this.props;
+		this.rest = rest;
 		return [
 			"btn",
 			...(rest.className || "").split(" "),
