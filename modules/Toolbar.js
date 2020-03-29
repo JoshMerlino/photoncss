@@ -12,20 +12,22 @@ class Toolbar extends React.Component {
 
 	// Serialize the props object into a series of classes
 	serialize() {
+		const { color, variant, position, elevate, ...rest } = this.props;
+		this.rest = rest;
 		return [
 			"toolbar",
-			...(this.props.className || "").split(" "),
-			this.props.color,
-			this.props.variant,
-			this.props.position !== "default" ? this.props.position : "",
-			this.props.elevate ? "elevate" : ""
+			...(rest.className || "").split(" "),
+			color,
+			variant,
+			position !== "default" ? position : "",
+			elevate ? "elevate" : ""
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
 	// Render component
 	render() {
 		return (
-			<header className={this.serialize()} style={this.props.style || {}}>{this.props.children}</header>
+			<header className={this.serialize()} {...this.rest}>{this.props.children}</header>
 		);
 	}
 
