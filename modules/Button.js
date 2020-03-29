@@ -14,22 +14,23 @@ class Button extends React.Component {
 
 	// Serialize the props object into a series of classes
 	serialize() {
+		const { variant, color, size, textColor, waves, disabled, ...rest } = this.props
 		return [
 			"btn",
-			...(this.props.className || "").split(" "),
-			this.props.variant,
-			this.props.color,
-			this.props.size !== "default" ? this.props.size : "",
-			this.props.textColor !== false ? Photon.prefixColorQuery("text", this.props.textColor) : "",
-			this.props.waves !== false ? `waves-effect${this.props.waves !== true ? ` ${Photon.prefixColorQuery("waves", this.props.waves)}` : ""}` : "",
-			this.props.disabled ? "disabled" : ""
+			...(rest.className || "").split(" "),
+			variant,
+			color,
+			size !== "default" ? size : "",
+			textColor !== false ? Photon.prefixColorQuery("text", textColor) : "",
+			waves !== false ? `waves-effect${waves !== true ? ` ${Photon.prefixColorQuery("waves", waves)}` : ""}` : "",
+			disabled ? "disabled" : ""
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
 	// Render component
 	render() {
 		return (
-			<button className={this.serialize()} style={this.props.style || {}}>{this.props.children}</button>
+			<button className={this.serialize()} {...this.rest}>{this.props.children}</button>
 		);
 	}
 
