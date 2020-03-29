@@ -8,7 +8,8 @@ class Button extends React.Component {
 		variant: "raised",
 		color: "",
 		size: "default",
-		waves: true
+		textColor: false,
+		waves: true,
 	}
 
 	// Serialize the props object into a series of classes
@@ -19,9 +20,10 @@ class Button extends React.Component {
 			this.props.variant,
 			this.props.color,
 			this.props.size !== "default" ? this.props.size : "",
+			this.props.textColor !== false ? Photon.prefixColorQuery("text", this.props.textColor) : "",
 			this.props.waves !== false ? `waves-effect${this.props.waves !== true ? ` ${Photon.prefixColorQuery("waves", this.props.waves)}` : ""}` : "",
 			this.props.disabled ? "disabled" : ""
-		].join(" ").replace(/\s\s/gm, " ");
+		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
 	// Render component
@@ -33,4 +35,4 @@ class Button extends React.Component {
 
 }
 
-export default Button;
+export { Button };
