@@ -6,21 +6,25 @@ class Toolbar extends React.Component {
 	// Define default props
 	static defaultProps = {
 		color: "primary",
-		position: "default",
-		elevate: false
+		size: false,
+		position: false,
+		elevate: false,
+		autoHide: false
 	}
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { color, variant, position, elevate, ...rest } = this.props;
+		const { color, size, variant, position, elevate, autoHide, ...rest } = this.props;
 		this.rest = rest;
 		return [
 			"toolbar",
 			...(rest.className || "").split(" "),
 			color,
 			variant,
-			position !== "default" ? position : "",
-			elevate ? "elevate" : ""
+			position ? position : "",
+			size ? size : "",
+			elevate ? "elevate" : "",
+			autoHide ? "auto-hide" : ""
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
@@ -74,4 +78,15 @@ class ToolbarActions extends React.Component {
 
 }
 
-export { Toolbar, ToolbarTitle, ToolbarActions };
+class ToolbarSafeArea extends React.Component {
+
+	// Render component
+	render() {
+		return (
+			<section className="toolbar-safe-area">{this.props.children}</section>
+		)
+	}
+
+}
+
+export { Toolbar, ToolbarTitle, ToolbarActions, ToolbarSafeArea };

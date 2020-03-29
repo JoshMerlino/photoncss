@@ -1,6 +1,7 @@
 .toolbar {
 
-	transition: box-shadow @standard @easeInOut;
+	transition: box-shadow @standard @easeInOut,
+				transform @standard @easeInOut;
 	width: 100%;
     display: flex;
     z-index: 1100;
@@ -19,11 +20,23 @@
 		box-shadow: none;
 	}
 
+	&.collapsed {
+		transform: translateY(-64px);
+		box-shadow: none;
+	}
+
 	&.dense {
 		padding: 0 12px;
 		height: 56px;
 		.toolbar-actions {
 			line-height: 56px;
+			height: 56px;
+			.btn, i.material-icons {
+				margin: 4px 8px;
+			}
+		}
+		&.collapsed {
+			transform: translateY(-56px);
 		}
 	}
 
@@ -99,7 +112,6 @@
 		vertical-align: middle;
 		line-height: 64px;
 		max-height: 64px;
-		padding: 0 4px;
 		font-size: 0;
 		.btn {
 			transform: translateY(-7px);
@@ -115,6 +127,9 @@
 			margin-top: 64px;
 			font-size: 1.5rem;
 			font-weight: 400;
+		}
+		&.collapsed {
+			transform: translateY(-128px);
 		}
 	}
 
