@@ -114,7 +114,7 @@ const Photon = {
 		$(".toolbar").not("[md]").each(function() {
 
 			// Elevate Effect:
-			if($(this).hasClass("elevate")) {
+			if ($(this).hasClass("elevate")) {
 
 				const $toolbar = $(this);
 				let $parent = $toolbar.parents().filter(function() { return this.scrollHeight > this.clientHeight })[0];
@@ -125,10 +125,46 @@ const Photon = {
 					if($(this).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
 				});
 
-				console.log($parent)
+				// Flag changed elements as processed
+				$(this).attr("md", "");
+			}
+
+			// Auto-hide Effect:
+			if ($(this).hasClass("auto-hide")) {
+
+				const $toolbar = $(this);
+				let $parent = $toolbar.parents().filter(function() { return this.scrollHeight > this.clientHeight })[0];
+					$parent = $parent === document.children[0] ? document : $parent;
+
+				let top = 0;
+				$($parent)
+				  .on("scroll", function() {
+
+					if ($(this).scrollTop() < $toolbar.height()) return;
+
+					const delta = Math.sign($(this).scrollTop() - top);
+					top = $(this).scrollTop();
+
+					if (delta > 0) {
+						$toolbar.addClass("collapsed");
+					} else {
+						$toolbar.removeClass("collapsed");
+					}
+
+				  })
 
 				// Flag changed elements as processed
 				$(this).attr("md", "");
+			}
+
+			// Update ToolbarSafeArea
+			if ($(this).hasClass("fixed")) {
+
+				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
+				
+				// Flag changed elements as processed
+				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this).height() }).attr("md", "");
+
 			}
 
 
