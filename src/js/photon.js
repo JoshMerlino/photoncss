@@ -161,9 +161,9 @@ const Photon = {
 			if ($(this).hasClass("fixed")) {
 
 				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
-				
+
 				// Flag changed elements as processed
-				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this).height() }).attr("md", "");
+				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight }).attr("md", "");
 
 			}
 
