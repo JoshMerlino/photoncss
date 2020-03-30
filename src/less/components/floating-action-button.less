@@ -1,0 +1,29 @@
+.fab {
+	border-radius: 56px;
+	height: 40px;
+	min-width: 40px;
+	padding: 0;
+	text-align: center;
+	vertical-align: middle;
+	line-height: 40px;
+	i.material-icons {
+		align-items: center;
+		justify-content: center;
+	}
+	&.large {
+		padding: 0;
+		height: 56px;
+		line-height: 56px;
+		min-width: 56px;
+	}
+	i.material-icons,
+	label {
+		&:first-child {
+			padding-left: 8px;
+		}
+		&:not(:first-child),
+		&:not(.waves-ripple) {
+			padding-right: 8px;
+		}
+	}
+}
