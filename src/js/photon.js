@@ -4,9 +4,6 @@ import MaterialColors from "./material-colors.js";
 // Define constant Photon global
 const Photon = {
 
-	// Store an instance of the active dialog
-	activeDialog: undefined,
-
 	// Generates a UUID in XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
