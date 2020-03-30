@@ -78,15 +78,15 @@ class ToolbarActions extends React.Component {
 
 }
 
-class ToolbarSafeArea extends React.Component {
+class ToolbarSpacer extends React.Component {
 
 	// Render component
 	render() {
 		return (
-			<section className="toolbar-safe-area">{this.props.children}</section>
+			<div className="toolbar-safe-area"></div>
 		)
 	}
 
 }
 
-export { Toolbar, ToolbarTitle, ToolbarActions, ToolbarSafeArea };
+export { Toolbar, ToolbarTitle, ToolbarActions, ToolbarSpacer };
