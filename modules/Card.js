@@ -33,7 +33,8 @@ class CardTitle extends React.Component {
 	// Define default props
 	static defaultProps = {
 		subtitle: false,
-		textColor: false
+		textColor: false,
+		leadingImage: false,
 	}
 
 	// Serialize the props object into a series of classes
@@ -42,7 +43,8 @@ class CardTitle extends React.Component {
 			"card-title",
 			...(this.props.className || "").split(" "),
 			this.props.textColor !== false ? Photon.prefixColorQuery(this.props.textColor) : "",
-			this.props.subtitle !== false ? "contains-subtitle" : ""
+			this.props.subtitle !== false ? "contains-subtitle" : "",
+			this.props.leadingImage !== false ? "contains-image" : ""
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
@@ -50,6 +52,7 @@ class CardTitle extends React.Component {
 	render() {
 		return (
 			<span className={this.serialize()} style={this.props.style || {}}>
+				{this.props.leadingImage && <img src={this.props.leadingImage} alt=""/>}
 				<div>{this.props.children}</div>
 				{this.props.subtitle !== false ? <div className="subtitle">{this.props.subtitle}</div> : null}
 			</span>
