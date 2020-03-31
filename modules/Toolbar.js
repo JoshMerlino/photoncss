@@ -20,7 +20,7 @@ class Toolbar extends React.Component {
 			"toolbar",
 			...(rest.className || "").split(" "),
 			color,
-			variant,
+			variant ? variant : "",
 			position ? position : "",
 			size ? size : "",
 			elevate ? "elevate" : "",

@@ -57,7 +57,7 @@ class Col extends React.Component {
 
 	// Define default props
 	static defaultProps = {
-		sm: false,
+		sm: 12,
 		md: false,
 		lg: false,
 		xl: false
