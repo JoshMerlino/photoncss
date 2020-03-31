@@ -9,12 +9,19 @@
 	color: rgba(0, 0, 0, 0.87);
     background-color: #fff;
 	min-width: 240px;
+	width: 100%;
+	margin-right: 8px;
+	margin-bottom: 8px;
 	.card-actions {
 		margin-top: 0;
 		padding: 8px;
 		.btn {
 			margin: 0;
 			margin-right: 8px;
+		}
+		i.material-icons {
+		    padding: 6px;
+		    float: right;
 		}
 	}
 	.card-title {
@@ -24,6 +31,7 @@
 	    line-height: 2rem;
 	    font-weight: 500;
 	    letter-spacing: .0125em;
+		position: relative;
 		.subtitle {
 			font-size: .875rem;
     		line-height: 1.25rem;
@@ -32,7 +40,22 @@
 		    opacity: .6;
 		}
 		&:first-child {
-			margin: -3px 0;
+			padding: 10px 16px;
+		}
+		&.contains-image {
+			img {
+				border-radius: 50%;
+				width: 40px;
+				height: 40px;
+				display: inline-block;
+				position: absolute;
+				top: calc(50% - 20px);
+				left: 0;
+				margin-left: 16px;
+			}
+			div {
+				margin-left: 56px;
+			}
 		}
 	}
 	p {
@@ -50,12 +73,13 @@
 			padding-bottom: 16px;
 		}
 	}
+	.card-media {
+		width: 100%;
+		height: auto;
+	}
 	.card-media:first-child {
 		border-top-left-radius: inherit;
 		border-top-right-radius: inherit;
-	}
-	.card-media:not(:first-child) {
-		margin-top: 16px;
 	}
 	&.outlined {
 		box-shadow: none;
