@@ -79,7 +79,7 @@ const Photon = {
 		// Waves:
 		Waves.attach($(".waves-effect").not("[md]"));
 
-		// Waves ink
+		// Waves Ink:
 		$(".waves-ink").not("[md]").each(function() {
 			$(this)
 			  .on("mousedown", function(event) {
@@ -160,7 +160,7 @@ const Photon = {
 				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
 
 				// Flag changed elements as processed
-				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight }).attr("md", "");
+				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight + 8 }).attr("md", "");
 
 			}
 
