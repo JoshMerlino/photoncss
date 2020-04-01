@@ -8,7 +8,7 @@ module.exports = {
 	mode: "production",
     entry: {
 		"photon": [ "./src/js/photon.js", "./src/less/photon.less" ],
-		"photon.min": [ "./src/js/photon.js", "./src/less/photon.less" ]
+		"photon.min": "./src/js/photon.js"
 	},
     output: {
         filename: "[name].js",
