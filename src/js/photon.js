@@ -114,13 +114,11 @@ const Photon = {
 			if ($(this).hasClass("elevate")) {
 
 				const $toolbar = $(this);
-				let $parent = $toolbar.parents().filter(function() { return this.scrollHeight > this.clientHeight })[0];
-					$parent = $parent === document.children[0] ? document : $parent;
-
-				$($parent).scroll(function() {
-					if($(this).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
-					if($(this).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
-				});
+				(function frame() {
+					requestAnimationFrame(frame);
+					if($(document).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
+					if($(document).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
+				}());
 
 				// Flag changed elements as processed
 				$(this).attr("md", "");
@@ -129,26 +127,18 @@ const Photon = {
 			// Auto-hide Effect:
 			if ($(this).hasClass("auto-hide")) {
 
+				let _cache = 0;
 				const $toolbar = $(this);
-				let $parent = $toolbar.parents().filter(function() { return this.scrollHeight > this.clientHeight })[0];
-					$parent = $parent === document.children[0] ? document : $parent;
+				(function frame() {
+					requestAnimationFrame(frame);
+					const delta = Math.sign($(document).scrollTop() - _cache);
 
-				let top = 0;
-				$($parent)
-				  .on("scroll", function() {
+					if (delta > 0) $toolbar.addClass("collapsed");
+					if (delta < 0) $toolbar.removeClass("collapsed");
 
-					if ($(this).scrollTop() < $toolbar.height()) return;
+					_cache = $(document).scrollTop();
 
-					const delta = Math.sign($(this).scrollTop() - top);
-					top = $(this).scrollTop();
-
-					if (delta > 0) {
-						$toolbar.addClass("collapsed");
-					} else {
-						$toolbar.removeClass("collapsed");
-					}
-
-				  })
+				}());
 
 				// Flag changed elements as processed
 				$(this).attr("md", "");
