@@ -82,28 +82,48 @@ const Photon = {
 	// Binds event listeners where needed
 	reload() {
 
-		// Waves:
-		Waves.attach($(".waves-effect").not("[md]"));
+		// Textfield:
+		$(".input-field").not("[md]").each(function() {
 
-		// Waves Ink:
-		$(".waves-ink").not("[md]").each(function() {
-			$(this)
-			  .on("mousedown", function(event) {
-	  			event.stopPropagation();
-	  			Waves.calm(this);
-	  			Waves.ripple(this, { wait: 1e10 });
-  		  	  })
+			// Outlined
+			if ($(this).hasClass("outlined")) {
 
-  		  	  .on("mouseup mouseleave", function() {
-    			Waves.calm(this);
-  		  	  })
 
-  		      .on("touchstart", function(event) {
-    			event.stopPropagation();
-  		  	  })
+			// Filled
+			} else if ($(this).hasClass("filled")) {
 
-  			// Flag changed elements as processed
-  			$(this).attr("md", "");
+
+			// Basic
+			} else {
+
+				$(this).append(`<div class="bar"></div>`);
+
+				const $bar = $(this).children(".bar");
+				const $input = $(this).children("input");
+				const $label = $(this).children("label");
+
+				$input.on("keydown keyup keypress change mouseleave", function() {
+					if($input.val().length === 0) {
+						$label.removeClass("floating");
+					} else {
+						$label.addClass("floating");
+					}
+				}).change()
+
+				$input.on("click", function({ offsetX }) {
+					const width = $input.width();
+					$bar.removeClass("transition").css({ left: offsetX, width: 0, opacity: 1 });
+					setTimeout(() => {
+						$bar.addClass("transition").css({ left: 0, width });
+					})
+				});
+
+				$input.on("blur", function() {
+					$bar.addClass("transition").css({ opacity: 0 });
+				});
+
+				$(this).attr("md", "");
+			}
 
 		});
 
@@ -143,6 +163,31 @@ const Photon = {
 				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight + 8 }).attr("md", "");
 			}
 
+
+		});
+
+		// Waves:
+		Waves.attach($(".waves-effect").not("[md]"));
+
+		// Waves Ink:
+		$(".waves-ink").not("[md]").each(function() {
+			$(this)
+			  .on("mousedown", function(event) {
+	  			event.stopPropagation();
+	  			Waves.calm(this);
+	  			Waves.ripple(this, { wait: 1e10 });
+  		  	  })
+
+  		  	  .on("mouseup mouseleave", function() {
+    			Waves.calm(this);
+  		  	  })
+
+  		      .on("touchstart", function(event) {
+    			event.stopPropagation();
+  		  	  })
+
+  			// Flag changed elements as processed
+  			$(this).attr("md", "");
 
 		});
 

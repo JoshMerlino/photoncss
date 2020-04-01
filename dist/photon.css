@@ -6069,6 +6069,126 @@ hr {
   align-items: center;
   justify-content: center;
 }
+.input-field:not(.outlined):not(.filled) {
+  margin: 8px;
+  margin-top: 24px;
+  color: rgba(0, 0, 0, 0.87);
+  cursor: text;
+  display: inline-flex;
+  position: relative;
+  font-size: 1rem;
+  box-sizing: border-box;
+  align-items: center;
+  font-family: "Roboto";
+  font-weight: 400;
+  line-height: 1.1875em;
+  letter-spacing: 0.00938em;
+}
+.input-field:not(.outlined):not(.filled) input {
+  outline: none;
+  width: 100%;
+  border: 0;
+  height: 1.1875em;
+  margin: 0;
+  display: block;
+  padding: 6px 0 7px;
+  min-width: 0;
+  background: none;
+  box-sizing: content-box;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.42);
+  font-size: 1rem;
+}
+.input-field:not(.outlined):not(.filled) input:disabled {
+  border-bottom: 1px dotted rgba(0, 0, 0, 0.42);
+}
+.input-field:not(.outlined):not(.filled) label {
+  color: rgba(0, 0, 0, 0.54);
+  padding: 0;
+  font-size: 1rem;
+  font-family: "Roboto";
+  font-weight: 400;
+  line-height: 1;
+  letter-spacing: 0.00938em;
+  top: 0;
+  left: 0;
+  position: absolute;
+  transform: translate(0, 6px) scale(1);
+  display: block;
+  transform-origin: top left;
+  transition: color 200ms cubic-bezier(0, 0, 0.2, 1), transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  pointer-events: none;
+}
+.input-field:not(.outlined):not(.filled) input[placeholder] + label,
+.input-field:not(.outlined):not(.filled) input:focus + label,
+.input-field:not(.outlined):not(.filled) label.floating {
+  transform: translate(0, -14px) scale(0.75);
+}
+.input-field:not(.outlined):not(.filled) input:focus + label {
+  color: #000;
+}
+.input-field:not(.outlined):not(.filled) .bar {
+  background: #000;
+  height: 2px;
+  position: absolute;
+  bottom: 0;
+  width: 0;
+  opacity: 1;
+}
+.input-field:not(.outlined):not(.filled) .bar.transition {
+  transition: width 200ms cubic-bezier(0, 0, 0.2, 1), left 200ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+.input-field:not(.outlined):not(.filled).block {
+  margin-top: 24px;
+  display: block;
+}
+.input-field:not(.outlined):not(.filled).contains-msg input {
+  margin-bottom: 20px;
+}
+.input-field:not(.outlined):not(.filled).contains-msg .bar {
+  bottom: 20px;
+}
+.input-field:not(.outlined):not(.filled) p {
+  color: rgba(0, 0, 0, 0.54);
+  margin: 0;
+  font-size: 0.75rem;
+  margin-top: 3px;
+  text-align: left;
+  font-family: "Roboto";
+  font-weight: 400;
+  line-height: 1.66;
+  letter-spacing: 0.03333em;
+  position: absolute;
+  bottom: 0;
+}
+.input-field:not(.outlined):not(.filled).primary input {
+  caret-color: #1976d2;
+}
+.input-field:not(.outlined):not(.filled).primary input:focus + label {
+  color: #1976d2;
+}
+.input-field:not(.outlined):not(.filled).primary .bar {
+  background: #1976d2;
+}
+.input-field:not(.outlined):not(.filled).accent input {
+  caret-color: #ff1744;
+}
+.input-field:not(.outlined):not(.filled).accent input:focus + label {
+  color: #ff1744;
+}
+.input-field:not(.outlined):not(.filled).accent .bar {
+  background: #ff1744;
+}
+.input-field:not(.outlined):not(.filled).error input {
+  caret-color: #b00020 !important;
+  border-bottom: 1px solid #b00020 !important;
+}
+.input-field:not(.outlined):not(.filled).error label,
+.input-field:not(.outlined):not(.filled).error p {
+  color: #b00020 !important;
+}
+.input-field:not(.outlined):not(.filled).error .bar {
+  background: #b00020 !important;
+}
 .toolbar {
   transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1), transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
   width: 100%;
