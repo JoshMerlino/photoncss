@@ -23,10 +23,7 @@ const Photon = {
 	// Converts a string classname color like "green accent-2" to a hex value
 	parseColor(query) {
 
-		// Extract color and shade from query
 		let [ color, shade ] = query.split(" ");
-
-		// Switch shade query to shade hue
 		switch(shade) {
 			case "lighten-5":
 				shade = "50";
@@ -92,36 +89,29 @@ const Photon = {
 		$(".waves-ink").not("[md]").each(function() {
 			$(this)
 			  .on("mousedown", function(event) {
-
 	  			event.stopPropagation();
 	  			Waves.calm(this);
 	  			Waves.ripple(this, { wait: 1e10 });
-
   		  	  })
 
   		  	  .on("mouseup mouseleave", function() {
-
     			Waves.calm(this);
-
   		  	  })
 
   		      .on("touchstart", function(event) {
-
     			event.stopPropagation();
-
   		  	  })
 
   			// Flag changed elements as processed
   			$(this).attr("md", "");
 
-		})
+		});
 
 		// Toolbar:
 		$(".toolbar").not("[md]").each(function() {
 
 			// Elevate Effect:
 			if ($(this).hasClass("elevate")) {
-
 				const $toolbar = $(this);
 				(function frame() {
 					requestAnimationFrame(frame);
@@ -129,42 +119,32 @@ const Photon = {
 					if($(document).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
 				}());
 
-				// Flag changed elements as processed
 				$(this).attr("md", "");
 			}
 
 			// Auto-hide Effect:
 			if ($(this).hasClass("auto-hide")) {
-
 				let _cache = 0;
 				const $toolbar = $(this);
 				(function frame() {
 					requestAnimationFrame(frame);
 					const delta = Math.sign($(document).scrollTop() - _cache);
-
 					if (delta > 0) $toolbar.addClass("collapsed");
 					if (delta < 0) $toolbar.removeClass("collapsed");
-
 					_cache = $(document).scrollTop();
-
 				}());
 
-				// Flag changed elements as processed
 				$(this).attr("md", "");
 			}
 
 			// Update ToolbarSafeArea
 			if ($(this).hasClass("fixed")) {
-
 				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
-
-				// Flag changed elements as processed
 				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight + 8 }).attr("md", "");
-
 			}
 
 
-		})
+		});
 
 	},
 
