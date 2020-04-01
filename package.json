@@ -5,8 +5,8 @@
     "main": "dist/photon.min/.js",
     "scripts": {
         "test": "node test/main.test.js",
-        "prepublish": "webpack --config webpack.production.js && lessc src/less/photon.less > dist/photon.css && csso dist/photon.css -o dist/photon.min.css && uglifyjs dist/photon.js -cmo dist/photon.min.js",
-        "dev": "webpack -w --config webpack.development.js"
+        "prepublish": "webpack --config webpack.config.js",
+        "dev": "webpack -w --config webpack.config.js"
     },
     "keywords": [
         "Material Design",
@@ -19,11 +19,15 @@
         "@babel/plugin-proposal-optional-catch-binding": "^7.8.3",
         "@babel/preset-env": "^7.8.7",
         "babel-loader": "^8.0.6",
-        "csso": "^4.0.2",
-        "csso-cli": "^3.0.0",
+        "css-loader": "^3.4.2",
+        "file-loader": "^6.0.0",
         "less": "^3.11.1",
-        "react": "^16.13.1",
-        "uglify-js": "^3.8.0",
+        "less-loader": "^5.0.0",
+        "mini-css-extract-plugin": "^0.9.0",
+        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "path-loader": "^1.0.10",
+        "resolve-url-loader": "^3.1.1",
+        "uglifyjs-webpack-plugin": "^2.2.0",
         "webpack": "^4.42.0",
         "webpack-cli": "^3.3.11"
     }

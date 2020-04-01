@@ -1,5 +1,14 @@
-import Waves from "./waves.js";
-import MaterialColors from "./material-colors.js";
+/*!
+ * Photon v1.0.0
+ * https://photoncss.github.io/
+ *
+ * Copyright 2020 Josh Merlino
+ * Released under the MIT license
+ * https://github.com/PhotonCSS/Photon/LISCENSE
+ */
+
+import Waves from "./lib/Waves.js";
+import MaterialColors from "./lib/MaterialColors.js";
 
 // Define constant Photon global
 const Photon = {
