@@ -1,5 +1,6 @@
 .input-field:not(.outlined):not(.filled) {
-	margin-top: 16px;
+	margin: 8px;
+	margin-top: 24px;
 	position: relative;
 	color: rgba(0, 0, 0, 0.87);
     cursor: text;
@@ -14,5 +15,114 @@
     letter-spacing: 0.00938em;
 	input {
 		outline: none;
+		width: 100%;
+    	border: 0;
+    	height: 1.1875em;
+    	margin: 0;
+    	display: block;
+    	padding: 6px 0 7px;
+    	min-width: 0;
+    	background: none;
+    	box-sizing: content-box;
+		border-bottom: 1px solid fade(#000, 42%);
+		font-size: 1rem;
+		&:disabled {
+			border-bottom: 1px dotted fade(#000, 42%);
+		}
+	}
+	label {
+		color: rgba(0, 0, 0, 0.54);
+	    padding: 0;
+	    font-size: 1rem;
+	    font-family: @fontFamily;
+	    font-weight: 400;
+	    line-height: 1;
+	    letter-spacing: 0.00938em;
+		top: 0;
+    	left: 0;
+    	position: absolute;
+    	transform: translate(0, 6px) scale(1);
+		display: block;
+    	transform-origin: top left;
+		transition: color @shorter @easeOut,transform @shorter @easeOut;
+		pointer-events: none;
+	}
+	input[placeholder] + label,
+	input:focus + label,
+	label.floating {
+		transform: translate(0, -14px) scale(0.75);
+	}
+	input:focus + label {
+		color: #000;
+	}
+	.bar {
+		background: #000;
+		height: 2px;
+		position: absolute;
+		bottom: 0;
+		width: 0;
+		opacity: 1;
+		&.transition {
+			transition: width @shorter @easeOut, left @shorter @easeOut, opacity @shorter @easeOut;
+		}
+	}
+	&.block {
+		margin-top: 24px;
+		display: block;
+	}
+	&.contains-msg {
+		input {
+			margin-bottom: 20px;
+		}
+		.bar {
+			bottom: 20px;
+		}
+	}
+	p {
+		color: rgba(0, 0, 0, 0.54);
+		margin: 0;
+		font-size: 0.75rem;
+		margin-top: 3px;
+		text-align: left;
+		font-family: @fontFamily;
+		font-weight: 400;
+		line-height: 1.66;
+		letter-spacing: 0.03333em;
+		position: absolute;
+		bottom: 0;
+	}
+	&.primary {
+		input {
+			caret-color: @primaryColor;
+		}
+		input:focus + label {
+			color: @primaryColor;
+		}
+		.bar {
+			background: @primaryColor;
+		}
+	}
+	&.accent {
+		input {
+			caret-color: @accentColor;
+		}
+		input:focus + label {
+			color: @accentColor;
+		}
+		.bar {
+			background: @accentColor;
+		}
+	}
+	&.error {
+		input {
+			caret-color: @errorColor!important;
+			border-bottom: 1px solid @errorColor!important;
+		}
+		label, p {
+			color: @errorColor!important;
+		}
+		.bar {
+			background: @errorColor!important;
+		}
 	}
 }

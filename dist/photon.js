@@ -1089,23 +1089,45 @@ var Photon = {
   },
   // Binds event listeners where needed
   reload: function reload() {
-    // Waves:
-    _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach($(".waves-effect").not("[md]")); // Waves Ink:
-
-    $(".waves-ink").not("[md]").each(function () {
-      $(this).on("mousedown", function (event) {
-        event.stopPropagation();
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.ripple(this, {
-          wait: 1e10
+    // Textfield:
+    $(".input-field").not("[md]").each(function () {
+      // Outlined
+      if ($(this).hasClass("outlined")) {// Filled
+      } else if ($(this).hasClass("filled")) {// Basic
+      } else {
+        $(this).append("<div class=\"bar\"></div>");
+        var $bar = $(this).children(".bar");
+        var $input = $(this).children("input");
+        var $label = $(this).children("label");
+        $input.on("keydown keyup keypress change mouseleave", function () {
+          if ($input.val().length === 0) {
+            $label.removeClass("floating");
+          } else {
+            $label.addClass("floating");
+          }
+        }).change();
+        $input.on("click", function (_ref) {
+          var offsetX = _ref.offsetX;
+          var width = $input.width();
+          $bar.removeClass("transition").css({
+            left: offsetX,
+            width: 0,
+            opacity: 1
+          });
+          setTimeout(function () {
+            $bar.addClass("transition").css({
+              left: 0,
+              width: width
+            });
+          });
         });
-      }).on("mouseup mouseleave", function () {
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
-      }).on("touchstart", function (event) {
-        event.stopPropagation();
-      }); // Flag changed elements as processed
-
-      $(this).attr("md", "");
+        $input.on("blur", function () {
+          $bar.addClass("transition").css({
+            opacity: 0
+          });
+        });
+        $(this).attr("md", "");
+      }
     }); // Toolbar:
 
     $(".toolbar").not("[md]").each(function () {
@@ -1146,6 +1168,24 @@ var Photon = {
           marginTop: $(this)[0].clientHeight + 8
         }).attr("md", "");
       }
+    }); // Waves:
+
+    _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach($(".waves-effect").not("[md]")); // Waves Ink:
+
+    $(".waves-ink").not("[md]").each(function () {
+      $(this).on("mousedown", function (event) {
+        event.stopPropagation();
+        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
+        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.ripple(this, {
+          wait: 1e10
+        });
+      }).on("mouseup mouseleave", function () {
+        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
+      }).on("touchstart", function (event) {
+        event.stopPropagation();
+      }); // Flag changed elements as processed
+
+      $(this).attr("md", "");
     });
   }
 }; // Initialize Waves.js
