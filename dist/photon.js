@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 4);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -979,14 +979,6 @@ module.exports = g;
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-__webpack_require__(4);
-module.exports = __webpack_require__(5);
-
-
-/***/ }),
-/* 4 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1025,12 +1017,10 @@ var Photon = {
   },
   // Converts a string classname color like "green accent-2" to a hex value
   parseColor: function parseColor(query) {
-    // Extract color and shade from query
     var _query$split = query.split(" "),
         _query$split2 = _slicedToArray(_query$split, 2),
         color = _query$split2[0],
-        shade = _query$split2[1]; // Switch shade query to shade hue
-
+        shade = _query$split2[1];
 
     switch (shade) {
       case "lighten-5":
@@ -1127,8 +1117,7 @@ var Photon = {
           requestAnimationFrame(frame);
           if ($(document).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
           if ($(document).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
-        })(); // Flag changed elements as processed
-
+        })();
 
         $(this).attr("md", "");
       } // Auto-hide Effect:
@@ -1145,16 +1134,14 @@ var Photon = {
           if (delta > 0) _$toolbar.addClass("collapsed");
           if (delta < 0) _$toolbar.removeClass("collapsed");
           _cache = $(document).scrollTop();
-        })(); // Flag changed elements as processed
-
+        })();
 
         $(this).attr("md", "");
       } // Update ToolbarSafeArea
 
 
       if ($(this).hasClass("fixed")) {
-        var $safearea = $(this).siblings(".toolbar-safe-area").not("[md]"); // Flag changed elements as processed
-
+        var $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
         if ($safearea.length > 0) return $safearea.eq(0).css({
           marginTop: $(this)[0].clientHeight + 8
         }).attr("md", "");
@@ -1171,6 +1158,14 @@ global.Photon = Photon; // Export Photon as a module
 
 /* harmony default export */ __webpack_exports__["default"] = (Photon);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1)))
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+module.exports = __webpack_require__(5);
+
 
 /***/ }),
 /* 5 */
