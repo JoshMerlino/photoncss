@@ -1,0 +1,115 @@
+.switch {
+	padding-top: 12px;
+	padding-left: 11px;
+	position: relative;
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		-mox-appearance: none;
+		-o-appearance: none;
+		appearance: none;
+		width: 32px;
+		height: 14px;
+		background: fade(#000, 38%);
+		border-radius: 20px;
+		transition: background @shortest @easeOut;
+		transform: translateY(-2px);
+		&::after {
+			background: #fff;
+			width: 20px;
+			height: 20px;
+			margin: -3px -2px;
+			content: "";
+			position: absolute;
+			z-index: 3;
+			border-radius: 20px;
+			.raised-2();
+			transition: transform @shortest @sharp, background @shortest @sharp;
+		}
+	}
+	.waves-effect {
+		width: 48px;
+		height: 48px;
+		border-radius: 50%;
+		position: absolute;
+		z-index: 2;
+		top: 2px;
+		left: -1px;
+		transition: transform @shortest @sharp, background @shortest @sharp;
+		&:hover {
+			background: fade(#000, 4%);
+		}
+	}
+	label {
+		display: inline-block;
+		line-height: 40px;
+		transform: translateY(-7px);
+		font-size: 1rem;
+		padding: 0 1rem;
+		cursor: pointer;
+		user-select: contain;
+	}
+	label:hover ~ .waves-effect {
+		background: fade(#000, 4%);
+	}
+	input[type="checkbox"]:checked {
+		& ~ .waves-effect {
+			transform: translateX(16px);
+		}
+		&::after {
+			transform: translateX(16px);
+		}
+	}
+
+	&.primary {
+		input[type="checkbox"]:checked {
+			background: fade(@primaryColor, 38%);
+			&::after {
+				background: @primaryColor;
+			}
+			& ~ .waves-effect {
+				&:hover {
+					background: fade(@primaryColor, 4%);
+				}
+				.waves-ripple {
+					background: fade(@primaryColor, 30%);
+			   	}
+			}
+		}
+	}
+
+	&.accent {
+		input[type="checkbox"]:checked {
+			background: fade(@accentColor, 38%);
+			&::after {
+				background: @accentColor;
+			}
+			& ~ .waves-effect {
+				&:hover {
+					background: fade(@accentColor, 4%);
+				}
+				.waves-ripple {
+					background: fade(@accentColor, 30%);
+			   	}
+			}
+		}
+	}
+
+	&.disabled {
+		input {
+			pointer-events: none;
+		}
+		.waves-effect {
+			display: none;
+		}
+		input[type="checkbox"] {
+			background: fade(#000, 38%);
+			&::after {
+				background: #fff;
+			}
+			opacity: .54;
+		}
+		label {
+			cursor: default;
+		}
+	}
+}

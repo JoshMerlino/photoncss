@@ -102,6 +102,16 @@ const Photon = {
 			$(this).attr("md", "");
 		});
 
+		// Switch:
+		$(".switch").not("[md]").each(function() {
+			const $this = $(this);
+			const $input = $(this).children("input");
+			$(this).children().not("input").on("click", function() {
+				if(!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
+			})
+			$(this).attr("md", "");
+		});
+
 		// Textfield:
 		$(".input-field").not("[md]").each(function() {
 
