@@ -131,6 +131,7 @@ const Photon = {
 				const $bar = $(this).children(".bar");
 				const $input = $(this).children("input");
 				const $label = $(this).children("label");
+				const $maxlength = $(this).children(".max-length");
 
 				$input.on("keydown keyup keypress change mouseleave", function() {
 					if($input.val().length === 0) {
@@ -138,6 +139,7 @@ const Photon = {
 					} else {
 						$label.addClass("floating");
 					}
+					$maxlength.text($input.val().length + "/" + $maxlength.text().split("/")[1])
 				}).change()
 
 				let focus = false;
