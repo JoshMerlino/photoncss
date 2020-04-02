@@ -26,6 +26,7 @@
     	box-sizing: content-box;
 		border-bottom: 1px solid fade(#000, 42%);
 		font-size: 1rem;
+		z-index: 2;
 		&:disabled {
 			border-bottom: 1px dotted fade(#000, 42%);
 		}
@@ -46,6 +47,7 @@
     	transform-origin: top left;
 		transition: color @shorter @easeOut,transform @shorter @easeOut;
 		pointer-events: none;
+		z-index: 3;
 	}
 	input[placeholder] + label,
 	input:focus + label,
@@ -62,6 +64,7 @@
 		bottom: 0;
 		width: 0;
 		opacity: 1;
+		z-index: 3;
 		&.transition {
 			transition: width @shorter @easeOut, left @shorter @easeOut, opacity @shorter @easeOut;
 		}
@@ -90,6 +93,11 @@
 		letter-spacing: 0.03333em;
 		position: absolute;
 		bottom: 0;
+		z-index: 1;
+		&.max-length {
+			bottom: 0px;
+			right: 0;
+		}
 	}
 	&.primary {
 		input {
@@ -118,7 +126,7 @@
 			caret-color: @errorColor!important;
 			border-bottom: 1px solid @errorColor!important;
 		}
-		label, p {
+		label, p.helper-text {
 			color: @errorColor!important;
 		}
 		.bar {
