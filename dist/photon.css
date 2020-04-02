@@ -6023,7 +6023,7 @@ hr {
   max-width: calc(100% - 8px);
 }
 .checkbox {
-  padding-top: 13px;
+  padding-top: 12px;
   padding-left: 11px;
   position: relative;
 }
@@ -6039,11 +6039,11 @@ hr {
   outline: none;
   z-index: 1;
   display: inline-block;
-  transition: border-color 150ms, cubic-bezier(0, 0, 0.2, 1), border-width 150ms cubic-bezier(0, 0, 0.2, 1);
+  transition: border-color 150ms, cubic-bezier(0.4, 0, 0.6, 1), border-width 150ms cubic-bezier(0.4, 0, 0.6, 1);
 }
 .checkbox input[type="checkbox"]::after {
   position: absolute;
-  top: 18px;
+  top: 17px;
   left: 16px;
   content: "check";
   font-family: "Material Icons";
@@ -6051,7 +6051,7 @@ hr {
   color: #fff;
   width: 0;
   overflow: hidden;
-  transition: width 250ms cubic-bezier(0, 0, 0.2, 1) 200ms;
+  transition: width 250ms cubic-bezier(0.4, 0, 0.6, 1) 150ms;
 }
 .checkbox .waves-effect {
   width: 40px;
@@ -6059,7 +6059,7 @@ hr {
   border-radius: 50%;
   position: absolute;
   z-index: 2;
-  top: 6px;
+  top: 5px;
   left: 4px;
 }
 .checkbox .waves-effect:hover {
@@ -6173,7 +6173,7 @@ hr {
   justify-content: center;
 }
 .radio {
-  padding-top: 13px;
+  padding-top: 12px;
   padding-left: 11px;
   position: relative;
 }
@@ -6195,7 +6195,7 @@ hr {
 }
 .radio input[type="radio"]::after {
   position: absolute;
-  top: 21px;
+  top: 20.125px;
   left: 20px;
   content: "";
   width: 8px;
@@ -6211,7 +6211,7 @@ hr {
   border-radius: 50%;
   position: absolute;
   z-index: 2;
-  top: 5px;
+  top: 4px;
   left: 4px;
 }
 .radio .waves-effect:hover {
@@ -6276,6 +6276,106 @@ hr {
 .radio.disabled .waves-effect,
 .radio:disabled .waves-effect {
   display: none;
+}
+.switch {
+  padding-top: 12px;
+  padding-left: 11px;
+  position: relative;
+}
+.switch input[type="checkbox"] {
+  -webkit-appearance: none;
+  -mox-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  width: 32px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.38);
+  border-radius: 20px;
+  transition: background 150ms cubic-bezier(0, 0, 0.2, 1);
+  transform: translateY(-2px);
+}
+.switch input[type="checkbox"]::after {
+  background: #fff;
+  width: 20px;
+  height: 20px;
+  margin: -3px -2px;
+  content: "";
+  position: absolute;
+  z-index: 3;
+  border-radius: 20px;
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1), background 150ms cubic-bezier(0.4, 0, 0.6, 1);
+}
+.switch .waves-effect {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  top: 2px;
+  left: -1px;
+  transition: transform 150ms cubic-bezier(0.4, 0, 0.6, 1), background 150ms cubic-bezier(0.4, 0, 0.6, 1);
+}
+.switch .waves-effect:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.switch label {
+  display: inline-block;
+  line-height: 40px;
+  transform: translateY(-7px);
+  font-size: 1rem;
+  padding: 0 1rem;
+  cursor: pointer;
+  user-select: contain;
+}
+.switch label:hover ~ .waves-effect {
+  background: rgba(0, 0, 0, 0.04);
+}
+.switch input[type="checkbox"]:checked ~ .waves-effect {
+  transform: translateX(16px);
+}
+.switch input[type="checkbox"]:checked::after {
+  transform: translateX(16px);
+}
+.switch.primary input[type="checkbox"]:checked {
+  background: rgba(25, 118, 210, 0.38);
+}
+.switch.primary input[type="checkbox"]:checked::after {
+  background: #1976d2;
+}
+.switch.primary input[type="checkbox"]:checked ~ .waves-effect:hover {
+  background: rgba(25, 118, 210, 0.04);
+}
+.switch.primary input[type="checkbox"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(25, 118, 210, 0.3);
+}
+.switch.accent input[type="checkbox"]:checked {
+  background: rgba(255, 23, 68, 0.38);
+}
+.switch.accent input[type="checkbox"]:checked::after {
+  background: #ff1744;
+}
+.switch.accent input[type="checkbox"]:checked ~ .waves-effect:hover {
+  background: rgba(255, 23, 68, 0.04);
+}
+.switch.accent input[type="checkbox"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(255, 23, 68, 0.3);
+}
+.switch.disabled input {
+  pointer-events: none;
+}
+.switch.disabled .waves-effect {
+  display: none;
+}
+.switch.disabled input[type="checkbox"] {
+  background: rgba(0, 0, 0, 0.38);
+  opacity: 0.54;
+}
+.switch.disabled input[type="checkbox"]::after {
+  background: #fff;
+}
+.switch.disabled label {
+  cursor: default;
 }
 .input-field:not(.outlined):not(.filled) {
   margin: 8px;
