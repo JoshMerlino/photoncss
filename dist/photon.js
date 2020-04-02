@@ -1120,8 +1120,7 @@ var Photon = {
     $(".input-field").not("[md]").each(function () {
       // Outlined
       if ($(this).hasClass("outlined")) {// Filled
-      } else if ($(this).hasClass("filled")) {// Basic
-      } else {
+      } else if ($(this).hasClass("filled")) {
         $(this).append("<div class=\"bar\"></div>");
         var $bar = $(this).children(".bar");
         var $input = $(this).children("input");
@@ -1141,7 +1140,7 @@ var Photon = {
           var offsetX = _ref.offsetX;
           if (focus === true) return;
           focus = true;
-          var width = $input.width();
+          var width = $input[0].clientWidth;
           $bar.removeClass("transition").css({
             left: offsetX,
             width: 0,
@@ -1160,6 +1159,58 @@ var Photon = {
             opacity: 0
           });
         });
+        $(this).attr("md", ""); // Basic
+      } else {
+        $(this).append("<div class=\"bar\"></div>");
+
+        var _$bar = $(this).children(".bar");
+
+        var _$input = $(this).children("input");
+
+        var _$label = $(this).children("label");
+
+        var _$maxlength = $(this).children(".max-length");
+
+        _$input.on("keydown keyup keypress change mouseleave", function () {
+          if (_$input.val().length === 0) {
+            _$label.removeClass("floating");
+          } else {
+            _$label.addClass("floating");
+          }
+
+          _$maxlength.text(_$input.val().length + "/" + _$maxlength.text().split("/")[1]);
+        }).change();
+
+        var _focus = false;
+
+        _$input.on("click", function (_ref2) {
+          var offsetX = _ref2.offsetX;
+          if (_focus === true) return;
+          _focus = true;
+          var width = _$input[0].clientWidth;
+
+          _$bar.removeClass("transition").css({
+            left: offsetX,
+            width: 0,
+            opacity: 1
+          });
+
+          setTimeout(function () {
+            _$bar.addClass("transition").css({
+              left: 0,
+              width: width
+            });
+          });
+        });
+
+        _$input.on("blur", function () {
+          _focus = false;
+
+          _$bar.addClass("transition").css({
+            opacity: 0
+          });
+        });
+
         $(this).attr("md", "");
       }
     }); // Toolbar:

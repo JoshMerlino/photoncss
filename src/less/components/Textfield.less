@@ -1,4 +1,4 @@
-.input-field:not(.outlined):not(.filled) {
+.input-field {
 	margin: 8px;
 	margin-top: 24px;
 	position: relative;
@@ -97,6 +97,91 @@
 		&.max-length {
 			bottom: 0px;
 			right: 0;
+		}
+	}
+	&.primary {
+		input {
+			caret-color: @primaryColor;
+		}
+		input:focus + label {
+			color: @primaryColor;
+		}
+		.bar {
+			background: @primaryColor;
+		}
+	}
+	&.accent {
+		input {
+			caret-color: @accentColor;
+		}
+		input:focus + label {
+			color: @accentColor;
+		}
+		.bar {
+			background: @accentColor;
+		}
+	}
+	&.error {
+		input {
+			caret-color: @errorColor!important;
+			border-bottom: 1px solid @errorColor!important;
+		}
+		label, p.helper-text {
+			color: @errorColor!important;
+		}
+		.bar {
+			background: @errorColor!important;
+		}
+	}
+}
+
+.input-field:not(.outlined).filled {
+	position: relative;
+    transition: background-color @shorter @easeOut;
+    background-color: rgba(0, 0, 0, 0.09);
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+	margin: 8px;
+	height: 56px;
+	margin-bottom: 24px;
+	input {
+    	padding: 27px 12px 10px;
+		margin-bottom: 0;
+	}
+	label {
+    	transform: translate(12px, 20px) scale(1);
+	}
+	input[placeholder] + label,
+	input:focus + label,
+	label.floating {
+		transform: translate(12px, 10px) scale(0.75);
+	}
+	input:focus + label {
+		color: #000;
+	}
+	.bar {
+		bottom: -1px;
+	}
+	p {
+		bottom: -22px;
+		padding: 0 12px;
+	}
+	&.dense {
+		height: 48px;
+		input {
+			padding-top: 23px;
+    		padding-bottom: 6px;
+		}
+		p {
+			bottom: -22px;
+		}
+		label {
+			transform: translate(12px, 17px) scale(1);
+		}
+		input[placeholder] + label,
+		input:focus + label,
+		label.floating {
+			transform: translate(12px, 7px) scale(0.75);
 		}
 	}
 	&.primary {
