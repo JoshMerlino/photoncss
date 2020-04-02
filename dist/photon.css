@@ -6377,7 +6377,7 @@ hr {
 .switch.disabled label {
   cursor: default;
 }
-.input-field:not(.outlined):not(.filled) {
+.input-field {
   margin: 8px;
   margin-top: 24px;
   color: rgba(0, 0, 0, 0.87);
@@ -6392,7 +6392,7 @@ hr {
   line-height: 1.1875em;
   letter-spacing: 0.00938em;
 }
-.input-field:not(.outlined):not(.filled) input {
+.input-field input {
   outline: none;
   width: 100%;
   border: 0;
@@ -6407,10 +6407,10 @@ hr {
   font-size: 1rem;
   z-index: 2;
 }
-.input-field:not(.outlined):not(.filled) input:disabled {
+.input-field input:disabled {
   border-bottom: 1px dotted rgba(0, 0, 0, 0.42);
 }
-.input-field:not(.outlined):not(.filled) label {
+.input-field label {
   color: rgba(0, 0, 0, 0.54);
   padding: 0;
   font-size: 1rem;
@@ -6428,15 +6428,15 @@ hr {
   pointer-events: none;
   z-index: 3;
 }
-.input-field:not(.outlined):not(.filled) input[placeholder] + label,
-.input-field:not(.outlined):not(.filled) input:focus + label,
-.input-field:not(.outlined):not(.filled) label.floating {
+.input-field input[placeholder] + label,
+.input-field input:focus + label,
+.input-field label.floating {
   transform: translate(0, -14px) scale(0.75);
 }
-.input-field:not(.outlined):not(.filled) input:focus + label {
+.input-field input:focus + label {
   color: #000;
 }
-.input-field:not(.outlined):not(.filled) .bar {
+.input-field .bar {
   background: #000;
   height: 2px;
   position: absolute;
@@ -6445,20 +6445,20 @@ hr {
   opacity: 1;
   z-index: 3;
 }
-.input-field:not(.outlined):not(.filled) .bar.transition {
+.input-field .bar.transition {
   transition: width 200ms cubic-bezier(0, 0, 0.2, 1), left 200ms cubic-bezier(0, 0, 0.2, 1), opacity 200ms cubic-bezier(0, 0, 0.2, 1);
 }
-.input-field:not(.outlined):not(.filled).block {
+.input-field.block {
   margin-top: 24px;
   display: block;
 }
-.input-field:not(.outlined):not(.filled).contains-msg input {
+.input-field.contains-msg input {
   margin-bottom: 20px;
 }
-.input-field:not(.outlined):not(.filled).contains-msg .bar {
+.input-field.contains-msg .bar {
   bottom: 20px;
 }
-.input-field:not(.outlined):not(.filled) p {
+.input-field p {
   color: rgba(0, 0, 0, 0.54);
   margin: 0;
   font-size: 0.75rem;
@@ -6472,37 +6472,116 @@ hr {
   bottom: 0;
   z-index: 1;
 }
-.input-field:not(.outlined):not(.filled) p.max-length {
+.input-field p.max-length {
   bottom: 0px;
   right: 0;
 }
-.input-field:not(.outlined):not(.filled).primary input {
+.input-field.primary input {
   caret-color: #1976d2;
 }
-.input-field:not(.outlined):not(.filled).primary input:focus + label {
+.input-field.primary input:focus + label {
   color: #1976d2;
 }
-.input-field:not(.outlined):not(.filled).primary .bar {
+.input-field.primary .bar {
   background: #1976d2;
 }
-.input-field:not(.outlined):not(.filled).accent input {
+.input-field.accent input {
   caret-color: #ff1744;
 }
-.input-field:not(.outlined):not(.filled).accent input:focus + label {
+.input-field.accent input:focus + label {
   color: #ff1744;
 }
-.input-field:not(.outlined):not(.filled).accent .bar {
+.input-field.accent .bar {
   background: #ff1744;
 }
-.input-field:not(.outlined):not(.filled).error input {
+.input-field.error input {
   caret-color: #b00020 !important;
   border-bottom: 1px solid #b00020 !important;
 }
-.input-field:not(.outlined):not(.filled).error label,
-.input-field:not(.outlined):not(.filled).error p.helper-text {
+.input-field.error label,
+.input-field.error p.helper-text {
   color: #b00020 !important;
 }
-.input-field:not(.outlined):not(.filled).error .bar {
+.input-field.error .bar {
+  background: #b00020 !important;
+}
+.input-field:not(.outlined).filled {
+  position: relative;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+  background-color: rgba(0, 0, 0, 0.09);
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  margin: 8px;
+  height: 56px;
+  margin-bottom: 24px;
+}
+.input-field:not(.outlined).filled input {
+  padding: 27px 12px 10px;
+  margin-bottom: 0;
+}
+.input-field:not(.outlined).filled label {
+  transform: translate(12px, 20px) scale(1);
+}
+.input-field:not(.outlined).filled input[placeholder] + label,
+.input-field:not(.outlined).filled input:focus + label,
+.input-field:not(.outlined).filled label.floating {
+  transform: translate(12px, 10px) scale(0.75);
+}
+.input-field:not(.outlined).filled input:focus + label {
+  color: #000;
+}
+.input-field:not(.outlined).filled .bar {
+  bottom: -1px;
+}
+.input-field:not(.outlined).filled p {
+  bottom: -22px;
+  padding: 0 12px;
+}
+.input-field:not(.outlined).filled.dense {
+  height: 48px;
+}
+.input-field:not(.outlined).filled.dense input {
+  padding-top: 23px;
+  padding-bottom: 6px;
+}
+.input-field:not(.outlined).filled.dense p {
+  bottom: -22px;
+}
+.input-field:not(.outlined).filled.dense label {
+  transform: translate(12px, 17px) scale(1);
+}
+.input-field:not(.outlined).filled.dense input[placeholder] + label,
+.input-field:not(.outlined).filled.dense input:focus + label,
+.input-field:not(.outlined).filled.dense label.floating {
+  transform: translate(12px, 7px) scale(0.75);
+}
+.input-field:not(.outlined).filled.primary input {
+  caret-color: #1976d2;
+}
+.input-field:not(.outlined).filled.primary input:focus + label {
+  color: #1976d2;
+}
+.input-field:not(.outlined).filled.primary .bar {
+  background: #1976d2;
+}
+.input-field:not(.outlined).filled.accent input {
+  caret-color: #ff1744;
+}
+.input-field:not(.outlined).filled.accent input:focus + label {
+  color: #ff1744;
+}
+.input-field:not(.outlined).filled.accent .bar {
+  background: #ff1744;
+}
+.input-field:not(.outlined).filled.error input {
+  caret-color: #b00020 !important;
+  border-bottom: 1px solid #b00020 !important;
+}
+.input-field:not(.outlined).filled.error label,
+.input-field:not(.outlined).filled.error p.helper-text {
+  color: #b00020 !important;
+}
+.input-field:not(.outlined).filled.error .bar {
   background: #b00020 !important;
 }
 .toolbar {
