@@ -1,0 +1,115 @@
+.checkbox {
+	padding-top: 13px;
+	padding-left: 11px;
+	position: relative;
+	input[type="checkbox"] {
+		-webkit-appearance: none;
+		-mox-appearance: none;
+		-o-appearance: none;
+		appearance: none;
+		border: 2px solid fade(#000, 54%);
+		border-radius: 2px;
+		width: 18px;
+		height: 18px;
+		outline: none;
+		z-index: 1;
+		display: inline-block;
+		transition: border-color @shortest, @easeOut, border-width @shortest @easeOut;
+		&::after {
+			position: absolute;
+			top: 18px;
+			left: 16px;
+			content: "check";
+			font-family: "Material Icons";
+			font-size: 16px;
+			color: #fff;
+			width: 0;
+			overflow: hidden;
+			transition: width @short @easeOut @shorter;
+		}
+	}
+	.waves-effect {
+		width: 40px;
+		height: 40px;
+		border-radius: 50%;
+		position: absolute;
+		z-index: 2;
+		top: 6px;
+		left: 4px;
+		&:hover {
+			background: fade(#000, 4%);
+		}
+	}
+	label {
+		display: inline-block;
+		line-height: 40px;
+		transform: translateY(-7px);
+		font-size: 1rem;
+		padding: 0 1rem;
+		cursor: pointer;
+		user-select: contain;
+	}
+	label:hover ~ .waves-effect {
+		background: fade(#000, 4%);
+	}
+	input[type="checkbox"]:checked {
+		border-width: 9px;
+		&::after {
+			width: 16px;
+		}
+	}
+
+	&.primary {
+		input[type="checkbox"]:checked {
+			border-color: @primaryColor;
+		}
+		input[type="checkbox"]:checked ~ .waves-effect {
+			&:hover {
+				background: fade(@primaryColor, 4%);
+			}
+			.waves-ripple {
+				background: fade(@primaryColor, 30%);
+		   	}
+		}
+		input[type="checkbox"]::after {
+			color: @primaryTextColor;
+		}
+	}
+
+	&.accent {
+		input[type="checkbox"]:checked {
+			border-color: @accentColor;
+		}
+		input[type="checkbox"]:checked ~ .waves-effect {
+			&:hover {
+				background: fade(@accentColor, 4%);
+			}
+			.waves-ripple {
+				background: fade(@accentColor, 30%);
+		   	}
+		}
+		input[type="checkbox"]::after {
+			color: @accentTextColor;
+		}
+	}
+
+	&.disabled,
+	&:disabled {
+		input[type="checkbox"] {
+			pointer-events: none;
+			opacity: .67;
+			&:checked {
+				border-color: fade(#000, 54%);
+			}
+			&::after {
+				color: @accentTextColor;
+			}
+		}
+		label {
+			cursor: default;
+		}
+		.waves-effect {
+			display: none;
+		}
+	}
+}
