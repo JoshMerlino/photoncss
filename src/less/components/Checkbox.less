@@ -1,5 +1,5 @@
 .checkbox {
-	padding-top: 13px;
+	padding-top: 12px;
 	padding-left: 11px;
 	position: relative;
 	input[type="checkbox"] {
@@ -14,10 +14,10 @@
 		outline: none;
 		z-index: 1;
 		display: inline-block;
-		transition: border-color @shortest, @easeOut, border-width @shortest @easeOut;
+		transition: border-color @shortest, @sharp, border-width @shortest @sharp;
 		&::after {
 			position: absolute;
-			top: 18px;
+			top: 17px;
 			left: 16px;
 			content: "check";
 			font-family: "Material Icons";
@@ -25,7 +25,7 @@
 			color: #fff;
 			width: 0;
 			overflow: hidden;
-			transition: width @short @easeOut @shorter;
+			transition: width @short @sharp @shortest;
 		}
 	}
 	.waves-effect {
@@ -34,7 +34,7 @@
 		border-radius: 50%;
 		position: absolute;
 		z-index: 2;
-		top: 6px;
+		top: 5px;
 		left: 4px;
 		&:hover {
 			background: fade(#000, 4%);
