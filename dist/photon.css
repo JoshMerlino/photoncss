@@ -6116,10 +6116,6 @@ hr {
 .checkbox:disabled input[type="checkbox"]:checked {
   border-color: rgba(0, 0, 0, 0.54);
 }
-.checkbox.disabled input[type="checkbox"]::after,
-.checkbox:disabled input[type="checkbox"]::after {
-  color: #ffffff;
-}
 .checkbox.disabled label,
 .checkbox:disabled label {
   cursor: default;
@@ -6175,6 +6171,111 @@ hr {
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+.radio {
+  padding-top: 13px;
+  padding-left: 11px;
+  position: relative;
+}
+.radio input[type="radio"] {
+  -webkit-appearance: none;
+  -mox-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 2px solid rgba(0, 0, 0, 0.54);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  margin-bottom: 4px;
+  margin-left: 4px;
+  outline: none;
+  z-index: 1;
+  display: inline-block;
+  transition: border-color 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+.radio input[type="radio"]::after {
+  position: absolute;
+  top: 21px;
+  left: 20px;
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.54);
+  transform: scale(0);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+}
+.radio .waves-effect {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  top: 5px;
+  left: 4px;
+}
+.radio .waves-effect:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.radio label {
+  display: inline-block;
+  line-height: 40px;
+  transform: translateY(-7px);
+  font-size: 1rem;
+  padding: 0 1rem;
+  cursor: pointer;
+  user-select: contain;
+}
+.radio label:hover ~ .waves-effect {
+  background: rgba(0, 0, 0, 0.04);
+}
+.radio input[type="radio"]:checked::after {
+  transform: scale(1);
+}
+.radio.primary input[type="radio"]:checked {
+  border-color: #1976d2;
+}
+.radio.primary input[type="radio"]:checked ~ .waves-effect:hover {
+  background: rgba(25, 118, 210, 0.04);
+}
+.radio.primary input[type="radio"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(25, 118, 210, 0.3);
+}
+.radio.primary input[type="radio"]:checked::after {
+  background-color: #1976d2;
+}
+.radio.accent input[type="radio"]:checked {
+  border-color: #ff1744;
+}
+.radio.accent input[type="radio"]:checked ~ .waves-effect:hover {
+  background: rgba(255, 23, 68, 0.04);
+}
+.radio.accent input[type="radio"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(255, 23, 68, 0.3);
+}
+.radio.accent input[type="radio"]:checked::after {
+  background-color: #ff1744;
+}
+.radio.disabled input[type="radio"],
+.radio:disabled input[type="radio"] {
+  pointer-events: none;
+  opacity: 0.67;
+}
+.radio.disabled input[type="radio"]:checked,
+.radio:disabled input[type="radio"]:checked {
+  border-color: rgba(0, 0, 0, 0.54);
+}
+.radio.disabled input[type="radio"]:checked::after,
+.radio:disabled input[type="radio"]:checked::after {
+  background-color: rgba(0, 0, 0, 0.54);
+}
+.radio.disabled label,
+.radio:disabled label {
+  cursor: default;
+}
+.radio.disabled .waves-effect,
+.radio:disabled .waves-effect {
+  display: none;
 }
 .input-field:not(.outlined):not(.filled) {
   margin: 8px;
