@@ -1126,12 +1126,15 @@ var Photon = {
         var $bar = $(this).children(".bar");
         var $input = $(this).children("input");
         var $label = $(this).children("label");
+        var $maxlength = $(this).children(".max-length");
         $input.on("keydown keyup keypress change mouseleave", function () {
           if ($input.val().length === 0) {
             $label.removeClass("floating");
           } else {
             $label.addClass("floating");
           }
+
+          $maxlength.text($input.val().length + "/" + $maxlength.text().split("/")[1]);
         }).change();
         var focus = false;
         $input.on("click", function (_ref) {
