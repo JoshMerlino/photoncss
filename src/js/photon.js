@@ -85,14 +85,20 @@ const Photon = {
 		// Checkbox:
 		$(".checkbox").not("[md]").each(function() {
 			const $this = $(this);
-			const $ripple = $(this).children(".waves-effect");
-			const $label = $(this).children("label");
 			const $input = $(this).children("input");
 			$(this).children().not("input").on("click", function() {
 				if(!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
 			})
-			//$label.on("mousedown", Waves.ripple($ripple[0], { duration: 10e10 }));
-			//$label.on("mouseup", Waves.calm($ripple[0]));
+			$(this).attr("md", "");
+		});
+
+		// Radio:
+		$(".radio").not("[md]").each(function() {
+			const $this = $(this);
+			const $input = $(this).children("input");
+			$(this).children().not("input").on("click", function() {
+				if(!$this.hasClass("disabled")) $input.prop("checked", true).change();
+			})
 			$(this).attr("md", "");
 		});
 

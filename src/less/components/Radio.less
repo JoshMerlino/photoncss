@@ -1,31 +1,33 @@
-.checkbox {
+.radio {
 	padding-top: 13px;
 	padding-left: 11px;
 	position: relative;
-	input[type="checkbox"] {
+	input[type="radio"] {
 		-webkit-appearance: none;
 		-mox-appearance: none;
 		-o-appearance: none;
 		appearance: none;
 		border: 2px solid fade(#000, 54%);
-		border-radius: 2px;
+		border-radius: 50%;
 		width: 18px;
 		height: 18px;
+		margin-bottom: 4px;
+		margin-left: 4px;
 		outline: none;
 		z-index: 1;
 		display: inline-block;
-		transition: border-color @shortest, @easeOut, border-width @shortest @easeOut;
+		transition: border-color @shortest @easeOut;
 		&::after {
 			position: absolute;
-			top: 18px;
-			left: 16px;
-			content: "check";
-			font-family: "Material Icons";
-			font-size: 16px;
-			color: #fff;
-			width: 0;
-			overflow: hidden;
-			transition: width @short @easeOut @shorter;
+			top: 21px;
+			left: 20px;
+			content: "";
+			width: 8px;
+			height: 8px;
+			border-radius: 50%;
+			background: fade(#000, 54%);
+			transform: scale(0);
+			transition: transform @short @easeOut;
 		}
 	}
 	.waves-effect {
@@ -34,7 +36,7 @@
 		border-radius: 50%;
 		position: absolute;
 		z-index: 2;
-		top: 6px;
+		top: 5px;
 		left: 4px;
 		&:hover {
 			background: fade(#000, 4%);
@@ -52,18 +54,17 @@
 	label:hover ~ .waves-effect {
 		background: fade(#000, 4%);
 	}
-	input[type="checkbox"]:checked {
-		border-width: 9px;
+	input[type="radio"]:checked {
 		&::after {
-			width: 16px;
+			transform: scale(1);
 		}
 	}
 
 	&.primary {
-		input[type="checkbox"]:checked {
+		input[type="radio"]:checked {
 			border-color: @primaryColor;
 		}
-		input[type="checkbox"]:checked ~ .waves-effect {
+		input[type="radio"]:checked ~ .waves-effect {
 			&:hover {
 				background: fade(@primaryColor, 4%);
 			}
@@ -71,16 +72,16 @@
 				background: fade(@primaryColor, 30%);
 		   	}
 		}
-		input[type="checkbox"]::after {
-			color: @primaryTextColor;
+		input[type="radio"]:checked::after {
+			background-color: @primaryColor;
 		}
 	}
 
 	&.accent {
-		input[type="checkbox"]:checked {
+		input[type="radio"]:checked {
 			border-color: @accentColor;
 		}
-		input[type="checkbox"]:checked ~ .waves-effect {
+		input[type="radio"]:checked ~ .waves-effect {
 			&:hover {
 				background: fade(@accentColor, 4%);
 			}
@@ -88,18 +89,21 @@
 				background: fade(@accentColor, 30%);
 		   	}
 		}
-		input[type="checkbox"]::after {
-			color: @accentTextColor;
+		input[type="radio"]:checked::after {
+			background-color: @accentColor;
 		}
 	}
 
 	&.disabled,
 	&:disabled {
-		input[type="checkbox"] {
+		input[type="radio"] {
 			pointer-events: none;
 			opacity: .67;
 			&:checked {
 				border-color: fade(#000, 54%);
+				&::after {
+					background-color: fade(#000, 54%);
+				}
 			}
 		}
 		label {
