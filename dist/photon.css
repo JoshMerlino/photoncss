@@ -2439,6 +2439,7 @@ body {
   font-size: 14px;
   overflow-x: hidden;
   letter-spacing: 0.25px;
+  -webkit-tap-highlight-color: transparent;
 }
 @media only screen and (min-width: 960px), only screen and (min-width: 1280px), only screen and (min-width: 1920px) {
   body {
@@ -6020,6 +6021,112 @@ hr {
 .col .card {
   margin: 4px;
   max-width: calc(100% - 8px);
+}
+.checkbox {
+  padding-top: 13px;
+  padding-left: 11px;
+  position: relative;
+}
+.checkbox input[type="checkbox"] {
+  -webkit-appearance: none;
+  -mox-appearance: none;
+  -o-appearance: none;
+  appearance: none;
+  border: 2px solid rgba(0, 0, 0, 0.54);
+  border-radius: 2px;
+  width: 18px;
+  height: 18px;
+  outline: none;
+  z-index: 1;
+  display: inline-block;
+  transition: border-color 150ms, cubic-bezier(0, 0, 0.2, 1), border-width 150ms cubic-bezier(0, 0, 0.2, 1);
+}
+.checkbox input[type="checkbox"]::after {
+  position: absolute;
+  top: 18px;
+  left: 16px;
+  content: "check";
+  font-family: "Material Icons";
+  font-size: 16px;
+  color: #fff;
+  width: 0;
+  overflow: hidden;
+  transition: width 250ms cubic-bezier(0, 0, 0.2, 1) 200ms;
+}
+.checkbox .waves-effect {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: absolute;
+  z-index: 2;
+  top: 6px;
+  left: 4px;
+}
+.checkbox .waves-effect:hover {
+  background: rgba(0, 0, 0, 0.04);
+}
+.checkbox label {
+  display: inline-block;
+  line-height: 40px;
+  transform: translateY(-7px);
+  font-size: 1rem;
+  padding: 0 1rem;
+  cursor: pointer;
+  user-select: contain;
+}
+.checkbox label:hover ~ .waves-effect {
+  background: rgba(0, 0, 0, 0.04);
+}
+.checkbox input[type="checkbox"]:checked {
+  border-width: 9px;
+}
+.checkbox input[type="checkbox"]:checked::after {
+  width: 16px;
+}
+.checkbox.primary input[type="checkbox"]:checked {
+  border-color: #1976d2;
+}
+.checkbox.primary input[type="checkbox"]:checked ~ .waves-effect:hover {
+  background: rgba(25, 118, 210, 0.04);
+}
+.checkbox.primary input[type="checkbox"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(25, 118, 210, 0.3);
+}
+.checkbox.primary input[type="checkbox"]::after {
+  color: #ffffff;
+}
+.checkbox.accent input[type="checkbox"]:checked {
+  border-color: #ff1744;
+}
+.checkbox.accent input[type="checkbox"]:checked ~ .waves-effect:hover {
+  background: rgba(255, 23, 68, 0.04);
+}
+.checkbox.accent input[type="checkbox"]:checked ~ .waves-effect .waves-ripple {
+  background: rgba(255, 23, 68, 0.3);
+}
+.checkbox.accent input[type="checkbox"]::after {
+  color: #ffffff;
+}
+.checkbox.disabled input[type="checkbox"],
+.checkbox:disabled input[type="checkbox"] {
+  pointer-events: none;
+  opacity: 0.67;
+}
+.checkbox.disabled input[type="checkbox"]:checked,
+.checkbox:disabled input[type="checkbox"]:checked {
+  border-color: rgba(0, 0, 0, 0.54);
+}
+.checkbox.disabled input[type="checkbox"]::after,
+.checkbox:disabled input[type="checkbox"]::after {
+  color: #ffffff;
+}
+.checkbox.disabled label,
+.checkbox:disabled label {
+  cursor: default;
+}
+.checkbox.disabled .waves-effect,
+.checkbox:disabled .waves-effect {
+  display: none;
 }
 .fab {
   border-radius: 56px;

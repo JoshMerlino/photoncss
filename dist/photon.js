@@ -1089,7 +1089,20 @@ var Photon = {
   },
   // Binds event listeners where needed
   reload: function reload() {
-    // Textfield:
+    // Checkbox:
+    $(".checkbox").not("[md]").each(function () {
+      var $this = $(this);
+      var $ripple = $(this).children(".waves-effect");
+      var $label = $(this).children("label");
+      var $input = $(this).children("input");
+      $(this).children().not("input").on("click", function () {
+        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
+      }); //$label.on("mousedown", Waves.ripple($ripple[0], { duration: 10e10 }));
+      //$label.on("mouseup", Waves.calm($ripple[0]));
+
+      $(this).attr("md", "");
+    }); // Textfield:
+
     $(".input-field").not("[md]").each(function () {
       // Outlined
       if ($(this).hasClass("outlined")) {// Filled

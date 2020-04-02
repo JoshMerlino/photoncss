@@ -5,32 +5,31 @@ class Checkbox extends React.Component {
 
 	// Define default props
 	static defaultProps = {
-		color: "accent",
-		size: "default",
-		waves: true,
-		disabled: false
+		color: "primary",
+		disabled: false,
+		waves: "ink"
 	}
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { color, size, waves, disabled, ...rest } = this.props;
+		const { color, disabled, waves, ...rest } = this.props;
 		this.rest = rest;
 		return [
 			"checkbox",
 			...(rest.className || "").split(" "),
 			color,
-			size !== "default" ? size : "",
-			waves !== false ? `waves-effect${waves !== true ? ` ${Photon.prefixColorQuery("waves", waves)}` : ""}` : "",
-			disabled ? "disabled" : ""
+			disabled ? "disabled" : "",
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
 	// Render component
 	render() {
 		return (
-			<React.Fragment>
-				<input type="checkbox" className={this.serialize()} {...this.rest}/>
-			</React.Fragment>
+			<div className={this.serialize()}>
+				<input type="checkbox" {...this.rest}/>
+				{ this.props.label && <label htmlFor={this.props.id || Photon.guid()}>{this.props.label}</label> }
+				{ this.props.waves !== false && <div className={`waves-effect${this.props.waves !== true ? ` ${Photon.prefixColorQuery("waves", this.props.waves)}` : ""}`}></div>}
+			</div>
 		);
 	}
 
