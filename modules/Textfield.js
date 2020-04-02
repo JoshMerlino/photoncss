@@ -32,7 +32,8 @@ class Textfield extends React.Component {
 			<div className={this.serialize()}>
 				<input {...this.rest}/>
 				{this.props.label && <label htmlFor={this.props.id || Photon.guid()}>{this.props.label}</label>}
-				{this.props.helperText && <p>{this.props.helperText}</p>}
+				{this.props.helperText && <p className="helper-text">{this.props.helperText}</p>}
+				{this.props.maxLength && <p className="max-length">/{this.props.maxLength}</p>}
 			</div>
 		);
 	}
