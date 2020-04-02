@@ -1133,8 +1133,11 @@ var Photon = {
             $label.addClass("floating");
           }
         }).change();
+        var focus = false;
         $input.on("click", function (_ref) {
           var offsetX = _ref.offsetX;
+          if (focus === true) return;
+          focus = true;
           var width = $input.width();
           $bar.removeClass("transition").css({
             left: offsetX,
@@ -1149,6 +1152,7 @@ var Photon = {
           });
         });
         $input.on("blur", function () {
+          focus = false;
           $bar.addClass("transition").css({
             opacity: 0
           });

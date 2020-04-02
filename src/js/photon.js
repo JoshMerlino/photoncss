@@ -140,7 +140,10 @@ const Photon = {
 					}
 				}).change()
 
+				let focus = false;
 				$input.on("click", function({ offsetX }) {
+					if(focus === true) return;
+					focus = true;
 					const width = $input.width();
 					$bar.removeClass("transition").css({ left: offsetX, width: 0, opacity: 1 });
 					setTimeout(() => {
@@ -149,8 +152,9 @@ const Photon = {
 				});
 
 				$input.on("blur", function() {
+					focus = false;
 					$bar.addClass("transition").css({ opacity: 0 });
-				});
+				})
 
 				$(this).attr("md", "");
 			}
