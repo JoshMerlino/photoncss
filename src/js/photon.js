@@ -118,18 +118,11 @@ const Photon = {
 			// Outlined
 			if ($(this).hasClass("outlined")) {
 
-
-			// Filled
-			} else if ($(this).hasClass("filled")) {
-
-				$(this).append(`<div class="bar"></div>`);
-
-				const $bar = $(this).children(".bar");
 				const $input = $(this).children("input");
 				const $label = $(this).children("label");
 				const $maxlength = $(this).children(".max-length");
 
-				$input.on("keydown keyup keypress change mouseleave", function() {
+				$input.on("keydown keyup change mouseleave", function() {
 					if($input.val().length === 0) {
 						$label.removeClass("floating");
 					} else {
@@ -138,25 +131,9 @@ const Photon = {
 					$maxlength.text($input.val().length + "/" + $maxlength.text().split("/")[1])
 				}).change()
 
-				let focus = false;
-				$input.on("click", function({ offsetX }) {
-					if(focus === true) return;
-					focus = true;
-					const width = $input[0].clientWidth;
-					$bar.removeClass("transition").css({ left: offsetX, width: 0, opacity: 1 });
-					setTimeout(() => {
-						$bar.addClass("transition").css({ left: 0, width });
-					})
-				});
-
-				$input.on("blur", function() {
-					focus = false;
-					$bar.addClass("transition").css({ opacity: 0 });
-				})
-
 				$(this).attr("md", "");
 
-			// Basic
+			// Filled & Normal
 			} else {
 
 				$(this).append(`<div class="bar"></div>`);
@@ -166,7 +143,7 @@ const Photon = {
 				const $label = $(this).children("label");
 				const $maxlength = $(this).children(".max-length");
 
-				$input.on("keydown keyup keypress change mouseleave", function() {
+				$input.on("keydown keyup change mouseleave", function() {
 					if($input.val().length === 0) {
 						$label.removeClass("floating");
 					} else {
