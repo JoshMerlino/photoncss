@@ -1006,14 +1006,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Define constant Photon global
 
 var Photon = {
-  // Generates a UUID in XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+  // Generates a UUID in phoXXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
     var s4 = function s4() {
       return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     };
 
-    return "".concat(s4()).concat(s4(), "-").concat(s4(), "-").concat(s4(), "-").concat(s4(), "-").concat(s4()).concat(s4()).concat(s4());
+    return "pho".concat(s4()).concat(s4()).concat(s4());
   },
   // Converts a string classname color like "green accent-2" to a hex value
   parseColor: function parseColor(query) {
@@ -1097,6 +1097,15 @@ var Photon = {
         if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
       });
       $(this).attr("md", "");
+    }); // List
+
+    $(".list").not("[md]").each(function () {
+      $(this).children(".list-item").on("click", function (event) {
+        var $input = $(this).children(".meta").children(".checkbox, .switch, .radio").children("input");
+        var $target = $(event.target);
+        if ($target.is($input.parent().children())) return;
+        $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
+      });
     }); // Radio:
 
     $(".radio").not("[md]").each(function () {
@@ -1224,7 +1233,9 @@ var Photon = {
       }
     }); // Waves:
 
-    _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach($(".waves-effect").not("[md]")); // Waves Ink:
+    $(".waves-effect").not("[md]").each(function () {
+      _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach(this);
+    }); // Waves Ink:
 
     $(".waves-ink").not("[md]").each(function () {
       $(this).on("mousedown", function (event) {
