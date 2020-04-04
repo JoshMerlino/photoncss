@@ -13,11 +13,11 @@ import MaterialColors from "./lib/MaterialColors.js";
 // Define constant Photon global
 const Photon = {
 
-	// Generates a UUID in XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+	// Generates a UUID in phoXXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
         const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-        return `${s4()}${s4()}-${s4()}-${s4()}-${s4()}-${s4()}${s4()}${s4()}`;
+        return `pho${s4()}${s4()}${s4()}`;
     },
 
 	// Converts a string classname color like "green accent-2" to a hex value
@@ -91,6 +91,19 @@ const Photon = {
 			})
 			$(this).attr("md", "");
 		});
+
+		// List
+		$(".list").not("[md]").each(function() {
+			$(this).children(".list-item").on("click", function(event) {
+
+				const $input = $(this).children(".meta").children(".checkbox, .switch, .radio").children("input");
+				const $target = $(event.target);
+
+				if($target.is($input.parent().children())) return;
+				$input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
+
+			})
+		})
 
 		// Radio:
 		$(".radio").not("[md]").each(function() {
@@ -213,7 +226,9 @@ const Photon = {
 		});
 
 		// Waves:
-		Waves.attach($(".waves-effect").not("[md]"));
+		$(".waves-effect").not("[md]").each(function() {
+			Waves.attach(this);
+		})
 
 		// Waves Ink:
 		$(".waves-ink").not("[md]").each(function() {
