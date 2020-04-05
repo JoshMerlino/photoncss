@@ -986,6 +986,18 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -1006,7 +1018,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Define constant Photon global
 
 var Photon = {
-  // Generates a UUID in phoXXXXXXXXXXXX
+  // Generates a UUID in LuXXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
     var s4 = function s4() {
@@ -1097,6 +1109,10 @@ var Photon = {
         if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
       });
       $(this).attr("md", "");
+    }); // Drawer
+
+    $(".drawer").each(function () {
+      Photon.Drawer($(this));
     }); // List
 
     $(".list").not("[md]").each(function () {
@@ -1252,6 +1268,157 @@ var Photon = {
 
       $(this).attr("md", "");
     });
+  },
+  // Photon component classes:
+  // Photon.Drawer - Drawer module
+  Drawer: function Drawer() {
+    return _construct( /*#__PURE__*/function () {
+      function Drawer(target) {
+        _classCallCheck(this, Drawer);
+
+        this.target = target;
+        var $nav = this.target;
+        var $swipe = this.target.children(".drawer-swipe-target");
+        if ($nav.is("[md]")) return this;
+        $nav.attr("md", "");
+        var id = $nav.attr("id") || Photon.guid();
+        $nav.attr("id", id);
+        $("<div class=\"modal-close-area\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]"));
+        var aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+        var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+        (function loop() {
+          requestAnimationFrame(loop);
+          var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+          var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+          tX === aX && tY === aY ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
+        })();
+
+        $modal.on("click touchstart", function () {
+          $nav.addClass("transition").removeClass("active");
+
+          if ($nav.hasClass("from-right")) {
+            $nav.css({
+              transform: "translateX(100%)"
+            });
+          } else if ($nav.hasClass("from-bottom")) {
+            $nav.css({
+              transform: "translateY(100%)"
+            });
+          } else if ($nav.hasClass("from-top")) {
+            $nav.css({
+              transform: "translateY(-100%)"
+            });
+          } else {
+            $nav.css({
+              transform: "translateX(-100%)"
+            });
+          }
+
+          setTimeout(function () {
+            return $nav.removeClass("transition shadow");
+          }, 250);
+        });
+        var state = false;
+        $swipe.on("touchstart", function () {
+          state = true;
+        }).on("touchend", function () {
+          state = false;
+          $nav.addClass("transition");
+
+          if ($nav.hasClass("from-right")) {
+            var pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+            var s = window.innerWidth - pos > $nav.width() / 2;
+            $nav.css({
+              transform: s ? "translateX(0%)" : "translateX(100%)"
+            });
+          } else if ($nav.hasClass("from-bottom")) {
+            var _pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+            var _s2 = _pos < $nav.height() / 2;
+
+            $nav.css({
+              transform: _s2 ? "translateY(0%)" : "translateY(100%)"
+            });
+          } else if ($nav.hasClass("from-top")) {
+            var _pos2 = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+            var _s3 = $nav.height() + _pos2 < $nav.height() / 2;
+
+            $nav.css({
+              transform: _s3 ? "translateY(-100%)" : "translateY(0%)"
+            });
+          } else {
+            var _pos3 = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+
+            var _s4 = _pos3 < $nav.width() / 2;
+
+            $nav.css({
+              transform: _s4 ? "translateX(-100%)" : "translateX(0%)"
+            });
+          }
+
+          setTimeout(function () {
+            return $nav.removeClass("transition");
+          }, 250);
+        }).on("touchmove", function (event) {
+          $nav.removeClass("active");
+          if (!state) return;
+          var touch = event.touches[0];
+
+          if ($nav.hasClass("from-right")) {
+            $nav.css({
+              transform: "translateX(".concat(Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0), "px)")
+            });
+          } else if ($nav.hasClass("from-bottom")) {
+            $nav.css({
+              transform: "translateY(".concat(Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0), "px)")
+            });
+          } else if ($nav.hasClass("from-top")) {
+            $nav.css({
+              transform: "translateY(".concat(Math.min(touch.clientY - $nav.height(), 0), "px)")
+            });
+          } else {
+            $nav.css({
+              transform: "translateX(".concat(Math.min(touch.clientX - $nav.width(), 0), "px)")
+            });
+          }
+        });
+        return this;
+      }
+
+      _createClass(Drawer, [{
+        key: "open",
+        value: function open() {
+          var _this = this;
+
+          this.target.addClass("active transition");
+          setTimeout(function () {
+            return _this.target.removeClass("transition");
+          }, 250);
+          return this;
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          var _this2 = this;
+
+          this.target.addClass("transition").removeClass("active");
+          setTimeout(function () {
+            return _this2.target.removeClass("transition");
+          }, 250);
+          return this;
+        }
+      }, {
+        key: "isOpen",
+        value: function isOpen() {
+          return this.target.hasClass("active");
+        }
+      }]);
+
+      return Drawer;
+    }(), Array.prototype.slice.call(arguments));
   }
 }; // Initialize Waves.js
 
