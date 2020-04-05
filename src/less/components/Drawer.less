@@ -1,0 +1,93 @@
+.drawer {
+	background: #fff;
+	z-index: 1200;
+	position: fixed;
+	transition: all @short @sharp;
+	transition-property: box-shadow;
+	ul.list {
+		border: none;
+	}
+	.drawer-swipe-target {
+		position: absolute;
+	}
+	&.transition {
+		transition-property: box-shadow, transform;
+	}
+	&.shadow,
+	&.active {
+		box-shadow:
+		  0 8px 10px -5px rgba(0,0,0,.2),
+		  0 16px 24px 2px rgba(0,0,0,.14),
+		  0 6px 30px 5px rgba(0,0,0,.12),
+	}
+	&.from-left {
+		top: 0;
+		left: 0;
+		bottom: 0;
+		width: 300px;
+		transform: translateX(-100%);
+		.drawer-swipe-target {
+			bottom: 0;
+			right: -16px;
+			top: 0;
+			width: 16px;
+		}
+	}
+	&.from-right {
+		top: 0;
+		right: 0;
+		bottom: 0;
+		width: 300px;
+		transform: translateX(100%);
+		.drawer-swipe-target {
+			bottom: 0;
+			left: -16px;
+			top: 0;
+			width: 16px;
+		}
+	}
+	&.from-bottom {
+		left: 0;
+		right: 0;
+		bottom: 0;
+		transform: translateY(100%);
+		.drawer-swipe-target {
+			top: -16px;
+			left: 0;
+			right: 0;
+			height: 16px;
+		}
+	}
+	&.from-top {
+		top: 0;
+		left: 0;
+		right: 0;
+		transform: translateY(-100%);
+		.drawer-swipe-target {
+			bottom: -16px;
+			left: 0;
+			right: 0;
+			height: 16px;
+		}
+	}
+	&.active {
+		transform: translate(0px, 0px)!important;
+	}
+}
+
+.modal-close-area {
+	position: fixed;
+	z-index: 1150;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: fade(#000, 32%);
+	opacity: 0;
+	transition: opacity @short @easeInOut;
+	pointer-events: none;
+	&.active {
+		opacity: 1;
+		pointer-events: all;
+	}
+}
