@@ -1122,6 +1122,10 @@ var Photon = {
         if ($target.is($input.parent().children())) return;
         $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
       });
+    }); // Drawer
+
+    $(".menu").each(function () {
+      Photon.Menu($(this));
     }); // Radio:
 
     $(".radio").not("[md]").each(function () {
@@ -1269,8 +1273,14 @@ var Photon = {
       $(this).attr("md", "");
     });
   },
-  // Photon component classes:
-  // Photon.Drawer - Drawer module
+
+  /** Drawer Component
+   * 	@params (<jQueryNode Drawer>)
+   *	@returns new Drawer
+   *	@method open() - Opens drawer
+   *	@method close() - Closes drawer
+   *	@property boolean isOpen - Is drawer open
+   */
   Drawer: function Drawer() {
     return _construct( /*#__PURE__*/function () {
       function Drawer(target) {
@@ -1295,7 +1305,8 @@ var Photon = {
           tX === aX && tY === aY ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
         })();
 
-        $modal.on("click touchstart", function () {
+        $modal.on("click touchstart", function (event) {
+          event.stopPropagation();
           $nav.addClass("transition").removeClass("active");
 
           if ($nav.hasClass("from-right")) {
@@ -1412,12 +1423,102 @@ var Photon = {
         }
       }, {
         key: "isOpen",
-        value: function isOpen() {
+        get: function get() {
           return this.target.hasClass("active");
         }
       }]);
 
       return Drawer;
+    }(), Array.prototype.slice.call(arguments));
+  },
+
+  /** Menu Component
+   * 	@params (<jQueryNode Menu>)
+   *	@returns new Menu
+   *	@method anchor((<jQueryNode Element> | <Number X, Number Y>))
+   *	@method open() - Opens menu
+   *	@method close() - Closes menu
+   *	@property boolean isOpen - Is menu open
+   */
+  Menu: function Menu() {
+    return _construct( /*#__PURE__*/function () {
+      function Menu(target) {
+        _classCallCheck(this, Menu);
+
+        this.target = target;
+        var $menu = this.target;
+        if ($menu.is("[md]")) return this;
+        $menu.attr("md", "");
+        var id = $menu.attr("id") || Photon.guid();
+        $menu.attr("id", id);
+        $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]"));
+        $menu.on("click", function (event) {
+          event.stopPropagation();
+          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+          $modal.removeClass("active");
+        });
+        $modal.on("click", function (event) {
+          event.stopPropagation();
+          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+          $modal.removeClass("active");
+        });
+        return this;
+      }
+
+      _createClass(Menu, [{
+        key: "anchor",
+        value: function anchor(x, y) {
+          var $menu = this.target;
+
+          if (y === undefined) {
+            var $anchor = x;
+            x = $anchor.offset().left;
+            y = $anchor.offset().top;
+            $menu.css({
+              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+            });
+          } else {
+            $menu.css({
+              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+            });
+          }
+
+          if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
+          if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
+          if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
+          if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
+          return this;
+        }
+      }, {
+        key: "open",
+        value: function open() {
+          var $menu = this.target;
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]"));
+          $menu.addClass("active");
+          $modal.addClass("active");
+          return this;
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          var $menu = this.target;
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]"));
+          $menu.removeClass("active");
+          $modal.removeClass("active");
+          return this;
+        }
+      }, {
+        key: "isOpen",
+        get: function get() {
+          var $menu = this.target;
+          return $menu.hasClass("active");
+        }
+      }]);
+
+      return Menu;
     }(), Array.prototype.slice.call(arguments));
   }
 }; // Initialize Waves.js
