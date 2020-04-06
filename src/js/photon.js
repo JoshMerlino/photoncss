@@ -13,11 +13,11 @@ import MaterialColors from "./lib/MaterialColors.js";
 // Define constant Photon global
 const Photon = {
 
-	// Generates a UUID in LuXXXXXXXXXXXX
+	// Generates a UUID in XXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
         const s4 = () => Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-        return `pho${s4()}${s4()}${s4()}`;
+        return `${s4()}${s4()}${s4()}`;
     },
 
 	// Converts a string classname color like "green accent-2" to a hex value
