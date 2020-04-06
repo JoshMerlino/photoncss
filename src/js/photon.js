@@ -229,7 +229,7 @@ const Photon = {
 			// Update ToolbarSafeArea
 			if ($(this).hasClass("fixed")) {
 				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
-				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight + 8 }).attr("md", "");
+				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight }).attr("md", "");
 			}
 
 
