@@ -2435,6 +2435,7 @@ body {
   background: #ffffff;
   font-family: "Roboto";
   padding: 0;
+  padding-top: 4px;
   outline: 0;
   font-size: 14px;
   overflow-x: hidden;
@@ -6400,7 +6401,7 @@ hr {
   position: absolute;
   user-select: none;
   background: #fff;
-  transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: transform, opacity;
   opacity: 0;
   pointer-events: none;
