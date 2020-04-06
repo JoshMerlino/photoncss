@@ -34,6 +34,8 @@ class ListItem extends React.Component {
 		subtitle: false,
 	}
 
+	uuid = Photon.guid();
+
 	// Serialize the props object into a series of classes
 	serialize() {
 		const { subtitle, waves, leadingIcon, trailingIcon, meta, checkbox, radio, rounded, active, ...rest } = this.props;
@@ -48,21 +50,25 @@ class ListItem extends React.Component {
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
+	componentDidMount() {
+		$(`#${this.props.id || this.uuid}`).click(this.props.onClick)
+	}
+
 	// Render component
 	render() {
 		return (
-			<li className={this.serialize()} {...this.rest}>
+			<li className={this.serialize()} {...this.rest} id={this.props.id || this.uuid}>
 				{ this.props.leadingIcon && <i className="material-icons">{this.props.leadingIcon}</i>}
 				<div className="item-name">
-					{this.props.children}
+					{ this.props.children }
 					{ this.props.subtitle && <div className="subtitle">{this.props.subtitle}</div> }
 				</div>
 				<div className="meta">
-					{this.props.checkbox && <Checkbox {...(this.props.checkbox !== true ? this.props.checkbox : {})} />}
-					{this.props.radio && <Radio {...(this.props.radio !== true ? this.props.radio : {})} />}
-					{this.props.switch && <Switch {...(this.props.switch !== true ? this.props.switch : {})} />}
-					{this.props.meta}
-					{ this.props.trailingIcon && <i className="material-icons">{this.props.trailingIcon}</i>}
+					{ this.props.checkbox && <Checkbox {...(this.props.checkbox !== true ? this.props.checkbox : {})} /> }
+					{ this.props.radio && <Radio {...(this.props.radio !== true ? this.props.radio : {})} /> }
+					{ this.props.switch && <Switch {...(this.props.switch !== true ? this.props.switch : {})} /> }
+					{ this.props.meta }
+					{ this.props.trailingIcon && <i className="material-icons">{this.props.trailingIcon}</i> }
 				</div>
 			</li>
 		);

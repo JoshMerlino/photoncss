@@ -95,7 +95,7 @@ const Photon = {
 		// Drawer
 		$(".drawer").each(function() {
 			Photon.Drawer($(this));
-		})
+		});
 
 		// List
 		$(".list").not("[md]").each(function() {
@@ -108,7 +108,12 @@ const Photon = {
 				$input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
 
 			})
-		})
+		});
+
+		// Drawer
+		$(".menu").each(function() {
+			Photon.Menu($(this));
+		});
 
 		// Radio:
 		$(".radio").not("[md]").each(function() {
@@ -259,9 +264,13 @@ const Photon = {
 
 	},
 
-	// Photon component classes:
-
-	// Photon.Drawer - Drawer module
+	/** Drawer Component
+	 * 	@params (<jQueryNode Drawer>)
+	 *	@returns new Drawer
+	 *	@method open() - Opens drawer
+	 *	@method close() - Closes drawer
+	 *	@property boolean isOpen - Is drawer open
+	 */
 	Drawer() {
 		return new class Drawer {
 			constructor(target) {
@@ -287,7 +296,8 @@ const Photon = {
 					tX === aX && tY === aY ? ($nav.removeClass("shadow") && $modal.removeClass("active")) : ($nav.addClass("shadow") && $modal.addClass("active"))
 				}());
 
-				$modal.on("click touchstart", function() {
+				$modal.on("click touchstart", function(event) {
+					event.stopPropagation();
 					$nav.addClass("transition").removeClass("active");
 					if($nav.hasClass("from-right")) {
 						$nav.css({ transform: "translateX(100%)" });
@@ -355,14 +365,87 @@ const Photon = {
 				setTimeout(() => this.target.removeClass("transition"), 250);
 				return this;
 			}
-			isOpen() {
+			get isOpen() {
 				return this.target.hasClass("active");
+			}
+		}(...arguments);
+	},
+
+	/** Menu Component
+	 * 	@params (<jQueryNode Menu>)
+	 *	@returns new Menu
+	 *	@method anchor((<jQueryNode Element> | <Number X, Number Y>))
+	 *	@method open() - Opens menu
+	 *	@method close() - Closes menu
+	 *	@property boolean isOpen - Is menu open
+	 */
+	Menu() {
+		return new class Menu {
+			constructor(target) {
+				this.target = target;
+				const $menu = this.target;
+
+				if($menu.is("[md]")) return this;
+				$menu.attr("md", "");
+
+				const id = $menu.attr("id") || Photon.guid();
+				$menu.attr("id", id);
+				$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
+
+				const $modal = $(`.modal-close-area[modal="${id}"]`);
+				$menu.on("click", function(event) {
+					event.stopPropagation();
+					$menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+					$modal.removeClass("active");
+				})
+				$modal.on("click", function(event) {
+					event.stopPropagation();
+					$menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+					$modal.removeClass("active");
+				})
+
+				return this;
+			}
+			anchor(x, y) {
+				const $menu = this.target;
+
+				if(y === undefined) {
+					const $anchor = x;
+					x = $anchor.offset().left;
+					y = $anchor.offset().top;
+					$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), })
+				} else {
+					$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), })
+				}
+
+				if(x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl")
+				if(x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr")
+				if(x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl")
+				if(x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br")
+				return this;
+			}
+			open() {
+				const $menu = this.target;
+				const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
+				$menu.addClass("active");
+				$modal.addClass("active");
+				return this;
+			}
+			close() {
+				const $menu = this.target;
+				const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
+				$menu.removeClass("active");
+				$modal.removeClass("active");
+				return this;
+			}
+			get isOpen() {
+				const $menu = this.target;
+				return $menu.hasClass("active");
 			}
 		}(...arguments);
 	}
 
 }
-
 
 // Initialize Waves.js
 Waves.init();
