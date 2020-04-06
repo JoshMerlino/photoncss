@@ -1248,7 +1248,7 @@ var Photon = {
       if ($(this).hasClass("fixed")) {
         var $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
         if ($safearea.length > 0) return $safearea.eq(0).css({
-          marginTop: $(this)[0].clientHeight + 8
+          marginTop: $(this)[0].clientHeight
         }).attr("md", "");
       }
     }); // Waves:
