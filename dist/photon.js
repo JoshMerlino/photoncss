@@ -1018,14 +1018,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Define constant Photon global
 
 var Photon = {
-  // Generates a UUID in LuXXXXXXXXXXXX
+  // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
     var s4 = function s4() {
       return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
     };
 
-    return "pho".concat(s4()).concat(s4()).concat(s4());
+    return "".concat(s4()).concat(s4()).concat(s4());
   },
   // Converts a string classname color like "green accent-2" to a hex value
   parseColor: function parseColor(query) {
