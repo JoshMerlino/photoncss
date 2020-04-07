@@ -1302,7 +1302,7 @@ var Photon = {
           requestAnimationFrame(loop);
           var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
           var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-          tX === aX && tY === aY ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
+          Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
         })();
 
         $modal.on("click touchstart", function (event) {
