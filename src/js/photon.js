@@ -287,13 +287,13 @@ const Photon = {
 
 				const $modal = $(`.modal-close-area[modal="${id}"]`);
 
-				const aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-				const aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+				let aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+				let aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 				(function loop() {
 					requestAnimationFrame(loop);
 					const tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
 					const tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-					tX === aX && tY === aY ? ($nav.removeClass("shadow") && $modal.removeClass("active")) : ($nav.addClass("shadow") && $modal.addClass("active"))
+					Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? ($nav.removeClass("shadow") && $modal.removeClass("active")) : ($nav.addClass("shadow") && $modal.addClass("active"))
 				}());
 
 				$modal.on("click touchstart", function(event) {
