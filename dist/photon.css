@@ -6285,6 +6285,7 @@ ul.list li.list-item {
   line-height: 1.5;
   letter-spacing: 0.00938em;
   padding-right: 72px;
+  white-space: nowrap;
 }
 ul.list li.list-item:hover {
   background: rgba(0, 0, 0, 0.04);
