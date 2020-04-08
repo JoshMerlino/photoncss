@@ -13,6 +13,9 @@ import MaterialColors from "./lib/MaterialColors.js";
 // Define constant Photon global
 const Photon = {
 
+	// List of functions to execute after a Photon.reload
+	hooks: [],
+
 	// Generates a UUID in XXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
@@ -79,6 +82,24 @@ const Photon = {
 		return `${prefix}-${query.replace(/\s/g, ` ${prefix}-${query}`)}`
 	},
 
+	// Unfocuses all components and resets them to their origional state
+	dispose() {
+
+		// Drawer
+		$(".drawer[md]").each(function() {
+			Photon.Drawer(this).close();
+		});
+
+		// Menu
+		$(".menu[md]").each(function() {
+			Photon.Menu(this).close();
+		});
+
+		// return true for hammer syntax
+		return true;
+
+	},
+
 	// Binds event listeners where needed
 	reload() {
 
@@ -93,8 +114,8 @@ const Photon = {
 		});
 
 		// Drawer
-		$(".drawer").each(function() {
-			Photon.Drawer($(this));
+		$(".drawer").not("[md]").each(function() {
+			Photon.Drawer(this);
 		});
 
 		// List
@@ -111,8 +132,8 @@ const Photon = {
 		});
 
 		// Drawer
-		$(".menu").each(function() {
-			Photon.Menu($(this));
+		$(".menu").not("[md]").each(function() {
+			Photon.Menu(this);
 		});
 
 		// Radio:
@@ -262,6 +283,12 @@ const Photon = {
 
 		});
 
+		// Execute reload hooks
+		Photon.hooks.map(hook => hook());
+
+		// return true for hammer syntax
+		return true;
+
 	},
 
 	/** Drawer Component
@@ -274,7 +301,7 @@ const Photon = {
 	Drawer() {
 		return new class Drawer {
 			constructor(target) {
-				this.target = target;
+				this.target = $(target);
 				const $nav = this.target;
 				const $swipe = this.target.children(".drawer-swipe-target");
 
@@ -290,7 +317,7 @@ const Photon = {
 				let aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
 				let aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 				(function loop() {
-					requestAnimationFrame(loop);
+					$nav.length !== 0 && requestAnimationFrame(loop);
 					const tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
 					const tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 					Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? ($nav.removeClass("shadow") && $modal.removeClass("active")) : ($nav.addClass("shadow") && $modal.addClass("active"))
@@ -382,7 +409,7 @@ const Photon = {
 	Menu() {
 		return new class Menu {
 			constructor(target) {
-				this.target = target;
+				this.target = $(target);
 				const $menu = this.target;
 
 				if($menu.is("[md]")) return this;
