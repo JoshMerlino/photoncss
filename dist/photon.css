@@ -2447,6 +2447,10 @@ body {
     padding: 1rem;
   }
 }
+a:-webkit-any-link {
+  color: inherit;
+  text-decoration: none;
+}
 .red {
   background-color: #F44336 !important;
 }
@@ -6129,6 +6133,10 @@ h6 {
 }
 .drawer ul.list {
   border: none;
+}
+.drawer ul.list li {
+  font-weight: 500!important;
+  font-size: 0.875rem;
 }
 .drawer .drawer-swipe-target {
   position: absolute;
