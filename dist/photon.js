@@ -1018,6 +1018,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Define constant Photon global
 
 var Photon = {
+  // List of functions to execute after a Photon.reload
+  hooks: [],
   // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
@@ -1099,6 +1101,19 @@ var Photon = {
   prefixColorQuery: function prefixColorQuery(prefix, query) {
     return "".concat(prefix, "-").concat(query.replace(/\s/g, " ".concat(prefix, "-").concat(query)));
   },
+  // Unfocuses all components and resets them to their origional state
+  dispose: function dispose() {
+    // Drawer
+    $(".drawer[md]").each(function () {
+      Photon.Drawer(this).close();
+    }); // Menu
+
+    $(".menu[md]").each(function () {
+      Photon.Menu(this).close();
+    }); // return true for hammer syntax
+
+    return true;
+  },
   // Binds event listeners where needed
   reload: function reload() {
     // Checkbox:
@@ -1111,8 +1126,8 @@ var Photon = {
       $(this).attr("md", "");
     }); // Drawer
 
-    $(".drawer").each(function () {
-      Photon.Drawer($(this));
+    $(".drawer").not("[md]").each(function () {
+      Photon.Drawer(this);
     }); // List
 
     $(".list").not("[md]").each(function () {
@@ -1124,8 +1139,8 @@ var Photon = {
       });
     }); // Drawer
 
-    $(".menu").each(function () {
-      Photon.Menu($(this));
+    $(".menu").not("[md]").each(function () {
+      Photon.Menu(this);
     }); // Radio:
 
     $(".radio").not("[md]").each(function () {
@@ -1271,7 +1286,13 @@ var Photon = {
       }); // Flag changed elements as processed
 
       $(this).attr("md", "");
-    });
+    }); // Execute reload hooks
+
+    Photon.hooks.map(function (hook) {
+      return hook();
+    }); // return true for hammer syntax
+
+    return true;
   },
 
   /** Drawer Component
@@ -1286,7 +1307,7 @@ var Photon = {
       function Drawer(target) {
         _classCallCheck(this, Drawer);
 
-        this.target = target;
+        this.target = $(target);
         var $nav = this.target;
         var $swipe = this.target.children(".drawer-swipe-target");
         if ($nav.is("[md]")) return this;
@@ -1299,7 +1320,7 @@ var Photon = {
         var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 
         (function loop() {
-          requestAnimationFrame(loop);
+          $nav.length !== 0 && requestAnimationFrame(loop);
           var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
           var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
           Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
@@ -1445,7 +1466,7 @@ var Photon = {
       function Menu(target) {
         _classCallCheck(this, Menu);
 
-        this.target = target;
+        this.target = $(target);
         var $menu = this.target;
         if ($menu.is("[md]")) return this;
         $menu.attr("md", "");
