@@ -3,11 +3,6 @@ import Photon from "photoncss";
 
 class Container extends React.Component {
 
-	// Define default props
-	static defaultProps = {
-
-	}
-
 	// Serialize the props object into a series of classes
 	serialize() {
 		const { ...rest } = this.props;
@@ -28,11 +23,6 @@ class Container extends React.Component {
 }
 
 class Row extends React.Component {
-
-	// Define default props
-	static defaultProps = {
-
-	}
 
 	// Serialize the props object into a series of classes
 	serialize() {

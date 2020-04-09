@@ -2451,6 +2451,10 @@ a:-webkit-any-link {
   color: inherit;
   text-decoration: none;
 }
+a:-webkit-any-link.link {
+  color: #1976d2;
+  text-decoration: underline;
+}
 .red {
   background-color: #F44336 !important;
 }
@@ -6133,6 +6137,8 @@ h6 {
 }
 .drawer ul.list {
   border: none;
+  overflow: visible auto;
+  height: calc(100% - 1rem);
 }
 .drawer ul.list li {
   font-weight: 500!important;
@@ -6265,6 +6271,9 @@ h6 {
   align-items: center;
   justify-content: center;
 }
+.material-icons.large {
+  padding: 12px;
+}
 ul.list {
   font-size: 1rem;
   line-height: 1.75rem;
@@ -6346,8 +6355,7 @@ ul.list li.list-item .meta {
   letter-spacing: 0.03333333em;
 }
 ul.list li.list-item .meta i.material-icons {
-  margin-left: 32px;
-  margin-right: 0;
+  margin-left: 1rem;
 }
 ul.list li.list-item .meta .checkbox,
 ul.list li.list-item .meta .radio {
@@ -6374,7 +6382,7 @@ ul.list li.list-item i.material-icons {
   justify-content: center;
   color: inherit;
   margin-left: 0;
-  margin-right: 32px;
+  margin-right: 1rem;
 }
 ul.list .subheader {
   display: flex;
@@ -6396,6 +6404,15 @@ ul.list hr {
 }
 ul.list hr + .subheader {
   margin-top: -8px;
+}
+ul.list img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 8px 0;
+}
+ul.list img:first-child {
+  margin-top: -1rem;
 }
 hr {
   border: none;
