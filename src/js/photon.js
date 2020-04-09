@@ -13,8 +13,26 @@ import MaterialColors from "./lib/MaterialColors.js";
 // Define constant Photon global
 const Photon = {
 
-	// List of functions to execute after a Photon.reload
+	// Array of functions to execute after a Photon.reload
 	hooks: [],
+
+	// Unfocuses all components and resets them to their origional state
+	dispose() {
+
+		// Drawer
+		$(".drawer[md]").each(function() {
+			Photon.Drawer(this).close();
+		});
+
+		// Menu
+		$(".menu[md]").each(function() {
+			Photon.Menu(this).close();
+		});
+
+		// return true for hammer syntax
+		return true;
+
+	},
 
 	// Generates a UUID in XXXXXXXXXXXX
 	guid() {
@@ -80,24 +98,6 @@ const Photon = {
 	// Converts string color like "green accent-2" to "prefix-green prefix-accent-2"
 	prefixColorQuery(prefix, query) {
 		return `${prefix}-${query.replace(/\s/g, ` ${prefix}-${query}`)}`
-	},
-
-	// Unfocuses all components and resets them to their origional state
-	dispose() {
-
-		// Drawer
-		$(".drawer[md]").each(function() {
-			Photon.Drawer(this).close();
-		});
-
-		// Menu
-		$(".menu[md]").each(function() {
-			Photon.Menu(this).close();
-		});
-
-		// return true for hammer syntax
-		return true;
-
 	},
 
 	// Binds event listeners where needed
@@ -437,7 +437,7 @@ const Photon = {
 				const $menu = this.target;
 
 				if(y === undefined) {
-					const $anchor = x;
+					const $anchor = $(x);
 					x = $anchor.offset().left;
 					y = $anchor.offset().top;
 					$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), })
