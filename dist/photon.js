@@ -1018,8 +1018,21 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  // Define constant Photon global
 
 var Photon = {
-  // List of functions to execute after a Photon.reload
+  // Array of functions to execute after a Photon.reload
   hooks: [],
+  // Unfocuses all components and resets them to their origional state
+  dispose: function dispose() {
+    // Drawer
+    $(".drawer[md]").each(function () {
+      Photon.Drawer(this).close();
+    }); // Menu
+
+    $(".menu[md]").each(function () {
+      Photon.Menu(this).close();
+    }); // return true for hammer syntax
+
+    return true;
+  },
   // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
@@ -1100,19 +1113,6 @@ var Photon = {
   // Converts string color like "green accent-2" to "prefix-green prefix-accent-2"
   prefixColorQuery: function prefixColorQuery(prefix, query) {
     return "".concat(prefix, "-").concat(query.replace(/\s/g, " ".concat(prefix, "-").concat(query)));
-  },
-  // Unfocuses all components and resets them to their origional state
-  dispose: function dispose() {
-    // Drawer
-    $(".drawer[md]").each(function () {
-      Photon.Drawer(this).close();
-    }); // Menu
-
-    $(".menu[md]").each(function () {
-      Photon.Menu(this).close();
-    }); // return true for hammer syntax
-
-    return true;
   },
   // Binds event listeners where needed
   reload: function reload() {
@@ -1493,7 +1493,7 @@ var Photon = {
           var $menu = this.target;
 
           if (y === undefined) {
-            var $anchor = x;
+            var $anchor = $(x);
             x = $anchor.offset().left;
             y = $anchor.offset().top;
             $menu.css({
