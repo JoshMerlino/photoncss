@@ -11,11 +11,12 @@ class Icon extends React.Component {
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { textColor, waves, ...rest } = this.props;
+		const { textColor, waves, size, ...rest } = this.props;
 		this.rest = rest;
 		return [
 			"material-icons",
 			...(rest.className || "").split(" "),
+			size ? size : "",
 			textColor !== false ? Photon.prefixColorQuery("text", textColor) : "",
 			waves !== false ? `waves-effect${waves !== true ? ` ${Photon.prefixColorQuery("waves", waves)}` : ""}` : "",
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
