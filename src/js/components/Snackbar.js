@@ -2,7 +2,7 @@ export default {
 	Snackbar() {
 		return new class Snackbar {
 
-			constructor({ content, duration, classes, action, icon }) {
+			constructor({ content, duration, classes, action }) {
 
 				// Load arguments into class scope
 				this.content = content;
@@ -44,7 +44,7 @@ export default {
 
 				// Close snackbar
 				$snackbar.removeClass("active");
-				setTimeout($snackbar.remove, 250);
+				setTimeout(() => $snackbar.remove(), 250);
 
 				return this;
 
