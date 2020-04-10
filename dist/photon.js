@@ -986,18 +986,8 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
-
-function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
-
-function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
-
-function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
-
-function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
-
+/* harmony import */ var _components_Drawer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
+/* harmony import */ var _components_Menu_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -1293,258 +1283,20 @@ var Photon = {
     }); // return true for hammer syntax
 
     return true;
-  },
-  // Drawer Component
-  Drawer: function Drawer() {
-    return _construct( /*#__PURE__*/function () {
-      function Drawer(target) {
-        _classCallCheck(this, Drawer);
-
-        this.target = $(target);
-        var $nav = this.target;
-        var $swipe = this.target.children(".drawer-swipe-target");
-        if ($nav.is("[md]")) return this;
-        $nav.attr("md", "");
-        var id = $nav.attr("id") || Photon.guid();
-        $nav.attr("id", id);
-        $("<div class=\"modal-close-area\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
-        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]"));
-        var aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-        var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-
-        (function loop() {
-          $nav.length !== 0 && requestAnimationFrame(loop);
-          var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-          var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-          Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
-        })();
-
-        $modal.on("click touchstart", function (event) {
-          event.stopPropagation();
-          $nav.addClass("transition").removeClass("active");
-
-          if ($nav.hasClass("from-right")) {
-            $nav.css({
-              transform: "translateX(100%)"
-            });
-          } else if ($nav.hasClass("from-bottom")) {
-            $nav.css({
-              transform: "translateY(100%)"
-            });
-          } else if ($nav.hasClass("from-top")) {
-            $nav.css({
-              transform: "translateY(-100%)"
-            });
-          } else {
-            $nav.css({
-              transform: "translateX(-100%)"
-            });
-          }
-
-          setTimeout(function () {
-            return $nav.removeClass("transition shadow");
-          }, 250);
-        });
-        var state = false;
-        $swipe.on("touchstart", function () {
-          state = true;
-        }).on("touchend", function () {
-          state = false;
-          $nav.addClass("transition");
-
-          if ($nav.hasClass("from-right")) {
-            var pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-            var s = window.innerWidth - pos > $nav.width() / 2;
-            $nav.css({
-              transform: s ? "translateX(0%)" : "translateX(100%)"
-            });
-          } else if ($nav.hasClass("from-bottom")) {
-            var _pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-
-            var _s2 = _pos < $nav.height() / 2;
-
-            $nav.css({
-              transform: _s2 ? "translateY(0%)" : "translateY(100%)"
-            });
-          } else if ($nav.hasClass("from-top")) {
-            var _pos2 = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-
-            var _s3 = $nav.height() + _pos2 < $nav.height() / 2;
-
-            $nav.css({
-              transform: _s3 ? "translateY(-100%)" : "translateY(0%)"
-            });
-          } else {
-            var _pos3 = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-
-            var _s4 = _pos3 < $nav.width() / 2;
-
-            $nav.css({
-              transform: _s4 ? "translateX(-100%)" : "translateX(0%)"
-            });
-          }
-
-          setTimeout(function () {
-            return $nav.removeClass("transition");
-          }, 250);
-        }).on("touchmove", function (event) {
-          $nav.removeClass("active");
-          if (!state) return;
-          var touch = event.touches[0];
-
-          if ($nav.hasClass("from-right")) {
-            $nav.css({
-              transform: "translateX(".concat(Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0), "px)")
-            });
-          } else if ($nav.hasClass("from-bottom")) {
-            $nav.css({
-              transform: "translateY(".concat(Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0), "px)")
-            });
-          } else if ($nav.hasClass("from-top")) {
-            $nav.css({
-              transform: "translateY(".concat(Math.min(touch.clientY - $nav.height(), 0), "px)")
-            });
-          } else {
-            $nav.css({
-              transform: "translateX(".concat(Math.min(touch.clientX - $nav.width(), 0), "px)")
-            });
-          }
-        });
-        return this;
-      }
-
-      _createClass(Drawer, [{
-        key: "open",
-        value: function open() {
-          var _this = this;
-
-          this.target.addClass("active transition");
-          setTimeout(function () {
-            return _this.target.removeClass("transition");
-          }, 250);
-          return this;
-        }
-      }, {
-        key: "close",
-        value: function close() {
-          var _this2 = this;
-
-          this.target.addClass("transition").removeClass("active");
-          setTimeout(function () {
-            return _this2.target.removeClass("transition");
-          }, 250);
-          return this;
-        }
-      }, {
-        key: "isOpen",
-        get: function get() {
-          return this.target.hasClass("active");
-        }
-      }]);
-
-      return Drawer;
-    }(), Array.prototype.slice.call(arguments));
-  },
-  // Menu Component
-  Menu: function Menu() {
-    return _construct( /*#__PURE__*/function () {
-      function Menu(target) {
-        _classCallCheck(this, Menu);
-
-        // Define $menu from target
-        this.target = $(target);
-        var $menu = this.target; // Make sure were not adding listeners that are already there
-
-        if ($menu.is("[md]")) return this;
-        $menu.attr("md", ""); // Append modal close target to DOM
-
-        var id = $menu.attr("id") || Photon.guid();
-        $menu.attr("id", id);
-        $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
-        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Close menu on click from menu or modal
-
-        [$menu, $modal].map(function (e) {
-          return e.on("click", function (event) {
-            event.stopPropagation();
-            $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-            $modal.removeClass("active");
-          });
-        });
-        return this;
-      }
-
-      _createClass(Menu, [{
-        key: "anchor",
-        value: function anchor(x, y) {
-          // Get $menu
-          var $menu = this.target;
-
-          if (y === undefined) {
-            // If anchoring to element
-            var $anchor = $(x);
-            x = $anchor.offset().left;
-            y = $anchor.offset().top;
-            $menu.css({
-              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
-              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
-            });
-          } else {
-            // If anchoring to a fixed position
-            $menu.css({
-              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
-              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
-            });
-          } // Determine anchor origin
-
-
-          if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
-          if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
-          if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
-          if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
-          return this;
-        }
-      }, {
-        key: "open",
-        value: function open() {
-          // Get $menu and $modal
-          var $menu = this.target;
-          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Activate both
-
-          [$menu, $modal].map(function (e) {
-            return e.addClass("active");
-          });
-          return this;
-        }
-      }, {
-        key: "close",
-        value: function close() {
-          // Get $menu and $modal
-          var $menu = this.target;
-          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Deactivate both
-
-          [$menu, $modal].map(function (e) {
-            return e.removeClass("active");
-          });
-          return this;
-        }
-      }, {
-        key: "isOpen",
-        get: function get() {
-          var $menu = this.target;
-          return this.target.hasClass("active");
-        }
-      }]);
-
-      return Menu;
-    }(), Array.prototype.slice.call(arguments));
   }
-}; // Initialize Waves.js
+}; // Import Drawer component
+
+
+Photon.Drawer = _components_Drawer_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]; // Import Menu component
+
+
+Photon.Menu = _components_Menu_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]; // Load Photon into the window scope
+
+global.Photon = Photon; // Initialize Waves.js
 
 _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.init(); // Bind required event listeners when the DOM loads
 
-$(Photon.reload); // Load Photon into the window scope
-
-global.Photon = Photon; // Export Photon as a module
+$(Photon.reload); // Export Photon as a module
 
 /* harmony default export */ __webpack_exports__["default"] = (Photon);
 /* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(1)))
@@ -1562,6 +1314,287 @@ module.exports = __webpack_require__(5);
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// Drawer Component
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+  return _construct( /*#__PURE__*/function () {
+    function Drawer(target) {
+      _classCallCheck(this, Drawer);
+
+      this.target = $(target);
+      var $nav = this.target;
+      var $swipe = this.target.children(".drawer-swipe-target");
+      if ($nav.is("[md]")) return this;
+      $nav.attr("md", "");
+      var id = $nav.attr("id") || Photon.guid();
+      $nav.attr("id", id);
+      $("<div class=\"modal-close-area\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+      var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]"));
+      var aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+      var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+      (function loop() {
+        $nav.length !== 0 && requestAnimationFrame(loop);
+        var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+        var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+        Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
+      })();
+
+      $modal.on("click touchstart", function (event) {
+        event.stopPropagation();
+        $nav.addClass("transition").removeClass("active");
+
+        if ($nav.hasClass("from-right")) {
+          $nav.css({
+            transform: "translateX(100%)"
+          });
+        } else if ($nav.hasClass("from-bottom")) {
+          $nav.css({
+            transform: "translateY(100%)"
+          });
+        } else if ($nav.hasClass("from-top")) {
+          $nav.css({
+            transform: "translateY(-100%)"
+          });
+        } else {
+          $nav.css({
+            transform: "translateX(-100%)"
+          });
+        }
+
+        setTimeout(function () {
+          return $nav.removeClass("transition shadow");
+        }, 250);
+      });
+      var state = false;
+      $swipe.on("touchstart", function () {
+        state = true;
+      }).on("touchend", function () {
+        state = false;
+        $nav.addClass("transition");
+
+        if ($nav.hasClass("from-right")) {
+          var pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+          var s = window.innerWidth - pos > $nav.width() / 2;
+          $nav.css({
+            transform: s ? "translateX(0%)" : "translateX(100%)"
+          });
+        } else if ($nav.hasClass("from-bottom")) {
+          var _pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+          var _s = _pos < $nav.height() / 2;
+
+          $nav.css({
+            transform: _s ? "translateY(0%)" : "translateY(100%)"
+          });
+        } else if ($nav.hasClass("from-top")) {
+          var _pos2 = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+          var _s2 = $nav.height() + _pos2 < $nav.height() / 2;
+
+          $nav.css({
+            transform: _s2 ? "translateY(-100%)" : "translateY(0%)"
+          });
+        } else {
+          var _pos3 = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+
+          var _s3 = _pos3 < $nav.width() / 2;
+
+          $nav.css({
+            transform: _s3 ? "translateX(-100%)" : "translateX(0%)"
+          });
+        }
+
+        setTimeout(function () {
+          return $nav.removeClass("transition");
+        }, 250);
+      }).on("touchmove", function (event) {
+        $nav.removeClass("active");
+        if (!state) return;
+        var touch = event.touches[0];
+
+        if ($nav.hasClass("from-right")) {
+          $nav.css({
+            transform: "translateX(".concat(Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0), "px)")
+          });
+        } else if ($nav.hasClass("from-bottom")) {
+          $nav.css({
+            transform: "translateY(".concat(Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0), "px)")
+          });
+        } else if ($nav.hasClass("from-top")) {
+          $nav.css({
+            transform: "translateY(".concat(Math.min(touch.clientY - $nav.height(), 0), "px)")
+          });
+        } else {
+          $nav.css({
+            transform: "translateX(".concat(Math.min(touch.clientX - $nav.width(), 0), "px)")
+          });
+        }
+      });
+      return this;
+    }
+
+    _createClass(Drawer, [{
+      key: "open",
+      value: function open() {
+        // Get $nav
+        var $nav = this.target; // Open $nav
+
+        $nav.addClass("active transition");
+        setTimeout(function () {
+          return $nav.removeClass("transition");
+        }, 250);
+        return this;
+      }
+    }, {
+      key: "close",
+      value: function close() {
+        // Get $nav
+        var $nav = this.target; // Close $nav
+
+        $nav.addClass("transition").removeClass("active");
+        setTimeout(function () {
+          return $nav.removeClass("transition");
+        }, 250);
+        return this;
+      }
+    }, {
+      key: "isOpen",
+      get: function get() {
+        return this.target.hasClass("active");
+      }
+    }]);
+
+    return Drawer;
+  }(), Array.prototype.slice.call(arguments));
+});
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+// Menu Component
+/* harmony default export */ __webpack_exports__["a"] = (function () {
+  return _construct( /*#__PURE__*/function () {
+    function Menu(target) {
+      _classCallCheck(this, Menu);
+
+      // Define $menu from target
+      this.target = $(target);
+      var $menu = this.target; // Make sure were not adding listeners that are already there
+
+      if ($menu.is("[md]")) return this;
+      $menu.attr("md", ""); // Append modal close target to DOM
+
+      var id = $menu.attr("id") || Photon.guid();
+      $menu.attr("id", id);
+      $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+      var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Close menu on click from menu or modal
+
+      [$menu, $modal].map(function (e) {
+        return e.on("click", function (event) {
+          event.stopPropagation();
+          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+          $modal.removeClass("active");
+        });
+      });
+      return this;
+    }
+
+    _createClass(Menu, [{
+      key: "anchor",
+      value: function anchor(x, y) {
+        // Get $menu
+        var $menu = this.target;
+
+        if (y === undefined) {
+          // If anchoring to element
+          var $anchor = $(x);
+          x = $anchor.offset().left;
+          y = $anchor.offset().top;
+          $menu.css({
+            left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+            top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+          });
+        } else {
+          // If anchoring to a fixed position
+          $menu.css({
+            left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+            top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+          });
+        } // Determine anchor origin
+
+
+        if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
+        if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
+        if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
+        if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
+        return this;
+      }
+    }, {
+      key: "open",
+      value: function open() {
+        // Get $menu and $modal
+        var $menu = this.target;
+        var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Activate both
+
+        [$menu, $modal].map(function (e) {
+          return e.addClass("active");
+        });
+        return this;
+      }
+    }, {
+      key: "close",
+      value: function close() {
+        // Get $menu and $modal
+        var $menu = this.target;
+        var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Deactivate both
+
+        [$menu, $modal].map(function (e) {
+          return e.removeClass("active");
+        });
+        return this;
+      }
+    }, {
+      key: "isOpen",
+      get: function get() {
+        return this.target.hasClass("active");
+      }
+    }]);
+
+    return Menu;
+  }(), Array.prototype.slice.call(arguments));
+});
 
 /***/ })
 /******/ ]);
