@@ -1671,8 +1671,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         var content = _ref.content,
             duration = _ref.duration,
             classes = _ref.classes,
-            action = _ref.action,
-            icon = _ref.icon;
+            action = _ref.action;
 
         _classCallCheck(this, Snackbar);
 
@@ -1715,7 +1714,9 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           var $snackbar = $("#".concat(this.guid)); // Close snackbar
 
           $snackbar.removeClass("active");
-          setTimeout($snackbar.remove, 250);
+          setTimeout(function () {
+            return $snackbar.remove();
+          }, 250);
           return this;
         }
       }]);
