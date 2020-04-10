@@ -289,208 +289,26 @@ const Photon = {
 		// return true for hammer syntax
 		return true;
 
-	},
-
-	// Drawer Component
-	Drawer() {
-		return new class Drawer {
-			constructor(target) {
-				this.target = $(target);
-				const $nav = this.target;
-				const $swipe = this.target.children(".drawer-swipe-target");
-
-				if($nav.is("[md]")) return this;
-				$nav.attr("md", "");
-
-				const id = $nav.attr("id") || Photon.guid();
-				$nav.attr("id", id);
-				$(`<div class="modal-close-area" modal="${id}"></div>`).appendTo($("body"));
-
-				const $modal = $(`.modal-close-area[modal="${id}"]`);
-
-				let aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-				let aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-				(function loop() {
-					$nav.length !== 0 && requestAnimationFrame(loop);
-					const tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-					const tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-					Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? ($nav.removeClass("shadow") && $modal.removeClass("active")) : ($nav.addClass("shadow") && $modal.addClass("active"))
-				}());
-
-				$modal.on("click touchstart", function(event) {
-					event.stopPropagation();
-					$nav.addClass("transition").removeClass("active");
-					if($nav.hasClass("from-right")) {
-						$nav.css({ transform: "translateX(100%)" });
-					} else if($nav.hasClass("from-bottom")) {
-						$nav.css({ transform: "translateY(100%)" });
-					} else if($nav.hasClass("from-top")) {
-						$nav.css({ transform: "translateY(-100%)" });
-					} else {
-						$nav.css({ transform: "translateX(-100%)" });
-					}
-					setTimeout(() => $nav.removeClass("transition shadow"), 250);
-				})
-
-				let state = false;
-				$swipe
-				  .on("touchstart", function() {
-					  	state = true;
-				  })
-				  .on("touchend", function() {
-					  	state = false;
-						$nav.addClass("transition");
-						if($nav.hasClass("from-right")) {
-							const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-							const s = window.innerWidth - pos > $nav.width()/2
-							$nav.css({ transform: s ? "translateX(0%)":"translateX(100%)" });
-						} else if($nav.hasClass("from-bottom")) {
-							const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-							const s = pos < $nav.height()/2
-							$nav.css({ transform: s ? "translateY(0%)":"translateY(100%)" });
-						} else if($nav.hasClass("from-top")) {
-							const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-							const s = $nav.height() + pos < $nav.height()/2
-							$nav.css({ transform: s ? "translateY(-100%)":"translateY(0%)" });
-						} else {
-							const pos = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-							const s = pos < $nav.width()/2
-							$nav.css({ transform: s ? "translateX(-100%)":"translateX(0%)" });
-						}
-						setTimeout(() => $nav.removeClass("transition"), 250);
-				  })
-				  .on("touchmove", function(event) {
-					  	$nav.removeClass("active");
-					  	if(!state) return;
-					  	const touch = event.touches[0];
-						if($nav.hasClass("from-right")) {
-							$nav.css({ transform: `translateX(${Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0)}px)` });
-						} else if($nav.hasClass("from-bottom")) {
-							$nav.css({ transform: `translateY(${Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0)}px)` });
-						} else if($nav.hasClass("from-top")) {
-							$nav.css({ transform: `translateY(${Math.min(touch.clientY - $nav.height(), 0)}px)` });
-						} else {
-							$nav.css({ transform: `translateX(${Math.min(touch.clientX - $nav.width(), 0)}px)` });
-						}
-				  })
-
-				return this;
-			}
-			open() {
-				this.target.addClass("active transition");
-				setTimeout(() => this.target.removeClass("transition"), 250);
-				return this;
-			}
-			close() {
-				this.target.addClass("transition").removeClass("active");
-				setTimeout(() => this.target.removeClass("transition"), 250);
-				return this;
-			}
-			get isOpen() {
-				return this.target.hasClass("active");
-			}
-		}(...arguments);
-	},
-
-	// Menu Component
-	Menu() {
-		return new class Menu {
-			constructor(target) {
-
-				// Define $menu from target
-				this.target = $(target);
-				const $menu = this.target;
-
-				// Make sure were not adding listeners that are already there
-				if($menu.is("[md]")) return this;
-				$menu.attr("md", "");
-
-				// Append modal close target to DOM
-				const id = $menu.attr("id") || Photon.guid();
-				$menu.attr("id", id);
-				$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
-				const $modal = $(`.modal-close-area[modal="${id}"]`);
-
-				// Close menu on click from menu or modal
-				[$menu, $modal].map(e => e.on("click", function(event) {
-					event.stopPropagation();
-					$menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-					$modal.removeClass("active");
-				}))
-
-				return this;
-
-			}
-			anchor(x, y) {
-
-				// Get $menu
-				const $menu = this.target;
-
-				if(y === undefined) {
-
-					// If anchoring to element
-					const $anchor = $(x);
-					x = $anchor.offset().left;
-					y = $anchor.offset().top;
-					$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), })
-
-				} else {
-
-					// If anchoring to a fixed position
-					$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), })
-
-				}
-
-				// Determine anchor origin
-				if(x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl")
-				if(x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr")
-				if(x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl")
-				if(x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br")
-
-				return this;
-
-			}
-			open() {
-
-				// Get $menu and $modal
-				const $menu = this.target;
-				const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
-
-				// Activate both
-				[$menu, $modal].map(e => e.addClass("active"))
-
-				return this;
-
-			}
-			close() {
-
-				// Get $menu and $modal
-				const $menu = this.target;
-				const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
-
-				// Deactivate both
-				[$menu, $modal].map(e => e.removeClass("active"))
-
-				return this;
-
-			}
-			get isOpen() {
-				const $menu = this.target;
-				return this.target.hasClass("active");
-			}
-		}(...arguments);
 	}
 
 }
+
+// Import Drawer component
+import Drawer from "./components/Drawer.js";
+Photon.Drawer = Drawer;
+
+// Import Menu component
+import Menu from "./components/Menu.js";
+Photon.Menu = Menu;
+
+// Load Photon into the window scope
+global.Photon = Photon;
 
 // Initialize Waves.js
 Waves.init();
 
 // Bind required event listeners when the DOM loads
 $(Photon.reload);
-
-// Load Photon into the window scope
-global.Photon = Photon;
 
 // Export Photon as a module
 export default Photon;
