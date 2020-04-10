@@ -293,13 +293,9 @@ const Photon = {
 
 }
 
-// Import Drawer component
-import Drawer from "./components/Drawer.js";
-Photon.Drawer = Drawer;
-
-// Import Menu component
-import Menu from "./components/Menu.js";
-Photon.Menu = Menu;
+// Import script-based-components and insert into Photon global
+const importAll = a => a.keys().forEach(k => Object.assign(Photon, a(k).default));
+importAll(require.context("./components", true, /\.js$/));
 
 // Initialize Waves.js
 Waves.init();

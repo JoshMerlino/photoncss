@@ -986,8 +986,6 @@ __webpack_require__.r(__webpack_exports__);
 /* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2);
-/* harmony import */ var _components_Drawer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(6);
-/* harmony import */ var _components_Menu_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(7);
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance"); }
@@ -1284,13 +1282,15 @@ var Photon = {
 
     return true;
   }
-}; // Import Drawer component
+}; // Import script-based-components and insert into Photon global
 
+var importAll = function importAll(a) {
+  return a.keys().forEach(function (k) {
+    return Object.assign(Photon, a(k)["default"]);
+  });
+};
 
-Photon.Drawer = _components_Drawer_js__WEBPACK_IMPORTED_MODULE_2__[/* default */ "a"]; // Import Menu component
-
-
-Photon.Menu = _components_Menu_js__WEBPACK_IMPORTED_MODULE_3__[/* default */ "a"]; // Initialize Waves.js
+importAll(__webpack_require__(8)); // Initialize Waves.js
 
 _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.init(); // Bind required event listeners when the DOM loads
 
@@ -1320,6 +1320,7 @@ module.exports = __webpack_require__(5);
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1333,161 +1334,163 @@ function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _co
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // Drawer Component
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-  return _construct( /*#__PURE__*/function () {
-    function Drawer(target) {
-      _classCallCheck(this, Drawer);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Drawer: function Drawer() {
+    return _construct( /*#__PURE__*/function () {
+      function Drawer(target) {
+        _classCallCheck(this, Drawer);
 
-      // Define $nav and $swipe
-      this.target = $(target);
-      var $nav = this.target;
-      var $swipe = this.target.children(".drawer-swipe-target"); // Make sure were not adding listeners that are already there
+        // Define $nav and $swipe
+        this.target = $(target);
+        var $nav = this.target;
+        var $swipe = this.target.children(".drawer-swipe-target"); // Make sure were not adding listeners that are already there
 
-      if ($nav.is("[md]")) return this;
-      $nav.attr("md", ""); // Give the drawer a unique id if it dosnt already have one
+        if ($nav.is("[md]")) return this;
+        $nav.attr("md", ""); // Give the drawer a unique id if it dosnt already have one
 
-      var id = $nav.attr("id") || Photon.guid();
-      $nav.attr("id", id); // Define $modal
+        var id = $nav.attr("id") || Photon.guid();
+        $nav.attr("id", id); // Define $modal
 
-      $("<div class=\"modal-close-area\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
-      var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Cache original transform positions
+        $("<div class=\"modal-close-area\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Cache original transform positions
 
-      var aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-      var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]); // Compare transform positions on every frame
+        var aX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+        var aY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]); // Compare transform positions on every frame
 
-      (function frame() {
-        $nav.length !== 0 && requestAnimationFrame(frame); // Get current transform positions
+        (function frame() {
+          $nav.length !== 0 && requestAnimationFrame(frame); // Get current transform positions
 
-        var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-        var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]); // Determine by transform if it is open or closed
+          var tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+          var tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]); // Determine by transform if it is open or closed
 
-        Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
-      })(); // On click away from drawer
+          Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
+        })(); // On click away from drawer
 
 
-      $modal.on("click touchstart", function (event) {
-        // Stop event spread
-        event.stopPropagation(); // Start a transition
+        $modal.on("click touchstart", function (event) {
+          // Stop event spread
+          event.stopPropagation(); // Start a transition
 
-        $nav.addClass("transition").removeClass("active"); // Determine the transform of the closed state drawer
+          $nav.addClass("transition").removeClass("active"); // Determine the transform of the closed state drawer
 
-        if ($nav.hasClass("from-right")) $nav.css({
-          transform: "translateX(100%)"
-        });else if ($nav.hasClass("from-bottom")) $nav.css({
-          transform: "translateY(100%)"
-        });else if ($nav.hasClass("from-top")) $nav.css({
-          transform: "translateY(-100%)"
-        });else $nav.css({
-          transform: "translateX(-100%)"
-        }); // End animation
+          if ($nav.hasClass("from-right")) $nav.css({
+            transform: "translateX(100%)"
+          });else if ($nav.hasClass("from-bottom")) $nav.css({
+            transform: "translateY(100%)"
+          });else if ($nav.hasClass("from-top")) $nav.css({
+            transform: "translateY(-100%)"
+          });else $nav.css({
+            transform: "translateX(-100%)"
+          }); // End animation
 
-        setTimeout(function () {
-          return $nav.removeClass("transition shadow");
-        }, 250);
-      }); // Is touchdown?
+          setTimeout(function () {
+            return $nav.removeClass("transition shadow");
+          }, 250);
+        }); // Is touchdown?
 
-      var state = false;
-      $swipe.on("touchstart", function () {
-        return state = true;
-      }); // On drag stop, determine how to transform to next state
+        var state = false;
+        $swipe.on("touchstart", function () {
+          return state = true;
+        }); // On drag stop, determine how to transform to next state
 
-      $swipe.on("touchend", function () {
-        // Mark drawer as not dragging and start animation
-        state = false;
-        $nav.addClass("transition"); // Determine next position
+        $swipe.on("touchend", function () {
+          // Mark drawer as not dragging and start animation
+          state = false;
+          $nav.addClass("transition"); // Determine next position
 
-        if ($nav.hasClass("from-right")) {
-          var pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-          var s = window.innerWidth - pos > $nav.width() / 2;
-          $nav.css({
-            transform: s ? "translateX(0%)" : "translateX(100%)"
+          if ($nav.hasClass("from-right")) {
+            var pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+            var s = window.innerWidth - pos > $nav.width() / 2;
+            $nav.css({
+              transform: s ? "translateX(0%)" : "translateX(100%)"
+            });
+          } else if ($nav.hasClass("from-bottom")) {
+            var _pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+            var _s = _pos < $nav.height() / 2;
+
+            $nav.css({
+              transform: _s ? "translateY(0%)" : "translateY(100%)"
+            });
+          } else if ($nav.hasClass("from-top")) {
+            var _pos2 = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
+
+            var _s2 = $nav.height() + _pos2 < $nav.height() / 2;
+
+            $nav.css({
+              transform: _s2 ? "translateY(-100%)" : "translateY(0%)"
+            });
+          } else {
+            var _pos3 = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+
+            var _s3 = _pos3 < $nav.width() / 2;
+
+            $nav.css({
+              transform: _s3 ? "translateX(-100%)" : "translateX(0%)"
+            });
+          } // End animation
+
+
+          setTimeout(function () {
+            return $nav.removeClass("transition");
+          }, 250);
+        }); // On drag
+
+        $swipe.on("touchmove", function (event) {
+          // Show drawer
+          $nav.removeClass("active"); // If it is not in drag mode, return
+
+          if (!state) return; // Get touch from drag event
+
+          var touch = event.touches[0]; // Determine where drag is and where to move drawer to
+
+          if ($nav.hasClass("from-right")) $nav.css({
+            transform: "translateX(".concat(Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0), "px)")
+          });else if ($nav.hasClass("from-bottom")) $nav.css({
+            transform: "translateY(".concat(Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0), "px)")
+          });else if ($nav.hasClass("from-top")) $nav.css({
+            transform: "translateY(".concat(Math.min(touch.clientY - $nav.height(), 0), "px)")
+          });else $nav.css({
+            transform: "translateX(".concat(Math.min(touch.clientX - $nav.width(), 0), "px)")
           });
-        } else if ($nav.hasClass("from-bottom")) {
-          var _pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-
-          var _s = _pos < $nav.height() / 2;
-
-          $nav.css({
-            transform: _s ? "translateY(0%)" : "translateY(100%)"
-          });
-        } else if ($nav.hasClass("from-top")) {
-          var _pos2 = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-
-          var _s2 = $nav.height() + _pos2 < $nav.height() / 2;
-
-          $nav.css({
-            transform: _s2 ? "translateY(-100%)" : "translateY(0%)"
-          });
-        } else {
-          var _pos3 = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-
-          var _s3 = _pos3 < $nav.width() / 2;
-
-          $nav.css({
-            transform: _s3 ? "translateX(-100%)" : "translateX(0%)"
-          });
-        } // End animation
-
-
-        setTimeout(function () {
-          return $nav.removeClass("transition");
-        }, 250);
-      }); // On drag
-
-      $swipe.on("touchmove", function (event) {
-        // Show drawer
-        $nav.removeClass("active"); // If it is not in drag mode, return
-
-        if (!state) return; // Get touch from drag event
-
-        var touch = event.touches[0]; // Determine where drag is and where to move drawer to
-
-        if ($nav.hasClass("from-right")) $nav.css({
-          transform: "translateX(".concat(Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0), "px)")
-        });else if ($nav.hasClass("from-bottom")) $nav.css({
-          transform: "translateY(".concat(Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0), "px)")
-        });else if ($nav.hasClass("from-top")) $nav.css({
-          transform: "translateY(".concat(Math.min(touch.clientY - $nav.height(), 0), "px)")
-        });else $nav.css({
-          transform: "translateX(".concat(Math.min(touch.clientX - $nav.width(), 0), "px)")
         });
-      });
-      return this;
-    }
-
-    _createClass(Drawer, [{
-      key: "open",
-      value: function open() {
-        // Get $nav
-        var $nav = this.target; // Open $nav
-
-        $nav.addClass("active transition");
-        setTimeout(function () {
-          return $nav.removeClass("transition");
-        }, 250);
         return this;
       }
-    }, {
-      key: "close",
-      value: function close() {
-        // Get $nav
-        var $nav = this.target; // Close $nav
 
-        $nav.addClass("transition").removeClass("active");
-        setTimeout(function () {
-          return $nav.removeClass("transition");
-        }, 250);
-        return this;
-      }
-    }, {
-      key: "isOpen",
-      get: function get() {
-        return this.target.hasClass("active");
-      }
-    }]);
+      _createClass(Drawer, [{
+        key: "open",
+        value: function open() {
+          // Get $nav
+          var $nav = this.target; // Open $nav
 
-    return Drawer;
-  }(), Array.prototype.slice.call(arguments));
+          $nav.addClass("active transition");
+          setTimeout(function () {
+            return $nav.removeClass("transition");
+          }, 250);
+          return this;
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          // Get $nav
+          var $nav = this.target; // Close $nav
+
+          $nav.addClass("transition").removeClass("active");
+          setTimeout(function () {
+            return $nav.removeClass("transition");
+          }, 250);
+          return this;
+        }
+      }, {
+        key: "isOpen",
+        get: function get() {
+          return this.target.hasClass("active");
+        }
+      }]);
+
+      return Drawer;
+    }(), Array.prototype.slice.call(arguments));
+  }
 });
 
 /***/ }),
@@ -1495,6 +1498,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+__webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -1508,97 +1512,128 @@ function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _co
 function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
 
 // Menu Component
-/* harmony default export */ __webpack_exports__["a"] = (function () {
-  return _construct( /*#__PURE__*/function () {
-    function Menu(target) {
-      _classCallCheck(this, Menu);
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Menu: function Menu() {
+    return _construct( /*#__PURE__*/function () {
+      function Menu(target) {
+        _classCallCheck(this, Menu);
 
-      // Define $menu from target
-      this.target = $(target);
-      var $menu = this.target; // Make sure were not adding listeners that are already there
+        // Define $menu from target
+        this.target = $(target);
+        var $menu = this.target; // Make sure were not adding listeners that are already there
 
-      if ($menu.is("[md]")) return this;
-      $menu.attr("md", ""); // Append modal close target to DOM
+        if ($menu.is("[md]")) return this;
+        $menu.attr("md", ""); // Append modal close target to DOM
 
-      var id = $menu.attr("id") || Photon.guid();
-      $menu.attr("id", id);
-      $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
-      var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Close menu on click from menu or modal
-
-      [$menu, $modal].map(function (e) {
-        return e.on("click", function (event) {
-          event.stopPropagation();
-          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-          $modal.removeClass("active");
-        });
-      });
-      return this;
-    }
-
-    _createClass(Menu, [{
-      key: "anchor",
-      value: function anchor(x, y) {
-        // Get $menu
-        var $menu = this.target;
-
-        if (y === undefined) {
-          // If anchoring to element
-          var $anchor = $(x);
-          x = $anchor.offset().left;
-          y = $anchor.offset().top;
-          $menu.css({
-            left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
-            top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
-          });
-        } else {
-          // If anchoring to a fixed position
-          $menu.css({
-            left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
-            top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
-          });
-        } // Determine anchor origin
-
-
-        if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
-        if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
-        if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
-        if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
-        return this;
-      }
-    }, {
-      key: "open",
-      value: function open() {
-        // Get $menu and $modal
-        var $menu = this.target;
-        var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Activate both
+        var id = $menu.attr("id") || Photon.guid();
+        $menu.attr("id", id);
+        $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
+        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Close menu on click from menu or modal
 
         [$menu, $modal].map(function (e) {
-          return e.addClass("active");
+          return e.on("click", function (event) {
+            event.stopPropagation();
+            $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+            $modal.removeClass("active");
+          });
         });
         return this;
       }
-    }, {
-      key: "close",
-      value: function close() {
-        // Get $menu and $modal
-        var $menu = this.target;
-        var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Deactivate both
 
-        [$menu, $modal].map(function (e) {
-          return e.removeClass("active");
-        });
-        return this;
-      }
-    }, {
-      key: "isOpen",
-      get: function get() {
-        return this.target.hasClass("active");
-      }
-    }]);
+      _createClass(Menu, [{
+        key: "anchor",
+        value: function anchor(x, y) {
+          // Get $menu
+          var $menu = this.target;
 
-    return Menu;
-  }(), Array.prototype.slice.call(arguments));
+          if (y === undefined) {
+            // If anchoring to element
+            var $anchor = $(x);
+            x = $anchor.offset().left;
+            y = $anchor.offset().top;
+            $menu.css({
+              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+            });
+          } else {
+            // If anchoring to a fixed position
+            $menu.css({
+              left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
+              top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
+            });
+          } // Determine anchor origin
+
+
+          if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
+          if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
+          if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
+          if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
+          return this;
+        }
+      }, {
+        key: "open",
+        value: function open() {
+          // Get $menu and $modal
+          var $menu = this.target;
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Activate both
+
+          [$menu, $modal].map(function (e) {
+            return e.addClass("active");
+          });
+          return this;
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          // Get $menu and $modal
+          var $menu = this.target;
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Deactivate both
+
+          [$menu, $modal].map(function (e) {
+            return e.removeClass("active");
+          });
+          return this;
+        }
+      }, {
+        key: "isOpen",
+        get: function get() {
+          return this.target.hasClass("active");
+        }
+      }]);
+
+      return Menu;
+    }(), Array.prototype.slice.call(arguments));
+  }
 });
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./Drawer.js": 6,
+	"./Menu.js": 7
+};
+
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 8;
 
 /***/ })
 /******/ ]);
