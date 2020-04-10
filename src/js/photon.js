@@ -301,14 +301,14 @@ Photon.Drawer = Drawer;
 import Menu from "./components/Menu.js";
 Photon.Menu = Menu;
 
-// Load Photon into the window scope
-global.Photon = Photon;
-
 // Initialize Waves.js
 Waves.init();
 
 // Bind required event listeners when the DOM loads
 $(Photon.reload);
+
+// Load Photon into the window scope
+global.Photon = Photon;
 
 // Export Photon as a module
 export default Photon;
