@@ -218,7 +218,7 @@
 
 
       relativeX = relativeX >= 0 ? relativeX : 0;
-      relativeY = relativeY >= 0 ? relativeY : 0;
+      relativeY = relativeY >= 0 ? relativeY : 0; // Custom PhotonCSS ripple scale function
 
       var scale = function () {
         var a = $(element);
@@ -1137,7 +1137,7 @@ var Photon = {
         if ($target.is($input.parent().children())) return;
         $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
       });
-    }); // Drawer
+    }); // Menu
 
     $(".menu").not("[md]").each(function () {
       Photon.Menu(this);
