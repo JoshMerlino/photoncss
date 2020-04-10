@@ -2436,24 +2436,18 @@ body {
   font-family: "Roboto";
   padding: 0;
   padding-top: 4px;
-  outline: 0;
   font-size: 14px;
   overflow-x: hidden;
   letter-spacing: 0.25px;
-  -webkit-tap-highlight-color: transparent;
 }
 @media only screen and (min-width: 960px), only screen and (min-width: 1280px), only screen and (min-width: 1920px) {
   body {
     padding: 1rem;
   }
 }
-a:-webkit-any-link {
-  color: inherit;
-  text-decoration: none;
-}
-a:-webkit-any-link.link {
-  color: #1976d2;
-  text-decoration: underline;
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
 }
 .red {
   background-color: #F44336 !important;
@@ -4883,6 +4877,14 @@ h6 {
   letter-spacing: 0.15px;
   font-size: 20px;
   font-weight: 500;
+}
+a[href] {
+  color: inherit;
+  text-decoration: none;
+}
+a[href].link {
+  color: #1976d2;
+  text-decoration: underline;
 }
 .waves-effect {
   position: relative;
