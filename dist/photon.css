@@ -6577,6 +6577,16 @@ hr {
     width: calc(100% - 8px);
   }
 }
+@media only screen and (min-width: 960px) {
+  .snackbar-container {
+    width: calc(40% - 8px);
+  }
+}
+@media only screen and (min-width: 1280px) {
+  .snackbar-container {
+    width: auto;
+  }
+}
 .snackbar-container .snackbar {
   box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
   pointer-events: all;
