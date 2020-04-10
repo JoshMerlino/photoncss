@@ -1612,7 +1612,8 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 var map = {
 	"./Drawer.js": 6,
-	"./Menu.js": 7
+	"./Menu.js": 7,
+	"./Snackbar.js": 9
 };
 
 
@@ -1634,6 +1635,100 @@ webpackContext.keys = function webpackContextKeys() {
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
 webpackContext.id = 8;
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Snackbar: function Snackbar() {
+    return new ( /*#__PURE__*/function () {
+      function Snackbar(_ref) {
+        var _this = this;
+
+        var content = _ref.content,
+            duration = _ref.duration,
+            classes = _ref.classes,
+            action = _ref.action,
+            icon = _ref.icon;
+
+        _classCallCheck(this, Snackbar);
+
+        // Load arguments into class scope
+        this.content = content;
+        this.duration = duration; // Create a snackbar container if it dosnt already exist
+
+        $(".snackbar-container").length === 0 && $("<div class=\"snackbar-container\"></div>").appendTo("body"); // Generate unique id for snackbar
+
+        var guid = this.guid = Photon.guid(); // Append snackbar to container
+
+        $("<div class=\"".concat(["snackbar"].concat(_toConsumableArray(classes.split(" "))).join(" "), "\" id=\"").concat(guid, "\"><div class=\"label\">").concat(content, "</div>").concat(action === false ? "" : "<button id=\"".concat(guid, "-action\" class=\"btn flat waves-effect accent\">").concat(action.name, "</button>"), "</div>")).appendTo(".snackbar-container");
+        var $snackbar = $("#".concat(guid)); // Add click event to action if it exists
+
+        action !== false && $("#".concat(guid, "-action")).click(function () {
+          return action.click(_this);
+        }); // Animate in
+
+        requestAnimationFrame(function () {
+          return $snackbar.addClass("active");
+        }); // Queue auto-close
+
+        var autoclose = setTimeout(function () {
+          return _this.close();
+        }, duration); // On snackbar interact, reset autoclose timer
+
+        $snackbar.on("click mousedown touchstart mouseup touchend", function () {
+          clearTimeout(autoclose);
+          autoclose = setTimeout(function () {
+            return _this.close();
+          }, duration);
+        });
+        return this;
+      }
+
+      _createClass(Snackbar, [{
+        key: "close",
+        value: function close() {
+          // Get $snackbar
+          var $snackbar = $("#".concat(this.guid)); // Close snackbar
+
+          $snackbar.removeClass("active");
+          setTimeout($snackbar.remove, 250);
+          return this;
+        }
+      }]);
+
+      return Snackbar;
+    }())(_objectSpread({
+      content: "",
+      duration: 10000,
+      classes: "",
+      action: false
+    }, arguments[0]));
+  }
+});
 
 /***/ })
 /******/ ]);
