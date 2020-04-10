@@ -1294,14 +1294,7 @@ var Photon = {
 
     return true;
   },
-
-  /** Drawer Component
-   * 	@params (<jQueryNode Drawer>)
-   *	@returns new Drawer
-   *	@method open() - Opens drawer
-   *	@method close() - Closes drawer
-   *	@property boolean isOpen - Is drawer open
-   */
+  // Drawer Component
   Drawer: function Drawer() {
     return _construct( /*#__PURE__*/function () {
       function Drawer(target) {
@@ -1452,37 +1445,30 @@ var Photon = {
       return Drawer;
     }(), Array.prototype.slice.call(arguments));
   },
-
-  /** Menu Component
-   * 	@params (<jQueryNode Menu>)
-   *	@returns new Menu
-   *	@method anchor((<jQueryNode Element> | <Number X, Number Y>))
-   *	@method open() - Opens menu
-   *	@method close() - Closes menu
-   *	@property boolean isOpen - Is menu open
-   */
+  // Menu Component
   Menu: function Menu() {
     return _construct( /*#__PURE__*/function () {
       function Menu(target) {
         _classCallCheck(this, Menu);
 
+        // Define $menu from target
         this.target = $(target);
-        var $menu = this.target;
+        var $menu = this.target; // Make sure were not adding listeners that are already there
+
         if ($menu.is("[md]")) return this;
-        $menu.attr("md", "");
+        $menu.attr("md", ""); // Append modal close target to DOM
+
         var id = $menu.attr("id") || Photon.guid();
         $menu.attr("id", id);
         $("<div class=\"modal-close-area transparent\" modal=\"".concat(id, "\"></div>")).appendTo($("body"));
-        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]"));
-        $menu.on("click", function (event) {
-          event.stopPropagation();
-          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-          $modal.removeClass("active");
-        });
-        $modal.on("click", function (event) {
-          event.stopPropagation();
-          $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-          $modal.removeClass("active");
+        var $modal = $(".modal-close-area[modal=\"".concat(id, "\"]")); // Close menu on click from menu or modal
+
+        [$menu, $modal].map(function (e) {
+          return e.on("click", function (event) {
+            event.stopPropagation();
+            $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
+            $modal.removeClass("active");
+          });
         });
         return this;
       }
@@ -1490,9 +1476,11 @@ var Photon = {
       _createClass(Menu, [{
         key: "anchor",
         value: function anchor(x, y) {
+          // Get $menu
           var $menu = this.target;
 
           if (y === undefined) {
+            // If anchoring to element
             var $anchor = $(x);
             x = $anchor.offset().left;
             y = $anchor.offset().top;
@@ -1501,11 +1489,13 @@ var Photon = {
               top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
             });
           } else {
+            // If anchoring to a fixed position
             $menu.css({
               left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8),
               top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8)
             });
-          }
+          } // Determine anchor origin
+
 
           if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
           if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
@@ -1516,26 +1506,32 @@ var Photon = {
       }, {
         key: "open",
         value: function open() {
+          // Get $menu and $modal
           var $menu = this.target;
-          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]"));
-          $menu.addClass("active");
-          $modal.addClass("active");
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Activate both
+
+          [$menu, $modal].map(function (e) {
+            return e.addClass("active");
+          });
           return this;
         }
       }, {
         key: "close",
         value: function close() {
+          // Get $menu and $modal
           var $menu = this.target;
-          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]"));
-          $menu.removeClass("active");
-          $modal.removeClass("active");
+          var $modal = $(".modal-close-area[modal=\"".concat($menu.attr("id"), "\"]")); // Deactivate both
+
+          [$menu, $modal].map(function (e) {
+            return e.removeClass("active");
+          });
           return this;
         }
       }, {
         key: "isOpen",
         get: function get() {
           var $menu = this.target;
-          return $menu.hasClass("active");
+          return this.target.hasClass("active");
         }
       }]);
 
