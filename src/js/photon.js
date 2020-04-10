@@ -131,7 +131,7 @@ const Photon = {
 			})
 		});
 
-		// Drawer
+		// Menu
 		$(".menu").not("[md]").each(function() {
 			Photon.Menu(this);
 		});
