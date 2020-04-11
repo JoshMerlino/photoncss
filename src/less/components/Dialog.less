@@ -1,0 +1,60 @@
+.dialog-wrapper {
+	position: fixed;
+	display: grid;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 1600;
+	pointer-events: none;
+	.dialog {
+		background: #fff;
+		margin: auto;
+		border-radius: 4px;
+		max-width: 600px;
+		max-height: calc(100% - 64px);
+		width: calc(100% - 1rem);
+		.raised-24();
+		pointer-events: all;
+		transition: all @short @easeInOut;
+		h6.title {
+			flex: 0 0 auto;
+			margin: 0;
+			padding: 16px 24px;
+			font-size: 1.25rem;
+			font-weight: 500;
+			line-height: 1.6;
+			letter-spacing: 0.0075em;
+		}
+		p.content {
+			flex: 1 1 auto;
+			padding: 0 24px;
+			overflow-y: auto;
+			color: rgba(0, 0, 0, 0.54);
+			font-weight: 400;
+			line-height: 1.5;
+			letter-spacing: 0.00938em;
+			margin-bottom: 20px;
+			margin-top: 8px;
+		}
+		.actions {
+			flex: 0 0 auto;
+			display: flex;
+			padding: 8px;
+			align-items: center;
+			direction: rtl;
+			.btn {
+				margin: 0;
+				margin-left: 8px;
+			}
+		}
+		.input-field {
+			margin: 32px 24px;
+			margin-bottom: 10px;
+			&.outlined {
+				margin-bottom: 4px;
+			}
+			display: flex!important;
+		}
+	}
+}
