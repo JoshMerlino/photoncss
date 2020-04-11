@@ -18,12 +18,15 @@ export default {
 				$(`<div class="dialog-wrapper"><div class="dialog" id="${guid}"></div></div>`).appendTo($("body"));
 				const $dialog = $(`#${guid}`);
 
+				// Close dialog on ESC
+				dismissable && $(document).on("keydown", ({ key }) => key === "Escape" && this.close());
+
 				// Add transition class
 				$dialog.addClass(`transition-${transition}`);
 
 				// Add basic dialog content to multiple types
+				$(`<h6 class="title">${props.title}</h6>`).appendTo($dialog);
 				if(type === "alert" || type === "form") {
-					$(`<h6 class="title">${props.title}</h6>`).appendTo($dialog);
 					$(`<p class="content">${props.content}</p>`).appendTo($dialog);
 				}
 
@@ -32,7 +35,7 @@ export default {
 					this.field_keys = {};
 					props.fields.map(field => {
 						const key = Photon.guid();
-						$(`<div class="${[...(field.classes || []), "input-field", "primary"].join(" ")}"><input id="${key}" type="${field.type || "text"}" ${field.value ? `value=${field.value}` : ""} ${field.placeholder ? `placeholder=${field.placeholder}` : ""} />${field.label ? `<label>${field.label}</label>` : ""}</div>`).appendTo($dialog);
+						$(`<div class="${[...(field.classes || "").split(" "), "input-field", "primary"].join(" ")}"><input id="${key}" type="${field.type || "text"}" ${field.value ? `value=${field.value}` : ""} ${field.placeholder ? `placeholder=${field.placeholder}` : ""} />${field.label ? `<label>${field.label}</label>` : ""}</div>`).appendTo($dialog);
 						this.field_keys[field.id || field.name] = key
 					})
 					Photon.reload();
