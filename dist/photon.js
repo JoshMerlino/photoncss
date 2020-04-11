@@ -1386,12 +1386,18 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
         }); // Append and get $dialog
 
         $("<div class=\"dialog-wrapper\"><div class=\"dialog\" id=\"".concat(guid, "\"></div></div>")).appendTo($("body"));
-        var $dialog = $("#".concat(guid)); // Add transition class
+        var $dialog = $("#".concat(guid)); // Close dialog on ESC
+
+        dismissable && $(document).on("keydown", function (_ref2) {
+          var key = _ref2.key;
+          return key === "Escape" && _this.close();
+        }); // Add transition class
 
         $dialog.addClass("transition-".concat(transition)); // Add basic dialog content to multiple types
 
+        $("<h6 class=\"title\">".concat(props.title, "</h6>")).appendTo($dialog);
+
         if (type === "alert" || type === "form") {
-          $("<h6 class=\"title\">".concat(props.title, "</h6>")).appendTo($dialog);
           $("<p class=\"content\">".concat(props.content, "</p>")).appendTo($dialog);
         } // Add input to form type
 
@@ -1400,7 +1406,7 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
           this.field_keys = {};
           props.fields.map(function (field) {
             var key = Photon.guid();
-            $("<div class=\"".concat([].concat(_toConsumableArray(field.classes || []), ["input-field", "primary"]).join(" "), "\"><input id=\"").concat(key, "\" type=\"").concat(field.type || "text", "\" ").concat(field.value ? "value=".concat(field.value) : "", " ").concat(field.placeholder ? "placeholder=".concat(field.placeholder) : "", " />").concat(field.label ? "<label>".concat(field.label, "</label>") : "", "</div>")).appendTo($dialog);
+            $("<div class=\"".concat([].concat(_toConsumableArray((field.classes || "").split(" ")), ["input-field", "primary"]).join(" "), "\"><input id=\"").concat(key, "\" type=\"").concat(field.type || "text", "\" ").concat(field.value ? "value=".concat(field.value) : "", " ").concat(field.placeholder ? "placeholder=".concat(field.placeholder) : "", " />").concat(field.label ? "<label>".concat(field.label, "</label>") : "", "</div>")).appendTo($dialog);
             _this.field_keys[field.id || field.name] = key;
           });
           Photon.reload();
