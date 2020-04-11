@@ -107,9 +107,10 @@ const Photon = {
 		$(".checkbox").not("[md]").each(function() {
 			const $this = $(this);
 			const $input = $(this).children("input");
-			$(this).children().not("input").on("click", function() {
+			$(this).children("label, .waves-effect").on("click", function() {
 				if(!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
-			})
+			});
+			// Flag changed elements
 			$(this).attr("md", "");
 		});
 
@@ -128,7 +129,8 @@ const Photon = {
 				if($target.is($input.parent().children())) return;
 				$input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
 
-			})
+			});
+			$(this).attr("md", "");
 		});
 
 		// Menu
