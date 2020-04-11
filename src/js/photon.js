@@ -264,9 +264,9 @@ const Photon = {
 		// Waves Ink:
 		$(".waves-ink").not("[md]").each(function() {
 			$(this).on("mousedown touchstart", function(event) {
-			event.stopPropagation();
-			Waves.calm(this);
-			Waves.ripple(this, { wait: 1e10 });
+				event.stopPropagation();
+				Waves.calm(this);
+				Waves.ripple(this, { wait: 1e10 });
   		  	})
 
   		  	$(this).on("mouseup mouseleave", function() {

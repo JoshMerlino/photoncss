@@ -16,7 +16,7 @@
 	font-size: 0.875rem;
 	min-height: 36px;
 	line-height: 36px;
-	padding: 0 8px;
+	padding: 0 16px;
 	color: #212121;
 	border: none;
 	outline: none;
@@ -143,7 +143,7 @@
 	}
 
 	&.outlined {
-		padding: 0 15px;
+		padding: 0 14px;
 		border: 1px solid fade(#000, 35%);
 		&:hover {
 			border-color: fade(#000, 87%);
@@ -154,4 +154,13 @@
 		}
 	}
 
+}
+
+.banner, .card, .dialog, .list, .snackbar, .toolbar {
+	.btn {
+		padding: 0 8px;
+		&.outlined {
+			padding: 0 6px;
+		}
+	}
 }
