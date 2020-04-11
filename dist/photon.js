@@ -1261,16 +1261,15 @@ var Photon = {
     }); // Waves Ink:
 
     $(".waves-ink").not("[md]").each(function () {
-      $(this).on("mousedown", function (event) {
+      $(this).on("mousedown touchstart", function (event) {
         event.stopPropagation();
         _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
         _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.ripple(this, {
           wait: 1e10
         });
-      }).on("mouseup mouseleave", function () {
+      });
+      $(this).on("mouseup mouseleave", function () {
         _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
-      }).on("touchstart", function (event) {
-        event.stopPropagation();
       }); // Flag changed elements as processed
 
       $(this).attr("md", "");
