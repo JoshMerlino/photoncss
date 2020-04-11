@@ -263,20 +263,15 @@ const Photon = {
 
 		// Waves Ink:
 		$(".waves-ink").not("[md]").each(function() {
-			$(this)
-			  .on("mousedown", function(event) {
-	  			event.stopPropagation();
-	  			Waves.calm(this);
-	  			Waves.ripple(this, { wait: 1e10 });
-  		  	  })
+			$(this).on("mousedown touchstart", function(event) {
+			event.stopPropagation();
+			Waves.calm(this);
+			Waves.ripple(this, { wait: 1e10 });
+  		  	})
 
-  		  	  .on("mouseup mouseleave", function() {
+  		  	$(this).on("mouseup mouseleave", function() {
     			Waves.calm(this);
-  		  	  })
-
-  		      .on("touchstart", function(event) {
-    			event.stopPropagation();
-  		  	  })
+  		  	})
 
   			// Flag changed elements as processed
   			$(this).attr("md", "");
