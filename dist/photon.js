@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 4);
+/******/ 	return __webpack_require__(__webpack_require__.s = 9);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1290,7 +1290,7 @@ var importAll = function importAll(a) {
   });
 };
 
-importAll(__webpack_require__(8)); // Initialize Waves.js
+importAll(__webpack_require__(4)); // Initialize Waves.js
 
 _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.init(); // Bind required event listeners when the DOM loads
 
@@ -1305,15 +1305,179 @@ global.Photon = Photon; // Export Photon as a module
 /* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(3);
-module.exports = __webpack_require__(5);
+var map = {
+	"./Dialog.js": 5,
+	"./Drawer.js": 6,
+	"./Menu.js": 7,
+	"./Snackbar.js": 8
+};
 
+
+function webpackContext(req) {
+	var id = webpackContextResolve(req);
+	return __webpack_require__(id);
+}
+function webpackContextResolve(req) {
+	if(!__webpack_require__.o(map, req)) {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	}
+	return map[req];
+}
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 4;
 
 /***/ }),
 /* 5 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-// extracted by mini-css-extract-plugin
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _objectWithoutProperties(source, excluded) { if (source == null) return {}; var target = _objectWithoutPropertiesLoose(source, excluded); var key, i; if (Object.getOwnPropertySymbols) { var sourceSymbolKeys = Object.getOwnPropertySymbols(source); for (i = 0; i < sourceSymbolKeys.length; i++) { key = sourceSymbolKeys[i]; if (excluded.indexOf(key) >= 0) continue; if (!Object.prototype.propertyIsEnumerable.call(source, key)) continue; target[key] = source[key]; } } return target; }
+
+function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Dialog: function Dialog() {
+    return new ( /*#__PURE__*/function () {
+      function Dialog(_ref) {
+        var _this = this;
+
+        var type = _ref.type,
+            transition = _ref.transition,
+            actions = _ref.actions,
+            dismissable = _ref.dismissable,
+            props = _objectWithoutProperties(_ref, ["type", "transition", "actions", "dismissable"]);
+
+        _classCallCheck(this, Dialog);
+
+        // Give the dialog a unique id if it dosnt already have one
+        var guid = this.guid = Photon.guid(); // Define $modal
+
+        $("<div class=\"modal-close-area\" modal=\"".concat(guid, "\"></div>")).appendTo($("body"));
+        var $modal = $(".modal-close-area[modal=\"".concat(guid, "\"]")); // On click away close
+
+        dismissable && $modal.click(function () {
+          return _this.close();
+        }); // Append and get $dialog
+
+        $("<div class=\"dialog-wrapper\"><div class=\"dialog\" id=\"".concat(guid, "\"></div></div>")).appendTo($("body"));
+        var $dialog = $("#".concat(guid)); // Add transition class
+
+        $dialog.addClass("transition-".concat(transition)); // Add basic dialog content to multiple types
+
+        if (type === "alert" || type === "form") {
+          $("<h6 class=\"title\">".concat(props.title, "</h6>")).appendTo($dialog);
+          $("<p class=\"content\">".concat(props.content, "</p>")).appendTo($dialog);
+        } // Add input to form type
+
+
+        if (type === "form") {
+          this.field_keys = {};
+          props.fields.map(function (field) {
+            var key = Photon.guid();
+            $("<div class=\"".concat([].concat(_toConsumableArray(field.classes || []), ["input-field", "primary"]).join(" "), "\"><input id=\"").concat(key, "\" type=\"").concat(field.type || "text", "\" ").concat(field.value ? "value=".concat(field.value) : "", " ").concat(field.placeholder ? "placeholder=".concat(field.placeholder) : "", " />").concat(field.label ? "<label>".concat(field.label, "</label>") : "", "</div>")).appendTo($dialog);
+            _this.field_keys[field.id || field.name] = key;
+          });
+          Photon.reload();
+        } // Action button wrapper
+
+
+        actions.length > 0 && $("<div class=\"actions\"></div>").appendTo($dialog);
+        var $dialog_actions = $dialog.children(".actions"); // Add actions
+
+        actions.map(function (action) {
+          var act_id = Photon.guid();
+          $("<button class=\"btn flat waves-effect primary\" id=\"".concat(act_id, "\">").concat(action.name, "</button>")).appendTo($dialog_actions);
+          $("#".concat(act_id)).click(function () {
+            return action.click(_this);
+          });
+        });
+        return this;
+      }
+
+      _createClass(Dialog, [{
+        key: "open",
+        value: function open() {
+          // Get $dialog and $modal
+          var $dialog = $("#".concat(this.guid));
+          var $modal = $(".modal-close-area[modal=\"".concat(this.guid, "\"]")); // Activate both on next frame
+
+          requestAnimationFrame(function () {
+            return [$dialog, $modal].map(function (e) {
+              return e.addClass("active");
+            });
+          });
+          return this;
+        }
+      }, {
+        key: "close",
+        value: function close() {
+          // Get $dialog and $modal
+          var $dialog = $("#".concat(this.guid));
+          var $modal = $(".modal-close-area[modal=\"".concat(this.guid, "\"]")); // Deactivate both
+
+          [$dialog, $modal].map(function (e) {
+            return e.removeClass("active");
+          }); // Remove after animation
+
+          setTimeout(function () {
+            return [$dialog.parent(), $modal].map(function (e) {
+              return e.remove();
+            });
+          }, 250);
+          return this;
+        }
+      }, {
+        key: "fields",
+        value: function fields() {
+          // Return values from keys
+          var result = {};
+
+          for (var key in this.field_keys) {
+            result[key] = $("#".concat(this.field_keys[key])).val();
+          }
+
+          return result;
+        }
+      }]);
+
+      return Dialog;
+    }())(_objectSpread({
+      type: "alert",
+      transition: "grow",
+      title: "This page says:",
+      message: "",
+      actions: [],
+      dismissable: true
+    }, arguments[0]));
+  }
+});
 
 /***/ }),
 /* 6 */
@@ -1608,36 +1772,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 /***/ }),
 /* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./Drawer.js": 6,
-	"./Menu.js": 7,
-	"./Snackbar.js": 9
-};
-
-
-function webpackContext(req) {
-	var id = webpackContextResolve(req);
-	return __webpack_require__(id);
-}
-function webpackContextResolve(req) {
-	if(!__webpack_require__.o(map, req)) {
-		var e = new Error("Cannot find module '" + req + "'");
-		e.code = 'MODULE_NOT_FOUND';
-		throw e;
-	}
-	return map[req];
-}
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 8;
-
-/***/ }),
-/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1730,6 +1864,20 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
     }, arguments[0]));
   }
 });
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+module.exports = __webpack_require__(10);
+
+
+/***/ }),
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
 
 /***/ })
 /******/ ]);
