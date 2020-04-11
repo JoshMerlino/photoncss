@@ -5872,7 +5872,7 @@ a[href].link {
   font-size: 0.875rem;
   min-height: 36px;
   line-height: 36px;
-  padding: 0 8px;
+  padding: 0 16px;
   color: #212121;
   border: none;
   outline: none;
@@ -6012,7 +6012,7 @@ a[href].link {
   background: rgba(255, 23, 68, 0.3);
 }
 .btn.outlined {
-  padding: 0 15px;
+  padding: 0 14px;
   border: 1px solid rgba(0, 0, 0, 0.35);
 }
 .btn.outlined:hover {
@@ -6021,6 +6021,22 @@ a[href].link {
 .btn.outlined.disabled,
 .btn.outlined:disabled {
   border-color: rgba(0, 0, 0, 0.12);
+}
+.banner .btn,
+.card .btn,
+.dialog .btn,
+.list .btn,
+.snackbar .btn,
+.toolbar .btn {
+  padding: 0 8px;
+}
+.banner .btn.outlined,
+.card .btn.outlined,
+.dialog .btn.outlined,
+.list .btn.outlined,
+.snackbar .btn.outlined,
+.toolbar .btn.outlined {
+  padding: 0 6px;
 }
 .card {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
