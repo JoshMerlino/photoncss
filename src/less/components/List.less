@@ -105,6 +105,7 @@ ul.list {
 			color: inherit;
 			margin-left: 0;
 			margin-right: 1rem;
+			color: rgba(0, 0, 0, 0.6);
 		}
 	}
 	.subheader {
@@ -121,12 +122,12 @@ ul.list {
 		&:first-child {
 			margin-top: -8px;
 		}
+		& + hr {
+			margin-top: 0;
+		}
 	}
 	hr {
 		margin: 8px 0;
-		& + .subheader {
-			margin-top: -8px;
-		}
 	}
 	img {
 		display: block;
