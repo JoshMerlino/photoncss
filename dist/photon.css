@@ -2427,8 +2427,11 @@
 }
 
 ::selection {
-  background: #bbd3fd;
-  color: #000;
+  background: #005dff33;
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+  outline: 0;
 }
 body {
   color: #424242;
@@ -2444,10 +2447,6 @@ body {
   body {
     padding: 1rem;
   }
-}
-* {
-  -webkit-tap-highlight-color: transparent;
-  outline: 0;
 }
 .red {
   background-color: #F44336 !important;
