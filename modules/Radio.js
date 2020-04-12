@@ -7,13 +7,15 @@ class Radio extends React.Component {
 	static defaultProps = {
 		color: "primary",
 		disabled: false,
-		waves: "ink"
+		waves: "ink",
+		id: function() { return Photon.guid() }()
 	}
 
 	// Serialize the props object into a series of classes
 	serialize() {
 		const { color, disabled, waves, ...rest } = this.props;
 		this.rest = rest;
+		requestAnimationFrame(() => $(`input#${this.props.id}`).unbind().change(this.props.onChange));
 		return [
 			"radio",
 			...(rest.className || "").split(" "),
@@ -27,7 +29,7 @@ class Radio extends React.Component {
 		return (
 			<div className={this.serialize()}>
 				<input type="radio" {...this.rest}/>
-				{ this.props.label && <label htmlFor={this.props.id || Photon.guid()}>{this.props.label}</label> }
+				{ this.props.label && <label htmlFor={this.props.id}>{this.props.label}</label> }
 				{ this.props.waves !== false && <div className={`waves-effect${this.props.waves !== true ? ` ${Photon.prefixColorQuery("waves", this.props.waves)}` : ""}`}></div>}
 			</div>
 		);
