@@ -6549,6 +6549,7 @@ ul.list li.list-item i.material-icons {
   color: inherit;
   margin-left: 0;
   margin-right: 1rem;
+  color: rgba(0, 0, 0, 0.6);
 }
 ul.list .subheader {
   display: flex;
@@ -6565,11 +6566,11 @@ ul.list .subheader {
 ul.list .subheader:first-child {
   margin-top: -8px;
 }
+ul.list .subheader + hr {
+  margin-top: 0;
+}
 ul.list hr {
   margin: 8px 0;
-}
-ul.list hr + .subheader {
-  margin-top: -8px;
 }
 ul.list img {
   display: block;
