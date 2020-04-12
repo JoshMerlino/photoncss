@@ -5805,22 +5805,16 @@ a[href].link {
 .banner {
   background: #fff;
   padding: 16px;
-  padding-left: 32px;
-  margin: -8px -24px;
   margin-bottom: 8px;
   position: relative;
-  padding-right: 24px;
   border-bottom: 1px solid #e0e0e0;
-}
-@media only screen and (min-width: 1280px), only screen and (min-width: 1920px) {
-  .banner {
-    margin: -16px -24px;
-    margin-bottom: 8px;
-  }
+  width: 100%;
+  display: flex;
+  box-sizing: border-box;
 }
 .banner p {
   color: #000000de;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
   margin: 0;
   margin-bottom: 12px;
@@ -5832,6 +5826,7 @@ a[href].link {
   border-radius: 40px;
   position: absolute;
   top: 12px;
+  left: 12px;
   margin-left: 8px;
 }
 @media only screen and (min-width: 1280px), only screen and (min-width: 1920px) {
@@ -5840,7 +5835,7 @@ a[href].link {
     top: 4px;
   }
 }
-.banner img ~ p {
+.banner img + p {
   width: calc(100% - 64px);
   padding-left: 64px;
 }

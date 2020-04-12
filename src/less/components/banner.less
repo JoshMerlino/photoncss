@@ -1,19 +1,15 @@
 .banner {
 	background: #fff;
 	padding: 16px;
-	padding-left: 32px;
-	margin: -8px -24px;
 	margin-bottom: 8px;
 	position: relative;
-	padding-right: 24px;
-	@media @lg, @xl {
-		margin: -16px -24px;
-		margin-bottom: 8px;
-	}
 	border-bottom: 1px solid #e0e0e0;
+	width: 100%;
+	display: flex;
+	box-sizing: border-box;
 	p {
 		color: #000000de;
-		font-weight: 500;
+		font-weight: 400;
 		font-size: 14px;
 		margin: 0;
 		margin-bottom: 12px;
@@ -25,12 +21,13 @@
 		border-radius: 40px;
 		position: absolute;
 		top: 12px;
+		left: 12px;
 		margin-left: 8px;
 		@media @lg, @xl {
 			margin-left: 8px;
 			top: 4px;
 		}
-		& ~ p {
+		& + p {
 			width: calc(100% - 64px);
     		padding-left: 64px;
 		}
