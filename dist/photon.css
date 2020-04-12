@@ -6521,6 +6521,7 @@ ul.list li.list-item .meta {
 }
 ul.list li.list-item .meta i.material-icons {
   margin-left: 1rem;
+  margin-right: 0;
 }
 ul.list li.list-item .meta .checkbox,
 ul.list li.list-item .meta .radio {
