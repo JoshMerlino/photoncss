@@ -1109,7 +1109,7 @@ var Photon = {
       var $this = $(this);
       var $input = $(this).children("input");
       $(this).children("label, .waves-effect").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
+        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
       }); // Flag changed elements
 
       $(this).attr("md", "");
@@ -1124,7 +1124,7 @@ var Photon = {
         var $input = $(this).children(".meta").children(".checkbox, .switch, .radio").children("input");
         var $target = $(event.target);
         if ($target.is($input.parent().children())) return;
-        $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).change();
+        $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).trigger("change");
       });
       $(this).attr("md", "");
     }); // Menu
@@ -1137,7 +1137,7 @@ var Photon = {
       var $this = $(this);
       var $input = $(this).children("input");
       $(this).children().not("input").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", true).change();
+        if (!$this.hasClass("disabled")) $input.prop("checked", true).trigger("change");
       });
       $(this).attr("md", "");
     }); // Switch:
@@ -1146,7 +1146,7 @@ var Photon = {
       var $this = $(this);
       var $input = $(this).children("input");
       $(this).children().not("input").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).change();
+        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
       });
       $(this).attr("md", "");
     }); // Textfield:
