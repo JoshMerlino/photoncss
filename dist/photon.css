@@ -6177,7 +6177,6 @@ a[href].link {
   font-size: 1rem;
   padding: 0 1rem;
   cursor: pointer;
-  user-select: contain;
 }
 .checkbox label:hover ~ .waves-effect {
   background: rgba(0, 0, 0, 0.04);
@@ -6668,7 +6667,6 @@ hr {
   font-size: 1rem;
   padding: 0 1rem;
   cursor: pointer;
-  user-select: contain;
 }
 .radio label:hover ~ .waves-effect {
   background: rgba(0, 0, 0, 0.04);
@@ -6838,7 +6836,6 @@ hr {
   font-size: 1rem;
   padding: 0 1rem;
   cursor: pointer;
-  user-select: contain;
 }
 .switch label:hover ~ .waves-effect {
   background: rgba(0, 0, 0, 0.04);
