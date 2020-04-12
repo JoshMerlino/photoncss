@@ -279,7 +279,7 @@ export default {
         "800": "#424242",
         "900": "#212121"
     },
-    "blue-grey": {
+    "bluegrey": {
         "50": "#eceff1",
         "100": "#cfd8dc",
         "200": "#b0bec5",
