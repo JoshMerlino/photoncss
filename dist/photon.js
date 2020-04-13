@@ -1008,19 +1008,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var Photon = {
   // Array of functions to execute after a Photon.reload
   hooks: [],
-  // Unfocuses all components and resets them to their origional state
-  dispose: function dispose() {
-    // Drawer
-    $(".drawer[md]").each(function () {
-      Photon.Drawer(this).close();
-    }); // Menu
-
-    $(".menu[md]").each(function () {
-      Photon.Menu(this).close();
-    }); // return true for hammer syntax
-
-    return true;
-  },
   // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
