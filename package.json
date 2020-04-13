@@ -16,8 +16,10 @@
     "license": "MIT",
     "devDependencies": {
         "@babel/core": "^7.8.7",
+        "@babel/plugin-proposal-class-properties": "^7.8.3",
         "@babel/plugin-proposal-optional-catch-binding": "^7.8.3",
         "@babel/preset-env": "^7.8.7",
+        "@babel/preset-stage-2": "^7.8.3",
         "babel-loader": "^8.0.6",
         "css-loader": "^3.4.2",
         "file-loader": "^6.0.0",
