@@ -148,6 +148,11 @@ const Photon = {
 			$(this).attr("md", "");
 		});
 
+		// Slider
+		$(".slider").not("[md]").each(function() {
+			Photon.Slider(this);
+		});
+
 		// Switch:
 		$(".switch").not("[md]").each(function() {
 			const $this = $(this);
