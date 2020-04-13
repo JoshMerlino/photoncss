@@ -7,6 +7,8 @@ export default {
 				// Get $slider and load into class scope
 				const $slider = this.target = $(target).children(".slider-field");
 
+				if($(target).attr("md")) return;
+
 				// Set default bounds as a decimal from 0 - 1
 				this.setBounds(0, 1);
 
@@ -54,6 +56,8 @@ export default {
 
 				})
 
+				$(target).attr("md", "")
+
 				// Return instance;
 				return this;
 
@@ -96,11 +100,14 @@ export default {
 
 			set(value) {
 
+				return this;
+				// This will be worked on later
+
 				// Get $slider
 				const $slider = $(this.target);
 
-				// Get percent
-				const X = (value - this.bounds.min) / this.bounds.max * ($slider.width() - 20);
+				// Get X
+				const X = (value - this.bounds.min) / (this.bounds.max - this.bounds.min) * $slider.width() - 10 + value / 100;
 
 				// Animate jump
 				this.__jumpTo(X);
@@ -115,7 +122,7 @@ export default {
 				const $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
 				const $determinate = $slider.children(".determinate");
 
-				return ((($determinate.width() / ($slider.width() - 20)) - 0.06756756756756757) - this.bounds.min) * this.bounds.max;
+				return ((($determinate.width() / ($slider.width() - 20)) - 5/74) * (this.bounds.max - this.bounds.min)) + this.bounds.min;
 
 			}
 
