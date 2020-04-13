@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 9);
+/******/ 	return __webpack_require__(__webpack_require__.s = 10);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -963,7 +963,7 @@ module.exports = g;
     "800": "#424242",
     "900": "#212121"
   },
-  "blue-grey": {
+  "bluegrey": {
     "50": "#eceff1",
     "100": "#cfd8dc",
     "200": "#b0bec5",
@@ -1140,6 +1140,10 @@ var Photon = {
         if (!$this.hasClass("disabled")) $input.prop("checked", true).trigger("change");
       });
       $(this).attr("md", "");
+    }); // Slider
+
+    $(".slider").not("[md]").each(function () {
+      Photon.Slider(this);
     }); // Switch:
 
     $(".switch").not("[md]").each(function () {
@@ -1310,7 +1314,8 @@ var map = {
 	"./Dialog.js": 5,
 	"./Drawer.js": 6,
 	"./Menu.js": 7,
-	"./Snackbar.js": 8
+	"./Slider.js": 8,
+	"./Snackbar.js": 9
 };
 
 
@@ -1783,6 +1788,179 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Slider: function Slider() {
+    var _temp;
+
+    return _construct((_temp = /*#__PURE__*/function () {
+      function Slider(target) {
+        _classCallCheck(this, Slider);
+
+        _defineProperty(this, "__changeHooks", []);
+
+        // Get $slider and load into class scope
+        var $slider = this.target = $(target).children(".slider-field"); // Set default bounds as a decimal from 0 - 1
+
+        this.setBounds(0, 1); // Get parts of the slider
+
+        var $thumb = $slider.children(".thumb");
+        var $determinate = $slider.children(".determinate"); // Store touch down
+
+        var localState = false; // Store local instance
+
+        var _this = this; // On thumb drag
+
+
+        $thumb.on("mousedown touchstart", function () {
+          return localState = true;
+        }); // On thumb release
+
+        $(document).on("mouseup touchend", function () {
+          return localState = false;
+        }); // On thumb move
+
+        $(document).on("mousemove touchmove", function (event) {
+          // If dragging
+          if (!localState) return; // Move thumb and deter progress
+
+          var X = Math.max(Math.min((event.hasOwnProperty("changedTouches") && event.changedTouches[0] || event).clientX - $slider.offset().left - 10, $slider.width() - 20), 0); // Go To
+
+          $thumb.css({
+            left: X
+          });
+          $determinate.css({
+            width: X + 10
+          });
+
+          _this.__fireChange();
+        }); // On jump click
+
+        $slider.on("click", function (event) {
+          // Get X
+          var X = event.clientX - $slider.offset().left - 10; // Animate jump
+
+          _this.__jumpTo(X);
+        }); // Return instance;
+
+        return this;
+      }
+
+      _createClass(Slider, [{
+        key: "setBounds",
+        value: function setBounds(min, max) {
+          // Load bounds into class scope
+          this.bounds = {
+            min: min,
+            max: max
+          }; // Return instance;
+
+          return this;
+        }
+      }, {
+        key: "increment",
+        value: function increment(amnt) {
+          // Get $slider
+          var $slider = $(this.target);
+          var $determinate = $slider.children(".determinate"); // Get X
+
+          var X = ($determinate.width() || 0) + amnt / 2 + (amnt > 0 ? 0 : -20); // Animate jump
+
+          this.__jumpTo(X);
+
+          $slider.click();
+        }
+      }, {
+        key: "onChange",
+        value: function onChange(change) {
+          // Add to hooks
+          this.__changeHooks.push(change); // Return instance;
+
+
+          return this;
+        }
+      }, {
+        key: "__jumpTo",
+
+        /**@private*/
+        value: function __jumpTo(X) {
+          var _this2 = this;
+
+          // Get $slider and load into class scope
+          var $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : this.target; // Ensure X is within bounds
+
+          X = Math.max(Math.min(X, $slider.width() - 20), 0); // Get parts of the slider
+
+          var $thumb = $slider.children(".thumb");
+          var $determinate = $slider.children(".determinate"); // Start animation
+
+          $thumb.addClass("transition");
+          $determinate.addClass("transition"); // Go To
+
+          $thumb.css({
+            left: X
+          });
+          $determinate.css({
+            width: X + 10
+          });
+          setTimeout(function () {
+            return $thumb.removeClass("transition");
+          }, 150);
+          setTimeout(function () {
+            return $determinate.removeClass("transition");
+          }, 150); // Fire change event
+
+          setTimeout(function () {
+            return _this2.__fireChange();
+          }, 150);
+        }
+        /**@private*/
+
+      }, {
+        key: "__fireChange",
+        value: function __fireChange() {
+          var _this3 = this;
+
+          this.__changeHooks.map(function (hook) {
+            return hook(_this3.value);
+          });
+        }
+        /**@private*/
+
+      }, {
+        key: "value",
+        get: function get() {
+          // Get $slider
+          var $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
+          var $determinate = $slider.children(".determinate");
+          return ($determinate.width() / ($slider.width() - 20) - 0.06756756756756757 - this.bounds.min) * this.bounds.max;
+        }
+      }]);
+
+      return Slider;
+    }(), _temp), Array.prototype.slice.call(arguments));
+  }
+});
+
+/***/ }),
+/* 9 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
@@ -1873,15 +2051,15 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 });
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(3);
-module.exports = __webpack_require__(10);
+module.exports = __webpack_require__(11);
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
