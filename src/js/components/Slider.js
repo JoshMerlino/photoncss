@@ -94,6 +94,21 @@ export default {
 
 			}
 
+			set(value) {
+
+				// Get $slider
+				const $slider = $(this.target);
+
+				// Get percent
+				const X = (value - this.bounds.min) / this.bounds.max * ($slider.width() - 20);
+
+				// Animate jump
+				this.__jumpTo(X);
+
+				return this;
+
+			}
+
 			get value() {
 
 				// Get $slider
