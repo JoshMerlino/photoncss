@@ -6,20 +6,17 @@ class Slider extends React.Component {
 	// Define default props
 	static defaultProps = {
 		color: "primary",
-		disabled: false,
-		waves: "ink",
 		id: function() { return Photon.guid() }()
 	}
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { color, disabled, waves, leadingIcon, trailingIcon, ...rest } = this.props;
+		const { color, leadingIcon, trailingIcon, ...rest } = this.props;
 		this.rest = rest;
 		return [
 			"slider",
 			...(rest.className || "").split(" "),
 			color,
-			disabled ? "disabled" : "",
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
 
