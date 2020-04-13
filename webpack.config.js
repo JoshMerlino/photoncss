@@ -21,7 +21,7 @@ module.exports = {
             use: {
                 loader: "babel-loader",
                 options: {
-					plugins: ["@babel/plugin-proposal-optional-catch-binding"],
+					plugins: ["@babel/plugin-proposal-optional-catch-binding", "@babel/plugin-proposal-class-properties"],
                     presets: ["@babel/preset-env"]
                 }
             }
