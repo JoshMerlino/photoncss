@@ -1880,6 +1880,18 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
           return this;
         }
       }, {
+        key: "set",
+        value: function set(value) {
+          // Get $slider
+          var $slider = $(this.target); // Get percent
+
+          var X = (value - this.bounds.min) / this.bounds.max * ($slider.width() - 20); // Animate jump
+
+          this.__jumpTo(X);
+
+          return this;
+        }
+      }, {
         key: "__jumpTo",
 
         /**@private*/
