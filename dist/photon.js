@@ -1884,15 +1884,9 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
       }, {
         key: "set",
         value: function set(value) {
-          return this; // This will be worked on later
           // Get $slider
-
-          var $slider = $(this.target); // Get X
-
-          var X = (value - this.bounds.min) / (this.bounds.max - this.bounds.min) * $slider.width() - 10 + value / 100; // Animate jump
-
-          this.__jumpTo(X);
-
+          var $slider = $(this.target);
+          var $determinate = $slider.children(".determinate");
           return this;
         }
       }, {
@@ -1949,7 +1943,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
           // Get $slider
           var $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
           var $determinate = $slider.children(".determinate");
-          return ($determinate.width() / ($slider.width() - 20) - 5 / 74) * (this.bounds.max - this.bounds.min) + this.bounds.min;
+          return 0;
         }
       }]);
 
