@@ -206,6 +206,11 @@ const Photon = {
 
 		});
 
+		// Tabs:
+		$(".tabs").not("[md]").each(function() {
+			Photon.Tabs(this);
+		});
+
 		// Toolbar:
 		$(".toolbar").not("[md]").each(function() {
 

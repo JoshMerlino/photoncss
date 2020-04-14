@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 10);
+/******/ 	return __webpack_require__(__webpack_require__.s = 11);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1207,6 +1207,10 @@ var Photon = {
 
         $(this).attr("md", "");
       }
+    }); // Tabs:
+
+    $(".tabs").not("[md]").each(function () {
+      Photon.Tabs(this);
     }); // Toolbar:
 
     $(".toolbar").not("[md]").each(function () {
@@ -1302,7 +1306,8 @@ var map = {
 	"./Drawer.js": 6,
 	"./Menu.js": 7,
 	"./Slider.js": 8,
-	"./Snackbar.js": 9
+	"./Snackbar.js": 9,
+	"./Tabs.js": 10
 };
 
 
@@ -2068,14 +2073,36 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 /***/ }),
 /* 10 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(3);
-module.exports = __webpack_require__(11);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Tabs: function Tabs() {
+    return _construct(function Tabs(target) {
+      _classCallCheck(this, Tabs);
+    }, Array.prototype.slice.call(arguments));
+  }
+});
 
 /***/ }),
 /* 11 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+module.exports = __webpack_require__(12);
+
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
