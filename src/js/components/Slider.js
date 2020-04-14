@@ -2,15 +2,55 @@ export default {
 	Slider() {
 		return new class Slider {
 
+			/**@private*/ __jumpTo(X) {
+
+				// Get $slider and load into class scope
+				const $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : this.target;
+
+				// Ensure X is within bounds
+				X = Math.max(Math.min(X, $slider.width() - 20), 0);
+
+				// Get parts of the slider
+				const $thumb = $slider.children(".thumb");
+				const $determinate = $slider.children(".determinate");
+
+				// Start animation
+				$thumb.addClass("transition");
+				$determinate.addClass("transition");
+
+				// Go To
+				$thumb.css({ left: X });
+				$determinate.css({ width: X + 10 });
+
+				setTimeout(() => $thumb.removeClass("transition"), 150);
+				setTimeout(() => $determinate.removeClass("transition"), 150);
+
+				// Fire change event
+				setTimeout(() => this.__fireChange(), 150);
+
+			}
+
+			/**@private*/ __fireChange() {
+
+				this.__changeHooks.map(hook => hook(this.value));
+
+			}
+
+			/**@private*/ __withinBounds(val) {
+
+				return val * (this.bounds.max - this.bounds.min);
+
+			}
+
+			/**@private*/ __changeHooks = []
+
 			constructor(target) {
 
 				// Get $slider and load into class scope
 				const $slider = this.target = $(target).children(".slider-field");
+				this.setBounds(parseInt($slider.data("bounds-min")) || 0, parseInt($slider.data("bounds-max")) || 1);
 
-				if($(target).attr("md")) return;
-
-				// Set default bounds as a decimal from 0 - 1
-				this.setBounds(0, 1);
+				if($(target).attr("md") === "") return;
 
 				// Get parts of the slider
 				const $thumb = $slider.children(".thumb");
@@ -65,8 +105,15 @@ export default {
 
 			setBounds(min, max) {
 
+				// Get $slider
+				const $slider = $(this.target);
+
 				// Load bounds into class scope
 				this.bounds = { min, max };
+
+				// Make $slider reflect bounds
+				$slider.data("bounds-min", min);
+				$slider.data("bounds-max", max);
 
 				// Return instance;
 				return this;
@@ -102,9 +149,13 @@ export default {
 
 				// Get $slider
 				const $slider = $(this.target);
-				const $determinate = $slider.children(".determinate");
 
+				console.log(this);
 
+				const { min, max } = this.bounds
+
+				this.__jumpTo((value - min) / (max - min) * ($slider.width() - 20));
+				$slider.click();
 
 				return this;
 
@@ -116,46 +167,9 @@ export default {
 				const $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
 				const $determinate = $slider.children(".determinate");
 
-				
-				return 0;
+				return this.__withinBounds($determinate.width() - 10) / ($slider.width() - 20) + this.bounds.min;
 
 			}
-
-			/**@private*/ __jumpTo(X) {
-
-				// Get $slider and load into class scope
-				const $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : this.target;
-
-				// Ensure X is within bounds
-				X = Math.max(Math.min(X, $slider.width() - 20), 0);
-
-				// Get parts of the slider
-				const $thumb = $slider.children(".thumb");
-				const $determinate = $slider.children(".determinate");
-
-				// Start animation
-				$thumb.addClass("transition");
-				$determinate.addClass("transition");
-
-				// Go To
-				$thumb.css({ left: X });
-				$determinate.css({ width: X + 10 });
-
-				setTimeout(() => $thumb.removeClass("transition"), 150);
-				setTimeout(() => $determinate.removeClass("transition"), 150);
-
-				// Fire change event
-				setTimeout(() => this.__fireChange(), 150);
-
-			}
-
-			/**@private*/ __fireChange() {
-
-				this.__changeHooks.map(hook => hook(this.value));
-
-			}
-
-			/**@private*/ __changeHooks = []
 
 		}(...arguments);
 	}
