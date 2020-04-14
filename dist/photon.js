@@ -1794,102 +1794,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
     var _temp;
 
     return _construct((_temp = /*#__PURE__*/function () {
-      function Slider(target) {
-        _classCallCheck(this, Slider);
-
-        _defineProperty(this, "__changeHooks", []);
-
-        // Get $slider and load into class scope
-        var $slider = this.target = $(target).children(".slider-field");
-        if ($(target).attr("md")) return; // Set default bounds as a decimal from 0 - 1
-
-        this.setBounds(0, 1); // Get parts of the slider
-
-        var $thumb = $slider.children(".thumb");
-        var $determinate = $slider.children(".determinate"); // Store touch down
-
-        var localState = false; // Store local instance
-
-        var _this = this; // On thumb drag
-
-
-        $thumb.on("mousedown touchstart", function () {
-          return localState = true;
-        }); // On thumb release
-
-        $(document).on("mouseup touchend", function () {
-          return localState = false;
-        }); // On thumb move
-
-        $(document).on("mousemove touchmove", function (event) {
-          // If dragging
-          if (!localState) return; // Move thumb and deter progress
-
-          var X = Math.max(Math.min((event.hasOwnProperty("changedTouches") && event.changedTouches[0] || event).clientX - $slider.offset().left - 10, $slider.width() - 20), 0); // Go To
-
-          $thumb.css({
-            left: X
-          });
-          $determinate.css({
-            width: X + 10
-          });
-
-          _this.__fireChange();
-        }); // On jump click
-
-        $slider.on("click", function (event) {
-          // Get X
-          var X = event.clientX - $slider.offset().left - 10; // Animate jump
-
-          _this.__jumpTo(X);
-        });
-        $(target).attr("md", ""); // Return instance;
-
-        return this;
-      }
-
       _createClass(Slider, [{
-        key: "setBounds",
-        value: function setBounds(min, max) {
-          // Load bounds into class scope
-          this.bounds = {
-            min: min,
-            max: max
-          }; // Return instance;
-
-          return this;
-        }
-      }, {
-        key: "increment",
-        value: function increment(amnt) {
-          // Get $slider
-          var $slider = $(this.target);
-          var $determinate = $slider.children(".determinate"); // Get X
-
-          var X = ($determinate.width() || 0) + amnt / 2 + (amnt > 0 ? 0 : -20); // Animate jump
-
-          this.__jumpTo(X);
-
-          $slider.click();
-        }
-      }, {
-        key: "onChange",
-        value: function onChange(change) {
-          // Add to hooks
-          this.__changeHooks.push(change); // Return instance;
-
-
-          return this;
-        }
-      }, {
-        key: "set",
-        value: function set(value) {
-          // Get $slider
-          var $slider = $(this.target);
-          var $determinate = $slider.children(".determinate");
-          return this;
-        }
-      }, {
         key: "__jumpTo",
 
         /**@private*/
@@ -1938,12 +1843,127 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         /**@private*/
 
       }, {
+        key: "__withinBounds",
+        value: function __withinBounds(val) {
+          return val * (this.bounds.max - this.bounds.min);
+        }
+        /**@private*/
+
+      }]);
+
+      function Slider(target) {
+        _classCallCheck(this, Slider);
+
+        _defineProperty(this, "__changeHooks", []);
+
+        // Get $slider and load into class scope
+        var $slider = this.target = $(target).children(".slider-field");
+        this.setBounds(parseInt($slider.data("bounds-min")) || 0, parseInt($slider.data("bounds-max")) || 1);
+        if ($(target).attr("md") === "") return; // Get parts of the slider
+
+        var $thumb = $slider.children(".thumb");
+        var $determinate = $slider.children(".determinate"); // Store touch down
+
+        var localState = false; // Store local instance
+
+        var _this = this; // On thumb drag
+
+
+        $thumb.on("mousedown touchstart", function () {
+          return localState = true;
+        }); // On thumb release
+
+        $(document).on("mouseup touchend", function () {
+          return localState = false;
+        }); // On thumb move
+
+        $(document).on("mousemove touchmove", function (event) {
+          // If dragging
+          if (!localState) return; // Move thumb and deter progress
+
+          var X = Math.max(Math.min((event.hasOwnProperty("changedTouches") && event.changedTouches[0] || event).clientX - $slider.offset().left - 10, $slider.width() - 20), 0); // Go To
+
+          $thumb.css({
+            left: X
+          });
+          $determinate.css({
+            width: X + 10
+          });
+
+          _this.__fireChange();
+        }); // On jump click
+
+        $slider.on("click", function (event) {
+          // Get X
+          var X = event.clientX - $slider.offset().left - 10; // Animate jump
+
+          _this.__jumpTo(X);
+        });
+        $(target).attr("md", ""); // Return instance;
+
+        return this;
+      }
+
+      _createClass(Slider, [{
+        key: "setBounds",
+        value: function setBounds(min, max) {
+          // Get $slider
+          var $slider = $(this.target); // Load bounds into class scope
+
+          this.bounds = {
+            min: min,
+            max: max
+          }; // Make $slider reflect bounds
+
+          $slider.data("bounds-min", min);
+          $slider.data("bounds-max", max); // Return instance;
+
+          return this;
+        }
+      }, {
+        key: "increment",
+        value: function increment(amnt) {
+          // Get $slider
+          var $slider = $(this.target);
+          var $determinate = $slider.children(".determinate"); // Get X
+
+          var X = ($determinate.width() || 0) + amnt / 2 + (amnt > 0 ? 0 : -20); // Animate jump
+
+          this.__jumpTo(X);
+
+          $slider.click();
+        }
+      }, {
+        key: "onChange",
+        value: function onChange(change) {
+          // Add to hooks
+          this.__changeHooks.push(change); // Return instance;
+
+
+          return this;
+        }
+      }, {
+        key: "set",
+        value: function set(value) {
+          // Get $slider
+          var $slider = $(this.target);
+          console.log(this);
+          var _this$bounds = this.bounds,
+              min = _this$bounds.min,
+              max = _this$bounds.max;
+
+          this.__jumpTo((value - min) / (max - min) * ($slider.width() - 20));
+
+          $slider.click();
+          return this;
+        }
+      }, {
         key: "value",
         get: function get() {
           // Get $slider
           var $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
           var $determinate = $slider.children(".determinate");
-          return 0;
+          return this.__withinBounds($determinate.width() - 10) / ($slider.width() - 20) + this.bounds.min;
         }
       }]);
 
