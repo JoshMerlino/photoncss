@@ -150,8 +150,6 @@ export default {
 				// Get $slider
 				const $slider = $(this.target);
 
-				console.log(this);
-
 				const { min, max } = this.bounds
 
 				this.__jumpTo((value - min) / (max - min) * ($slider.width() - 20));

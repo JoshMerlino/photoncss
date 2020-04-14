@@ -1947,7 +1947,6 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         value: function set(value) {
           // Get $slider
           var $slider = $(this.target);
-          console.log(this);
           var _this$bounds = this.bounds,
               min = _this$bounds.min,
               max = _this$bounds.max;
