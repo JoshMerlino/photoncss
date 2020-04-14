@@ -100,17 +100,11 @@ export default {
 
 			set(value) {
 
-				return this;
-				// This will be worked on later
-
 				// Get $slider
 				const $slider = $(this.target);
+				const $determinate = $slider.children(".determinate");
 
-				// Get X
-				const X = (value - this.bounds.min) / (this.bounds.max - this.bounds.min) * $slider.width() - 10 + value / 100;
 
-				// Animate jump
-				this.__jumpTo(X);
 
 				return this;
 
@@ -122,7 +116,8 @@ export default {
 				const $slider = this.target.length === 0 ? $(this.target.prevObject[0]) : $(this.target[0]);
 				const $determinate = $slider.children(".determinate");
 
-				return ((($determinate.width() / ($slider.width() - 20)) - 5/74) * (this.bounds.max - this.bounds.min)) + this.bounds.min;
+				
+				return 0;
 
 			}
 
