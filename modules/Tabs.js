@@ -5,7 +5,7 @@ class Tabs extends React.Component {
 
 	// Define default props
 	static defaultProps = {
-		color: "accent"
+		color: "primary"
 	}
 
 	// Serialize the props object into a series of classes
@@ -23,7 +23,7 @@ class Tabs extends React.Component {
 	// Render component
 	render() {
 		return (
-			<nav className={this.serialize()} {...this.rest}>{this.props.children}</nav>
+			<ul className={this.serialize()} {...this.rest}>{this.props.children}</ul>
 		);
 	}
 
@@ -34,16 +34,18 @@ class Tab extends React.Component {
 	// Define default props
 	static defaultProps = {
 		disabled: false,
+		active: false,
 		waves: true
 	}
 
 	// Serialize the props object into a series of classes
 	serialize() {
-		const { disabled, waves, ...rest } = this.props;
+		const { disabled, waves, active, ...rest } = this.props;
 		this.rest = rest;
 		return [
 			"tab",
 			waves !== false ? `waves-effect${waves !== true ? ` ${Photon.prefixColorQuery("waves", waves)}` : ""}` : "",
+			active ? "active" : "",
 			disabled ? "disabled" : "",
 			...(rest.className || "").split(" "),
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
@@ -52,10 +54,31 @@ class Tab extends React.Component {
 	// Render component
 	render() {
 		return (
-			<a className={this.serialize()} {...this.rest}>{this.props.children}</a>
+			<li className={this.serialize()} {...this.rest}>{this.props.children}</li>
 		);
 	}
 
 }
 
-export { Tabs, Tab };
+class TabContent extends React.Component {
+
+	// Serialize the props object into a series of classes
+	serialize() {
+		const { ...rest } = this.props;
+		this.rest = rest;
+		return [
+			"tab-content",
+			...(rest.className || "").split(" "),
+		].join(" ").replace(/\s+(?=\s)/g, "").trim();
+	}
+
+	// Render component
+	render() {
+		return (
+			<div className={this.serialize()} {...this.rest}>{this.props.children}</div>
+		);
+	}
+
+}
+
+export { Tabs, Tab, TabContent };

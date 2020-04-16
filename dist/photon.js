@@ -2079,6 +2079,10 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 __webpack_require__.r(__webpack_exports__);
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 function isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
 
 function _construct(Parent, args, Class) { if (isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
@@ -2087,9 +2091,66 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   Tabs: function Tabs() {
-    return _construct(function Tabs(target) {
-      _classCallCheck(this, Tabs);
-    }, Array.prototype.slice.call(arguments));
+    return _construct( /*#__PURE__*/function () {
+      _createClass(Tabs, [{
+        key: "__moveIndicatorTo",
+
+        /**@private*/
+        value: function __moveIndicatorTo($tab) {
+          // Get $tabs and $indicator
+          var $tabs = this.target;
+          var $indicator = $tabs.children(".indicator"); // Start transition
+
+          $indicator.addClass("transition-to-" + ($indicator.offset().left > $tab.offset().left ? "left" : "right")); // Animate indicator
+
+          $indicator.css({
+            left: $tab.offset().left - $tabs.offset().left,
+            right: $tabs.width() - $tab.offset().left - $tabs.offset().left - $tab.width() - $tabs.offset().left
+          }); // End transition
+
+          setTimeout(function () {
+            return $indicator.removeClass("transition-to-left transition-to-right");
+          }, 250);
+        }
+      }]);
+
+      function Tabs(target) {
+        _classCallCheck(this, Tabs);
+
+        // Define $tabs
+        var $tabs = this.target = $(target); // If component was already processed
+
+        if ($tabs.attr("md") === "") return; // Create $bar
+
+        $("<div class=\"indicator\"></div>").appendTo($tabs);
+        var $indicator = $tabs.children(".indicator"); // Proxy this
+
+        var _this = this; // On tab click
+
+
+        $tabs.children(".tab").on("click", function () {
+          // Get clicked tab
+          var $tab = $(this); // Add active class to that tab and remove from others
+
+          $tab.addClass("active").siblings(".tab").removeClass("active"); // Move indicator to this tab
+
+          _this.__moveIndicatorTo($tab);
+        });
+        this.set($tabs.children(".tab").first()); // Flag component as processed
+
+        $tabs.attr("md", "");
+      }
+
+      _createClass(Tabs, [{
+        key: "set",
+        value: function set($tab) {
+          //this.__moveIndicatorTo($tab);
+          $tab.click();
+        }
+      }]);
+
+      return Tabs;
+    }(), Array.prototype.slice.call(arguments));
   }
 });
 
