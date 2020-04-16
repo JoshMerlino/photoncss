@@ -6944,6 +6944,44 @@ hr {
 .switch.disabled label {
   cursor: default;
 }
+.tabs {
+  height: 48px;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  display: inline-flex;
+}
+.tabs .tab {
+  display: inline-flex;
+  font-family: Roboto;
+  font-weight: 500;
+  line-height: 1.75;
+  white-space: normal;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+  padding: 12px;
+  position: relative;
+  height: 48px;
+  min-width: 72px;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+}
+.tabs .indicator {
+  position: absolute;
+  bottom: 0;
+  height: 2px;
+  will-change: left, right;
+}
+.tabs .indicator.transition-to-left {
+  transition: left 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, right 200ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+}
+.tabs .indicator.transition-to-right {
+  transition: right 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, left 200ms cubic-bezier(0.4, 0, 0.2, 1) 150ms;
+}
+.tabs.primary .indicator {
+  background: #1976d2;
+}
 .input-field {
   margin: 8px;
   margin-top: 24px;
