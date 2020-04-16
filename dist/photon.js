@@ -2101,11 +2101,20 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
           var $tabs = this.target;
           var $indicator = $tabs.children(".indicator"); // Start transition
 
-          $indicator.addClass("transition-to-" + ($indicator.offset().left > $tab.offset().left ? "left" : "right")); // Animate indicator
+          $indicator.addClass("transition-to-" + ($indicator.offset().left > $tab.offset().left ? "left" : "right")); // Math to calc positions
+
+          var calcRightPos = function calcRightPos(el) {
+            return Math.ceil($tabs.width() - el.position().left - el[0].getBoundingClientRect().width - $tabs.scrollLeft()) + el[0].clientWidth / 2 - el[0].clientWidth / 2;
+          };
+
+          var calcLeftPos = function calcLeftPos(el) {
+            return Math.floor(el.position().left + $tabs.scrollLeft()) + el[0].clientWidth / 2 - el.width() / 2 - 12;
+          }; // Animate indicator
+
 
           $indicator.css({
-            left: $tab.offset().left - $tabs.offset().left,
-            right: $tabs.width() - $tab.offset().left - $tabs.offset().left - $tab.width() - $tabs.offset().left
+            left: calcLeftPos($tab),
+            right: calcRightPos($tab)
           }); // End transition
 
           setTimeout(function () {
@@ -2120,23 +2129,36 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
         // Define $tabs
         var $tabs = this.target = $(target); // If component was already processed
 
-        if ($tabs.attr("md") === "") return; // Create $bar
+        if ($tabs.attr("md") === "") return; // Create $indicator
 
-        $("<div class=\"indicator\"></div>").appendTo($tabs);
-        var $indicator = $tabs.children(".indicator"); // Proxy this
+        $("<div class=\"indicator\"></div>").appendTo($tabs); // Proxy this
 
         var _this = this; // On tab click
 
 
         $tabs.children(".tab").on("click", function () {
           // Get clicked tab
-          var $tab = $(this); // Add active class to that tab and remove from others
+          var $tab = $(this); // If tab is disabled return
+
+          if ($tab.hasClass("disabled")) return;
+          var htmlFor = $(this).attr("for");
+          htmlFor && $(document.getElementById(htmlFor)).addClass("active").siblings(".tab-content").removeClass("active"); // Add active class to that tab and remove from others
 
           $tab.addClass("active").siblings(".tab").removeClass("active"); // Move indicator to this tab
 
           _this.__moveIndicatorTo($tab);
+        }); // Get $tab children
+
+        var $tab = $tabs.children(".tab"); // Select active or first tab
+
+        var state = false;
+        $tab.each(function () {
+          if ($(this).hasClass("active")) {
+            state = true;
+            $(this).click();
+          }
         });
-        this.set($tabs.children(".tab").first()); // Flag component as processed
+        state === false && $tab.first().click(); // Flag component as processed
 
         $tabs.attr("md", "");
       }
@@ -2144,7 +2166,7 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
       _createClass(Tabs, [{
         key: "set",
         value: function set($tab) {
-          //this.__moveIndicatorTo($tab);
+          // Trigger click on $tab
           $tab.click();
         }
       }]);
