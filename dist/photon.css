@@ -6488,6 +6488,9 @@ ul.list li.list-item.active:hover {
 ul.list li.list-item.active .waves-ripple {
   background: rgba(25, 118, 210, 0.3);
 }
+ul.list li.list-item.active i.material-icons {
+  color: #1976d2;
+}
 ul.list li.list-item.contains-subtitle {
   height: 72px;
 }
