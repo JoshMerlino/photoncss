@@ -6967,6 +6967,9 @@ hr {
   flex-direction: column;
   align-items: center;
 }
+.tabs .tab.disabled {
+  opacity: 0.76;
+}
 .tabs .indicator {
   position: absolute;
   bottom: 0;
@@ -6981,6 +6984,18 @@ hr {
 }
 .tabs.primary .indicator {
   background: #1976d2;
+}
+.tabs.accent .indicator {
+  background: #ff1744;
+}
+.tabs.white-text .indicator {
+  background: #fff;
+}
+.tabs.black-text .indicator {
+  background: #000;
+}
+.tab-content:not(.active) {
+  display: none;
 }
 .input-field {
   margin: 8px;
@@ -7376,5 +7391,16 @@ hr {
 }
 .toolbar.prominent.collapsed {
   transform: translateY(-128px);
+}
+.toolbar.contains-tabs {
+  height: 112px;
+}
+.toolbar.contains-tabs .tabs {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.toolbar.contains-tabs .tabs .indicator {
+  background: #fff;
 }
 
