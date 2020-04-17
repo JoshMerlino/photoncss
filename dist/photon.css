@@ -7311,9 +7311,10 @@ hr {
   transform: translateY(-56px);
 }
 .toolbar.fixed {
-  position: fixed;
-  top: 0;
-  left: 0;
+  position: fixed!important;
+  top: 0!important;
+  left: 0!important;
+  bottom: auto!important;
 }
 .toolbar.primary {
   color: #ffffff;
