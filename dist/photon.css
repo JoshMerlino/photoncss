@@ -6498,6 +6498,10 @@ footer.legacy.dark {
 .material-icons.large {
   padding: 12px;
 }
+.material-icons img {
+  width: 24px;
+  height: 24px;
+}
 ul.list {
   font-size: 1rem;
   line-height: 1.75rem;
