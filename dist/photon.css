@@ -4978,6 +4978,13 @@ a[href].link {
   vertical-align: top;
   line-height: 32px;
 }
+br {
+  user-select: none;
+  pointer-events: none;
+}
+img {
+  user-select: none;
+}
 .waves-effect {
   position: relative;
   cursor: pointer;
