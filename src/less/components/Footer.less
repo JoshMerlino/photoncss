@@ -1,14 +1,12 @@
 footer {
-	display:block;
+	display: block;
 	padding-top: 20px;
-  	color: #212121;
-  	border-top: 1px solid #e5e5e5;
-	margin: -8px;
-	margin-top: 1rem;
+	color: #212121;
+	border-top: 1px solid #e5e5e5;
+	margin: 1rem -8px -8px;
 	padding: 0 1rem;
 	@media @md {
-		margin: -32px;
-		margin-bottom: -24px;
+		margin: -32px -32px -24px;
 	}
 	@media @lg, @xl {
 		margin: -24px;
@@ -16,34 +14,40 @@ footer {
 	padding-top: 1rem;
 	margin-top: 1rem;
 	flex-shrink: 0;
+
 	.footer-copyright {
-	  	overflow: hidden;
-	  	min-height: 50px;
-	  	display: flex;
-	  	align-items: center;
-	  	color: inherit;
-	  	border-top: inherit;
-		margin: 0 -8px;
+		overflow: hidden;
+		min-height: 50px;
+		display: flex;
+		align-items: center;
+		color: inherit;
+		border-top: inherit;
+		margin: 0 -1rem;
 		padding: 0 8px;
+
 		.container {
-			padding-bottom:0;
+			padding-bottom: 0;
 		}
 	}
+
 	ul {
-		padding:0px;
+		padding: 0;
 	}
+
 	a {
-		color:inherit;
+		color: inherit;
 	}
+
 	&.attached-to-bottom {
 		position: fixed;
-	    bottom: 24px;
-	    width: 100%;
+		bottom: 24px;
+		width: 100%;
 	}
 
 	&.legacy {
 		border: none!important;
 		background: #f5f5f5!important;
+
 		.footer-copyright {
 			border: none!important;
 			background-color: #0000001a!important;
