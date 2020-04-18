@@ -6436,7 +6436,7 @@ footer {
   padding-top: 20px;
   color: #212121;
   border-top: 1px solid #e5e5e5;
-  margin: -8px;
+  margin: 1rem -8px -8px;
   padding: 0 1rem;
   padding-top: 1rem;
   margin-top: 1rem;
@@ -6444,8 +6444,7 @@ footer {
 }
 @media only screen and (min-width: 960px) {
   footer {
-    margin: -32px;
-    margin-bottom: -24px;
+    margin: -32px -32px -24px;
   }
 }
 @media only screen and (min-width: 1280px), only screen and (min-width: 1920px) {
@@ -6460,14 +6459,14 @@ footer .footer-copyright {
   align-items: center;
   color: inherit;
   border-top: inherit;
-  margin: 0 -8px;
+  margin: 0 -1rem;
   padding: 0 8px;
 }
 footer .footer-copyright .container {
   padding-bottom: 0;
 }
 footer ul {
-  padding: 0px;
+  padding: 0;
 }
 footer a {
   color: inherit;
