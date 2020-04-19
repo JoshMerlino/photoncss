@@ -3997,6 +3997,42 @@ body {
 .text-transparent {
   color: transparent!important;
 }
+.text-primary-dark {
+  color: #145EA8 !important;
+}
+.text-primary {
+  color: #1976d2 !important;
+}
+.text-primary-light {
+  color: #338DE7 !important;
+}
+.text-accent-dark {
+  color: #DE002B !important;
+}
+.text-accent {
+  color: #ff1744 !important;
+}
+.text-accent-light {
+  color: #FF4F71 !important;
+}
+.color-primary-dark {
+  background-color: #145EA8 !important;
+}
+.color-primary {
+  background-color: #1976d2 !important;
+}
+.color-primary-light {
+  background-color: #338DE7 !important;
+}
+.color-accent-dark {
+  background-color: #DE002B !important;
+}
+.color-accent {
+  background-color: #ff1744 !important;
+}
+.color-accent-light {
+  background-color: #FF4F71 !important;
+}
 .only-on-large {
   display: none!important;
 }
