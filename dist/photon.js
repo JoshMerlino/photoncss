@@ -1286,11 +1286,14 @@ var importAll = function importAll(a) {
   });
 };
 
-importAll(__webpack_require__(4)); // Initialize Waves.js
+importAll(__webpack_require__(4)); // On DOM load
 
-_lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.init(); // Bind required event listeners when the DOM loads
+$(function () {
+  // Initialize Waves.js
+  _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.init(); // Bind required event listeners when the DOM loads
 
-$(Photon.reload); // Load Photon into the window scope
+  Photon.reload();
+}); // Load Photon into the window scope
 
 global.Photon = Photon; // Export Photon as a module
 
