@@ -286,11 +286,16 @@ const Photon = {
 const importAll = a => a.keys().forEach(k => Object.assign(Photon, a(k).default));
 importAll(require.context("./components", true, /\.js$/));
 
-// Initialize Waves.js
-Waves.init();
+// On DOM load
+$(function() {
 
-// Bind required event listeners when the DOM loads
-$(Photon.reload);
+	// Initialize Waves.js
+	Waves.init();
+
+	// Bind required event listeners when the DOM loads
+	Photon.reload();
+
+})
 
 // Load Photon into the window scope
 global.Photon = Photon;
