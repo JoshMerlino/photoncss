@@ -6484,7 +6484,7 @@ footer {
   margin: 1rem -8px -8px;
   padding: 0 1rem;
   padding-top: 1rem;
-  margin-top: 1rem;
+  margin-top: 1rem!important;
   flex-shrink: 0;
 }
 @media only screen and (min-width: 960px) {
