@@ -16,6 +16,34 @@ const Photon = {
 	// Array of functions to execute after a Photon.reload
 	hooks: [],
 
+	// Allow access to MaterialColors
+	palette: MaterialColors,
+
+	// Get the current theme
+	getTheme() {
+
+		const id = Photon.guid();
+		let theme = {};
+
+		$(`<div id="${id}"></div>`).appendTo("body");
+		const $test = $("#" + id);
+
+		theme["primary-dark"] = $test.attr("class", "color-primary-dark").css("background-color");
+		theme["primary"] = $test.attr("class", "color-primary").css("background-color");
+		theme["primary-light"] = $test.attr("class", "color-primary-light").css("background-color");
+		theme["primary-text"] = $test.attr("class", "color-primary-text").css("background-color");
+
+		theme["accent-dark"] = $test.attr("class", "color-accent-dark").css("background-color");
+		theme["accent"] = $test.attr("class", "color-accent").css("background-color");
+		theme["accent-light"] = $test.attr("class", "color-accent-light").css("background-color");
+		theme["accent-text"] = $test.attr("class", "color-accent-text").css("background-color");
+
+		$test.remove();
+
+		return theme;
+
+	},
+
 	// Generates a UUID in XXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
