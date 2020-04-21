@@ -79,7 +79,9 @@ const Photon = {
 
 	// Converts string color like "green accent-2" to "prefix-green prefix-accent-2"
 	prefixColorQuery(prefix, query) {
-		return `${prefix}-${query.replace(/\s/g, ` ${prefix}-${query}`)}`
+		query = query.split(" ");
+		for (let q of query) query[query.indexOf(q)] = `${prefix}-${q}`
+		return query.join(" ");
 	},
 
 	// Binds event listeners where needed
