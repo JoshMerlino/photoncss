@@ -4006,6 +4006,9 @@ body {
 .text-primary-light {
   color: #338DE7 !important;
 }
+.text-primary-text {
+  color: #ffffff !important;
+}
 .text-accent-dark {
   color: #DE002B !important;
 }
@@ -4014,6 +4017,9 @@ body {
 }
 .text-accent-light {
   color: #FF4F71 !important;
+}
+.text-accent-text {
+  color: #ffffff !important;
 }
 .color-primary-dark {
   background-color: #145EA8 !important;
@@ -4024,6 +4030,9 @@ body {
 .color-primary-light {
   background-color: #338DE7 !important;
 }
+.color-primary-text {
+  background-color: #ffffff !important;
+}
 .color-accent-dark {
   background-color: #DE002B !important;
 }
@@ -4032,6 +4041,9 @@ body {
 }
 .color-accent-light {
   background-color: #FF4F71 !important;
+}
+.color-accent-text {
+  background-color: #ffffff !important;
 }
 .only-on-large {
   display: none!important;
