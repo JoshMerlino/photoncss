@@ -6749,6 +6749,69 @@ hr {
 .menu.anchor-br {
   transform-origin: bottom right;
 }
+.spinner-wrapper {
+  display: inline-block;
+}
+.spinner-wrapper .spinner {
+  animation: rotator 1400ms linear infinite;
+}
+.spinner-wrapper .spinner .path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1400ms ease-in-out infinite;
+  stroke: #c1c1c1;
+}
+.spinner-wrapper .spinner.rainbow .path {
+  animation: dash 1400ms ease-in-out infinite, color 5600ms ease-in-out infinite !important;
+}
+.spinner-wrapper .spinner.primary .path {
+  stroke: #1976d2;
+}
+.spinner-wrapper .spinner.accent .path {
+  stroke: #ff1744;
+}
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+@keyframes colors {
+  0% {
+    stroke: #2196f3;
+  }
+  25% {
+    stroke: #f44336;
+  }
+  50% {
+    stroke: #ffc107;
+  }
+  75% {
+    stroke: #4caf50;
+  }
+  100% {
+    stroke: #2196f3;
+  }
+}
+@keyframes dash {
+  0% {
+    stroke-dashoffset: 187;
+  }
+  50% {
+    stroke-dashoffset: 46.75;
+    transform: rotate(135deg);
+  }
+  100% {
+    stroke-dashoffset: 187;
+    transform: rotate(450deg);
+  }
+}
+.spinner-wrapper.small {
+  transform: scale(0.4);
+}
 .radio {
   padding-top: 12px;
   padding-left: 11px;
