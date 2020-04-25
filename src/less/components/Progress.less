@@ -1,0 +1,51 @@
+.spinner-wrapper {
+	display: inline-block;
+	.spinner {
+	  	animation: rotator 1400ms linear infinite;
+		.path {
+		  	stroke-dasharray: 187;
+		  	stroke-dashoffset: 0;
+		  	transform-origin: center;
+		  	animation: dash 1400ms ease-in-out infinite;
+			stroke: #c1c1c1;
+		}
+
+		&.rainbow .path {
+			animation: dash 1400ms ease-in-out infinite, color 5600ms ease-in-out infinite!important;
+		}
+		&.primary .path {
+			stroke: @primaryColor;
+		}
+		&.accent .path {
+			stroke: @accentColor;
+		}
+	}
+
+	@keyframes rotator {
+	 	0% { transform: rotate(0deg); }
+	  	100% { transform: rotate(270deg); }
+	}
+
+	@keyframes colors {
+		0% { stroke: @blue; }
+		25% { stroke: @red }
+		50% { stroke: @amber }
+		75% { stroke: @green }
+	  	100% { stroke: @blue; }
+	}
+
+	@keyframes dash {
+	 	0% { stroke-dashoffset: 187; }
+	 	50% {
+	   		stroke-dashoffset: 46.75;
+	   		transform:rotate(135deg);
+	 	}
+	 	100% {
+	   		stroke-dashoffset: 187;
+	   		transform:rotate(450deg);
+	 	}
+	}
+	&.small {
+		transform: scale(.4);
+	}
+}
