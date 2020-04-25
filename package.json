@@ -1,26 +1,25 @@
 {
     "name": "photoncss",
-    "version": "10.0.20-beta",
+    "version": "10.1.20-beta",
     "description": "PhotonCSS - The next generation of web design.",
     "main": "dist/photon.min.js",
     "scripts": {
         "test": "node test/main.test.js",
-        "prepublish": "webpack --config webpack.config.js",
-        "dev": "webpack -w --config webpack.config.js"
+        "prepublish": "webpack --config webpack.config.js && babel src/modules --out-dir modules"
     },
     "keywords": [
         "Material Design",
         "Less",
-		"jQuery",
-		"UI Components",
-		"CSS Framework",
-		"React Components",
-		"React Material Design",
-		"Material Design UI",
-		"Material Theme",
+        "jQuery",
+        "UI Components",
+        "CSS Framework",
+        "React Components",
+        "React Material Design",
+        "Material Design UI",
+        "Material Theme",
         "Photon",
-		"Bootstrap",
-		"CSS"
+        "Bootstrap",
+        "CSS"
     ],
     "author": "Josh Merlino",
     "homepage": "https://photoncss.github.io",
@@ -29,12 +28,23 @@
         "url": "https://github.com/PhotonCSS/Photon/issues",
         "email": "teh.picix@gmail.com"
     },
+    "babel": {
+        "presets": [
+            "@babel/preset-react",
+            "@babel/preset-env"
+        ],
+        "plugins": [
+            "@babel/plugin-proposal-class-properties"
+        ]
+    },
     "license": "MIT",
     "devDependencies": {
-        "@babel/core": "^7.8.7",
+        "@babel/cli": "^7.8.4",
+        "@babel/core": "^7.9.0",
         "@babel/plugin-proposal-class-properties": "^7.8.3",
         "@babel/plugin-proposal-optional-catch-binding": "^7.8.3",
-        "@babel/preset-env": "^7.8.7",
+        "@babel/preset-env": "^7.9.5",
+        "@babel/preset-react": "^7.9.4",
         "@babel/preset-stage-2": "^7.8.3",
         "babel-loader": "^8.0.6",
         "css-loader": "^3.4.2",
