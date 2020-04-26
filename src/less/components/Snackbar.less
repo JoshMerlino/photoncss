@@ -21,7 +21,7 @@
 	.snackbar {
 		.raised-6();
 		pointer-events: all;
-		background-color: #333;
+		background-color: @snackbar;
 		border-radius: 4px;
 		margin: 4px;
 		transform: scale(.6);
@@ -37,7 +37,7 @@
 			margin-top: 4px;
 		}
 		.label {
-			font-family: @fontFamily;
+			font-family: @body-type;
 			font-size: .875rem;
 			line-height: 1.25rem;
 			font-weight: 400;
@@ -50,7 +50,7 @@
 			box-sizing: border-box;
 			margin: 0;
 			padding: 14px 16px;
-			color: #ffffffde;
+			color: @on-snackbar;
 			display: inline-block;
 		}
 		.btn {

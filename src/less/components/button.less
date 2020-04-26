@@ -1,7 +1,29 @@
+.photon-btn(@color, @variant, @text) {
+	background: @color;
+	color: @text;
+	&:hover {
+		background: @variant;
+	}
+	&.waves-effect .waves-ripple {
+		background: fade(@text, 30%);
+	}
+}
+.photon-btn-flat(@color) {
+	color: @color;
+	border-color: fade(@color, 35%);
+	&:hover {
+		border-color: @color;
+		background: fade(@color, 4%);
+	}
+	&.waves-effect .waves-ripple {
+		background: fade(@color, 30%);
+	}
+}
+
 .btn {
 	transition: all @short @easeInOut;
 	transition-property: background, box-shadow, border;
-	font-family: @secondaryFont;
+	font-family: @body-type;
 	text-transform: uppercase;
 	text-align: center;
 	font-weight: 500;
@@ -82,24 +104,10 @@
 			background: fade(#000000, 30%);
 		}
 		&.primary {
-			background: @primaryColor;
-			color: @primaryTextColor;
-			&:hover {
-				background: @darkPrimaryColor;
-			}
-			&.waves-effect .waves-ripple {
-				background: fade(@primaryTextColor, 30%);
-			}
+			.photon-btn(@primary, @primary-variant, @on-primary);
 		}
 		&.accent {
-			background: @accentColor;
-			color: @accentTextColor;
-			&:hover {
-				background: @darkAccentColor;
-			}
-			.waves-ripple {
-				background: fade(@accentTextColor, 30%);
-			}
+			.photon-btn(@accent, @accent-variant, @on-accent);
 		}
 	}
 
@@ -119,26 +127,10 @@
 			background: fade(#000000, 30%);
 		}
 		&.primary {
-			color: @primaryColor;
-			border-color: fade(@primaryColor, 35%);
-			&:hover {
-				border-color: @primaryColor;
-				background: fade(@primaryColor, 4%);
-			}
-			&.waves-effect .waves-ripple {
-				background: fade(@primaryColor, 30%);
-			}
+			.photon-btn-flat(@primary);
 		}
 		&.accent {
-			color: @accentColor;
-			border-color: fade(@accentColor, 35%);
-			&:hover {
-				border-color: @accentColor;
-				background: fade(@accentColor, 4%);
-			}
-			&.waves-effect .waves-ripple {
-				background: fade(@accentColor, 30%);
-			}
+			.photon-btn-flat(@accent);
 		}
 	}
 

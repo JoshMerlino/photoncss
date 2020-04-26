@@ -1016,23 +1016,6 @@ var Photon = {
   hooks: [],
   // Allow access to MaterialColors
   palette: _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],
-  // Get the current theme
-  getTheme: function getTheme() {
-    var id = Photon.guid();
-    var theme = {};
-    $("<div id=\"".concat(id, "\"></div>")).appendTo("body");
-    var $test = $("#" + id);
-    theme["primary-dark"] = $test.attr("class", "color-primary-dark").css("background-color");
-    theme["primary"] = $test.attr("class", "color-primary").css("background-color");
-    theme["primary-light"] = $test.attr("class", "color-primary-light").css("background-color");
-    theme["primary-text"] = $test.attr("class", "color-primary-text").css("background-color");
-    theme["accent-dark"] = $test.attr("class", "color-accent-dark").css("background-color");
-    theme["accent"] = $test.attr("class", "color-accent").css("background-color");
-    theme["accent-light"] = $test.attr("class", "color-accent-light").css("background-color");
-    theme["accent-text"] = $test.attr("class", "color-accent-text").css("background-color");
-    $test.remove();
-    return theme;
-  },
   // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX

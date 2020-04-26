@@ -1,3 +1,11 @@
+.photon-toolbar(@color, @text) {
+	color: @text;
+	background: @color;
+	.waves-ripple {
+		background: fade(@text, 30%);
+	}
+}
+
 .toolbar {
 
 	transition: box-shadow @standard @easeInOut,
@@ -48,24 +56,15 @@
 	}
 
 	&.primary {
-		color: @primaryTextColor;
-		background: @primaryColor;
-		.waves-ripple {
-			background: fade(@primaryTextColor, 30%);
-		}
+		.photon-toolbar(@primary, @on-primary);
 	}
-
 	&.accent {
-		color: @accentTextColor;
-		background: @accentColor;
-		.waves-ripple {
-			background: fade(@accentTextColor, 30%);
-		}
+		.photon-toolbar(@accent, @on-accent);
 	}
 
 	.toolbar-title {
 		font-size: 1.25rem;
-		font-family: @secondaryFont;
+		font-family: @headline-type;
 		font-weight: 500;
 		line-height: 1.6;
 		margin: 12px;
@@ -76,14 +75,14 @@
 		&.contains-subtitle {
 			margin: 6px 12px;
 			letter-spacing: .00625em;
-		    font-family: @secondaryFont;
+		    font-family: @headline-type;
 		    font-size: 1rem;
 		    font-weight: 500;
 		    line-height: 1.5rem;
 			padding: 2px 0;
 			.subtitle {
 				letter-spacing: .025em;
-			    font-family: @secondaryFont;
+			    font-family: @headline-type;
 			    font-size: .75rem;
 			    font-weight: 400;
 			    line-height: 1rem;
