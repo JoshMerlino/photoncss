@@ -1,3 +1,9 @@
+.photon-slider(@color) {
+	.determinate, .track, .thumb {
+		background: @color;
+	}
+}
+
 .slider {
 	user-select: none;
 	.slider-field {
@@ -45,13 +51,9 @@
 		margin: 0 4px;
 	}
 	&.primary {
-		.determinate, .track, .thumb {
-			background: @primaryColor;
-		}
+		.photon-slider(@primary);
 	}
 	&.accent {
-		.determinate, .track, .thumb {
-			background: @accentColor;
-		}
+		.photon-slider(@accent);
 	}
 }

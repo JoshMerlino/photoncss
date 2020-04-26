@@ -1,3 +1,9 @@
+.photon-spinner(@color) {
+	.path {
+		stroke: @color;
+	}
+}
+
 .spinner-wrapper {
 	display: inline-block;
 	.spinner {
@@ -7,17 +13,17 @@
 		  	stroke-dashoffset: 0;
 		  	transform-origin: center;
 		  	animation: dash 1400ms ease-in-out infinite;
-			stroke: #c1c1c1;
+			stroke: @subtitle;
 		}
 
 		&.rainbow .path {
 			animation: dash 1400ms ease-in-out infinite, color 5600ms ease-in-out infinite!important;
 		}
-		&.primary .path {
-			stroke: @primaryColor;
+		&.primary {
+			.photon-spinner(@primary);
 		}
-		&.accent .path {
-			stroke: @accentColor;
+		&.accent {
+			.photon-spinner(@accent);
 		}
 	}
 

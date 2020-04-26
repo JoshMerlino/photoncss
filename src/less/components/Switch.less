@@ -1,3 +1,20 @@
+.photon-switch(@color) {
+	input[type="checkbox"]:checked {
+		background: fade(@color, 38%);
+		&::after {
+			background: @color;
+		}
+		& ~ .waves-effect {
+			&:hover {
+				background: fade(@color, 4%);
+			}
+			.waves-ripple {
+				background: fade(@color, 30%);
+			}
+		}
+	}
+}
+
 .switch {
 	padding-top: 12px;
 	padding-left: 11px;
@@ -9,12 +26,12 @@
 		appearance: none;
 		width: 32px;
 		height: 14px;
-		background: fade(#000, 38%);
+		background: fade(@border-variant, 72%);
 		border-radius: 20px;
 		transition: background @shortest @easeOut;
 		transform: translateY(-2px);
 		&::after {
-			background: #fff;
+			background: @surface;
 			width: 20px;
 			height: 20px;
 			margin: -3px -2px;
@@ -60,37 +77,11 @@
 	}
 
 	&.primary {
-		input[type="checkbox"]:checked {
-			background: fade(@primaryColor, 38%);
-			&::after {
-				background: @primaryColor;
-			}
-			& ~ .waves-effect {
-				&:hover {
-					background: fade(@primaryColor, 4%);
-				}
-				.waves-ripple {
-					background: fade(@primaryColor, 30%);
-			   	}
-			}
-		}
+		.photon-switch(@primary);
 	}
 
 	&.accent {
-		input[type="checkbox"]:checked {
-			background: fade(@accentColor, 38%);
-			&::after {
-				background: @accentColor;
-			}
-			& ~ .waves-effect {
-				&:hover {
-					background: fade(@accentColor, 4%);
-				}
-				.waves-ripple {
-					background: fade(@accentColor, 30%);
-			   	}
-			}
-		}
+		.photon-switch(@accent);
 	}
 
 	&.disabled {
@@ -101,9 +92,9 @@
 			display: none;
 		}
 		input[type="checkbox"] {
-			background: fade(#000, 38%);
+			background: fade(@border-variant, 72%);
 			&::after {
-				background: #fff;
+				background: @surface;
 			}
 			opacity: .54;
 		}
