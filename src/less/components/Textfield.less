@@ -1,19 +1,36 @@
+.photon-textfield(@color) {
+	input {
+		caret-color: @color!important;
+		//border-bottom: 1px solid @color!important;
+	}
+	p.helper-text {
+		color: @color!important;
+	}
+	input:focus + label {
+		color: @color!important;
+	}
+	.bar {
+		background: @color!important;
+	}
+}
+
 .input-field {
 	margin: 8px;
 	margin-top: 24px;
 	position: relative;
-	color: rgba(0, 0, 0, 0.87);
+	color: @on-background;
     cursor: text;
     display: inline-flex;
     position: relative;
     font-size: 1rem;
     box-sizing: border-box;
     align-items: center;
-    font-family: @fontFamily;
+    font-family: @body-type;
     font-weight: 400;
     line-height: 1.1875em;
     letter-spacing: 0.00938em;
 	input {
+		color: @on-background;
 		outline: none;
 		width: 100%;
     	border: 0;
@@ -24,19 +41,19 @@
     	min-width: 0;
     	background: none;
     	box-sizing: content-box;
-		border-bottom: 1px solid fade(#000, 42%);
+		border-bottom: 1px solid fade(@on-background, 76%);
 		font-size: 1rem;
 		z-index: 2;
-		font-family: @fontFamily;
+		font-family: @body-type;
 		&:disabled {
-			border-bottom: 1px dotted fade(#000, 42%);
+			border-bottom: 1px dotted fade(@on-background, 76%);
 		}
 	}
 	label {
-		color: rgba(0, 0, 0, 0.54);
+		color: fade(@on-background, 76%);
 	    padding: 0;
 	    font-size: 1rem;
-	    font-family: @fontFamily;
+	    font-family: @body-type;
 	    font-weight: 400;
 	    line-height: 1;
 	    letter-spacing: 0.00938em;
@@ -54,9 +71,6 @@
 	input:focus + label,
 	label.floating {
 		transform: translate(0, -14px) scale(0.75);
-	}
-	input:focus + label {
-		color: #000;
 	}
 	.bar {
 		background: #000;
@@ -83,12 +97,12 @@
 		}
 	}
 	p {
-		color: rgba(0, 0, 0, 0.54);
+		color: @on-background;
 		margin: 0;
 		font-size: 0.75rem;
 		margin-top: 3px;
 		text-align: left;
-		font-family: @fontFamily;
+		font-family: @body-type;
 		font-weight: 400;
 		line-height: 1.66;
 		letter-spacing: 0.03333em;
@@ -101,39 +115,13 @@
 		}
 	}
 	&.primary {
-		input {
-			caret-color: @primaryColor;
-		}
-		input:focus + label {
-			color: @primaryColor;
-		}
-		.bar {
-			background: @primaryColor;
-		}
+		.photon-textfield(@primary);
 	}
 	&.accent {
-		input {
-			caret-color: @accentColor;
-		}
-		input:focus + label {
-			color: @accentColor;
-		}
-		.bar {
-			background: @accentColor;
-		}
+		.photon-textfield(@accent);
 	}
 	&.error {
-		border-color: @errorColor!important;
-		input {
-			caret-color: @errorColor!important;
-			border-color: @errorColor!important;
-		}
-		label, p {
-			color: @errorColor!important;
-		}
-		.bar {
-			background: @errorColor!important;
-		}
+		.photon-textfield(@error);
 	}
 }
 
@@ -189,40 +177,6 @@
 			transform: translate(12px, 7px) scale(0.75);
 		}
 	}
-	&.primary {
-		input {
-			caret-color: @primaryColor;
-		}
-		input:focus + label {
-			color: @primaryColor;
-		}
-		.bar {
-			background: @primaryColor;
-		}
-	}
-	&.accent {
-		input {
-			caret-color: @accentColor;
-		}
-		input:focus + label {
-			color: @accentColor;
-		}
-		.bar {
-			background: @accentColor;
-		}
-	}
-	&.error {
-		input {
-			caret-color: @errorColor!important;
-			border-bottom: 1px solid @errorColor!important;
-		}
-		label, p.helper-text {
-			color: @errorColor!important;
-		}
-		.bar {
-			background: @errorColor!important;
-		}
-	}
 }
 
 .input-field:not(.filled).outlined {
@@ -266,7 +220,7 @@
 	input[placeholder] + label,
 	input:focus + label,
 	label.floating {
-		background: #fff;
+		background: @background;
 		transform: translate(14px, -6px) scale(0.75);
 	}
 	p {
@@ -274,12 +228,12 @@
 		padding: 0 14px;
 	}
 	&.primary input:focus {
-		box-shadow: 0 0 0 2px @primaryColor;
+		box-shadow: 0 0 0 2px @primary;
 	}
 	&.accent input:focus {
-		box-shadow: 0 0 0 2px @accentColor;
+		box-shadow: 0 0 0 2px @accent;
 	}
 	&.error input:focus {
-		box-shadow: 0 0 0 2px @errorColor;
+		box-shadow: 0 0 0 2px @error;
 	}
 }

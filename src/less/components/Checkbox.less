@@ -1,3 +1,20 @@
+.photon-checkbox(@color) {
+	input[type="checkbox"]:checked {
+		border-color: @color;
+	}
+	input[type="checkbox"]:checked ~ .waves-effect {
+		&:hover {
+			background: fade(@color, 4%);
+		}
+		.waves-ripple {
+			background: fade(@color, 30%);
+		}
+	}
+	input[type="checkbox"]::after {
+		color: @color;
+	}
+}
+
 .checkbox {
 	padding-top: 12px;
 	padding-left: 11px;
@@ -7,7 +24,7 @@
 		-mox-appearance: none;
 		-o-appearance: none;
 		appearance: none;
-		border: 2px solid fade(#000, 54%);
+		border: 2px solid @border-variant;
 		border-radius: 2px;
 		width: 18px;
 		height: 18px;
@@ -22,7 +39,7 @@
 			content: "check";
 			font-family: "Material Icons";
 			font-size: 16px;
-			color: #fff;
+			color: @surface;
 			width: 0;
 			overflow: hidden;
 			transition: width @short @sharp @shortest;
@@ -61,37 +78,11 @@
 	}
 
 	&.primary {
-		input[type="checkbox"]:checked {
-			border-color: @primaryColor;
-		}
-		input[type="checkbox"]:checked ~ .waves-effect {
-			&:hover {
-				background: fade(@primaryColor, 4%);
-			}
-			.waves-ripple {
-				background: fade(@primaryColor, 30%);
-		   	}
-		}
-		input[type="checkbox"]::after {
-			color: @primaryTextColor;
-		}
+		.photon-checkbox(@primary);
 	}
 
 	&.accent {
-		input[type="checkbox"]:checked {
-			border-color: @accentColor;
-		}
-		input[type="checkbox"]:checked ~ .waves-effect {
-			&:hover {
-				background: fade(@accentColor, 4%);
-			}
-			.waves-ripple {
-				background: fade(@accentColor, 30%);
-		   	}
-		}
-		input[type="checkbox"]::after {
-			color: @accentTextColor;
-		}
+		.photon-checkbox(@accent);
 	}
 
 	&.disabled,

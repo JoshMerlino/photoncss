@@ -1,3 +1,20 @@
+.photon-radio(@color) {
+	input[type="radio"]:checked {
+		border-color: @color;
+	}
+	input[type="radio"]:checked ~ .waves-effect {
+		&:hover {
+			background: fade(@color, 4%);
+		}
+		.waves-ripple {
+			background: fade(@color, 30%);
+		}
+	}
+	input[type="radio"]:checked::after {
+		background-color: @color;
+	}
+}
+
 .radio {
 	padding-top: 12px;
 	padding-left: 11px;
@@ -7,7 +24,7 @@
 		-mox-appearance: none;
 		-o-appearance: none;
 		appearance: none;
-		border: 2px solid fade(#000, 54%);
+		border: 2px solid @border-variant;
 		border-radius: 50%;
 		width: 18px;
 		height: 18px;
@@ -25,7 +42,7 @@
 			width: 8px;
 			height: 8px;
 			border-radius: 50%;
-			background: fade(#000, 54%);
+			background: @border-variant;
 			transform: scale(0);
 			transition: transform @short @easeOut;
 		}
@@ -60,37 +77,11 @@
 	}
 
 	&.primary {
-		input[type="radio"]:checked {
-			border-color: @primaryColor;
-		}
-		input[type="radio"]:checked ~ .waves-effect {
-			&:hover {
-				background: fade(@primaryColor, 4%);
-			}
-			.waves-ripple {
-				background: fade(@primaryColor, 30%);
-		   	}
-		}
-		input[type="radio"]:checked::after {
-			background-color: @primaryColor;
-		}
+		.photon-radio(@primary);
 	}
 
 	&.accent {
-		input[type="radio"]:checked {
-			border-color: @accentColor;
-		}
-		input[type="radio"]:checked ~ .waves-effect {
-			&:hover {
-				background: fade(@accentColor, 4%);
-			}
-			.waves-ripple {
-				background: fade(@accentColor, 30%);
-		   	}
-		}
-		input[type="radio"]:checked::after {
-			background-color: @accentColor;
-		}
+		.photon-radio(@accent);
 	}
 
 	&.disabled,
@@ -99,9 +90,9 @@
 			pointer-events: none;
 			opacity: .67;
 			&:checked {
-				border-color: fade(#000, 54%);
+				border-color: @border-variant;
 				&::after {
-					background-color: fade(#000, 54%);
+					background-color: @border-variant;
 				}
 			}
 		}
