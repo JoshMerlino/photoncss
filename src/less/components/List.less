@@ -9,7 +9,7 @@ ul.list {
     margin: 0;
     padding: 8px 0;
     list-style-type: none;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid @border;
 	li.list-item {
 		transition: background-color @shorter, @easeOut;
 		background: transparent;
@@ -35,22 +35,22 @@ ul.list {
 			margin-right: 16px;
 		}
 		&.active {
-			color: @primaryColor;
-			background: fade(@primaryColor, 6%);
+			color: @primary;
+			background: fade(@primary, 6%);
 			&:hover {
-				background: fade(@primaryColor, 12%);
+				background: fade(@primary, 12%);
 			}
 			.waves-ripple {
-				background: fade(@primaryColor, 30%);
+				background: fade(@primary, 30%);
 			}
 			i.material-icons {
-				color: @primaryColor;
+				color: @primary;
 			}
 		}
 		&.contains-subtitle {
 			height: 72px;
 			.subtitle {
-				color: rgba(0,0,0,.54);
+				color: @subtitle;
 				font-size: .875rem;
 				line-height: 1.25rem;
 				font-weight: 400;
@@ -108,7 +108,7 @@ ul.list {
 			color: inherit;
 			margin-left: 0;
 			margin-right: 1rem;
-			color: rgba(0, 0, 0, 0.6);
+			color: inherit;
 		}
 	}
 	.subheader {
@@ -145,6 +145,6 @@ ul.list {
 
 hr {
 	border: none;
-	border-bottom: 1px solid #e0e0e0;
+	border-bottom: 1px solid @border;
 	width: 100%;
 }
