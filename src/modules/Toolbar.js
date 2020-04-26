@@ -83,7 +83,7 @@ class ToolbarSpacer extends React.Component {
 	// Render component
 	render() {
 		return (
-			<div className="toolbar-safe-area"></div>
+			<div className="toolbar-spacer"></div>
 		)
 	}
 
