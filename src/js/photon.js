@@ -1,5 +1,5 @@
 /*!
- * Photon v10.2.22-beta
+ * Photon v10.2.24-beta
  * https://photoncss.github.io/
  *
  * Copyright 2020 Josh Merlino
@@ -248,7 +248,7 @@ const Photon = {
 
 			// Update ToolbarSafeArea
 			if ($(this).hasClass("fixed")) {
-				const $safearea = $(this).siblings(".toolbar-safe-area").not("[md]");
+				const $safearea = $(this).siblings(".toolbar-spacer").not("[md]");
 				if($safearea.length > 0) return $safearea.eq(0).css({ marginTop: $(this)[0].clientHeight }).attr("md", "");
 			}
 
