@@ -1,11 +1,11 @@
 {
     "name": "photoncss",
-    "version": "10.2.22-beta",
+    "version": "10.2.23-beta",
     "description": "PhotonCSS - The next generation of web design.",
     "main": "dist/photon.min.js",
     "scripts": {
         "test": "node test/main.test.js",
-        "prepublish": "webpack --config webpack.config.js && babel src/modules --out-dir modules"
+        "prepare": "webpack --config webpack.config.js && babel src/modules --out-dir modules"
     },
     "keywords": [
         "Material Design",
