@@ -187,7 +187,7 @@ var ToolbarSpacer = /*#__PURE__*/function (_React$Component4) {
     // Render component
     value: function render() {
       return /*#__PURE__*/_react["default"].createElement("div", {
-        className: "toolbar-safe-area"
+        className: "toolbar-spacer"
       });
     }
   }]);
