@@ -1001,12 +1001,12 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 /*!
- * Photon v1.0.0
+ * Photon v10.2.22-beta
  * https://photoncss.github.io/
  *
  * Copyright 2020 Josh Merlino
  * Released under the MIT license
- * https://github.com/PhotonCSS/Photon/LISCENSE
+ * https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
  */
 
  // Define constant Photon global
