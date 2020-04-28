@@ -7,7 +7,7 @@ exports.Subheader = exports.ListItem = exports.List = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 var _Checkbox = require("./Checkbox");
 
@@ -112,7 +112,7 @@ var ListItem = /*#__PURE__*/function (_React$Component2) {
 
     _this = _super2.call.apply(_super2, [this].concat(args));
 
-    _defineProperty(_assertThisInitialized(_this), "uuid", _photoncss["default"].guid());
+    _defineProperty(_assertThisInitialized(_this), "uuid", _photon["default"].guid());
 
     return _this;
   }
@@ -134,7 +134,7 @@ var ListItem = /*#__PURE__*/function (_React$Component2) {
           rest = _objectWithoutProperties(_this$props2, ["subtitle", "waves", "leadingIcon", "trailingIcon", "meta", "checkbox", "radio", "rounded", "active"]);
 
       this.rest = rest;
-      return ["list-item"].concat(_toConsumableArray((rest.className || "").split(" ")), [subtitle ? "contains-subtitle" : "", rounded ? "rounded" : "", active ? "active" : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photoncss["default"].prefixColorQuery("waves", waves)) : "") : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["list-item"].concat(_toConsumableArray((rest.className || "").split(" ")), [subtitle ? "contains-subtitle" : "", rounded ? "rounded" : "", active ? "active" : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photon["default"].prefixColorQuery("waves", waves)) : "") : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
     }
   }, {
     key: "componentDidMount",

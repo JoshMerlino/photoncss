@@ -1,5 +1,5 @@
 import React from "react";
-import Photon from "photoncss";
+import Photon from "../src/js/photon.js";
 
 class Button extends React.Component {
 
