@@ -7,7 +7,7 @@ exports.Slider = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -89,7 +89,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       }, this.rest), this.props.leadingIcon && /*#__PURE__*/_react["default"].createElement("i", {
         className: "material-icons waves-effect waves-ink",
         onClick: function onClick() {
-          return _photoncss["default"].Slider(document.getElementById(_this.props.id)).increment(-10);
+          return _photon["default"].Slider(document.getElementById(_this.props.id)).increment(-10);
         }
       }, this.props.leadingIcon), /*#__PURE__*/_react["default"].createElement("div", {
         className: "slider-field"
@@ -102,7 +102,7 @@ var Slider = /*#__PURE__*/function (_React$Component) {
       })), this.props.trailingIcon && /*#__PURE__*/_react["default"].createElement("i", {
         className: "material-icons waves-effect waves-ink",
         onClick: function onClick() {
-          return _photoncss["default"].Slider(document.getElementById(_this.props.id)).increment(10);
+          return _photon["default"].Slider(document.getElementById(_this.props.id)).increment(10);
         }
       }, this.props.trailingIcon));
     }
@@ -116,6 +116,6 @@ exports.Slider = Slider;
 _defineProperty(Slider, "defaultProps", {
   color: "primary",
   id: function () {
-    return _photoncss["default"].guid();
+    return _photon["default"].guid();
   }()
 });

@@ -7,7 +7,7 @@ exports.Spinner = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 

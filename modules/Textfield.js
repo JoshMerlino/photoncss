@@ -7,7 +7,7 @@ exports.Textfield = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -84,7 +84,7 @@ var Textfield = /*#__PURE__*/function (_React$Component) {
       return /*#__PURE__*/_react["default"].createElement("div", {
         className: this.serialize()
       }, /*#__PURE__*/_react["default"].createElement("input", this.rest), this.props.label && /*#__PURE__*/_react["default"].createElement("label", {
-        htmlFor: this.props.id || _photoncss["default"].guid()
+        htmlFor: this.props.id || _photon["default"].guid()
       }, this.props.label), this.props.helperText && /*#__PURE__*/_react["default"].createElement("p", {
         className: "helper-text"
       }, this.props.helperText), this.props.maxLength && /*#__PURE__*/_react["default"].createElement("p", {

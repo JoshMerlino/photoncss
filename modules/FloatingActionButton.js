@@ -7,7 +7,7 @@ exports.FloatingActionButton = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -79,7 +79,7 @@ var FloatingActionButton = /*#__PURE__*/function (_React$Component) {
           rest = _objectWithoutProperties(_this$props, ["variant", "color", "size", "textColor", "waves", "disabled"]);
 
       this.rest = rest;
-      return ["btn fab"].concat(_toConsumableArray((rest.className || "").split(" ")), [variant, color, size !== "default" ? size : "", textColor !== false ? _photoncss["default"].prefixColorQuery("text", textColor) : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photoncss["default"].prefixColorQuery("waves", waves)) : "") : "", disabled ? "disabled" : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["btn fab"].concat(_toConsumableArray((rest.className || "").split(" ")), [variant, color, size !== "default" ? size : "", textColor !== false ? _photon["default"].prefixColorQuery("text", textColor) : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photon["default"].prefixColorQuery("waves", waves)) : "") : "", disabled ? "disabled" : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {

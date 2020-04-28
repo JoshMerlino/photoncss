@@ -7,7 +7,7 @@ exports.Icon = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -76,7 +76,7 @@ var Icon = /*#__PURE__*/function (_React$Component) {
           rest = _objectWithoutProperties(_this$props, ["textColor", "waves", "size"]);
 
       this.rest = rest;
-      return ["material-icons"].concat(_toConsumableArray((rest.className || "").split(" ")), [size ? size : "", textColor !== false ? _photoncss["default"].prefixColorQuery("text", textColor) : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photoncss["default"].prefixColorQuery("waves", waves)) : "") : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["material-icons"].concat(_toConsumableArray((rest.className || "").split(" ")), [size ? size : "", textColor !== false ? _photon["default"].prefixColorQuery("text", textColor) : "", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photon["default"].prefixColorQuery("waves", waves)) : "") : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {
