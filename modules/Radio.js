@@ -7,7 +7,7 @@ exports.Radio = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -94,7 +94,7 @@ var Radio = /*#__PURE__*/function (_React$Component) {
       }, this.rest)), this.props.label && /*#__PURE__*/_react["default"].createElement("label", {
         htmlFor: this.props.id
       }, this.props.label), this.props.waves !== false && /*#__PURE__*/_react["default"].createElement("div", {
-        className: "waves-effect".concat(this.props.waves !== true ? " ".concat(_photoncss["default"].prefixColorQuery("waves", this.props.waves)) : "")
+        className: "waves-effect".concat(this.props.waves !== true ? " ".concat(_photon["default"].prefixColorQuery("waves", this.props.waves)) : "")
       }));
     }
   }]);
@@ -109,6 +109,6 @@ _defineProperty(Radio, "defaultProps", {
   disabled: false,
   waves: "ink",
   id: function () {
-    return _photoncss["default"].guid();
+    return _photon["default"].guid();
   }()
 });

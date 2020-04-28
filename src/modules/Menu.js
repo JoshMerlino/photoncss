@@ -1,5 +1,5 @@
 import React from "react";
-import Photon from "photoncss";
+import Photon from "../src/js/photon.js";
 
 import { List } from "./List";
 

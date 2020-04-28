@@ -7,7 +7,7 @@ exports.TabContent = exports.Tab = exports.Tabs = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -119,7 +119,7 @@ var Tab = /*#__PURE__*/function (_React$Component2) {
           rest = _objectWithoutProperties(_this$props2, ["disabled", "waves", "active"]);
 
       this.rest = rest;
-      return ["tab", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photoncss["default"].prefixColorQuery("waves", waves)) : "") : "", active ? "active" : "", disabled ? "disabled" : ""].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["tab", waves !== false ? "waves-effect".concat(waves !== true ? " ".concat(_photon["default"].prefixColorQuery("waves", waves)) : "") : "", active ? "active" : "", disabled ? "disabled" : ""].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {

@@ -7,7 +7,7 @@ exports.ToolbarSpacer = exports.ToolbarActions = exports.ToolbarTitle = exports.
 
 var _react = _interopRequireDefault(require("react"));
 
-var _photoncss = _interopRequireDefault(require("photoncss"));
+var _photon = _interopRequireDefault(require("../src/js/photon.js"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -120,7 +120,7 @@ var ToolbarTitle = /*#__PURE__*/function (_React$Component2) {
     // Define default props
     // Serialize the props object into a series of classes
     value: function serialize() {
-      return ["toolbar-title"].concat(_toConsumableArray((this.props.className || "").split(" ")), [this.props.textColor !== false ? _photoncss["default"].prefixColorQuery(this.props.textColor) : "", this.props.subtitle !== false ? "contains-subtitle" : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["toolbar-title"].concat(_toConsumableArray((this.props.className || "").split(" ")), [this.props.textColor !== false ? _photon["default"].prefixColorQuery(this.props.textColor) : "", this.props.subtitle !== false ? "contains-subtitle" : ""]).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {
