@@ -102,7 +102,7 @@ var BannerActions = /*#__PURE__*/function (_React$Component2) {
       var rest = _extends({}, this.props);
 
       this.rest = rest;
-      return ["banner-actions col s12 l4"].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["banner-actions"].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {
@@ -137,7 +137,7 @@ var BannerContent = /*#__PURE__*/function (_React$Component3) {
       var rest = _extends({}, this.props);
 
       this.rest = rest;
-      return ["banner-content col s12 l8"].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
+      return ["banner-content"].concat(_toConsumableArray((rest.className || "").split(" "))).join(" ").replace(/\s+(?=\s)/g, "").trim();
     } // Render component
 
   }, {

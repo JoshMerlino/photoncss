@@ -1016,6 +1016,46 @@ var Photon = {
   hooks: [],
   // Allow access to MaterialColors
   palette: _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],
+  // Get a color from the current less theme @primary-variant -> "primary-vartiant"
+  getThemeVariable: function getThemeVariable(variable) {
+    var guid = Photon.guid();
+    $("<div class=\"color-".concat(variable, "\" id=\"").concat(guid, "\"></div>")).appendTo($("body"));
+    setTimeout(function () {
+      return $("#".concat(guid)).remove();
+    });
+    return $("#".concat(guid)).css("background-color");
+  },
+  // Returns current theme as JSON
+  getTheme: function getTheme() {
+    return {
+      "theme": function (c) {
+        c = c.split("(")[1].split(")")[0].split(", ");
+        var _ref = [parseInt(c[0]), parseInt(c[1]), parseInt(c[2])],
+            r = _ref[0],
+            g = _ref[1],
+            b = _ref[2];
+        var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+        return yiq >= 128 ? "light" : "dark";
+      }(Photon.getThemeVariable("background")),
+      "primary": Photon.getThemeVariable("primary"),
+      "primary-variant": Photon.getThemeVariable("primary-variant"),
+      "on-primary": Photon.getThemeVariable("primary-text"),
+      "accent": Photon.getThemeVariable("accent"),
+      "accent-variant": Photon.getThemeVariable("accent-variant"),
+      "on-accent": Photon.getThemeVariable("accent-text"),
+      "error": Photon.getThemeVariable("error"),
+      "on-error": Photon.getThemeVariable("error-text"),
+      "background": Photon.getThemeVariable("background"),
+      "on-background": Photon.getThemeVariable("background-text"),
+      "surface": Photon.getThemeVariable("surface"),
+      "on-surface": Photon.getThemeVariable("surface-text"),
+      "snackbar": Photon.getThemeVariable("snackbar"),
+      "on-snackbar": Photon.getThemeVariable("snackbar-text"),
+      "border": Photon.getThemeVariable("border"),
+      "border-variant": Photon.getThemeVariable("border-variant"),
+      "subtitle": Photon.getThemeVariable("subtitle")
+    };
+  },
   // Generates a UUID in XXXXXXXXXXXX
   guid: function guid() {
     // Generate a random 4 digit number in hex XXXX
@@ -1204,8 +1244,8 @@ var Photon = {
 
         var focus = false;
 
-        _$input.on("click", function (_ref) {
-          var offsetX = _ref.offsetX;
+        _$input.on("click", function (_ref2) {
+          var offsetX = _ref2.offsetX;
           if (focus === true) return;
           focus = true;
           var width = _$input[0].clientWidth;
