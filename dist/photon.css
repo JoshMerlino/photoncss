@@ -4013,7 +4013,19 @@ body {
   color: #03DAC6 !important;
 }
 .text-on-accent {
-  color: #000000 !important;
+  color: #212121 !important;
+}
+.text-error {
+  color: #B00020 !important;
+}
+.text-on-error {
+  color: #FFFFFF !important;
+}
+.color-error {
+  background-color: #B00020 !important;
+}
+.color-error-text {
+  background-color: #FFFFFF !important;
 }
 .color-primary-variant {
   background-color: #3700B3 !important;
@@ -4031,7 +4043,34 @@ body {
   background-color: #03DAC6 !important;
 }
 .color-accent-light {
-  background-color: #000000 !important;
+  background-color: #212121 !important;
+}
+.color-background {
+  background-color: #FFFFFF !important;
+}
+.color-background-text {
+  background-color: #424242 !important;
+}
+.color-surface {
+  background-color: #FFFFFF !important;
+}
+.color-surface-text {
+  background-color: #424242 !important;
+}
+.color-border {
+  background-color: #e0e0e0 !important;
+}
+.color-border-variant {
+  background-color: #a0a0a0 !important;
+}
+.color-subtitle {
+  background-color: #898989 !important;
+}
+.color-snackbar {
+  background-color: #323232 !important;
+}
+.color-snackbar-text {
+  background-color: #fafafa !important;
 }
 .only-on-large {
   display: none!important;
@@ -4971,7 +5010,7 @@ p {
   font-weight: 400;
   font-size: 16px;
   letter-spacing: 0.5px;
-  margin: 0;
+  margin: 8px;
 }
 h1,
 h2,
@@ -4981,7 +5020,7 @@ h5,
 h6 {
   font-family: "Roboto";
   font-weight: 400;
-  margin: 8px 0;
+  margin: 8px;
 }
 h1 {
   letter-spacing: -1.5px;
@@ -5096,7 +5135,7 @@ img {
   background: rgba(1, 135, 134, 0.3) !important;
 }
 .waves-effect.waves-on-accent .waves-ripple {
-  background: rgba(0, 0, 0, 0.3) !important;
+  background: rgba(33, 33, 33, 0.3) !important;
 }
 .waves-effect.waves-red.waves-lighten-5 .waves-ripple {
   background: rgba(255, 235, 238, 0.6) !important;
@@ -6005,7 +6044,7 @@ img {
 .btn.raised.accent,
 .btn.contained.accent {
   background: #03DAC6;
-  color: #000000;
+  color: #212121;
 }
 .btn.raised.accent:hover,
 .btn.contained.accent:hover {
@@ -6013,7 +6052,7 @@ img {
 }
 .btn.raised.accent.waves-effect .waves-ripple,
 .btn.contained.accent.waves-effect .waves-ripple {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(33, 33, 33, 0.3);
 }
 .btn.flat,
 .btn.outlined {
@@ -7472,11 +7511,11 @@ hr {
   background: rgba(255, 255, 255, 0.3);
 }
 .toolbar.accent {
-  color: #000000;
+  color: #212121;
   background: #03DAC6;
 }
 .toolbar.accent .waves-ripple {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(33, 33, 33, 0.3);
 }
 .toolbar .toolbar-title {
   font-size: 1.25rem;

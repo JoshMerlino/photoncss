@@ -19,6 +19,43 @@ const Photon = {
 	// Allow access to MaterialColors
 	palette: MaterialColors,
 
+	// Get a color from the current less theme @primary-variant -> "primary-vartiant"
+	getThemeVariable(variable) {
+		const guid = Photon.guid();
+		$(`<div class="color-${variable}" id="${guid}"></div>`).appendTo($("body"));
+		setTimeout(() => $(`#${guid}`).remove())
+		return $(`#${guid}`).css("background-color");
+	},
+
+	// Returns current theme as JSON
+	getTheme() {
+		return {
+			"theme": function(c){
+				c = c.split("(")[1].split(")")[0].split(", ");
+				let [ r, g, b ] = [ parseInt(c[0]), parseInt(c[1]), parseInt(c[2]) ]
+				var yiq = ((r*299)+(g*587)+(b*114))/1000;
+				return (yiq >= 128) ? "light":"dark";
+			}(Photon.getThemeVariable("background")),
+			"primary": Photon.getThemeVariable("primary"),
+			"primary-variant": Photon.getThemeVariable("primary-variant"),
+			"on-primary": Photon.getThemeVariable("primary-text"),
+			"accent": Photon.getThemeVariable("accent"),
+			"accent-variant": Photon.getThemeVariable("accent-variant"),
+			"on-accent": Photon.getThemeVariable("accent-text"),
+			"error": Photon.getThemeVariable("error"),
+			"on-error": Photon.getThemeVariable("error-text"),
+			"background": Photon.getThemeVariable("background"),
+			"on-background": Photon.getThemeVariable("background-text"),
+			"surface": Photon.getThemeVariable("surface"),
+			"on-surface": Photon.getThemeVariable("surface-text"),
+			"snackbar": Photon.getThemeVariable("snackbar"),
+			"on-snackbar": Photon.getThemeVariable("snackbar-text"),
+			"border": Photon.getThemeVariable("border"),
+			"border-variant": Photon.getThemeVariable("border-variant"),
+			"subtitle": Photon.getThemeVariable("subtitle")
+		}
+	},
+
 	// Generates a UUID in XXXXXXXXXXXX
 	guid() {
 		// Generate a random 4 digit number in hex XXXX
@@ -283,7 +320,7 @@ const Photon = {
 		// return true for hammer syntax
 		return true;
 
-	}
+	},
 
 }
 
