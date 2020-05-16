@@ -31,7 +31,7 @@ class BannerActions extends React.Component {
 		const { ...rest } = this.props;
 		this.rest = rest;
 		return [
-			"banner-actions col s12 l4",
+			"banner-actions",
 			...(rest.className || "").split(" ")
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
@@ -52,7 +52,7 @@ class BannerContent extends React.Component {
 		const { ...rest } = this.props;
 		this.rest = rest;
 		return [
-			"banner-content col s12 l8",
+			"banner-content",
 			...(rest.className || "").split(" ")
 		].join(" ").replace(/\s+(?=\s)/g, "").trim();
 	}
