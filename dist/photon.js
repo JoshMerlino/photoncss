@@ -81,7 +81,7 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 11);
+/******/ 	return __webpack_require__(__webpack_require__.s = 12);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1374,7 +1374,8 @@ var map = {
 	"./Menu.js": 7,
 	"./Slider.js": 8,
 	"./Snackbar.js": 9,
-	"./Tabs.js": 10
+	"./Tabs.js": 10,
+	"./Tooltip.js": 11
 };
 
 
@@ -2253,14 +2254,132 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-__webpack_require__(3);
-module.exports = __webpack_require__(12);
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+function _createForOfIteratorHelper(o) { if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (o = _unsupportedIterableToArray(o))) { var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var it, normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
 
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(n); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _construct(Parent, args, Class) { if (_isNativeReflectConstruct()) { _construct = Reflect.construct; } else { _construct = function _construct(Parent, args, Class) { var a = [null]; a.push.apply(a, args); var Constructor = Function.bind.apply(Parent, a); var instance = new Constructor(); if (Class) _setPrototypeOf(instance, Class.prototype); return instance; }; } return _construct.apply(null, arguments); }
+
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !Reflect.construct) return false; if (Reflect.construct.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(Reflect.construct(Date, [], function () {})); return true; } catch (e) { return false; } }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  Tooltip: function Tooltip() {
+    return _construct(function Tooltip(target, options) {
+      _classCallCheck(this, Tooltip);
+
+      this.options = options = {
+        delay: options.delay || 0,
+        position: options.position || "bottom",
+        tooltip: typeof options === "string" ? options : options.tooltip || "",
+        classes: options.classes || []
+      };
+      $(target).each(function () {
+        var descriptor = $(this);
+        options["delay"] = parseInt($(this).data("delay")) || options["delay"];
+        options["position"] = $(this).data("position") || options["position"];
+        options["tooltip"] = $(this).data("tooltip") || options["tooltip"];
+        options["classes"] = ($(this).data("tooltipclass") || "").split(" ") || options["classes"];
+        var guid = Photon.guid();
+
+        if (options.position.toLowerCase() == "bottom") {
+          var center = descriptor.offset().left;
+        }
+
+        $(this).mouseenter(function () {
+          setTimeout(function () {
+            return $("#" + guid).addClass("active");
+          }, options.delay);
+        }).on("mouseleave click contextmenu", function () {
+          setTimeout(function () {
+            return $("#" + guid).removeClass("active");
+          }, options.delay);
+        });
+        $("body").append("<div class=\"material-tooltip\" id=\"".concat(guid, "\">").concat(options.tooltip, "</div>"));
+        var tooltip = $("#" + guid);
+
+        var proX = function proX(pos) {
+          if (pos < 4) pos = 4;
+          if (pos > window.innerWidth - 4) pos = window.innerWidth - 4;
+          return pos;
+        };
+
+        var proY = function proY(pos) {
+          if (pos < 4) pos = 4;
+          return pos;
+        };
+
+        var _iterator = _createForOfIteratorHelper(options.classes),
+            _step;
+
+        try {
+          for (_iterator.s(); !(_step = _iterator.n()).done;) {
+            var classes = _step.value;
+            tooltip.addClass(classes);
+          }
+        } catch (err) {
+          _iterator.e(err);
+        } finally {
+          _iterator.f();
+        }
+
+        if (options.position.toLowerCase() == "top") {
+          tooltip.addClass("tt-top");
+
+          (function position() {
+            tooltip.css("top", proY(descriptor.offset().top - tooltip[0].clientHeight - 4));
+            tooltip.css("left", proX(descriptor.offset().left + descriptor[0].clientWidth / 2 - tooltip[0].clientWidth / 2));
+            requestAnimationFrame(position);
+          })();
+        } else if (options.position.toLowerCase() == "left") {
+          tooltip.addClass("tt-left");
+
+          (function position() {
+            tooltip.css("top", proY(descriptor.offset().top + descriptor[0].clientHeight / 2 - tooltip[0].clientHeight / 2));
+            tooltip.css("left", proX(descriptor.offset().left - tooltip[0].clientWidth - 4));
+            requestAnimationFrame(position);
+          })();
+        } else if (options.position.toLowerCase() == "right") {
+          tooltip.addClass("tt-right");
+
+          (function position() {
+            tooltip.css("top", proY(descriptor.offset().top + descriptor[0].clientHeight / 2 - tooltip[0].clientHeight / 2));
+            tooltip.css("left", proX(descriptor.offset().left + descriptor[0].clientWidth + 4));
+            requestAnimationFrame(position);
+          })();
+        } else {
+          tooltip.addClass("tt-bottom");
+
+          (function position() {
+            tooltip.css("top", proY(descriptor.offset().top + descriptor[0].clientHeight + 4));
+            tooltip.css("left", proX(descriptor.offset().left + descriptor[0].clientWidth / 2 - tooltip[0].clientWidth / 2));
+            requestAnimationFrame(position);
+          })();
+        }
+      });
+    }, Array.prototype.slice.call(arguments));
+  }
+});
 
 /***/ }),
 /* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+__webpack_require__(3);
+module.exports = __webpack_require__(13);
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // extracted by mini-css-extract-plugin
