@@ -6478,7 +6478,7 @@ img {
   margin-bottom: 4px;
 }
 .drawer {
-  background: #fff;
+  background: #ffffff;
   z-index: 1200;
   position: fixed;
   transition: all 200ms cubic-bezier(0.4, 0, 0.6, 1);
