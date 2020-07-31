@@ -4936,6 +4936,17 @@ body {
     width: 80%!important;
   }
 }
+.vh-center-wrapper {
+  position: fixed;
+  display: grid;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.vh-center-wrapper .vh-center {
+  margin: auto;
+}
 .raised-0 {
   box-shadow: none;
 }

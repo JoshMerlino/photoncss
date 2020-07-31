@@ -3,6 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.VHAlign = VHAlign;
 exports.Col = exports.Row = exports.Container = void 0;
 
 var _react = _interopRequireDefault(require("react"));
@@ -170,3 +171,12 @@ _defineProperty(Col, "defaultProps", {
   lg: false,
   xl: false
 });
+
+function VHAlign(_ref) {
+  var children = _ref.children;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: "vh-center-wrapper"
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "vh-center"
+  }, children));
+}
