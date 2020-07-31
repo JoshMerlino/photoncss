@@ -76,4 +76,12 @@ class Col extends React.Component {
 
 }
 
-export { Container, Row, Col };
+function VHAlign({ children }) {
+	return (
+		<div className="vh-center-wrapper">
+			<div className="vh-center">{children}</div>
+		</div>
+	)
+}
+
+export { Container, Row, Col, VHAlign };
