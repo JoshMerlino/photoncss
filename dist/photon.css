@@ -5208,7 +5208,7 @@ img {
 }
 .waves-effect.waves-light .waves-ripple,
 .waves-effect.waves-classic.waves-light .waves-ripple {
-  background: rgba(255, 255, 255, 0.4) !important;
+  background: rgba(255, 255, 255, 0.2) !important;
 }
 .waves-effect.waves-classic .waves-ripple {
   background: rgba(0, 0, 0, 0.2) !important;
