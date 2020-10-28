@@ -1,6 +1,6 @@
 {
     "name": "photoncss",
-    "version": "10.4.52-beta",
+    "version": "10.4.53-beta",
     "description": "PhotonCSS - The next generation of web design.",
     "main": "dist/photon.min.js",
     "scripts": {
