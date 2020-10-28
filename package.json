@@ -39,28 +39,28 @@
     },
     "license": "MIT",
     "devDependencies": {
-        "@babel/cli": "^7.8.4",
-        "@babel/core": "^7.9.0",
-        "@babel/plugin-proposal-class-properties": "^7.8.3",
-        "@babel/plugin-proposal-optional-catch-binding": "^7.8.3",
-        "@babel/preset-env": "^7.9.5",
-        "@babel/preset-react": "^7.9.4",
+        "@babel/cli": "^7.12.1",
+        "@babel/core": "^7.12.3",
+        "@babel/plugin-proposal-class-properties": "^7.12.1",
+        "@babel/plugin-proposal-optional-catch-binding": "^7.12.1",
+        "@babel/preset-env": "^7.12.1",
+        "@babel/preset-react": "^7.12.1",
         "@babel/preset-stage-2": "^7.8.3",
-        "babel-loader": "^8.0.6",
-        "css-loader": "^3.4.2",
-        "file-loader": "^6.0.0",
-        "less": "^3.11.1",
+        "babel-loader": "^8.1.0",
+        "css-loader": "^3.6.0",
+        "file-loader": "^6.2.0",
+        "less": "^3.12.2",
         "less-loader": "^5.0.0",
         "mini-css-extract-plugin": "^0.9.0",
-        "optimize-css-assets-webpack-plugin": "^5.0.3",
+        "optimize-css-assets-webpack-plugin": "^5.0.4",
         "path-loader": "^1.0.10",
-        "react": "^16.13.1",
-        "resolve-url-loader": "^3.1.1",
+        "react": "^16.14.0",
+        "resolve-url-loader": "^3.1.2",
         "uglifyjs-webpack-plugin": "^2.2.0",
-        "webpack": "^4.42.0",
-        "webpack-cli": "^3.3.11"
+        "webpack": "^4.44.2",
+        "webpack-cli": "^3.3.12"
     },
     "dependencies": {
-        "jquery": "^3.5.0"
+        "jquery": "^3.5.1"
     }
 }
