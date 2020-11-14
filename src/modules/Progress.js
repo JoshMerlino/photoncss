@@ -1,5 +1,6 @@
 import React from "react";
 import Photon from "../src/js/photon.js";
+import classnames from "classnames";
 
 class Spinner extends React.Component {
 
@@ -34,4 +35,20 @@ class Spinner extends React.Component {
 
 }
 
-export { Spinner };
+function Progress({ value = .5, variant = "primary" }) {
+	return (
+		<div className={classnames("progress", variant)}>
+			<div className="determinate" style={{ width: `${value*100}%` }}></div>
+		</div>
+	)
+}
+
+function Indeterminate({ variant = "primary" }) {
+	return (
+		<div className={classnames("progress", variant)}>
+			<div className="indeterminate"></div>
+		</div>
+	)
+}
+
+export { Spinner, Progress, Indeterminate};
