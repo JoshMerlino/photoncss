@@ -3,11 +3,15 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.Progress = Progress;
+exports.Indeterminate = Indeterminate;
 exports.Spinner = void 0;
 
 var _react = _interopRequireDefault(require("react"));
 
 var _photon = _interopRequireDefault(require("../src/js/photon.js"));
+
+var _classnames = _interopRequireDefault(require("classnames"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -113,3 +117,28 @@ _defineProperty(Spinner, "defaultProps", {
   size: 64,
   width: 6
 });
+
+function Progress(_ref) {
+  var _ref$value = _ref.value,
+      value = _ref$value === void 0 ? .5 : _ref$value,
+      _ref$variant = _ref.variant,
+      variant = _ref$variant === void 0 ? "primary" : _ref$variant;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("progress", variant)
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "determinate",
+    style: {
+      width: "".concat(value * 100, "%")
+    }
+  }));
+}
+
+function Indeterminate(_ref2) {
+  var _ref2$variant = _ref2.variant,
+      variant = _ref2$variant === void 0 ? "primary" : _ref2$variant;
+  return /*#__PURE__*/_react["default"].createElement("div", {
+    className: (0, _classnames["default"])("progress", variant)
+  }, /*#__PURE__*/_react["default"].createElement("div", {
+    className: "indeterminate"
+  }));
+}
