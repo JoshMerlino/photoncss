@@ -1,6 +1,6 @@
 {
     "name": "photoncss",
-    "version": "10.4.69-beta",
+    "version": "10.5.70-beta",
     "description": "PhotonCSS - The next generation of web design.",
     "main": "dist/photon.min.js",
     "scripts": {
@@ -47,6 +47,7 @@
         "@babel/preset-react": "^7.12.1",
         "@babel/preset-stage-2": "^7.8.3",
         "babel-loader": "^8.1.0",
+        "classnames": "^2.2.6",
         "css-loader": "^3.6.0",
         "file-loader": "^6.2.0",
         "less": "^3.12.2",
