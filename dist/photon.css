@@ -6947,6 +6947,121 @@ hr {
 .spinner-wrapper.small {
   transform: scale(0.4);
 }
+.progress {
+  position: relative;
+  height: 4px;
+  display: block;
+  width: 100%;
+  border-radius: 2px;
+  background-clip: padding-box;
+  overflow: hidden;
+  background: rgba(25, 118, 210, 0.1);
+}
+.progress .determinate {
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  bottom: 0;
+  background: #1976d2;
+  transition: width 0.3s linear;
+}
+.progress .indeterminate {
+  background: #1976d2;
+}
+.progress .indeterminate:after {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  -webkit-animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  animation: indeterminate-short 2.1s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
+  -webkit-animation-delay: 1.15s;
+  animation-delay: 1.15s;
+}
+.progress .indeterminate:before {
+  content: '';
+  position: absolute;
+  background-color: inherit;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  will-change: left, right;
+  -webkit-animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+  animation: indeterminate 2.1s cubic-bezier(0.65, 0.815, 0.735, 0.395) infinite;
+}
+.progress.primary {
+  background: rgba(25, 118, 210, 0.1);
+}
+.progress.primary .determinate,
+.progress.primary .indeterminate {
+  background: #1976d2;
+}
+.progress.accent {
+  background: rgba(244, 0, 87, 0.1);
+}
+.progress.accent .determinate,
+.progress.accent .indeterminate {
+  background: #f40057;
+}
+@-webkit-keyframes indeterminate {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+@keyframes indeterminate {
+  0% {
+    left: -35%;
+    right: 100%;
+  }
+  60% {
+    left: 100%;
+    right: -90%;
+  }
+  100% {
+    left: 100%;
+    right: -90%;
+  }
+}
+@-webkit-keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
+@keyframes indeterminate-short {
+  0% {
+    left: -200%;
+    right: 100%;
+  }
+  60% {
+    left: 107%;
+    right: -8%;
+  }
+  100% {
+    left: 107%;
+    right: -8%;
+  }
+}
 .radio {
   padding-top: 12px;
   padding-left: 11px;
