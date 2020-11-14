@@ -6245,6 +6245,9 @@ img {
   margin-right: 8px;
   margin-bottom: 8px;
 }
+.card hr {
+  border-color: #a0a0a0;
+}
 .card .card-actions {
   margin-top: 0;
   padding: 8px;
@@ -6494,6 +6497,9 @@ img {
   position: fixed;
   transition: all 200ms cubic-bezier(0.4, 0, 0.6, 1);
   transition-property: box-shadow;
+}
+.drawer hr {
+  border-color: #a0a0a0;
 }
 .drawer ul.list {
   border: none;
@@ -6818,7 +6824,7 @@ ul.list .subheader {
   overflow: hidden;
   font-weight: 500;
   height: 48px;
-  color: rgba(0, 0, 0, 0.54);
+  color: #898989;
   font-size: 0.875rem;
 }
 ul.list .subheader:first-child {
