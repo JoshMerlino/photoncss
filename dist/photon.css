@@ -2536,7 +2536,7 @@
 body {
   color: #424242;
   background: #ffffff;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   padding: 0;
   font-size: 14px;
   overflow-x: hidden;
@@ -5121,7 +5121,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Google Sans";
+  font-family: Roboto, Arial;
   font-weight: 400;
   margin: 8px;
 }
@@ -6051,7 +6051,7 @@ img {
 .btn {
   transition: all 200ms cubic-bezier(0.4, 0, 0.2, 1);
   transition-property: background, box-shadow, border;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   text-transform: uppercase;
   text-align: center;
   font-weight: 500;
@@ -7271,7 +7271,7 @@ hr {
   margin-top: 4px;
 }
 .snackbar-container .snackbar .label {
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   font-size: 0.875rem;
   line-height: 1.25rem;
   font-weight: 400;
@@ -7460,7 +7460,7 @@ hr {
   font-size: 1rem;
   box-sizing: border-box;
   align-items: center;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   font-weight: 400;
   line-height: 1.1875em;
   letter-spacing: 0.00938em;
@@ -7480,7 +7480,7 @@ hr {
   border-bottom: 1px solid rgba(66, 66, 66, 0.76);
   font-size: 1rem;
   z-index: 2;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
 }
 .input-field input:disabled {
   border-bottom: 1px dotted rgba(66, 66, 66, 0.76);
@@ -7489,7 +7489,7 @@ hr {
   color: rgba(66, 66, 66, 0.76);
   padding: 0;
   font-size: 1rem;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   font-weight: 400;
   line-height: 1;
   letter-spacing: 0.00938em;
@@ -7536,7 +7536,7 @@ hr {
   font-size: 0.75rem;
   margin-top: 3px;
   text-align: left;
-  font-family: "Roboto";
+  font-family: Roboto, Arial;
   font-weight: 400;
   line-height: 1.66;
   letter-spacing: 0.03333em;
@@ -7749,7 +7749,7 @@ hr {
 }
 .toolbar .toolbar-title {
   font-size: 1.25rem;
-  font-family: "Google Sans";
+  font-family: Roboto, Arial;
   font-weight: 500;
   line-height: 1.6;
   margin: 12px;
@@ -7761,7 +7761,7 @@ hr {
 .toolbar .toolbar-title.contains-subtitle {
   margin: 6px 12px;
   letter-spacing: 0.00625em;
-  font-family: "Google Sans";
+  font-family: Roboto, Arial;
   font-size: 1rem;
   font-weight: 500;
   line-height: 1.5rem;
@@ -7769,7 +7769,7 @@ hr {
 }
 .toolbar .toolbar-title.contains-subtitle .subtitle {
   letter-spacing: 0.025em;
-  font-family: "Google Sans";
+  font-family: Roboto, Arial;
   font-size: 0.75rem;
   font-weight: 400;
   line-height: 1rem;
