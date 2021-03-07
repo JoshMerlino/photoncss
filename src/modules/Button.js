@@ -3,7 +3,6 @@ import { prefixColorQuery } from "../src/js/photon.js";
 import classnames from "classnames";
 
 /**
- * Assign the project to an employee.
  * @param {Object} props - JSX Props
  * @param {string} props.className - Additional classnames to be appended to the root component
  * @param {string} props.variant - Type of button to use
@@ -13,7 +12,7 @@ import classnames from "classnames";
  * @param {boolean} props.disabled - Disable the button
  * @param {string|boolean} props.waves - Waves, if false no waves, else color query
  */
-function Button({
+export function Button({
 	className 		= "",
 	children 		= null,
 	variant			= "raised",
@@ -41,7 +40,4 @@ function Button({
 		<button className={classes} {...props}>{children}</button>
 	)
 
-
 }
-
-export { Button };
