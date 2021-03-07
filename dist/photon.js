@@ -1006,13 +1006,13 @@ function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
-/*!
- * Photon v10.2.24-beta
+/**
+ * Photon Beta
  * https://photoncss.github.io/
  *
- * Copyright 2020 Josh Merlino
- * Released under the MIT license
- * https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
+ * @copyright Copyright 2021 Josh Merlino
+ * @license Released under the MIT license
+ * @license https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
  */
 
  // Get a color from the current less theme @primary-variant -> "primary-vartiant"
