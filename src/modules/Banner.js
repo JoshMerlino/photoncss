@@ -1,69 +1,64 @@
 import React from "react";
-import Photon from "../src/js/photon.js";
+import classnames from "classnames";
 
-class Banner extends React.Component {
+/**
+ * @param {Object} props - JSX Props
+ * @param {string} props.className - Additional classnames to be appended to the root component
+ */
+export function Banner({
+	className 		= "",
+	children 		= null,
+	...props
+}) {
 
-	// Serialize the props object into a series of classes
-	serialize() {
-		const { ...rest } = this.props;
-		this.rest = rest;
-		return [
-			"banner",
-			...(rest.className || "").split(" ")
-		].join(" ").replace(/\s+(?=\s)/g, "").trim();
-	}
+	// Get element class
+	const classes = classnames("banner", className).replace(/\s\s+/g, " ");
 
 	// Render component
-	render() {
-		return (
-			<div className={this.serialize()} {...this.rest}>
-				<div className="container row">{this.props.children}</div>
-			</div>
-		);
-	}
+	return (
+		<div className={classes} {...props}>
+			<div className="container row">{children}</div>
+		</div>
+	)
 
 }
 
-class BannerActions extends React.Component {
+/**
+ * @param {Object} props - JSX Props
+ * @param {string} props.className - Additional classnames to be appended to the root component
+ */
+export function BannerActions({
+	className 		= "",
+	children 		= null,
+	...props
+}) {
 
-	// Serialize the props object into a series of classes
-	serialize() {
-		const { ...rest } = this.props;
-		this.rest = rest;
-		return [
-			"banner-actions",
-			...(rest.className || "").split(" ")
-		].join(" ").replace(/\s+(?=\s)/g, "").trim();
-	}
+	// Get element class
+	const classes = classnames("banner-actions", className).replace(/\s\s+/g, " ");
 
 	// Render component
-	render() {
-		return (
-			<div className={this.serialize()} {...this.rest}>{this.props.children}</div>
-		);
-	}
+	return (
+		<div className={classes} {...props}>{children}</div>
+	)
 
 }
 
-class BannerContent extends React.Component {
+/**
+ * @param {Object} props - JSX Props
+ * @param {string} props.className - Additional classnames to be appended to the root component
+ */
+export function BannerContent({
+	className 		= "",
+	children 		= null,
+	...props
+}) {
 
-	// Serialize the props object into a series of classes
-	serialize() {
-		const { ...rest } = this.props;
-		this.rest = rest;
-		return [
-			"banner-content",
-			...(rest.className || "").split(" ")
-		].join(" ").replace(/\s+(?=\s)/g, "").trim();
-	}
+	// Get element class
+	const classes = classnames("banner-content", className).replace(/\s\s+/g, " ");
 
 	// Render component
-	render() {
-		return (
-			<div className={this.serialize()} {...this.rest}>{this.props.children}</div>
-		);
-	}
+	return (
+		<div className={classes} {...props}>{children}</div>
+	)
 
 }
-
-export { Banner, BannerActions, BannerContent };

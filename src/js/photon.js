@@ -1,10 +1,10 @@
-/*!
- * Photon v10.2.24-beta
+/**
+ * Photon Beta
  * https://photoncss.github.io/
  *
- * Copyright 2020 Josh Merlino
- * Released under the MIT license
- * https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
+ * @copyright Copyright 2021 Josh Merlino
+ * @license Released under the MIT license
+ * @license https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
  */
 
 import Waves from "./lib/Waves.js";
