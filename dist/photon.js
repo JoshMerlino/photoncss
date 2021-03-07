@@ -983,7 +983,13 @@ module.exports = g;
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
+/* WEBPACK VAR INJECTION */(function(global) {/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getThemeVariable", function() { return getThemeVariable; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTheme", function() { return getTheme; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "guid", function() { return guid; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "parseColor", function() { return parseColor; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "prefixColorQuery", function() { return prefixColorQuery; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "reload", function() { return reload; });
+/* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(0);
 /* harmony import */ var _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_lib_Waves_js__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(1);
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
@@ -1009,339 +1015,345 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
  * https://github.com/PhotonCSS/Photon/blob/beta/LICENSE
  */
 
- // Define constant Photon global
+ // Get a color from the current less theme @primary-variant -> "primary-vartiant"
+
+function getThemeVariable(variable) {
+  var guid = Photon.guid();
+  $("<div class=\"color-".concat(variable, "\" id=\"").concat(guid, "\"></div>")).appendTo($("body"));
+  setTimeout(function () {
+    return $("#".concat(guid)).remove();
+  });
+  return $("#".concat(guid)).css("background-color");
+} // Returns current theme as JSON
+
+function getTheme() {
+  return {
+    "theme": function (c) {
+      c = c.split("(")[1].split(")")[0].split(", ");
+      var _ref = [parseInt(c[0]), parseInt(c[1]), parseInt(c[2])],
+          r = _ref[0],
+          g = _ref[1],
+          b = _ref[2];
+      var yiq = (r * 299 + g * 587 + b * 114) / 1000;
+      return yiq >= 128 ? "light" : "dark";
+    }(Photon.getThemeVariable("background")),
+    "primary": Photon.getThemeVariable("primary"),
+    "primary-variant": Photon.getThemeVariable("primary-variant"),
+    "on-primary": Photon.getThemeVariable("primary-text"),
+    "accent": Photon.getThemeVariable("accent"),
+    "accent-variant": Photon.getThemeVariable("accent-variant"),
+    "on-accent": Photon.getThemeVariable("accent-text"),
+    "error": Photon.getThemeVariable("error"),
+    "on-error": Photon.getThemeVariable("error-text"),
+    "background": Photon.getThemeVariable("background"),
+    "on-background": Photon.getThemeVariable("background-text"),
+    "surface": Photon.getThemeVariable("surface"),
+    "on-surface": Photon.getThemeVariable("surface-text"),
+    "snackbar": Photon.getThemeVariable("snackbar"),
+    "on-snackbar": Photon.getThemeVariable("snackbar-text"),
+    "border": Photon.getThemeVariable("border"),
+    "border-variant": Photon.getThemeVariable("border-variant"),
+    "subtitle": Photon.getThemeVariable("subtitle")
+  };
+} // Generates a UUID in XXXXXXXXXXXX
+
+function guid() {
+  // Generate a random 4 digit number in hex XXXX
+  var s4 = function s4() {
+    return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
+  };
+
+  return "".concat(s4()).concat(s4()).concat(s4());
+} // Converts a string classname color like "green accent-2" to a hex value
+
+function parseColor(query) {
+  var _query$split = query.split(" "),
+      _query$split2 = _slicedToArray(_query$split, 2),
+      color = _query$split2[0],
+      shade = _query$split2[1];
+
+  switch (shade) {
+    case "lighten-5":
+      shade = "50";
+      break;
+
+    case "lighten-4":
+      shade = "100";
+      break;
+
+    case "lighten-3":
+      shade = "200";
+      break;
+
+    case "lighten-2":
+      shade = "300";
+      break;
+
+    case "lighten-1":
+      shade = "400";
+      break;
+
+    case "darken-1":
+      shade = "600";
+      break;
+
+    case "darken-2":
+      shade = "700";
+      break;
+
+    case "darken-3":
+      shade = "800";
+      break;
+
+    case "darken-4":
+      shade = "900";
+      break;
+
+    case "accent-1":
+      shade = "a100";
+      break;
+
+    case "accent-2":
+      shade = "a200";
+      break;
+
+    case "accent-3":
+      shade = "a400";
+      break;
+
+    case "accent-4":
+      shade = "a700";
+      break;
+
+    default:
+      shade = "500";
+      break;
+  } // Return result
+
+
+  return _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"][color][shade];
+} // Converts string color like "green accent-2" to "prefix-green prefix-accent-2"
+
+function prefixColorQuery(prefix, query) {
+  query = query.split(" ");
+
+  var _iterator = _createForOfIteratorHelper(query),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var q = _step.value;
+      query[query.indexOf(q)] = "".concat(prefix, "-").concat(q);
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return query.join(" ");
+} // Binds event listeners where needed
+
+function reload() {
+  // Checkbox:
+  $(".checkbox").not("[md]").each(function () {
+    var $this = $(this);
+    var $input = $(this).children("input");
+    $(this).children("label, .waves-effect").on("click", function () {
+      if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
+    }); // Flag changed elements
+
+    $(this).attr("md", "");
+  }); // Drawer
+
+  $(".drawer").not("[md]").each(function () {
+    Photon.Drawer(this);
+  }); // List
+
+  $(".list").not("[md]").each(function () {
+    $(this).children(".list-item").on("click", function (event) {
+      var $input = $(this).children(".meta").children(".checkbox, .switch, .radio").children("input");
+      var $target = $(event.target);
+      if ($target.is($input.parent().children())) return;
+      $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).trigger("change");
+    });
+    $(this).attr("md", "");
+  }); // Menu
+
+  $(".menu").not("[md]").each(function () {
+    Photon.Menu(this);
+  }); // Radio:
+
+  $(".radio").not("[md]").each(function () {
+    var $this = $(this);
+    var $input = $(this).children("input");
+    $(this).children().not("input").on("click", function () {
+      if (!$this.hasClass("disabled")) $input.prop("checked", true).trigger("change");
+    });
+    $(this).attr("md", "");
+  }); // Slider
+
+  $(".slider").not("[md]").each(function () {
+    Photon.Slider(this);
+  }); // Switch:
+
+  $(".switch").not("[md]").each(function () {
+    var $this = $(this);
+    var $input = $(this).children("input");
+    $(this).children().not("input").on("click", function () {
+      if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
+    });
+    $(this).attr("md", "");
+  }); // Textfield:
+
+  $(".input-field").not("[md]").each(function () {
+    // Outlined
+    if ($(this).hasClass("outlined")) {
+      var $input = $(this).children("input");
+      var $label = $(this).children("label");
+      var $maxlength = $(this).children(".max-length");
+      $input.on("keydown keyup change mouseleave", function () {
+        if ($input.val().length === 0) {
+          $label.removeClass("floating");
+        } else {
+          $label.addClass("floating");
+        }
+
+        $maxlength.text($input.val().length + "/" + $maxlength.text().split("/")[1]);
+      }).change();
+      $(this).attr("md", ""); // Filled & Normal
+    } else {
+      $(this).append("<div class=\"bar\"></div>");
+      var $bar = $(this).children(".bar");
+
+      var _$input = $(this).children("input");
+
+      var _$label = $(this).children("label");
+
+      var _$maxlength = $(this).children(".max-length");
+
+      _$input.on("keydown keyup change mouseleave", function () {
+        if (_$input.val().length === 0) {
+          _$label.removeClass("floating");
+        } else {
+          _$label.addClass("floating");
+        }
+
+        _$maxlength.text(_$input.val().length + "/" + _$maxlength.text().split("/")[1]);
+      }).change();
+
+      var focus = false;
+
+      _$input.on("click", function (_ref2) {
+        var offsetX = _ref2.offsetX;
+        if (focus === true) return;
+        focus = true;
+        var width = _$input[0].clientWidth;
+        $bar.removeClass("transition").css({
+          left: offsetX,
+          width: 0,
+          opacity: 1
+        });
+        setTimeout(function () {
+          $bar.addClass("transition").css({
+            left: 0,
+            width: width
+          });
+        });
+      });
+
+      _$input.on("blur", function () {
+        focus = false;
+        $bar.addClass("transition").css({
+          opacity: 0
+        });
+      });
+
+      $(this).attr("md", "");
+    }
+  }); // Tabs:
+
+  $(".tabs").not("[md]").each(function () {
+    Photon.Tabs(this);
+  }); // Toolbar:
+
+  $(".toolbar").not("[md]").each(function () {
+    // Elevate Effect:
+    if ($(this).hasClass("elevate")) {
+      var $toolbar = $(this);
+
+      (function frame() {
+        requestAnimationFrame(frame);
+        if ($(document).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
+        if ($(document).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
+      })();
+
+      $(this).attr("md", "");
+    } // Auto-hide Effect:
+
+
+    if ($(this).hasClass("auto-hide")) {
+      var _cache = 0;
+
+      var _$toolbar = $(this);
+
+      (function frame() {
+        requestAnimationFrame(frame);
+        var delta = Math.sign($(document).scrollTop() - _cache);
+        if (delta > 0) _$toolbar.addClass("collapsed");
+        if (delta < 0) _$toolbar.removeClass("collapsed");
+        _cache = $(document).scrollTop();
+      })();
+
+      $(this).attr("md", "");
+    } // Update ToolbarSafeArea
+
+
+    if ($(this).hasClass("fixed")) {
+      var $safearea = $(this).siblings(".toolbar-spacer").not("[md]");
+      if ($safearea.length > 0) return $safearea.eq(0).css({
+        marginTop: $(this)[0].clientHeight
+      }).attr("md", "");
+    }
+  }); // Waves:
+
+  $(".waves-effect").not("[md]").each(function () {
+    _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach(this);
+  }); // Waves Ink:
+
+  $(".waves-ink").not("[md]").each(function () {
+    $(this).on("mousedown touchstart", function (event) {
+      event.stopPropagation();
+      _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
+      _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.ripple(this, {
+        wait: 1e10
+      });
+    });
+    $(this).on("mouseup mouseleave", function () {
+      _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
+    }); // Flag changed elements as processed
+
+    $(this).attr("md", "");
+  }); // Execute reload hooks
+
+  Photon.hooks.map(function (hook) {
+    return hook();
+  }); // return true for hammer syntax
+
+  return true;
+} // Define constant Photon global
 
 var Photon = {
   // Array of functions to execute after a Photon.reload
   hooks: [],
   // Allow access to MaterialColors
   palette: _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"],
-  // Get a color from the current less theme @primary-variant -> "primary-vartiant"
-  getThemeVariable: function getThemeVariable(variable) {
-    var guid = Photon.guid();
-    $("<div class=\"color-".concat(variable, "\" id=\"").concat(guid, "\"></div>")).appendTo($("body"));
-    setTimeout(function () {
-      return $("#".concat(guid)).remove();
-    });
-    return $("#".concat(guid)).css("background-color");
-  },
-  // Returns current theme as JSON
-  getTheme: function getTheme() {
-    return {
-      "theme": function (c) {
-        c = c.split("(")[1].split(")")[0].split(", ");
-        var _ref = [parseInt(c[0]), parseInt(c[1]), parseInt(c[2])],
-            r = _ref[0],
-            g = _ref[1],
-            b = _ref[2];
-        var yiq = (r * 299 + g * 587 + b * 114) / 1000;
-        return yiq >= 128 ? "light" : "dark";
-      }(Photon.getThemeVariable("background")),
-      "primary": Photon.getThemeVariable("primary"),
-      "primary-variant": Photon.getThemeVariable("primary-variant"),
-      "on-primary": Photon.getThemeVariable("primary-text"),
-      "accent": Photon.getThemeVariable("accent"),
-      "accent-variant": Photon.getThemeVariable("accent-variant"),
-      "on-accent": Photon.getThemeVariable("accent-text"),
-      "error": Photon.getThemeVariable("error"),
-      "on-error": Photon.getThemeVariable("error-text"),
-      "background": Photon.getThemeVariable("background"),
-      "on-background": Photon.getThemeVariable("background-text"),
-      "surface": Photon.getThemeVariable("surface"),
-      "on-surface": Photon.getThemeVariable("surface-text"),
-      "snackbar": Photon.getThemeVariable("snackbar"),
-      "on-snackbar": Photon.getThemeVariable("snackbar-text"),
-      "border": Photon.getThemeVariable("border"),
-      "border-variant": Photon.getThemeVariable("border-variant"),
-      "subtitle": Photon.getThemeVariable("subtitle")
-    };
-  },
-  // Generates a UUID in XXXXXXXXXXXX
-  guid: function guid() {
-    // Generate a random 4 digit number in hex XXXX
-    var s4 = function s4() {
-      return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1);
-    };
-
-    return "".concat(s4()).concat(s4()).concat(s4());
-  },
-  // Converts a string classname color like "green accent-2" to a hex value
-  parseColor: function parseColor(query) {
-    var _query$split = query.split(" "),
-        _query$split2 = _slicedToArray(_query$split, 2),
-        color = _query$split2[0],
-        shade = _query$split2[1];
-
-    switch (shade) {
-      case "lighten-5":
-        shade = "50";
-        break;
-
-      case "lighten-4":
-        shade = "100";
-        break;
-
-      case "lighten-3":
-        shade = "200";
-        break;
-
-      case "lighten-2":
-        shade = "300";
-        break;
-
-      case "lighten-1":
-        shade = "400";
-        break;
-
-      case "darken-1":
-        shade = "600";
-        break;
-
-      case "darken-2":
-        shade = "700";
-        break;
-
-      case "darken-3":
-        shade = "800";
-        break;
-
-      case "darken-4":
-        shade = "900";
-        break;
-
-      case "accent-1":
-        shade = "a100";
-        break;
-
-      case "accent-2":
-        shade = "a200";
-        break;
-
-      case "accent-3":
-        shade = "a400";
-        break;
-
-      case "accent-4":
-        shade = "a700";
-        break;
-
-      default:
-        shade = "500";
-        break;
-    } // Return result
-
-
-    return _lib_MaterialColors_js__WEBPACK_IMPORTED_MODULE_1__[/* default */ "a"][color][shade];
-  },
-  // Converts string color like "green accent-2" to "prefix-green prefix-accent-2"
-  prefixColorQuery: function prefixColorQuery(prefix, query) {
-    query = query.split(" ");
-
-    var _iterator = _createForOfIteratorHelper(query),
-        _step;
-
-    try {
-      for (_iterator.s(); !(_step = _iterator.n()).done;) {
-        var q = _step.value;
-        query[query.indexOf(q)] = "".concat(prefix, "-").concat(q);
-      }
-    } catch (err) {
-      _iterator.e(err);
-    } finally {
-      _iterator.f();
-    }
-
-    return query.join(" ");
-  },
-  // Binds event listeners where needed
-  reload: function reload() {
-    // Checkbox:
-    $(".checkbox").not("[md]").each(function () {
-      var $this = $(this);
-      var $input = $(this).children("input");
-      $(this).children("label, .waves-effect").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
-      }); // Flag changed elements
-
-      $(this).attr("md", "");
-    }); // Drawer
-
-    $(".drawer").not("[md]").each(function () {
-      Photon.Drawer(this);
-    }); // List
-
-    $(".list").not("[md]").each(function () {
-      $(this).children(".list-item").on("click", function (event) {
-        var $input = $(this).children(".meta").children(".checkbox, .switch, .radio").children("input");
-        var $target = $(event.target);
-        if ($target.is($input.parent().children())) return;
-        $input.prop("checked", $input.parent().hasClass("radio") ? true : !$input.prop("checked")).trigger("change");
-      });
-      $(this).attr("md", "");
-    }); // Menu
-
-    $(".menu").not("[md]").each(function () {
-      Photon.Menu(this);
-    }); // Radio:
-
-    $(".radio").not("[md]").each(function () {
-      var $this = $(this);
-      var $input = $(this).children("input");
-      $(this).children().not("input").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", true).trigger("change");
-      });
-      $(this).attr("md", "");
-    }); // Slider
-
-    $(".slider").not("[md]").each(function () {
-      Photon.Slider(this);
-    }); // Switch:
-
-    $(".switch").not("[md]").each(function () {
-      var $this = $(this);
-      var $input = $(this).children("input");
-      $(this).children().not("input").on("click", function () {
-        if (!$this.hasClass("disabled")) $input.prop("checked", !$input.prop("checked")).trigger("change");
-      });
-      $(this).attr("md", "");
-    }); // Textfield:
-
-    $(".input-field").not("[md]").each(function () {
-      // Outlined
-      if ($(this).hasClass("outlined")) {
-        var $input = $(this).children("input");
-        var $label = $(this).children("label");
-        var $maxlength = $(this).children(".max-length");
-        $input.on("keydown keyup change mouseleave", function () {
-          if ($input.val().length === 0) {
-            $label.removeClass("floating");
-          } else {
-            $label.addClass("floating");
-          }
-
-          $maxlength.text($input.val().length + "/" + $maxlength.text().split("/")[1]);
-        }).change();
-        $(this).attr("md", ""); // Filled & Normal
-      } else {
-        $(this).append("<div class=\"bar\"></div>");
-        var $bar = $(this).children(".bar");
-
-        var _$input = $(this).children("input");
-
-        var _$label = $(this).children("label");
-
-        var _$maxlength = $(this).children(".max-length");
-
-        _$input.on("keydown keyup change mouseleave", function () {
-          if (_$input.val().length === 0) {
-            _$label.removeClass("floating");
-          } else {
-            _$label.addClass("floating");
-          }
-
-          _$maxlength.text(_$input.val().length + "/" + _$maxlength.text().split("/")[1]);
-        }).change();
-
-        var focus = false;
-
-        _$input.on("click", function (_ref2) {
-          var offsetX = _ref2.offsetX;
-          if (focus === true) return;
-          focus = true;
-          var width = _$input[0].clientWidth;
-          $bar.removeClass("transition").css({
-            left: offsetX,
-            width: 0,
-            opacity: 1
-          });
-          setTimeout(function () {
-            $bar.addClass("transition").css({
-              left: 0,
-              width: width
-            });
-          });
-        });
-
-        _$input.on("blur", function () {
-          focus = false;
-          $bar.addClass("transition").css({
-            opacity: 0
-          });
-        });
-
-        $(this).attr("md", "");
-      }
-    }); // Tabs:
-
-    $(".tabs").not("[md]").each(function () {
-      Photon.Tabs(this);
-    }); // Toolbar:
-
-    $(".toolbar").not("[md]").each(function () {
-      // Elevate Effect:
-      if ($(this).hasClass("elevate")) {
-        var $toolbar = $(this);
-
-        (function frame() {
-          requestAnimationFrame(frame);
-          if ($(document).scrollTop() === 0) $toolbar.addClass("flat").removeClass("raised");
-          if ($(document).scrollTop() != 0) $toolbar.removeClass("flat").addClass("raised");
-        })();
-
-        $(this).attr("md", "");
-      } // Auto-hide Effect:
-
-
-      if ($(this).hasClass("auto-hide")) {
-        var _cache = 0;
-
-        var _$toolbar = $(this);
-
-        (function frame() {
-          requestAnimationFrame(frame);
-          var delta = Math.sign($(document).scrollTop() - _cache);
-          if (delta > 0) _$toolbar.addClass("collapsed");
-          if (delta < 0) _$toolbar.removeClass("collapsed");
-          _cache = $(document).scrollTop();
-        })();
-
-        $(this).attr("md", "");
-      } // Update ToolbarSafeArea
-
-
-      if ($(this).hasClass("fixed")) {
-        var $safearea = $(this).siblings(".toolbar-spacer").not("[md]");
-        if ($safearea.length > 0) return $safearea.eq(0).css({
-          marginTop: $(this)[0].clientHeight
-        }).attr("md", "");
-      }
-    }); // Waves:
-
-    $(".waves-effect").not("[md]").each(function () {
-      _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.attach(this);
-    }); // Waves Ink:
-
-    $(".waves-ink").not("[md]").each(function () {
-      $(this).on("mousedown touchstart", function (event) {
-        event.stopPropagation();
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.ripple(this, {
-          wait: 1e10
-        });
-      });
-      $(this).on("mouseup mouseleave", function () {
-        _lib_Waves_js__WEBPACK_IMPORTED_MODULE_0___default.a.calm(this);
-      }); // Flag changed elements as processed
-
-      $(this).attr("md", "");
-    }); // Execute reload hooks
-
-    Photon.hooks.map(function (hook) {
-      return hook();
-    }); // return true for hammer syntax
-
-    return true;
-  }
+  getThemeVariable: getThemeVariable,
+  getTheme: getTheme,
+  guid: guid,
+  parseColor: parseColor,
+  prefixColorQuery: prefixColorQuery,
+  reload: reload
 }; // Import script-based-components and insert into Photon global
 
 var importAll = function importAll(a) {
