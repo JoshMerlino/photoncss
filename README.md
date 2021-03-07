@@ -13,7 +13,7 @@ import Photon from "photoncss";
 import "photoncss/dist/photon.min.css";
 
 import React from "react";
-import { Button } from "photoncss/modules/Button";
+import { Button } from "photoncss/modules";
 
 function Component() {
 	return <Button variant="raised" color="primary">button</Button>
