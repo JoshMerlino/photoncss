@@ -1,0 +1,50 @@
+@gex: 0,.8,.5,1;
+
+.waves-transition (@transition) {
+    -webkit-transition: @transition;
+    -moz-transition: @transition;
+    -o-transition: @transition;
+    transition: @transition;
+}
+
+.waves-transform(@string) {
+    -webkit-transform: @string;
+    -moz-transform: @string;
+    -ms-transform: @string;
+    -o-transform: @string;
+    transform: @string;
+}
+
+.waves-box-shadow(@shadow) {
+    -webkit-box-shadow: @shadow;
+    box-shadow: @shadow;
+}
+
+.waves-effect {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden!important;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+
+    .waves-ripple {
+        position: absolute;
+        border-radius: 9999px;
+        width: 100px;
+        height: 100px;
+        margin-top:-50px;
+        margin-left:-50px;
+        opacity: .3;
+		background-color: #00000044;
+        .waves-transition(all 750ms cubic-bezier(.1,1,.1,.75));
+        -webkit-transition-property: -webkit-transform, opacity;
+        -moz-transition-property: -moz-transform, opacity;
+        -o-transition-property: -o-transform, opacity;
+        transition-property: transform, opacity;
+        .waves-transform(scale(0) translate(0,0));
+        pointer-events: none;
+    }
+}
