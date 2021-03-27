@@ -1,0 +1,39 @@
+{
+    "palette": {
+		"body": {
+			"background": "#212121",
+			"headline": "#fafafa",
+			"body": "#e0e0e0"
+		},
+        "primary": {
+            "light": "#9be7ff",
+            "normal": "#64b5f6",
+            "dark": "#2286c3",
+			"text": "#000000",
+			"faded": "#64b5f620",
+			"waves": "#00000066",
+			"fadedwaves": "#64b5f666"
+        },
+        "secondary": {
+            "light": "#66ffa6",
+            "normal": "#00e676",
+            "dark": "#00b248",
+			"text": "#000000",
+			"faded": "#00e67620",
+			"waves": "#00000066",
+			"fadedwaves": "#00e67666"
+        }
+    },
+	"font": {
+		"interactive": "Roboto, sans-serif",
+		"headline": "Roboto, sans-serif",
+		"body": "Roboto, sans-serif"
+	},
+	"shape": "4px 4px 4px 4px",
+	"animation": {
+		"curve": "ease-in-out",
+		"speed": {
+			"fast": "125ms"
+		}
+	}
+}

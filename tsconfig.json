@@ -6,7 +6,7 @@
 		"baseUrl": "src/ts",
         "types": ["node", "react"],
 		"jsx": "react",
-		"outDir": "lib/js",
+		"outDir": "src/js",
         "sourceMap": true,
         "strict": true,
         "esModuleInterop": true,
