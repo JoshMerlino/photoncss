@@ -1,0 +1,28 @@
+{
+    "palette": {
+        "primary": {
+            "light": "#63a4ff",
+            "normal": "#1976d4",
+            "dark": "#004ba0",
+			"text": "#ffffff",
+			"waves": "#ffffff66"
+        },
+        "secondary": {
+            "light": "#5efc82",
+            "normal": "#00c853",
+            "dark": "#009624",
+			"text": "#ffffff",
+			"waves": "#ffffff66"
+        }
+    },
+	"font": {
+		"interactive": "Roboto, sans-serif"
+	},
+	"shape": "4px 4px 4px 4px",
+	"animation": {
+		"curve": "ease-in-out",
+		"speed": {
+			"fast": "125ms"
+		}
+	}
+}

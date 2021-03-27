@@ -1,0 +1,19 @@
+{
+    "compilerOptions": {
+        "lib": ["es2020", "dom"],
+        "module": "commonjs",
+        "target": "es5",
+		"baseUrl": "src/ts",
+        "types": ["node", "react"],
+		"jsx": "react",
+		"outDir": "lib/js",
+        "sourceMap": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+		"noUnusedParameters": true,
+		"allowUnreachableCode": false,
+		"preserveConstEnums": false,
+		"resolveJsonModule": true
+    }
+}
