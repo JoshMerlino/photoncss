@@ -1,34 +1,7 @@
-import React, { CSSProperties } from "react";
+import React, { CSSProperties, Fragment } from "react";
 import { deepKeys, deepProp } from "../object";
 
-export interface Theme {
-	palette: {
-		primary: {
-			light: string,
-			normal: string,
-			dark: string,
-			text: string,
-			waves: string,
-		},
-		secondary: {
-			light: string,
-			normal: string,
-			dark: string,
-			text: string,
-			waves: string,
-		}
-	},
-	font: {
-		interactive: string
-	},
-	shape: string,
-	animation: {
-		curve: string,
-		speed: {
-			fast: string,
-		}
-	}
-}
+export interface Theme { palette: any }
 
 export function render(theme: Theme) : CSSProperties {
 
@@ -46,7 +19,7 @@ export function render(theme: Theme) : CSSProperties {
 
 }
 
-export default function ThemeProvider({ theme = "default.light", children } : { theme: string | Theme, children?: JSX.Element }) : JSX.Element {
+export default function ThemeProvider({ theme = "default.light", global = false, children } : { theme: string | Theme, global: boolean, children?: JSX.Element }) : JSX.Element {
 
 	// Initialize theme
 	let finalTheme: Theme;
@@ -60,10 +33,26 @@ export default function ThemeProvider({ theme = "default.light", children } : { 
 	// If invalid theme type
 	else throw new Error(`'${typeof theme}' is not a valid theme.`);
 
-	// Render CSS
-	const style = render(finalTheme);
+	// If it is the root theme
+	if(global) {
 
-	// Create context of theme
-	return <span style={style}>{children}</span>;
+		// Render CSS
+		const style = render(finalTheme) as { [key: string]: string };
+
+		// Add variables to root
+		Object.keys(style).map((key: string) => document.documentElement.style.setProperty(key, style[key]));
+
+		// Render children
+		return <Fragment>{children}</Fragment>;
+
+	} else {
+
+		// Render CSS
+		const style = render(finalTheme);
+
+		// Create context of theme
+		return <span style={style}>{children}</span>;
+
+	}
 
 }
