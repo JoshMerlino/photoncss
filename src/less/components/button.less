@@ -19,25 +19,21 @@
 	padding: 0 16px;
 	border: none;
 	outline: none;
-
+	&.variant-contained,
 	&.variant-raised {
-		.raised-2();
+		color: #212121;
 		background: #e0e0e0;
-
-		&:hover {
+		&:hover,
+		&:focus {
 			background: #d1d1d1;
-			.raised-4();
-		}
-
-		&:active {
-			.raised-8();
 		}
 
 		&.color-primary {
 			background: var(--palette_primary_normal);
 			color: var(--palette_primary_text);
 
-			&:hover {
+			&:hover,
+			&:focus {
 				background: var(--palette_primary_dark);
 			}
 
@@ -50,7 +46,8 @@
 			background: var(--palette_secondary_normal);
 			color: var(--palette_secondary_text);
 
-			&:hover {
+			&:hover,
+			&:focus {
 				background: var(--palette_secondary_dark);
 			}
 
@@ -58,5 +55,58 @@
 				background: var(--palette_secondary_waves);
 			}
 		}
+	}
+	&.variant-raised {
+		.raised-2();
+
+		&:hover {
+			.raised-4();
+		}
+
+		&:active {
+			.raised-8();
+		}
+	}
+	&.variant-flat,
+	&.variant-outlined {
+		background: transparent;
+		&:hover,
+		&:focus {
+			background: #00000008;
+		}
+
+		&.color-primary {
+			color: var(--palette_primary_normal);
+			border-color: var(--palette_primary_normal);
+
+			&:hover,
+			&:focus {
+				background: var(--palette_primary_faded);
+			}
+
+			.waves-ripple {
+				background: var(--palette_primary_fadedwaves);
+			}
+		}
+
+		&.color-secondary {
+			color: var(--palette_secondary_normal);
+			border-color: var(--palette_secondary_normal);
+
+			&:hover,
+			&:focus {
+				background: var(--palette_secondary_faded);
+			}
+
+			.waves-ripple {
+				background: var(--palette_secondary_fadedwaves);
+			}
+		}
+	}
+	&.variant-outlined {
+		border: 1px solid #212121;
+		min-height: 34px;
+		line-height: 34px;
+		padding: 0 15px;
 	}
 }

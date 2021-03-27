@@ -1,1 +1,1 @@
-module.exports = require("./lib/js/react-components");
+module.exports = require("./src/js/react-components");
