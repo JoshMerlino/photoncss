@@ -1,5 +1,4 @@
-import React from "react";
-import guid from "../../util/guid";
+import React, { CSSProperties } from "react";
 import { deepKeys, deepProp } from "../object";
 
 export interface Theme {
@@ -31,16 +30,19 @@ export interface Theme {
 	}
 }
 
-export function render(theme: Theme, id: string) : void {
-
-	// Get element
-	const element = document.getElementById(id);
+export function render(theme: Theme) : CSSProperties {
 
 	// Get theme keys
 	const keys = deepKeys(theme);
+	const props: Record<string, unknown> = {};
 
 	// Iterate over all keys
-	keys.map((key: string) => element?.style.setProperty(`--${key.replace(/\./g, "_")}`, deepProp(theme, key)));
+	keys.map((key: string) => {
+		const path = `--${key.replace(/\./g, "_")}`;
+		const val = deepProp(theme, key);
+		props[path] = val;
+	});
+	return props as CSSProperties;
 
 }
 
@@ -58,13 +60,10 @@ export default function ThemeProvider({ theme = "default.light", children } : { 
 	// If invalid theme type
 	else throw new Error(`'${typeof theme}' is not a valid theme.`);
 
-	// Generate GUID
-	const GUID = guid();
-
-	// Create theme index after render
-	setImmediate(() => render(finalTheme, GUID));
+	// Render CSS
+	const style = render(finalTheme);
 
 	// Create context of theme
-	return <div id={GUID} className="photon-theme_provider">{children}</div>;
+	return <span style={style}>{children}</span>;
 
 }

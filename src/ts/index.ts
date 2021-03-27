@@ -4,7 +4,7 @@ export { guid };
 import ThemeProvider from "./util/class/ThemeProvider";
 export { ThemeProvider };
 
-import"./mixin/waves.js";
+import "./mixin/waves.js";
 
 export default class Photon {
 
