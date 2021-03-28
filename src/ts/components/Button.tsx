@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
-import Waves from "../mixin/waves.js";
+import Waves from "../util/Waves.js";
 
 /* ****************************************** */
 
