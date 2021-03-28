@@ -7,6 +7,8 @@
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
 
+import $ from "jquery";
+
 ;(function(window, factory) {
     'use strict';
 
