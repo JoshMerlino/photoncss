@@ -7,6 +7,11 @@
  * Released under the MIT license
  * https://github.com/fians/Waves/blob/master/LICENSE
  */
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var jquery_1 = __importDefault(require("jquery"));
 ;
 (function (window, factory) {
     'use strict';
@@ -118,7 +123,7 @@
             var scale = function () {
                 if (ink)
                     return 0.48;
-                var a = $(element);
+                var a = jquery_1.default(element);
                 var h = element.clientHeight;
                 var w = element.clientWidth;
                 var x = relativeX;
