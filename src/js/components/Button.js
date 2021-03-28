@@ -30,9 +30,10 @@ var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
 var waves_js_1 = __importDefault(require("../mixin/waves.js"));
+/* ****************************************** */
 function Button(_a) {
-    var children = _a.children, color = _a.color, variant = _a.variant, waves = _a.waves, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "color", "variant", "waves", "className"]);
-    var classes = classnames_1.default("photon-btn", "variant-" + variant, "color-" + color, waves && "waves-effect", className);
+    var children = _a.children, color = _a.color, display = _a.display, variant = _a.variant, size = _a.size, waves = _a.waves, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "color", "display", "variant", "size", "waves", "className"]);
+    var classes = classnames_1.default("photon-btn", "variant-" + variant, "display-" + display, "color-" + color, "size-" + size, waves && "waves-effect", className);
     if (waves)
         setImmediate(waves_js_1.default.init);
     return react_1.default.createElement("button", __assign({ className: classes }, props), children);
@@ -42,13 +43,17 @@ Button.propTypes = {
     children: prop_types_1.default.any,
     className: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
+    size: prop_types_1.default.oneOf(["normal", "dense", "large"]),
     variant: prop_types_1.default.oneOf(["contained", "flat", "outlined", "raised"]),
+    display: prop_types_1.default.oneOf(["inline", "block"]),
     waves: prop_types_1.default.bool
 };
 Button.defaultProps = {
     children: null,
     color: "none",
     variant: "contained",
+    size: "normal",
+    display: "inline",
     waves: true
 };
 //# sourceMappingURL=Button.js.map
