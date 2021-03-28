@@ -61,14 +61,9 @@
 	}
 	&.variant-raised {
 		.raised-2();
-
-		&:hover {
-			.raised-4();
-		}
-
-		&:active {
-			.raised-8();
-		}
+		.raised-hover-4();
+		.raised-focus-6();
+		.raised-active-8();
 	}
 	&.variant-flat,
 	&.variant-outlined {
