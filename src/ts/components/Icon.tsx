@@ -30,15 +30,17 @@ export function Icon({ children, variant, ink, ...props }: InferProps<typeof Ico
 
 	setImmediate(function() {
 
-		$(`#${id}`).on("mousedown touchstart", function(this: Element, event: Event) {
-			event.stopPropagation();
-			Waves.calm(this);
-			Waves.ripple(this, { wait: 1e10, ink: true });
-		});
-
-		$(`#${id}`).on("mouseup mouseleave", function(this: Element) {
-			Waves.calm(this);
-		});
+		$(`#${id}`)
+			.not(".waves-attached")
+			.addClass("waves-attached")
+			.on("mousedown touchstart", function(this: Element, event: Event) {
+				event.stopPropagation();
+				Waves.calm(this);
+				Waves.ripple(this, { wait: 1e10, ink: true });
+			})
+			.on("mouseup mouseleave", function(this: Element) {
+				Waves.calm(this);
+			});
 
 	});
 

@@ -53,12 +53,15 @@ function Icon(_a) {
     var classes = classnames_1.default("material-icons", "variant-" + variant, ink && "waves-effect waves-ink");
     var id = guid_1.default();
     setImmediate(function () {
-        jquery_1.default("#" + id).on("mousedown touchstart", function (event) {
+        jquery_1.default("#" + id)
+            .not(".waves-attached")
+            .addClass("waves-attached")
+            .on("mousedown touchstart", function (event) {
             event.stopPropagation();
             Waves_js_1.default.calm(this);
             Waves_js_1.default.ripple(this, { wait: 1e10, ink: true });
-        });
-        jquery_1.default("#" + id).on("mouseup mouseleave", function () {
+        })
+            .on("mouseup mouseleave", function () {
             Waves_js_1.default.calm(this);
         });
     });
