@@ -19,12 +19,15 @@
 	padding: 0 16px;
 	border: none;
 	outline: none;
+
+	// Variants
 	&.variant-contained,
 	&.variant-raised {
 		color: #212121;
 		background: #e0e0e0;
-		&:hover,
-		&:focus {
+
+		&:focus,
+		&:hover {
 			background: #d1d1d1;
 		}
 
@@ -32,8 +35,8 @@
 			background: var(--palette_primary_normal);
 			color: var(--palette_primary_text);
 
-			&:hover,
-			&:focus {
+			&:focus,
+			&:hover {
 				background: var(--palette_primary_dark);
 			}
 
@@ -46,8 +49,8 @@
 			background: var(--palette_secondary_normal);
 			color: var(--palette_secondary_text);
 
-			&:hover,
-			&:focus {
+			&:focus,
+			&:hover {
 				background: var(--palette_secondary_dark);
 			}
 
@@ -70,8 +73,9 @@
 	&.variant-flat,
 	&.variant-outlined {
 		background: transparent;
-		&:hover,
-		&:focus {
+
+		&:focus,
+		&:hover {
 			background: #00000008;
 		}
 
@@ -79,8 +83,8 @@
 			color: var(--palette_primary_normal);
 			border-color: var(--palette_primary_normal);
 
-			&:hover,
-			&:focus {
+			&:focus,
+			&:hover {
 				background: var(--palette_primary_faded);
 			}
 
@@ -93,8 +97,8 @@
 			color: var(--palette_secondary_normal);
 			border-color: var(--palette_secondary_normal);
 
-			&:hover,
-			&:focus {
+			&:focus,
+			&:hover {
 				background: var(--palette_secondary_faded);
 			}
 
@@ -108,5 +112,37 @@
 		min-height: 34px;
 		line-height: 34px;
 		padding: 0 15px;
+	}
+
+	// Sizes
+	&.size-dense {
+		padding: 0 8px;
+		font-size: 0.8125rem;
+		min-height: 32px;
+		line-height: 32px;
+
+		&.outlined {
+			min-height: 30px;
+			line-height: 30px;
+			padding: 0 7px;
+		}
+	}
+	&.size-large {
+		padding: 0 24px;
+		font-size: 0.9375rem;
+		min-height: 42px;
+		line-height: 42px;
+
+		&.outlined {
+			min-height: 40px;
+			line-height: 40px;
+			padding: 0 23px;
+		}
+	}
+
+	// Display
+	&.display-block {
+		display: block;
+		width: 100%;
 	}
 }
