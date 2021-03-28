@@ -22,7 +22,8 @@
 			"faded": "#00c85320",
 			"waves": "#ffffff66",
 			"fadedwaves": "#00c85366"
-        }
+        },
+		"divider": "#e0e0e0"
     },
 	"font": {
 		"interactive": "Roboto, sans-serif",
