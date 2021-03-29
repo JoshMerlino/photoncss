@@ -1,0 +1,59 @@
+.photon-snackbar {
+	background-color: var(--palette_notification_background);
+	color: var(--palette_notification_text);
+	border-radius: var(--shape);
+	font-family: var(--palette_notification_text);
+	margin: 8px;
+	min-height: 48px;
+	min-width: 344px;
+	max-width: 640px;
+	overflow: hidden;
+	pointer-events: all;
+	.raised-8();
+	p {
+		padding: 15.5px 24px;
+		margin: 0;
+		color: inherit;
+		display: inline-block;
+		font-size: 14px;
+	}
+	.photon-btn {
+		margin: 6px;
+		margin-left: 48px;
+		padding: 0 12px;
+		float: right;
+	}
+}
+
+#photon-notification-container {
+	position: fixed;
+	padding-bottom: 8px;
+	top: 1rem;
+	right: 1rem;
+	z-index: 1500;
+	pointer-events: none;
+	display: flex;
+	flex-direction: column-reverse;
+	@media @md {
+		top: 4rem;
+		right: 4rem;
+	}
+	@media @sm {
+		top: auto;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		flex-direction: column;
+	}
+	.photon-snackbar-wapper {
+		transition: none var(--animation_speed_fast) var(--animation_curve);
+		transition-property: opacity, transform, margin-top;
+		margin-bottom: -8px;
+		margin-top: 0;
+		&.hidden {
+			opacity: 0;
+			transform: scale(.5);
+			margin-top: -56px;
+		}
+	}
+}

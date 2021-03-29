@@ -27,6 +27,10 @@
 		"sheet": {
 			"background": "#303030",
 			"body": "#e0e0e0"
+		},
+		"notification": {
+			"background": "#333333",
+			"text": "#ffffff"
 		}
     },
 	"font": {
