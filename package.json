@@ -1,6 +1,6 @@
 {
     "name": "photoncss",
-    "version": "12.2.0",
+    "version": "12.3.0",
     "description": "Go from 0 to app in seconds",
     "main": "src/js/index.js",
     "author": "Josh Merlino",
@@ -58,6 +58,7 @@
         "webpack-cli": "^4.5.0"
     },
     "dependencies": {
-        "jquery": "^3.6.0"
+        "jquery": "^3.6.0",
+        "react-dom": "^17.0.2"
     }
 }
