@@ -25,35 +25,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Button = void 0;
+exports.Snackbar = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
-require("../util/Waves.js");
 /* ****************************************** */
-function Button(_a) {
-    var children = _a.children, color = _a.color, display = _a.display, variant = _a.variant, size = _a.size, waves = _a.waves, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "color", "display", "variant", "size", "waves", "className"]);
-    var classes = classnames_1.default("photon-btn", "variant-" + variant, "display-" + display, "color-" + color, "size-" + size, waves && "waves-effect", className);
-    if (waves)
-        setImmediate(Waves.init);
-    return react_1.default.createElement("button", __assign({ className: classes }, props), children);
+function Snackbar(_a) {
+    var children = _a.children, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "className"]);
+    var classes = classnames_1.default("photon-snackbar", className);
+    return react_1.default.createElement("div", __assign({ className: classes }, props), children);
 }
-exports.Button = Button;
-Button.propTypes = {
+exports.Snackbar = Snackbar;
+Snackbar.propTypes = {
     children: prop_types_1.default.any,
     className: prop_types_1.default.string,
-    color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
-    size: prop_types_1.default.oneOf(["normal", "dense", "large"]),
-    variant: prop_types_1.default.oneOf(["contained", "flat", "outlined", "raised"]),
-    display: prop_types_1.default.oneOf(["inline", "block"]),
-    waves: prop_types_1.default.bool
 };
-Button.defaultProps = {
-    children: null,
-    color: "none",
-    variant: "contained",
-    size: "normal",
-    display: "inline",
-    waves: true
+Snackbar.defaultProps = {
+    children: null
 };
-//# sourceMappingURL=Button.js.map
+//# sourceMappingURL=Snackbar.js.map
