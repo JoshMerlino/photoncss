@@ -23,7 +23,11 @@
 			"waves": "#ffffff66",
 			"fadedwaves": "#00c85366"
         },
-		"divider": "#e0e0e0"
+		"divider": "#e0e0e0",
+		"sheet": {
+			"background": "#ffffff",
+			"body": "#212121"
+		}
     },
 	"font": {
 		"interactive": "Roboto, sans-serif",
