@@ -42,7 +42,9 @@
 	"animation": {
 		"curve": "ease-in-out",
 		"speed": {
-			"fast": "125ms"
+			"fast": "125ms",
+			"medium": "200ms",
+			"slow": "300ms"
 		}
 	}
 }
