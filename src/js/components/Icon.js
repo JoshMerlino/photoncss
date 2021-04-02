@@ -29,7 +29,7 @@ exports.Icon = exports.TextIcon = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
-require("../util/Waves.js");
+var Waves_1 = __importDefault(require("../util/Waves"));
 var jquery_1 = __importDefault(require("jquery"));
 var guid_1 = __importDefault(require("../util/guid"));
 /* ****************************************** */
@@ -58,11 +58,11 @@ function Icon(_a) {
             .addClass("waves-attached")
             .on("mousedown touchstart", function (event) {
             event.stopPropagation();
-            Waves.calm(this);
-            Waves.ripple(this, { wait: 1e10, ink: true });
+            Waves_1.default.calm(this);
+            Waves_1.default.ripple(this, { wait: 1e10, ink: true });
         })
             .on("mouseup mouseleave", function () {
-            Waves.calm(this);
+            Waves_1.default.calm(this);
         });
     });
     return react_1.default.createElement("i", __assign({ id: id, className: classes }, props), children);

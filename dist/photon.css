@@ -2220,6 +2220,28 @@
   src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(./font/0eedf90320c431a54c20be1eb9b43945.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--palette_body_headline);
+  font-family: var(--font_headline);
+  font-weight: 400;
+  margin: 8px;
+}
+p {
+  color: var(--palette_body_body);
+  font-family: var(--font_body);
+  font-weight: 400;
+  margin: 8px;
+}
+hr {
+  margin: 8px;
+  border: none;
+  border-bottom: 1px solid var(--palette_divider);
+}
 .raised-0 {
   box-shadow: none;
 }
@@ -2520,28 +2542,6 @@
 .raised-active-24:active {
   box-shadow: 0px 11px 15px -7px rgba(0, 0, 0, 0.2), 0px 24px 38px 3px rgba(0, 0, 0, 0.14), 0px 9px 46px 8px rgba(0, 0, 0, 0.12);
 }
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(--palette_body_headline);
-  font-family: var(--font_headline);
-  font-weight: 400;
-  margin: 8px;
-}
-p {
-  color: var(--palette_body_body);
-  font-family: var(--font_body);
-  font-weight: 400;
-  margin: 8px;
-}
-hr {
-  margin: 8px;
-  border: none;
-  border-bottom: 1px solid var(--palette_divider);
-}
 .waves-effect {
   position: relative;
   cursor: pointer;
@@ -2561,10 +2561,10 @@ hr {
   margin-left: -50px;
   opacity: 0.3;
   background-color: #00000044;
-  -webkit-transition: all 750ms cubic-bezier(0.1, 1, 0.1, 0.75);
-  -moz-transition: all 750ms cubic-bezier(0.1, 1, 0.1, 0.75);
-  -o-transition: all 750ms cubic-bezier(0.1, 1, 0.1, 0.75);
-  transition: all 750ms cubic-bezier(0.1, 1, 0.1, 0.75);
+  -webkit-transition: all 350ms cubic-bezier(0.1, 1, 0.1, 0.75);
+  -moz-transition: all 350ms cubic-bezier(0.1, 1, 0.1, 0.75);
+  -o-transition: all 350ms cubic-bezier(0.1, 1, 0.1, 0.75);
+  transition: all 350ms cubic-bezier(0.1, 1, 0.1, 0.75);
   -webkit-transition-property: -webkit-transform, opacity;
   -moz-transition-property: -moz-transform, opacity;
   -o-transition-property: -o-transform, opacity;
