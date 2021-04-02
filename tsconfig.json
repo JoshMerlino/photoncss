@@ -5,7 +5,7 @@
         "module": "commonjs",
         "target": "es5",
 		"baseUrl": "src/ts",
-        "types": ["node", "react", "dom"],
+        "types": ["node", "react"],
 		"jsx": "react",
 		"outDir": "src/js",
         "sourceMap": true,

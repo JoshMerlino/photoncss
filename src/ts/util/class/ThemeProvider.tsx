@@ -33,6 +33,8 @@ export default function ThemeProvider({ theme = "default.light", global = false,
 	// If invalid theme type
 	else throw new Error(`'${typeof theme}' is not a valid theme.`);
 
+	finalTheme = { ...require("../../../../theme/default.light.json"), ...finalTheme };
+
 	// If it is the root theme
 	if(global) {
 
