@@ -29,13 +29,13 @@ exports.Button = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
-require("../util/Waves.js");
+var Waves_1 = __importDefault(require("../util/Waves"));
 /* ****************************************** */
 function Button(_a) {
     var children = _a.children, color = _a.color, display = _a.display, variant = _a.variant, size = _a.size, waves = _a.waves, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "color", "display", "variant", "size", "waves", "className"]);
     var classes = classnames_1.default("photon-btn", "variant-" + variant, "display-" + display, "color-" + color, "size-" + size, waves && "waves-effect", className);
     if (waves)
-        setImmediate(Waves.init);
+        setImmediate(Waves_1.default.init);
     return react_1.default.createElement("button", __assign({ className: classes }, props), children);
 }
 exports.Button = Button;

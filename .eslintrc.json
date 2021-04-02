@@ -30,8 +30,10 @@
         "require-atomic-updates": ["error"],
         "default-case": ["error"],
         "default-case-last": ["error"],
+        "no-prototype-builtins": ["off"],
         "default-param-last": ["error"],
         "eqeqeq": ["error"],
+        "@typescript-eslint/no-explicit-any": ["off"],
         "object-curly-spacing": ["error", "always"],
         "array-bracket-spacing": ["error", "always"]
     }

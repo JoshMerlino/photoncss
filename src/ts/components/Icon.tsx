@@ -1,7 +1,7 @@
 import React  from "react";
 import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
-import "../util/Waves.js";
+import Waves from "../util/Waves";
 import $ from "jquery";
 import guid from "../util/guid";
 
