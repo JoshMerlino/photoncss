@@ -29,12 +29,13 @@ exports.Drawer = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
+var List_1 = require("./List");
 /* ****************************************** */
 function Drawer(_a) {
     var children = _a.children, from = _a.from, swipe = _a.swipe, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "from", "swipe", "className"]);
     var classes = classnames_1.default("photon-drawer", swipe && "swipe-enabled", "from-" + from, className);
     return (react_1.default.createElement("aside", __assign({ className: classes }, props),
-        children,
+        react_1.default.createElement(List_1.List, null, children),
         swipe && react_1.default.createElement("div", { className: "photon-swipe_target" })));
 }
 exports.Drawer = Drawer;

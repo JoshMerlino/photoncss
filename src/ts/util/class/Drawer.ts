@@ -121,7 +121,7 @@ export class Drawer {
 
 	}
 
-	open(): Drawer {
+	open(): this {
 
 		// Get $nav
 		const $nav = this.target;
@@ -134,7 +134,7 @@ export class Drawer {
 
 	}
 
-	close(): Drawer {
+	close(): this {
 
 		// Get $nav
 		const $nav = this.target;
