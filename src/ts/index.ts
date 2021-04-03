@@ -12,9 +12,11 @@ import "./util/Waves.js";
 
 // Import active components
 import { Drawer } from "./util/class/Drawer";
+import { Menu } from "./util/class/Menu";
 
 // Export Photon
 export default class Photon {
-	static guid = guid;
+	// static guid = guid;
 	static Drawer = (target: PhotonSelector): Drawer => new Drawer(target);
+	static Menu = (target: PhotonSelector): Menu => new Menu(target);
 }
