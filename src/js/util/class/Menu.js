@@ -6,8 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.Menu = void 0;
 var jquery_1 = __importDefault(require("jquery"));
 var guid_1 = __importDefault(require("../guid"));
+var getPointer_1 = __importDefault(require("../getPointer"));
 var Menu = /** @class */ (function () {
     function Menu(target) {
+        var _this = this;
+        this.explicitPosition = false;
         // Define $menu from target
         this.target = jquery_1.default(target);
         var $menu = this.target;
@@ -21,14 +24,11 @@ var Menu = /** @class */ (function () {
         jquery_1.default("<div class=\"modal-close-area transparent\" modal=\"" + id + "\"></div>").appendTo(jquery_1.default("body"));
         var $modal = jquery_1.default(".modal-close-area[modal=\"" + id + "\"]");
         // Close menu on click from menu or modal
-        [$menu, $modal].map(function (e) { return e.on("click", function (event) {
-            event.stopPropagation();
-            $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-            $modal.removeClass("active");
-        }); });
+        [$modal, $menu.children(".photon-list").children(".photon-list-item")].map(function (e) { return e.on("click", function () { return _this.close(); }); });
         return this;
     }
     Menu.prototype.anchor = function (x, y) {
+        this.explicitPosition = true;
         // Get $menu
         var $menu = this.target;
         if (y === undefined && typeof x !== "number") {
@@ -57,6 +57,11 @@ var Menu = /** @class */ (function () {
         // Get $menu and $modal
         var $menu = this.target;
         var $modal = jquery_1.default(".modal-close-area[modal=\"" + $menu.attr("id") + "\"]");
+        if (!this.explicitPosition) {
+            var x = getPointer_1.default().x;
+            var y = getPointer_1.default().y;
+            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+        }
         // Activate both
         [$menu, $modal].map(function (e) { return e.addClass("active"); });
         return this;

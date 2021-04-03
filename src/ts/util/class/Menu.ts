@@ -1,10 +1,12 @@
 import $ from "jquery";
 import guid from "../guid";
+import getPointer from "../getPointer";
 import { PhotonSelector } from "../../index";
 
 export class Menu {
 
 	target: $;
+	private explicitPosition = false;
 
 	constructor(target: $) {
 
@@ -23,11 +25,7 @@ export class Menu {
 		const $modal = $(`.modal-close-area[modal="${id}"]`);
 
 		// Close menu on click from menu or modal
-		[ $menu, $modal ].map(e => e.on("click", function(event: MouseEvent) {
-			event.stopPropagation();
-			$menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br active");
-			$modal.removeClass("active");
-		}));
+		[ $modal, $menu.children(".photon-list").children(".photon-list-item") ].map(e => e.on("click", () => this.close()));
 
 		return this;
 
@@ -35,6 +33,8 @@ export class Menu {
 
 
 	anchor(x: number | PhotonSelector, y: number): this {
+
+		this.explicitPosition = true;
 
 		// Get $menu
 		const $menu = this.target;
@@ -69,6 +69,12 @@ export class Menu {
 		// Get $menu and $modal
 		const $menu = this.target;
 		const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
+
+		if(!this.explicitPosition) {
+			const x = getPointer().x;
+			const y = getPointer().y;
+			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+		}
 
 		// Activate both
 		[ $menu, $modal ].map(e => e.addClass("active"));
