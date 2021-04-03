@@ -6,6 +6,4 @@ export * from "./components/Layout";
 export * from "./components/List";
 export * from "./components/Menu";
 export * from "./components/Snackbar";
-export { ThemeProvider };
-
-import ThemeProvider from "./util/class/ThemeProvider";
+export * from "./components/ThemeProvider";
