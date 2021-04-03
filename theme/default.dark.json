@@ -3,7 +3,10 @@
 		"body": {
 			"background": "#212121",
 			"headline": "#fafafa",
-			"body": "#e0e0e0"
+			"waves": "#ffffff30",
+			"hover": "#ffffff10",
+			"body": "#e0e0e0",
+			"subtitle": "#797979"
 		},
         "primary": {
             "light": "#9be7ff",
