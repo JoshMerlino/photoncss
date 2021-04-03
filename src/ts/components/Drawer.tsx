@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
+import { List } from "./List";
 
 /* ****************************************** */
 
@@ -8,7 +9,9 @@ export function Drawer({ children, from, swipe, className = "", ...props }: Infe
 	const classes = classnames("photon-drawer", swipe && "swipe-enabled", `from-${from}`, className);
 	return (
 		<aside className={classes} {...props}>
-			{ children }
+			<List>
+				{ children }
+			</List>
 			{ swipe && <div className="photon-swipe_target"></div> }
 		</aside>
 	);
