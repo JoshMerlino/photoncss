@@ -121,9 +121,13 @@ var Drawer = /** @class */ (function () {
         setTimeout(function () { return $nav.removeClass("transition"); }, 250);
         return this;
     };
-    Drawer.prototype.isOpen = function () {
-        return this.target.hasClass("active");
-    };
+    Object.defineProperty(Drawer.prototype, "isOpen", {
+        get: function () {
+            return this.target.hasClass("active");
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Drawer;
 }());
 exports.Drawer = Drawer;
