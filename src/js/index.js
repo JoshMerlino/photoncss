@@ -11,12 +11,14 @@ exports.guid = guid_1.default;
 require("./util/Waves.js");
 // Import active components
 var Drawer_1 = require("./util/class/Drawer");
+var Menu_1 = require("./util/class/Menu");
 // Export Photon
 var Photon = /** @class */ (function () {
     function Photon() {
     }
-    Photon.guid = guid_1.default;
+    // static guid = guid;
     Photon.Drawer = function (target) { return new Drawer_1.Drawer(target); };
+    Photon.Menu = function (target) { return new Menu_1.Menu(target); };
     return Photon;
 }());
 exports.default = Photon;
