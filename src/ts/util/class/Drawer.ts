@@ -147,7 +147,7 @@ export class Drawer {
 
 	}
 
-	isOpen(): boolean {
+	get isOpen(): boolean {
 		return this.target.hasClass("active");
 	}
 
