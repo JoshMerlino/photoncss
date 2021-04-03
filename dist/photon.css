@@ -2576,174 +2576,6 @@ hr {
   transform: scale(0) translate(0, 0);
   pointer-events: none;
 }
-.photon-btn {
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  font-family: var(--font_interactive);
-  border-radius: var(--shape);
-  transition-property: background, box-shadow, border-color;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 500;
-  margin: 8px;
-  letter-spacing: 0.02857em;
-  box-sizing: border-box;
-  display: inline-block;
-  min-width: 64px;
-  user-select: none;
-  cursor: pointer;
-  font-size: 0.875rem;
-  min-height: 36px;
-  line-height: 36px;
-  padding: 0 16px;
-  border: none;
-  outline: none;
-}
-.photon-btn.variant-contained,
-.photon-btn.variant-raised {
-  color: #212121;
-  background: #e0e0e0;
-}
-.photon-btn.variant-contained:focus,
-.photon-btn.variant-raised:focus,
-.photon-btn.variant-contained:hover,
-.photon-btn.variant-raised:hover {
-  background: #d1d1d1;
-}
-.photon-btn.variant-contained.color-primary,
-.photon-btn.variant-raised.color-primary {
-  background: var(--palette_primary_normal);
-  color: var(--palette_primary_text);
-}
-.photon-btn.variant-contained.color-primary:focus,
-.photon-btn.variant-raised.color-primary:focus,
-.photon-btn.variant-contained.color-primary:hover,
-.photon-btn.variant-raised.color-primary:hover {
-  background: var(--palette_primary_dark);
-}
-.photon-btn.variant-contained.color-primary .waves-ripple,
-.photon-btn.variant-raised.color-primary .waves-ripple {
-  background: var(--palette_primary_waves);
-}
-.photon-btn.variant-contained.color-secondary,
-.photon-btn.variant-raised.color-secondary {
-  background: var(--palette_secondary_normal);
-  color: var(--palette_secondary_text);
-}
-.photon-btn.variant-contained.color-secondary:focus,
-.photon-btn.variant-raised.color-secondary:focus,
-.photon-btn.variant-contained.color-secondary:hover,
-.photon-btn.variant-raised.color-secondary:hover {
-  background: var(--palette_secondary_dark);
-}
-.photon-btn.variant-contained.color-secondary .waves-ripple,
-.photon-btn.variant-raised.color-secondary .waves-ripple {
-  background: var(--palette_secondary_waves);
-}
-.photon-btn.variant-raised {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:hover {
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:focus {
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:active {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-flat,
-.photon-btn.variant-outlined {
-  background: transparent;
-}
-.photon-btn.variant-flat:focus,
-.photon-btn.variant-outlined:focus,
-.photon-btn.variant-flat:hover,
-.photon-btn.variant-outlined:hover {
-  background: #00000008;
-}
-.photon-btn.variant-flat.color-primary,
-.photon-btn.variant-outlined.color-primary {
-  color: var(--palette_primary_normal);
-  border-color: var(--palette_primary_normal);
-}
-.photon-btn.variant-flat.color-primary:focus,
-.photon-btn.variant-outlined.color-primary:focus,
-.photon-btn.variant-flat.color-primary:hover,
-.photon-btn.variant-outlined.color-primary:hover {
-  background: var(--palette_primary_faded);
-}
-.photon-btn.variant-flat.color-primary .waves-ripple,
-.photon-btn.variant-outlined.color-primary .waves-ripple {
-  background: var(--palette_primary_fadedwaves);
-}
-.photon-btn.variant-flat.color-secondary,
-.photon-btn.variant-outlined.color-secondary {
-  color: var(--palette_secondary_normal);
-  border-color: var(--palette_secondary_normal);
-}
-.photon-btn.variant-flat.color-secondary:focus,
-.photon-btn.variant-outlined.color-secondary:focus,
-.photon-btn.variant-flat.color-secondary:hover,
-.photon-btn.variant-outlined.color-secondary:hover {
-  background: var(--palette_secondary_faded);
-}
-.photon-btn.variant-flat.color-secondary .waves-ripple,
-.photon-btn.variant-outlined.color-secondary .waves-ripple {
-  background: var(--palette_secondary_fadedwaves);
-}
-.photon-btn.variant-outlined {
-  border: 1px solid #212121;
-  min-height: 34px;
-  line-height: 34px;
-  padding: 0 15px;
-}
-.photon-btn.size-dense {
-  padding: 0 8px;
-  font-size: 0.8125rem;
-  min-height: 32px;
-  line-height: 32px;
-}
-.photon-btn.size-dense.outlined {
-  min-height: 30px;
-  line-height: 30px;
-  padding: 0 7px;
-}
-.photon-btn.size-dense i.text-icon {
-  font-size: 20px;
-  transform: translateX(-2px) translateY(-1px);
-}
-.photon-btn.size-dense i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(2px) translateY(-1px);
-}
-.photon-btn.size-large {
-  padding: 0 24px;
-  font-size: 0.9375rem;
-  min-height: 42px;
-  line-height: 42px;
-}
-.photon-btn.size-large.outlined {
-  min-height: 40px;
-  line-height: 40px;
-  padding: 0 23px;
-}
-.photon-btn.size-large i.text-icon {
-  font-size: 28px;
-  transform: translateX(-6px) translateY(-1px);
-}
-.photon-btn.size-large i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(6px) translateY(-1px);
-}
-.photon-btn.display-block {
-  display: block;
-  width: calc(100% - 16px);
-}
-.photon-btn i.text-icon {
-  user-select: none;
-  transform: translateX(-3px) translateY(-1px);
-}
-.photon-btn i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(3px) translateY(-1px);
-}
 .photon-card {
   border-radius: var(--shape);
   transition: none var(--animation_speed_fast) var(--animation_curve);
@@ -3940,6 +3772,174 @@ hr + ul.photon-list li.photon-subheader {
   opacity: 0;
   transform: scale(0.5);
   margin-top: -56px;
+}
+.photon-btn {
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  font-family: var(--font_interactive);
+  border-radius: var(--shape);
+  transition-property: background, box-shadow, border-color;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  margin: 8px;
+  letter-spacing: 0.02857em;
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 64px;
+  user-select: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  min-height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  border: none;
+  outline: none;
+}
+.photon-btn.variant-contained,
+.photon-btn.variant-raised {
+  color: #212121;
+  background: #e0e0e0;
+}
+.photon-btn.variant-contained:focus,
+.photon-btn.variant-raised:focus,
+.photon-btn.variant-contained:hover,
+.photon-btn.variant-raised:hover {
+  background: #d1d1d1;
+}
+.photon-btn.variant-contained.color-primary,
+.photon-btn.variant-raised.color-primary {
+  background: var(--palette_primary_normal);
+  color: var(--palette_primary_text);
+}
+.photon-btn.variant-contained.color-primary:focus,
+.photon-btn.variant-raised.color-primary:focus,
+.photon-btn.variant-contained.color-primary:hover,
+.photon-btn.variant-raised.color-primary:hover {
+  background: var(--palette_primary_dark);
+}
+.photon-btn.variant-contained.color-primary .waves-ripple,
+.photon-btn.variant-raised.color-primary .waves-ripple {
+  background: var(--palette_primary_waves);
+}
+.photon-btn.variant-contained.color-secondary,
+.photon-btn.variant-raised.color-secondary {
+  background: var(--palette_secondary_normal);
+  color: var(--palette_secondary_text);
+}
+.photon-btn.variant-contained.color-secondary:focus,
+.photon-btn.variant-raised.color-secondary:focus,
+.photon-btn.variant-contained.color-secondary:hover,
+.photon-btn.variant-raised.color-secondary:hover {
+  background: var(--palette_secondary_dark);
+}
+.photon-btn.variant-contained.color-secondary .waves-ripple,
+.photon-btn.variant-raised.color-secondary .waves-ripple {
+  background: var(--palette_secondary_waves);
+}
+.photon-btn.variant-raised {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:focus {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-flat,
+.photon-btn.variant-outlined {
+  background: transparent;
+}
+.photon-btn.variant-flat:focus,
+.photon-btn.variant-outlined:focus,
+.photon-btn.variant-flat:hover,
+.photon-btn.variant-outlined:hover {
+  background: #00000008;
+}
+.photon-btn.variant-flat.color-primary,
+.photon-btn.variant-outlined.color-primary {
+  color: var(--palette_primary_normal);
+  border-color: var(--palette_primary_normal);
+}
+.photon-btn.variant-flat.color-primary:focus,
+.photon-btn.variant-outlined.color-primary:focus,
+.photon-btn.variant-flat.color-primary:hover,
+.photon-btn.variant-outlined.color-primary:hover {
+  background: var(--palette_primary_faded);
+}
+.photon-btn.variant-flat.color-primary .waves-ripple,
+.photon-btn.variant-outlined.color-primary .waves-ripple {
+  background: var(--palette_primary_fadedwaves);
+}
+.photon-btn.variant-flat.color-secondary,
+.photon-btn.variant-outlined.color-secondary {
+  color: var(--palette_secondary_normal);
+  border-color: var(--palette_secondary_normal);
+}
+.photon-btn.variant-flat.color-secondary:focus,
+.photon-btn.variant-outlined.color-secondary:focus,
+.photon-btn.variant-flat.color-secondary:hover,
+.photon-btn.variant-outlined.color-secondary:hover {
+  background: var(--palette_secondary_faded);
+}
+.photon-btn.variant-flat.color-secondary .waves-ripple,
+.photon-btn.variant-outlined.color-secondary .waves-ripple {
+  background: var(--palette_secondary_fadedwaves);
+}
+.photon-btn.variant-outlined {
+  border: 1px solid #212121;
+  min-height: 34px;
+  line-height: 34px;
+  padding: 0 15px;
+}
+.photon-btn.size-dense {
+  padding: 0 8px;
+  font-size: 0.8125rem;
+  min-height: 32px;
+  line-height: 32px;
+}
+.photon-btn.size-dense.outlined {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 0 7px;
+}
+.photon-btn.size-dense i.text-icon {
+  font-size: 20px;
+  transform: translateX(-2px) translateY(-1px);
+}
+.photon-btn.size-dense i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(2px) translateY(-1px);
+}
+.photon-btn.size-large {
+  padding: 0 24px;
+  font-size: 0.9375rem;
+  min-height: 42px;
+  line-height: 42px;
+}
+.photon-btn.size-large.outlined {
+  min-height: 40px;
+  line-height: 40px;
+  padding: 0 23px;
+}
+.photon-btn.size-large i.text-icon {
+  font-size: 28px;
+  transform: translateX(-6px) translateY(-1px);
+}
+.photon-btn.size-large i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(6px) translateY(-1px);
+}
+.photon-btn.display-block {
+  display: block;
+  width: calc(100% - 16px);
+}
+.photon-btn i.text-icon {
+  user-select: none;
+  transform: translateX(-3px) translateY(-1px);
+}
+.photon-btn i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(3px) translateY(-1px);
 }
 body {
   background-color: var(--palette_body_background);
