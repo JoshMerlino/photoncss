@@ -1,0 +1,40 @@
+.photon-menu {
+	.raised-8();
+	border-radius: 4px;
+	display: inline-block;
+	z-index: 1250;
+	position: absolute;
+	user-select: none;
+	background: var(--palette_sheet_background);
+	transition: none var(--animation_speed_fast) var(--animation_curve);
+	transition-property: transform, opacity;
+	opacity: 0;
+	pointer-events: none;
+	transform: scale(.9);
+
+	.photon-list {
+		border: none;
+	}
+
+	&.active {
+		transform: scale(1);
+		pointer-events: all;
+		opacity: 1;
+	}
+
+	&.anchor-tl {
+		transform-origin: top left;
+	}
+
+	&.anchor-tr {
+		transform-origin: top right;
+	}
+
+	&.anchor-bl {
+		transform-origin: bottom left;
+	}
+
+	&.anchor-br {
+		transform-origin: bottom right;
+	}
+}
