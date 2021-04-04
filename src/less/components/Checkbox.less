@@ -2,6 +2,7 @@
 	margin: 8px 0;
 	height: 18px;
 	display: inline-block;
+	position: relative;
 
 	label {
 		color: var(--palette_body_body);
@@ -9,6 +10,8 @@
 		display: inline-block;
 		vertical-align: top;
 		line-height: 18px;
+		margin: 0;
+		margin-left: 8px;
 	}
 
 	input[type="checkbox"] {
@@ -18,8 +21,9 @@
 		border: 2px solid var(--palette_body_subtitle);
 		border-radius: 2px;
 		width: 18px;
+		margin: 0;
+		margin-left: 8px;
 		height: 18px;
-		margin: 0 8px;
 		display: inline-block;
 		position: relative;
 
@@ -85,6 +89,21 @@
 		&:checked {
 			border-color: var(--palette_secondary_normal)
 		}
+	}
+
+	.ripple {
+		z-index: -1;
+		pointer-events: none;
+		position: absolute;
+		width: 48px;
+		height: 48px;
+		top: -15px;
+		left: -7px;
+	}
+
+	&.labelposition-before .ripple {
+		right: -15px;
+		left: auto;
 	}
 
 }

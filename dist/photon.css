@@ -2847,6 +2847,7 @@ hr {
   margin: 8px 0;
   height: 18px;
   display: inline-block;
+  position: relative;
 }
 .photon-checkbox label {
   color: var(--palette_body_body);
@@ -2854,6 +2855,8 @@ hr {
   display: inline-block;
   vertical-align: top;
   line-height: 18px;
+  margin: 0;
+  margin-left: 8px;
 }
 .photon-checkbox input[type="checkbox"] {
   appearance: none;
@@ -2862,8 +2865,9 @@ hr {
   border: 2px solid var(--palette_body_subtitle);
   border-radius: 2px;
   width: 18px;
+  margin: 0;
+  margin-left: 8px;
   height: 18px;
-  margin: 0 8px;
   display: inline-block;
   position: relative;
 }
@@ -2914,6 +2918,19 @@ hr {
 }
 .photon-checkbox.color-secondary input[type="checkbox"]:checked {
   border-color: var(--palette_secondary_normal);
+}
+.photon-checkbox .ripple {
+  z-index: -1;
+  pointer-events: none;
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  top: -15px;
+  left: -7px;
+}
+.photon-checkbox.labelposition-before .ripple {
+  right: -15px;
+  left: auto;
 }
 .photon-drawer {
   z-index: 1200;

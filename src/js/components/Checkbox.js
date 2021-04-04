@@ -32,12 +32,21 @@ var classnames_1 = __importDefault(require("classnames"));
 var guid_1 = __importDefault(require("../util/guid"));
 /* ****************************************** */
 function Checkbox(_a) {
-    var children = _a.children, labelPosition = _a.labelPosition, color = _a.color, explicitId = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "color", "id", "className"]);
-    var classes = classnames_1.default("photon-checkbox", "color-" + color, className);
-    var id = explicitId || guid_1.default();
+    var children = _a.children, labelPosition = _a.labelPosition, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "color", "waves", "id", "className"]);
+    var classes = classnames_1.default("photon-checkbox", "color-" + color, "labelposition-" + labelPosition, className);
+    id = id || guid_1.default();
+    /*
+
+    // Define elements
+    const wrapper = $(`#${id}`).parent();
+    const ripple = wrapper.children(".ripple")[0];
+    wrapper.on("mousedown", () => Waves.ripple(ripple, { duration: 1e6, ink: true }));
+
+    */
     return (react_1.default.createElement("div", { className: classes },
         labelPosition === "before" && children && react_1.default.createElement("label", { htmlFor: id }, children),
         react_1.default.createElement("input", __assign({ tabIndex: 0, type: "checkbox", id: id }, props)),
+        waves && react_1.default.createElement("div", { className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
         labelPosition === "after" && children && react_1.default.createElement("label", { htmlFor: id }, children)));
 }
 exports.Checkbox = Checkbox;
@@ -47,10 +56,12 @@ Checkbox.propTypes = {
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
     labelPosition: prop_types_1.default.oneOf(["before", "after"]),
+    waves: prop_types_1.default.bool
 };
 Checkbox.defaultProps = {
     children: null,
     color: "none",
-    labelPosition: "after"
+    labelPosition: "after",
+    waves: true
 };
 //# sourceMappingURL=Checkbox.js.map
