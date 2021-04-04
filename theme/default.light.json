@@ -27,6 +27,7 @@
 			"fadedwaves": "#00c85366"
         },
 		"divider": "#e0e0e0",
+		"error": "#b71c1c",
 		"sheet": {
 			"background": "#ffffff",
 			"body": "#212121"
