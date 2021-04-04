@@ -3,7 +3,7 @@ import $ from "jquery";
 interface Offset { top: number, left: number }
 interface Position { x: number; y: number; }
 interface ClickEvent { type: string, button: number, pageX: number }
-interface WavesOptions { duration: number; delay: number; wait: number; ink: boolean; position: null | Position }
+interface WavesOptions { duration?: number; delay?: number; wait?: number; ink?: boolean; position?: null | Position }
 type WavesEvent = ClickEvent & MouseEvent & TouchEvent;
 
 export function arbitraryScale(element: Element, relativeX: number, relativeY: number): number {
