@@ -1,5 +1,6 @@
 export * from "./components/Button";
 export * from "./components/Card";
+export * from "./components/Checkbox";
 export * from "./components/Drawer";
 export * from "./components/Icon";
 export * from "./components/Layout";
