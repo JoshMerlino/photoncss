@@ -393,6 +393,41 @@
   src: local('Product Sans Black'), local('ProductSans-Black'), url(./font/e304e944737df25597defd709df050b3.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+/* fallback */
+@font-face {
+  font-family: 'Material Icons';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/6972dfeedbc2acfa84c579812193caa8.woff2) format('woff2');
+}
+/* fallback */
+@font-face {
+  font-family: 'Material Icons Outlined';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/8c903942493f923d029f61994d8e69ce.woff2) format('woff2');
+}
+/* fallback */
+@font-face {
+  font-family: 'Material Icons Round';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/41009f296ea8067992cd9e3606868b38.woff2) format('woff2');
+}
+/* fallback */
+@font-face {
+  font-family: 'Material Icons Sharp';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/282a9941db95700f47ce4b4080184f49.woff2) format('woff2');
+}
+/* fallback */
+@font-face {
+  font-family: 'Material Icons Two Tone';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./font/2abdc2a56de19ae10564da3e66bb3a13.woff2) format('woff2');
+}
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto';
@@ -1064,41 +1099,6 @@
   font-weight: 900;
   src: local('Roboto Black'), local('Roboto-Black'), url(./font/03074b16509774c0aa6d12427c97bfd7.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
-}
-/* fallback */
-@font-face {
-  font-family: 'Material Icons';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./font/6972dfeedbc2acfa84c579812193caa8.woff2) format('woff2');
-}
-/* fallback */
-@font-face {
-  font-family: 'Material Icons Outlined';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./font/8c903942493f923d029f61994d8e69ce.woff2) format('woff2');
-}
-/* fallback */
-@font-face {
-  font-family: 'Material Icons Round';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./font/41009f296ea8067992cd9e3606868b38.woff2) format('woff2');
-}
-/* fallback */
-@font-face {
-  font-family: 'Material Icons Sharp';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./font/282a9941db95700f47ce4b4080184f49.woff2) format('woff2');
-}
-/* fallback */
-@font-face {
-  font-family: 'Material Icons Two Tone';
-  font-style: normal;
-  font-weight: 400;
-  src: url(./font/2abdc2a56de19ae10564da3e66bb3a13.woff2) format('woff2');
 }
 /* cyrillic-ext */
 @font-face {
@@ -3918,6 +3918,40 @@ ul.photon-list li.photon-subheader:first-child,
 hr + ul.photon-list li.photon-subheader {
   margin-top: -8px;
 }
+.photon-menu {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: inline-block;
+  z-index: 1250;
+  position: absolute;
+  user-select: none;
+  background: var(--palette_sheet_background);
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, opacity;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.photon-menu .photon-list {
+  border: none;
+}
+.photon-menu.active {
+  transform: scale(1);
+  pointer-events: all;
+  opacity: 1;
+}
+.photon-menu.anchor-tl {
+  transform-origin: top left;
+}
+.photon-menu.anchor-tr {
+  transform-origin: top right;
+}
+.photon-menu.anchor-bl {
+  transform-origin: bottom left;
+}
+.photon-menu.anchor-br {
+  transform-origin: bottom right;
+}
 .photon-snackbar {
   background-color: var(--palette_notification_background);
   color: var(--palette_notification_text);
@@ -3979,40 +4013,6 @@ hr + ul.photon-list li.photon-subheader {
   opacity: 0;
   transform: scale(0.5);
   margin-top: -56px;
-}
-.photon-menu {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  display: inline-block;
-  z-index: 1250;
-  position: absolute;
-  user-select: none;
-  background: var(--palette_sheet_background);
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: transform, opacity;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.9);
-}
-.photon-menu .photon-list {
-  border: none;
-}
-.photon-menu.active {
-  transform: scale(1);
-  pointer-events: all;
-  opacity: 1;
-}
-.photon-menu.anchor-tl {
-  transform-origin: top left;
-}
-.photon-menu.anchor-tr {
-  transform-origin: top right;
-}
-.photon-menu.anchor-bl {
-  transform-origin: bottom left;
-}
-.photon-menu.anchor-br {
-  transform-origin: bottom right;
 }
 body {
   background-color: var(--palette_body_background);
