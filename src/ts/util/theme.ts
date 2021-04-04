@@ -30,6 +30,7 @@ export interface Theme {
 			fadedwaves: string;
         },
 		divider: string;
+		error: string;
 		sheet: {
 			background: string;
 			body: string;

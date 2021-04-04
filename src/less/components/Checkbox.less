@@ -1,0 +1,87 @@
+.photon-checkbox {
+
+	label {
+		color: var(--palette_body_body);
+		font-family: var(--font_body);
+		display: inline-block;
+		vertical-align: top;
+		line-height: 18px;
+	}
+
+	input[type="checkbox"] {
+		appearance: none;
+		transition: none var(--animation_speed_fast) var(--animation_curve);
+		transition-property: border-color, border-width, transform;
+		border: 2px solid var(--palette_body_subtitle);
+		border-radius: 2px;
+		width: 18px;
+		height: 18px;
+		margin: 0 8px;
+		display: inline-block;
+		position: relative;
+
+		&::after {
+			color: var(--palette_body_background);
+			transition:
+			  top var(--animation_speed_fast) var(--animation_curve) 0ms,
+			  left var(--animation_speed_fast) var(--animation_curve) 0ms,
+			  transform var(--animation_speed_fast) var(--animation_curve) var(--animation_speed_fast);
+			position: absolute;
+			z-index: 1;
+			content: "check";
+			font-family: "Material Icons";
+			transform: scale(0);
+			transform-origin: center 11px;
+			font-size: 16px;
+			overflow: hidden;
+			vertical-align: middle;
+			top: -2px;
+			left: -2px;
+			line-height: 18px;
+			width: 18px;
+			height: 18px;
+			text-align: center;
+		}
+
+		&:checked {
+			border-color: var(--palette_body_body);
+			border-width: 9px;
+			&::after {
+				top: -9px;
+				left: -9px;
+				transform: scale(1);
+			}
+		}
+
+		&:active {
+			transform: scale(.9);
+		}
+
+		&:disabled {
+			opacity: 0.67;
+			border-color: var(--palette_body_subtitle);
+			&::after {
+				opacity: 0.67;
+			}
+		}
+
+		&:required ~ label::after {
+			content: "*";
+			color: var(--palette_error);
+		}
+
+	}
+
+	&.color-primary input[type="checkbox"] {
+		&:checked {
+			border-color: var(--palette_primary_normal)
+		}
+	}
+
+	&.color-secondary input[type="checkbox"] {
+		&:checked {
+			border-color: var(--palette_secondary_normal)
+		}
+	}
+
+}
