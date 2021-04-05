@@ -8,4 +8,5 @@ export * from "./components/List";
 export * from "./components/Menu";
 export * from "./components/Radio";
 export * from "./components/Snackbar";
+export * from "./components/Switch";
 export * from "./components/ThemeProvider";

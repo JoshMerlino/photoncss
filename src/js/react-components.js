@@ -20,5 +20,6 @@ __exportStar(require("./components/List"), exports);
 __exportStar(require("./components/Menu"), exports);
 __exportStar(require("./components/Radio"), exports);
 __exportStar(require("./components/Snackbar"), exports);
+__exportStar(require("./components/Switch"), exports);
 __exportStar(require("./components/ThemeProvider"), exports);
 //# sourceMappingURL=react-components.js.map
