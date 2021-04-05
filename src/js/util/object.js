@@ -14,7 +14,6 @@ var deepKeys = function (t, path) {
     }) : [path.join(".")];
 };
 exports.deepKeys = deepKeys;
-Object.defineProperty(Object, "deepKeys", { value: exports.deepKeys, writable: false });
 var deepProp = function (object, propString) {
     var value = object;
     var props = propString.split(".");
@@ -27,4 +26,5 @@ var deepProp = function (object, propString) {
 };
 exports.deepProp = deepProp;
 Object.defineProperty(Object, "deepProp", { value: exports.deepProp, writable: false });
+Object.defineProperty(Object, "deepKeys", { value: exports.deepKeys, writable: false });
 //# sourceMappingURL=object.js.map

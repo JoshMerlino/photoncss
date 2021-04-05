@@ -3,7 +3,7 @@ import $ from "jquery";
 let x = 0;
 let y = 0;
 
-$(document).on("mousemove", (event: MouseEvent) => {
+$("body").on("mousemove", function(event: JQuery.MouseMoveEvent) {
 	x = event.pageX;
 	y = event.pageY;
 });
