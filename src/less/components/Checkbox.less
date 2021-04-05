@@ -50,6 +50,11 @@
 			text-align: center;
 		}
 
+		&:indeterminate::after {
+			content: "remove";
+			transform-origin: center;
+		}
+
 		&:checked {
 			border-color: var(--palette_body_body);
 			border-width: 9px;
@@ -76,6 +81,11 @@
 			color: var(--palette_error);
 		}
 
+	}
+
+	&.indeterminate input[type="checkbox"]::after {
+		content: "remove";
+		transform-origin: center;
 	}
 
 	&.color-primary input[type="checkbox"]:not(:disabled):checked {
