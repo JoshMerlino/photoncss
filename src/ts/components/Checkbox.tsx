@@ -12,20 +12,30 @@ export function Checkbox({ children, labelPosition, color, waves, id, className 
 
 	id = id || guid();
 
-	/*
+	setImmediate(function() {
 
-	// Define elements
-	const wrapper = $(`#${id}`).parent();
-	const ripple = wrapper.children(".ripple")[0];
-	wrapper.on("mousedown", () => Waves.ripple(ripple, { duration: 1e6, ink: true }));
+		// Define elements
+		const input = $(`#${id}`);
+		const wrapper = input.parent();
+		const ripple = $(`#${id}-ripple`)[0];
 
-	*/
+		wrapper.off("mousedown").on("mousedown", () => {
+			Waves.ripple(ripple, { wait: 1e6, ink: true });
+			wrapper.addClass("active");
+		});
+
+		wrapper.off("mouseup").on("mouseup", () => {
+			Waves.calm(ripple);
+			wrapper.removeClass("active");
+		});
+
+	});
 
 	return (
 		<div className={classes}>
 			{ labelPosition === "before" && children && <label htmlFor={id}>{ children }</label> }
 			<input tabIndex={0} type="checkbox" id={id} {...props}/>
-			{ waves && <div className={classnames("ripple", waves && "waves-effect waves-ink")}></div> }
+			<div id={`${id}-ripple`} className={classnames("ripple", waves && "waves-effect waves-ink")}></div>
 			{ labelPosition === "after" && children && <label htmlFor={id}>{ children }</label> }
 		</div>
 	);

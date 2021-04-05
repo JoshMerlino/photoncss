@@ -60,10 +60,6 @@
 			}
 		}
 
-		&:active {
-			transform: scale(.9);
-		}
-
 		&:disabled {
 			opacity: 0.67;
 			border-color: var(--palette_body_subtitle);
@@ -81,19 +77,29 @@
 
 	&.color-primary input[type="checkbox"] {
 		&:checked {
-			border-color: var(--palette_primary_normal)
+			border-color: var(--palette_primary_normal);
+			& ~ .ripple .waves-ripple {
+				background-color: var(--palette_primary_fadedwaves);
+			}
 		}
 	}
 
 	&.color-secondary input[type="checkbox"] {
 		&:checked {
-			border-color: var(--palette_secondary_normal)
+			border-color: var(--palette_secondary_normal);
+			& ~ .ripple .waves-ripple {
+				background-color: var(--palette_secondary_fadedwaves);
+			}
 		}
 	}
 
+	&.active input {
+		transform: scale(0.9);
+	}
+
 	.ripple {
-		z-index: -1;
 		pointer-events: none;
+		z-index: 2;
 		position: absolute;
 		width: 48px;
 		height: 48px;
