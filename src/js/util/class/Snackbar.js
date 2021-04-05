@@ -53,6 +53,13 @@ var Snackbar = /** @class */ (function () {
         }, 50);
         return this;
     };
+    Object.defineProperty(Snackbar.prototype, "isOpen", {
+        get: function () {
+            return !this.snackbar.hasClass("hidden");
+        },
+        enumerable: false,
+        configurable: true
+    });
     return Snackbar;
 }());
 exports.Snackbar = Snackbar;
