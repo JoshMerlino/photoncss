@@ -58,4 +58,8 @@ export class Snackbar {
 		return this;
 	}
 
+	get isOpen(): boolean {
+		return !this.snackbar.hasClass("hidden");
+	}
+
 }
