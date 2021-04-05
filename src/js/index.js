@@ -12,13 +12,14 @@ require("./util/Waves.js");
 // Import active components
 var Drawer_1 = require("./util/class/Drawer");
 var Menu_1 = require("./util/class/Menu");
+var Snackbar_1 = require("./util/class/Snackbar");
 // Export Photon
 var Photon = /** @class */ (function () {
     function Photon() {
     }
-    // static guid = guid;
     Photon.Drawer = function (target) { return new Drawer_1.Drawer(target); };
     Photon.Menu = function (target) { return new Menu_1.Menu(target); };
+    Photon.Snackbar = function (target, options) { return new Snackbar_1.Snackbar(target, options); };
     return Photon;
 }());
 exports.default = Photon;
