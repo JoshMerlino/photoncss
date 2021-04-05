@@ -25,7 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Checkbox = void 0;
+exports.Radio = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
@@ -33,9 +33,9 @@ var guid_1 = __importDefault(require("../util/guid"));
 var jquery_1 = __importDefault(require("jquery"));
 var Waves_1 = __importDefault(require("../util/Waves"));
 /* ****************************************** */
-function Checkbox(_a) {
-    var children = _a.children, labelPosition = _a.labelPosition, variant = _a.variant, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "variant", "color", "waves", "id", "className"]);
-    var classes = classnames_1.default("photon-checkbox", "variant-" + variant, "color-" + color, "labelposition-" + labelPosition, className);
+function Radio(_a) {
+    var children = _a.children, labelPosition = _a.labelPosition, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "color", "waves", "id", "className"]);
+    var classes = classnames_1.default("photon-radio", "color-" + color, "labelposition-" + labelPosition, className);
     id = id || guid_1.default();
     setImmediate(function () {
         // Define elements
@@ -53,25 +53,23 @@ function Checkbox(_a) {
     });
     return (react_1.default.createElement("div", { className: classes },
         labelPosition === "before" && children && react_1.default.createElement("label", { htmlFor: id }, children),
-        react_1.default.createElement("input", __assign({ tabIndex: 0, type: "checkbox", id: id }, props)),
+        react_1.default.createElement("input", __assign({ tabIndex: 0, type: "radio", id: id }, props)),
         react_1.default.createElement("div", { id: id + "-ripple", className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
         labelPosition === "after" && children && react_1.default.createElement("label", { htmlFor: id }, children)));
 }
-exports.Checkbox = Checkbox;
-Checkbox.propTypes = {
+exports.Radio = Radio;
+Radio.propTypes = {
     children: prop_types_1.default.any,
     className: prop_types_1.default.string,
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
     labelPosition: prop_types_1.default.oneOf(["before", "after"]),
-    variant: prop_types_1.default.oneOf(["normal", "round"]),
     waves: prop_types_1.default.bool
 };
-Checkbox.defaultProps = {
+Radio.defaultProps = {
     children: null,
     color: "none",
-    variant: "normal",
     labelPosition: "after",
     waves: true
 };
-//# sourceMappingURL=Checkbox.js.map
+//# sourceMappingURL=Radio.js.map
