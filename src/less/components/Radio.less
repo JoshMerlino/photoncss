@@ -1,4 +1,4 @@
-.photon-checkbox {
+.photon-radio {
 	margin: 8px 0;
 	height: 18px;
 	display: inline-block;
@@ -14,12 +14,12 @@
 		margin-left: 8px;
 	}
 
-	input[type="checkbox"] {
+	input[type="radio"] {
 		appearance: none;
 		transition: none var(--animation_speed_fast) var(--animation_curve);
 		transition-property: border-color, border-width, transform;
 		border: 2px solid var(--palette_body_subtitle);
-		border-radius: 2px;
+		border-radius: 18px;
 		width: 18px;
 		margin: 0;
 		margin-left: 8px;
@@ -28,25 +28,24 @@
 		position: relative;
 
 		&::after {
-			color: var(--palette_body_background);
+			border: 2px solid var(--palette_body_background);
 			transition:
 			  top var(--animation_speed_fast) var(--animation_curve) 0ms,
 			  left var(--animation_speed_fast) var(--animation_curve) 0ms,
 			  transform var(--animation_speed_fast) var(--animation_curve) var(--animation_speed_fast);
 			position: absolute;
 			z-index: 1;
-			content: "check";
-			font-family: "Material Icons";
+			content: "";
+			border-radius: 50%;
 			transform: scale(0);
-			transform-origin: center 11px;
 			font-size: 16px;
 			overflow: hidden;
 			vertical-align: middle;
-			top: -2px;
-			left: -2px;
+			top: 0;
+			left: 0;
 			line-height: 18px;
-			width: 18px;
-			height: 18px;
+			width: 10px;
+			height: 10px;
 			text-align: center;
 		}
 
@@ -54,8 +53,8 @@
 			border-color: var(--palette_body_body);
 			border-width: 9px;
 			&::after {
-				top: -9px;
-				left: -9px;
+				top: -7px;
+				left: -7px;
 				transform: scale(1);
 			}
 		}
@@ -78,22 +77,18 @@
 
 	}
 
-	&.color-primary input[type="checkbox"]:not(:disabled):checked {
+	&.color-primary input[type="radio"]:not(:disabled):checked {
 		border-color: var(--palette_primary_normal);
 		& ~ .ripple .waves-ripple {
 			background-color: var(--palette_primary_fadedwaves);
 		}
 	}
 
-	&.color-secondary input[type="checkbox"]:not(:disabled):checked {
+	&.color-secondary input[type="radio"]:not(:disabled):checked {
 		border-color: var(--palette_secondary_normal);
 		& ~ .ripple .waves-ripple {
 			background-color: var(--palette_secondary_fadedwaves);
 		}
-	}
-
-	&.variant-round input[type="checkbox"] {
-		border-radius: 18px;
 	}
 
 	&.active input:not(:disabled) {
