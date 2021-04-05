@@ -35,7 +35,7 @@ var Waves_1 = __importDefault(require("../util/Waves"));
 /* ****************************************** */
 function Checkbox(_a) {
     var children = _a.children, labelPosition = _a.labelPosition, variant = _a.variant, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "variant", "color", "waves", "id", "className"]);
-    var classes = classnames_1.default("photon-checkbox", "variant-" + variant, "color-" + color, "labelposition-" + labelPosition, className);
+    var classes = classnames_1.default("photon-checkbox", props.indeterminate && "indeterminate", "variant-" + variant, "color-" + color, "labelposition-" + labelPosition, className);
     id = id || guid_1.default();
     setImmediate(function () {
         // Define elements
@@ -65,13 +65,15 @@ Checkbox.propTypes = {
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
     labelPosition: prop_types_1.default.oneOf(["before", "after"]),
     variant: prop_types_1.default.oneOf(["normal", "round"]),
-    waves: prop_types_1.default.bool
+    waves: prop_types_1.default.bool,
+    indeterminate: prop_types_1.default.bool
 };
 Checkbox.defaultProps = {
     children: null,
     color: "none",
     variant: "normal",
     labelPosition: "after",
-    waves: true
+    waves: true,
+    indeterminate: false
 };
 //# sourceMappingURL=Checkbox.js.map
