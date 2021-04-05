@@ -30,23 +30,31 @@ var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
 var guid_1 = __importDefault(require("../util/guid"));
+var jquery_1 = __importDefault(require("jquery"));
+var Waves_1 = __importDefault(require("../util/Waves"));
 /* ****************************************** */
 function Checkbox(_a) {
     var children = _a.children, labelPosition = _a.labelPosition, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "color", "waves", "id", "className"]);
     var classes = classnames_1.default("photon-checkbox", "color-" + color, "labelposition-" + labelPosition, className);
     id = id || guid_1.default();
-    /*
-
-    // Define elements
-    const wrapper = $(`#${id}`).parent();
-    const ripple = wrapper.children(".ripple")[0];
-    wrapper.on("mousedown", () => Waves.ripple(ripple, { duration: 1e6, ink: true }));
-
-    */
+    setImmediate(function () {
+        // Define elements
+        var input = jquery_1.default("#" + id);
+        var wrapper = input.parent();
+        var ripple = jquery_1.default("#" + id + "-ripple")[0];
+        wrapper.off("mousedown").on("mousedown", function () {
+            Waves_1.default.ripple(ripple, { wait: 1e6, ink: true });
+            wrapper.addClass("active");
+        });
+        wrapper.off("mouseup").on("mouseup", function () {
+            Waves_1.default.calm(ripple);
+            wrapper.removeClass("active");
+        });
+    });
     return (react_1.default.createElement("div", { className: classes },
         labelPosition === "before" && children && react_1.default.createElement("label", { htmlFor: id }, children),
         react_1.default.createElement("input", __assign({ tabIndex: 0, type: "checkbox", id: id }, props)),
-        waves && react_1.default.createElement("div", { className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
+        react_1.default.createElement("div", { id: id + "-ripple", className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
         labelPosition === "after" && children && react_1.default.createElement("label", { htmlFor: id }, children)));
 }
 exports.Checkbox = Checkbox;
