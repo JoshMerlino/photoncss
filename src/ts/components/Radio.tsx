@@ -7,8 +7,8 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Checkbox({ children, labelPosition, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes>) : JSX.Element {
-	const classes = classnames("photon-checkbox", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
+export function Radio({ children, labelPosition, color, waves, id, className = "", ...props }: InferProps<typeof Radio.propTypes>) : JSX.Element {
+	const classes = classnames("photon-radio", `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
 
@@ -34,27 +34,25 @@ export function Checkbox({ children, labelPosition, variant, color, waves, id, c
 	return (
 		<div className={classes}>
 			{ labelPosition === "before" && children && <label htmlFor={id}>{ children }</label> }
-			<input tabIndex={0} type="checkbox" id={id} {...props}/>
+			<input tabIndex={0} type="radio" id={id} {...props}/>
 			<div id={`${id}-ripple`} className={classnames("ripple", waves && "waves-effect waves-ink")}></div>
 			{ labelPosition === "after" && children && <label htmlFor={id}>{ children }</label> }
 		</div>
 	);
 }
 
-Checkbox.propTypes = {
+Radio.propTypes = {
 	children: PropTypes.any,
 	className: PropTypes.string,
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
 	labelPosition: PropTypes.oneOf([ "before", "after" ]),
-	variant: PropTypes.oneOf([ "normal", "round" ]),
 	waves: PropTypes.bool
 };
 
-Checkbox.defaultProps = {
+Radio.defaultProps = {
 	children: null,
 	color: "none",
-	variant: "normal",
 	labelPosition: "after",
 	waves: true
 };
