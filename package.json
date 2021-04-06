@@ -1,6 +1,6 @@
 {
     "name": "photoncss",
-    "version": "12.10.2",
+    "version": "12.10.3",
     "description": "Go from 0 to app in seconds",
     "main": "src/js/index.js",
     "author": "Josh Merlino",
