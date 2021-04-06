@@ -32,6 +32,10 @@
 			background: #d1d1d1;
 		}
 
+		.waves-ripple {
+			background: #00000030;
+		}
+
 		&.color-primary {
 			background: var(--palette_primary_normal);
 			color: var(--palette_primary_text);
@@ -69,10 +73,11 @@
 	&.variant-flat,
 	&.variant-outlined {
 		background: transparent;
+		color: var(--palette_body_headline);
 
 		&:focus,
 		&:hover {
-			background: #00000008;
+			background: var(--palette_body_hover);
 		}
 
 		&.color-primary {
@@ -104,7 +109,7 @@
 		}
 	}
 	&.variant-outlined {
-		border: 1px solid #212121;
+		border: 1px solid var(--palette_body_headline);
 		min-height: 34px;
 		line-height: 34px;
 		padding: 0 15px;
