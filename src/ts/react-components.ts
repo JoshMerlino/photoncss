@@ -3,6 +3,7 @@ export * from "./components/Card";
 export * from "./components/Checkbox";
 export * from "./components/Drawer";
 export * from "./components/Icon";
+export * from "./components/InputField";
 export * from "./components/Layout";
 export * from "./components/List";
 export * from "./components/Menu";
