@@ -25,55 +25,56 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Checkbox = void 0;
+exports.InputField = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
 var guid_1 = __importDefault(require("../util/guid"));
 var jquery_1 = __importDefault(require("jquery"));
-var Waves_1 = __importDefault(require("../util/Waves"));
+var getPointer_1 = __importDefault(require("../util/getPointer"));
 /* ****************************************** */
-function Checkbox(_a) {
-    var children = _a.children, labelPosition = _a.labelPosition, variant = _a.variant, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "variant", "color", "waves", "id", "className"]);
-    var classes = classnames_1.default("photon-checkbox", props.indeterminate === "true" && "indeterminate", "variant-" + variant, "color-" + color, "labelposition-" + labelPosition, className);
+function InputField(_a) {
+    var children = _a.children, variant = _a.variant, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "subtitle", "type", "color", "id", "className"]);
+    var classes = classnames_1.default("photon-input", "variant-" + variant, "color-" + color, className);
     id = id || guid_1.default();
     setImmediate(function () {
         // Define elements
         var input = jquery_1.default("#" + id);
         var wrapper = input.parent();
-        var ripple = jquery_1.default("#" + id + "-ripple")[0];
-        wrapper.off("mousedown").on("mousedown", function () {
-            Waves_1.default.ripple(ripple, { wait: 1e6, ink: true });
-            wrapper.addClass("active");
+        var bar = wrapper.children(".bar");
+        input.off("blur").on("blur", function () {
+            var containsContent = input.val() !== "";
+            input[containsContent ? "addClass" : "removeClass"]("contains-content");
+            bar.addClass("transitioning").css({ opacity: 0 });
         });
-        wrapper.off("mouseup").on("mouseup", function () {
-            Waves_1.default.calm(ripple);
-            wrapper.removeClass("active");
+        input.off("focus").on("focus", function () {
+            var x = getPointer_1.default().x;
+            bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: x - wrapper.offset().left });
+            setImmediate(function () {
+                bar.addClass("transitioning").css({ width: "100%", left: 0 });
+            });
         });
     });
     return (react_1.default.createElement("div", { className: classes },
-        labelPosition === "before" && children && react_1.default.createElement("label", { htmlFor: id }, children),
-        react_1.default.createElement("input", __assign({ tabIndex: 0, type: "checkbox", id: id }, props)),
-        react_1.default.createElement("div", { id: id + "-ripple", className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
-        labelPosition === "after" && children && react_1.default.createElement("label", { htmlFor: id }, children)));
+        react_1.default.createElement("input", __assign({ tabIndex: 0, type: type ? type : "text", id: id }, props)),
+        react_1.default.createElement("label", { htmlFor: id }, children || "\u00A0"),
+        react_1.default.createElement("div", { className: "bar" }),
+        subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)));
 }
-exports.Checkbox = Checkbox;
-Checkbox.propTypes = {
+exports.InputField = InputField;
+InputField.propTypes = {
     children: prop_types_1.default.any,
+    type: prop_types_1.default.any,
     className: prop_types_1.default.string,
+    subtitle: prop_types_1.default.string,
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
-    labelPosition: prop_types_1.default.oneOf(["before", "after"]),
-    variant: prop_types_1.default.oneOf(["normal", "round"]),
-    waves: prop_types_1.default.bool,
-    indeterminate: prop_types_1.default.oneOf(["true", "false"])
+    variant: prop_types_1.default.oneOf(["normal", "solid outlined"]),
 };
-Checkbox.defaultProps = {
+InputField.defaultProps = {
     children: null,
     color: "none",
     variant: "normal",
-    labelPosition: "after",
-    waves: true,
-    indeterminate: "false"
+    subtitle: ""
 };
-//# sourceMappingURL=Checkbox.js.map
+//# sourceMappingURL=InputField.js.map
