@@ -8,7 +8,7 @@ import Waves from "../util/Waves";
 /* ****************************************** */
 
 export function Checkbox({ children, labelPosition, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes>) : JSX.Element {
-	const classes = classnames("photon-checkbox", props.indeterminate && "indeterminate", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
+	const classes = classnames("photon-checkbox", props.indeterminate === "true" && "indeterminate", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
 
@@ -49,7 +49,7 @@ Checkbox.propTypes = {
 	labelPosition: PropTypes.oneOf([ "before", "after" ]),
 	variant: PropTypes.oneOf([ "normal", "round" ]),
 	waves: PropTypes.bool,
-	indeterminate: PropTypes.bool
+	indeterminate: PropTypes.oneOf([ "true", "false" ])
 };
 
 Checkbox.defaultProps = {
@@ -58,5 +58,5 @@ Checkbox.defaultProps = {
 	variant: "normal",
 	labelPosition: "after",
 	waves: true,
-	indeterminate: false
+	indeterminate: "false"
 };
