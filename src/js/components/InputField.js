@@ -55,9 +55,9 @@ function InputField(_a) {
         input.not(":read-only").off("focus").on("focus", function () {
             var x = getPointer_1.default().x;
             var left = wrapper.offset().left;
-            bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: x - left });
+            bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: Math.min(x - left, wrapper.width()) });
             setImmediate(function () {
-                bar.addClass("transitioning").css({ width: "100%", left: 0 });
+                bar.addClass("transitioning").css({ width: "calc(100% - 2px)", left: 1 });
             });
         });
         if (wrapper.hasClass("variant-normal")) {
