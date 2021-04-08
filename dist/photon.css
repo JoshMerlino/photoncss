@@ -1996,6 +1996,10 @@
   src: local('Roboto Condensed Bold'), local('RobotoCondensed-Bold'), url(./font/38d343e785d493b9a8f95bb5a89d22c3.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
+@font-face {
+  font-family: "Uni Sans Heavy CAPS";
+  src: url(./font/db6acce33b67751a4a203b3e90492e2b.woff2) format("woff2");
+}
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto Slab';
@@ -2919,7 +2923,7 @@ hr {
   display: none;
 }
 .photon-checkbox input[type="checkbox"]:required ~ label::after {
-  content: "*";
+  content: " *";
   color: var(--palette_error);
 }
 .photon-checkbox.indeterminate input[type="checkbox"]::after {
@@ -3088,6 +3092,226 @@ hr {
 .material-icons.waves-effect.waves-ink {
   overflow: visible!important;
   font-size: 24px;
+}
+.photon-input {
+  display: inline-block;
+  margin: 0 8px;
+  position: relative;
+}
+.photon-input input,
+.photon-input label {
+  display: block;
+  color: var(--palette_body_body);
+  font-family: var(--font_body);
+  font-size: 1rem;
+}
+.photon-input input {
+  margin-top: 30px;
+  padding: 8px 0;
+  border: none;
+  background: transparent;
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: border-color, border-size;
+  min-width: 100px;
+}
+.photon-input input.contains-content:not(:valid):not(:read-only):not(:disabled) {
+  caret-color: var(--palette_error) !important;
+  border-color: var(--palette_error) !important;
+}
+.photon-input input.contains-content:not(:valid):not(:read-only):not(:disabled) ~ label,
+.photon-input input.contains-content:not(:valid):not(:read-only):not(:disabled) ~ p {
+  color: var(--palette_error) !important;
+}
+.photon-input input.contains-content:not(:valid):not(:read-only):not(:disabled) ~ p::before {
+  content: "error_outline";
+  font-family: Material Icons;
+  padding-right: 8px;
+  transform: scale(1.5) translateY(1px);
+  display: inline-block;
+  font-size: 11px;
+}
+.photon-input input.contains-content:not(:valid):not(:read-only):not(:disabled) ~ .bar {
+  background: var(--palette_error);
+}
+.photon-input input:read-only,
+.photon-input input:disabled {
+  border-bottom-style: dashed!important;
+  pointer-events: none;
+}
+.photon-input input:required ~ label::after {
+  content: " *";
+  color: var(--palette_error);
+}
+.photon-input span.suffix,
+.photon-input span.prefix {
+  position: absolute;
+  right: 0;
+  color: var(--palette_body_subtitle);
+  margin-top: -35px;
+  font-size: 1rem;
+  font-family: var(--font_body);
+  pointer-events: none;
+  padding: 0 16px;
+}
+.photon-input span.suffix.prefix,
+.photon-input span.prefix.prefix {
+  right: auto;
+  left: 0;
+}
+.photon-input.variant-normal label {
+  transform: translateY(-27px);
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, color;
+  transform-origin: bottom left;
+  pointer-events: none;
+  color: var(--palette_body_subtitle);
+}
+.photon-input.variant-normal input:placeholder-shown ~ label,
+.photon-input.variant-normal input.contains-content ~ label,
+.photon-input.variant-normal input:focus ~ label {
+  transform: translateY(-54px) scale(0.75) !important;
+}
+.photon-input.variant-normal input:focus:not(:read-only) ~ label {
+  color: var(--palette_body_body);
+}
+.photon-input.variant-normal input {
+  border-bottom: 1px solid var(--palette_divider);
+  border-bottom-color: var(--palette_divider) !important;
+}
+.photon-input.variant-normal .bar {
+  height: 2px;
+  width: 0;
+  left: 0;
+  position: absolute;
+  background: var(--palette_body_body);
+  margin-top: -20px;
+  transition: background var(--animation_speed_fast) var(--animation_curve);
+}
+.photon-input.variant-normal .bar.transitioning {
+  transition-property: width, left, opacity, background;
+}
+.photon-input.variant-normal p.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--palette_body_subtitle);
+  margin-top: -12px;
+}
+.photon-input.variant-normal span.suffix,
+.photon-input.variant-normal span.prefix {
+  margin-top: -28px;
+  padding: 0!important;
+}
+.photon-input.variant-filled input {
+  border-radius: var(--shape);
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  background: var(--palette_body_hover);
+  padding: 8px 16px;
+  padding-top: 24px;
+}
+.photon-input.variant-filled label {
+  transform: translateY(-35px);
+  margin: 0 16px;
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, color;
+  transform-origin: bottom left;
+  pointer-events: none;
+  color: var(--palette_body_subtitle);
+}
+.photon-input.variant-filled input {
+  border-bottom: 1px solid var(--palette_divider);
+  border-bottom-color: var(--palette_divider) !important;
+}
+.photon-input.variant-filled input:placeholder-shown ~ label,
+.photon-input.variant-filled input.contains-content ~ label,
+.photon-input.variant-filled input:focus ~ label {
+  transform: translateY(-50px) scale(0.75) !important;
+}
+.photon-input.variant-filled .bar {
+  height: 2px;
+  width: 0;
+  left: 0;
+  position: absolute;
+  background: var(--palette_body_body);
+  margin-top: -20px;
+  transition: background var(--animation_speed_fast) var(--animation_curve);
+}
+.photon-input.variant-filled .bar.transitioning {
+  transition-property: width, left, opacity, background;
+}
+.photon-input.variant-filled p.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--palette_body_subtitle);
+  margin: 0 16px;
+  margin-top: -12px;
+}
+.photon-input.variant-outlined input {
+  border-radius: var(--shape);
+  border: 1px solid var(--palette_divider);
+  padding: 15.5px;
+}
+.photon-input.variant-outlined input:focus {
+  border-width: 2px;
+  margin: -1px;
+  margin-top: 29px;
+}
+.photon-input.variant-outlined label {
+  transform: translateY(-36px);
+  margin: 0 12px;
+  padding: 0 4px;
+  width: auto;
+  display: inline-block;
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, color;
+  transform-origin: bottom left;
+  pointer-events: none;
+  color: var(--palette_body_subtitle);
+  background: var(--palette_body_background);
+}
+.photon-input.variant-outlined input:placeholder-shown ~ label,
+.photon-input.variant-outlined input.contains-content ~ label,
+.photon-input.variant-outlined input:focus ~ label {
+  transform: translateY(-64px) translateX(2px) scale(0.75) !important;
+}
+.photon-input.variant-outlined p.subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: var(--palette_body_subtitle);
+  margin: 0 16px;
+  margin-top: -12px;
+}
+.photon-input.variant-outlined .bar {
+  display: none;
+}
+.photon-input.variant-outlined input:read-only,
+.photon-input.variant-outlined input:disabled {
+  border-style: dashed!important;
+  pointer-events: none;
+}
+.photon-input.color-primary .bar {
+  background-color: var(--palette_primary_normal);
+}
+.photon-input.color-primary input:focus:not(:read-only) ~ label {
+  color: var(--palette_primary_normal);
+}
+.photon-input.color-primary input {
+  caret-color: var(--palette_primary_normal);
+}
+.photon-input.color-primary input:focus {
+  border-color: var(--palette_primary_normal);
+}
+.photon-input.color-secondary .bar {
+  background-color: var(--palette_secondary_normal);
+}
+.photon-input.color-secondary input:focus:not(:read-only) ~ label {
+  color: var(--palette_secondary_normal);
+}
+.photon-input.color-secondary input {
+  caret-color: var(--palette_secondary_normal);
+}
+.photon-input.color-secondary input:focus {
+  border-color: var(--palette_secondary_normal);
 }
 .only-on-large {
   display: none!important;
@@ -3872,75 +4096,6 @@ hr {
 .vh-center-wrapper .vh-center {
   margin: auto;
 }
-.photon-input {
-  display: inline-block;
-  margin: 0 8px;
-  position: relative;
-  overflow: hidden;
-}
-.photon-input input,
-.photon-input label {
-  display: block;
-  color: var(--palette_body_body);
-  font-family: var(--font_body);
-  font-size: 1rem;
-}
-.photon-input input {
-  margin-top: 30px;
-  padding: 8px 0;
-  border: none;
-  border-bottom: 1px solid var(--palette_divider);
-  background: transparent;
-}
-.photon-input.variant-normal label {
-  transform: translateY(-27px);
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: transform, color;
-  transform-origin: bottom left;
-  pointer-events: none;
-  color: var(--palette_body_subtitle);
-}
-.photon-input.variant-normal input:placeholder-shown ~ label,
-.photon-input.variant-normal input.contains-content ~ label,
-.photon-input.variant-normal input:focus ~ label {
-  transform: translateY(-54px) scale(0.75) !important;
-}
-.photon-input.variant-normal .bar {
-  height: 2px;
-  width: 0;
-  left: 0;
-  position: absolute;
-  background: var(--palette_body_body);
-  margin-top: -20px;
-}
-.photon-input.variant-normal .bar.transitioning {
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: width, left, opacity;
-}
-.photon-input.variant-normal p.subtitle {
-  margin: 0;
-  font-size: 12px;
-  color: var(--palette_body_subtitle);
-  margin-top: -12px;
-}
-.photon-input.variant-normal.color-primary .bar {
-  background-color: var(--palette_primary_normal);
-}
-.photon-input.variant-normal.color-primary input:focus ~ label {
-  color: var(--palette_primary_normal);
-}
-.photon-input.variant-normal.color-primary input {
-  caret-color: var(--palette_primary_normal);
-}
-.photon-input.variant-normal.color-secondary .bar {
-  background-color: var(--palette_secondary_normal);
-}
-.photon-input.variant-normal.color-secondary input:focus ~ label {
-  color: var(--palette_secondary_normal);
-}
-.photon-input.variant-normal.color-secondary input {
-  caret-color: var(--palette_secondary_normal);
-}
 ul.photon-list {
   font-size: 1rem;
   line-height: 1.75rem;
@@ -4029,6 +4184,40 @@ ul.photon-list li.photon-subheader:first-child,
 hr + ul.photon-list li.photon-subheader {
   margin-top: -8px;
 }
+.photon-menu {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: inline-block;
+  z-index: 1250;
+  position: absolute;
+  user-select: none;
+  background: var(--palette_sheet_background);
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, opacity;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.photon-menu .photon-list {
+  border: none;
+}
+.photon-menu.active {
+  transform: scale(1);
+  pointer-events: all;
+  opacity: 1;
+}
+.photon-menu.anchor-tl {
+  transform-origin: top left;
+}
+.photon-menu.anchor-tr {
+  transform-origin: top right;
+}
+.photon-menu.anchor-bl {
+  transform-origin: bottom left;
+}
+.photon-menu.anchor-br {
+  transform-origin: bottom right;
+}
 .photon-radio {
   margin: 8px 0;
   height: 18px;
@@ -4095,7 +4284,7 @@ hr + ul.photon-list li.photon-subheader {
   display: none;
 }
 .photon-radio input[type="radio"]:required ~ label::after {
-  content: "*";
+  content: " *";
   color: var(--palette_error);
 }
 .photon-radio.color-primary input[type="radio"]:not(:disabled):checked {
@@ -4255,7 +4444,7 @@ hr + ul.photon-list li.photon-subheader {
   display: none;
 }
 .photon-switch input[type="checkbox"]:required ~ label::after {
-  content: "*";
+  content: " *";
   color: var(--palette_error);
 }
 .photon-switch.color-primary input[type="checkbox"]:not(:disabled):checked::before,
@@ -4296,40 +4485,6 @@ hr + ul.photon-list li.photon-subheader {
 .photon-switch.labelposition-before input[type="checkbox"]:checked ~ .ripple {
   right: -14px;
 }
-.photon-menu {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  display: inline-block;
-  z-index: 1250;
-  position: absolute;
-  user-select: none;
-  background: var(--palette_sheet_background);
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: transform, opacity;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.9);
-}
-.photon-menu .photon-list {
-  border: none;
-}
-.photon-menu.active {
-  transform: scale(1);
-  pointer-events: all;
-  opacity: 1;
-}
-.photon-menu.anchor-tl {
-  transform-origin: top left;
-}
-.photon-menu.anchor-tr {
-  transform-origin: top right;
-}
-.photon-menu.anchor-bl {
-  transform-origin: bottom left;
-}
-.photon-menu.anchor-br {
-  transform-origin: bottom right;
-}
 body {
   background-color: var(--palette_body_background);
 }
@@ -4339,5 +4494,8 @@ body {
 * {
   -webkit-tap-highlight-color: transparent;
   outline: 0;
+}
+br {
+  user-select: none;
 }
 
