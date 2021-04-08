@@ -34,29 +34,64 @@ var jquery_1 = __importDefault(require("jquery"));
 var getPointer_1 = __importDefault(require("../util/getPointer"));
 /* ****************************************** */
 function InputField(_a) {
-    var children = _a.children, variant = _a.variant, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "subtitle", "type", "color", "id", "className"]);
-    var classes = classnames_1.default("photon-input", "variant-" + variant, "color-" + color, className);
+    var children = _a.children, variant = _a.variant, prefix = _a.prefix, suffix = _a.suffix, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "prefix", "suffix", "subtitle", "type", "color", "id", "className"]);
+    var classes = classnames_1.default("photon-input", "type-" + type, "variant-" + variant, "color-" + color, className);
     id = id || guid_1.default();
     setImmediate(function () {
         // Define elements
         var input = jquery_1.default("#" + id);
         var wrapper = input.parent();
         var bar = wrapper.children(".bar");
-        input.off("blur").on("blur", function () {
-            var containsContent = input.val() !== "";
-            input[containsContent ? "addClass" : "removeClass"]("contains-content");
+        var label = wrapper.children("label");
+        var suffix = wrapper.children(".suffix");
+        var prefix = wrapper.children(".prefix");
+        input.not(":read-only").off("blur").on("blur", function () {
             bar.addClass("transitioning").css({ opacity: 0 });
         });
-        input.off("focus").on("focus", function () {
+        input.not(":read-only").off("keyup keydown mouseleave").on("keyup keydown mouseleave", function () {
+            var containsContent = input.val() !== "";
+            input[containsContent ? "addClass" : "removeClass"]("contains-content");
+        }).trigger("keydown");
+        input.not(":read-only").off("focus").on("focus", function () {
             var x = getPointer_1.default().x;
-            bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: x - wrapper.offset().left });
+            var left = wrapper.offset().left;
+            bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: x - left });
             setImmediate(function () {
                 bar.addClass("transitioning").css({ width: "100%", left: 0 });
             });
         });
+        if (wrapper.hasClass("variant-normal")) {
+            if (prefix.length === 1) {
+                input.css({ paddingLeft: prefix.width() !== 0 ? prefix.width() + 8 : 0 });
+                label.css({ marginLeft: prefix.width() !== 0 ? prefix.width() + 8 : 0 });
+            }
+            if (suffix.length === 1) {
+                input.css({ paddingRight: suffix.width() !== 0 ? suffix.width() + 8 : 0 });
+            }
+        }
+        else if (wrapper.hasClass("variant-outlined")) {
+            if (prefix.length === 1) {
+                input.css({ paddingLeft: prefix.width() !== 0 ? prefix.width() + 23.5 : 15.5 });
+                label.css({ marginLeft: prefix.width() !== 0 ? prefix.width() + 23.5 : 15.5 });
+            }
+            if (suffix.length === 1) {
+                input.css({ paddingRight: suffix.width() !== 0 ? suffix.width() + 23.5 : 15.5 });
+            }
+        }
+        else {
+            if (prefix.length === 1) {
+                input.css({ paddingLeft: prefix.width() !== 0 ? prefix.width() + 24 : 16 });
+                label.css({ marginLeft: prefix.width() !== 0 ? prefix.width() + 24 : 16 });
+            }
+            if (suffix.length === 1) {
+                input.css({ paddingRight: suffix.width() !== 0 ? suffix.width() + 24 : 16 });
+            }
+        }
     });
     return (react_1.default.createElement("div", { className: classes },
         react_1.default.createElement("input", __assign({ tabIndex: 0, type: type ? type : "text", id: id }, props)),
+        prefix !== "" && react_1.default.createElement("span", { className: "prefix" }, prefix),
+        suffix !== "" && react_1.default.createElement("span", { className: "suffix" }, suffix),
         react_1.default.createElement("label", { htmlFor: id }, children || "\u00A0"),
         react_1.default.createElement("div", { className: "bar" }),
         subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)));
@@ -67,14 +102,18 @@ InputField.propTypes = {
     type: prop_types_1.default.any,
     className: prop_types_1.default.string,
     subtitle: prop_types_1.default.string,
+    suffix: prop_types_1.default.string,
+    prefix: prop_types_1.default.string,
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
-    variant: prop_types_1.default.oneOf(["normal", "solid outlined"]),
+    variant: prop_types_1.default.oneOf(["normal", "filled", "outlined"]),
 };
 InputField.defaultProps = {
     children: null,
     color: "none",
     variant: "normal",
+    suffix: "",
+    prefix: "",
     subtitle: ""
 };
 //# sourceMappingURL=InputField.js.map
