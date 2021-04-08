@@ -401,7 +401,7 @@ function factory() {
 	// Define waves
 	const Waves = {
 
-		init(options: WavesOptions) {
+		init(options?: WavesOptions) {
 
 			const body = document.body;
 			options = options || {};
