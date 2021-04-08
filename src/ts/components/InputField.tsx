@@ -34,9 +34,9 @@ export function InputField({ children, variant, prefix, suffix, subtitle, type =
 		input.not(":read-only").off("focus").on("focus", () => {
 			const { x } = getPointer();
 			const { left } = wrapper.offset() as JQueryCoordinates;
-			bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: x - left });
+			bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: Math.min(x - left, wrapper.width() as number) });
 			setImmediate(function() {
-				bar.addClass("transitioning").css({ width: "100%", left: 0 });
+				bar.addClass("transitioning").css({ width: "calc(100% - 2px)", left: 1 });
 			});
 		});
 
