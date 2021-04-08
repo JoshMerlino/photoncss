@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { Theme, render } from "../util/theme";
 
 export function ThemeProvider({
@@ -14,16 +14,24 @@ export function ThemeProvider({
 	// Initialize theme
 	let finalTheme: Theme;
 
-	// If theme is Theme
-	if(typeof theme === "object") finalTheme = theme;
+	try {
 
-	// If theme is string
-	else if(typeof theme === "string") finalTheme = require(`../../../theme/${theme}.json`);
+		// If theme is Theme
+		if(typeof theme === "object") finalTheme = theme;
 
-	// If invalid theme type
-	else throw new Error(`'${typeof theme}' is not a valid theme.`);
+		// If theme is string
+		else if(typeof theme === "string") finalTheme = require(`../../../theme/${theme}.json`);
 
-	finalTheme = { ...require("../../../theme/default.light.json"), ...finalTheme };
+		// If invalid theme type
+		else throw new Error(`'${typeof theme}' is not a valid theme.`);
+
+		finalTheme = { ...require("../../../theme/default.light.json"), ...finalTheme };
+
+	} catch {
+
+		finalTheme = require("../../../theme/default.light.json");
+
+	}
 
 	// If it is the root theme
 	if(global) {
@@ -35,7 +43,7 @@ export function ThemeProvider({
 		Object.keys(style).map((key: string) => document.documentElement.style.setProperty(key, style[key]));
 
 		// Render children
-		return <Fragment>{children}</Fragment>;
+		return <>{children}</>;
 
 	} else {
 
