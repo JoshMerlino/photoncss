@@ -19,6 +19,7 @@ __exportStar(require("./components/InputField"), exports);
 __exportStar(require("./components/Layout"), exports);
 __exportStar(require("./components/List"), exports);
 __exportStar(require("./components/Menu"), exports);
+__exportStar(require("./components/Progress"), exports);
 __exportStar(require("./components/Radio"), exports);
 __exportStar(require("./components/Snackbar"), exports);
 __exportStar(require("./components/Switch"), exports);

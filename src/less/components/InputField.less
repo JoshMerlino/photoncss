@@ -21,6 +21,9 @@
 		transition: none var(--animation_speed_fast) var(--animation_curve);
 		transition-property: border-color, border-size;
 		min-width: 100px;
+		&:focus ~ label {
+			color: var(--palette_body_body);
+		}
 	}
 
 	input.contains-content:not(:valid):not(:read-only):not(:disabled) {
@@ -179,7 +182,7 @@
 				border-width: 2px;
 				margin: -1px;
 				margin-top: 29px;
-				border-color: var(--palette_body_subtitle);
+				border-color: var(--palette_body_body);
 			}
 		}
 		label {
@@ -195,6 +198,7 @@
 			color: var(--palette_body_subtitle);
 			background: var(--palette_body_background)
 		}
+
 
 		input:placeholder-shown ~ label,
 		input.contains-content ~ label,
