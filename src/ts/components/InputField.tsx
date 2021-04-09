@@ -40,7 +40,6 @@ export function InputField({ children, variant, prefix, suffix, subtitle, type =
 			});
 		});
 
-
 		if(wrapper.hasClass("variant-normal")) {
 			if(prefix.length === 1) {
 				input.css({ paddingLeft: prefix.width() as number !== 0 ? prefix.width() as number + 8 : 0 });
@@ -74,14 +73,12 @@ export function InputField({ children, variant, prefix, suffix, subtitle, type =
 
 	return (
 		<div className={classes}>
-
 			<input tabIndex={0} type={type ? type : "text"} id={id} {...props}/>
 			{ prefix !== "" && <span className="prefix">{prefix}</span>}
 			{ suffix !== "" && <span className="suffix">{suffix}</span>}
 			<label htmlFor={id}>{children || "\u00A0"}</label>
 			<div className="bar"></div>
 			{ subtitle !== "" && <p className="subtitle">{subtitle}</p> }
-
 		</div>
 	);
 }
