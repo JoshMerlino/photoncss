@@ -1,0 +1,59 @@
+.photon-spinner {
+
+	@offset: 172;
+	@duration: 1.4s;
+
+	@keyframes rotator {
+		0% { transform: rotate(0deg) scale(0.667); }
+		100% { transform: rotate(270deg) scale(0.667); }
+	}
+	@keyframes rotatorsmall {
+		0% { transform: rotate(0deg) scale(0.333); }
+		100% { transform: rotate(270deg) scale(0.333); }
+	}
+	@keyframes rotatorlarge {
+		0% { transform: rotate(0deg) scale(1); }
+		100% { transform: rotate(270deg) scale(1); }
+	}
+
+	@keyframes dash {
+ 		0% { stroke-dashoffset: @offset; }
+ 		50% {
+   			stroke-dashoffset: (@offset/4);
+   			transform:rotate(135deg);
+ 		}
+ 		100% {
+   			stroke-dashoffset: @offset;
+   			transform:rotate(450deg);
+ 		}
+	}
+
+	animation: rotator @duration linear infinite;
+	margin: 8px;
+
+	&.size-small {
+		animation-name: rotatorsmall;
+	}
+	&.size-large {
+		animation-name: rotatorlarge;
+	}
+
+	.path {
+		stroke-dasharray: @offset;
+		stroke-dashoffset: 0;
+		stroke: var(--palette_body_body);
+		stroke-width: 6px;
+		transform-origin: center;
+		animation:
+	      dash @duration ease-in-out infinite;
+	}
+
+	&.color-primary .path {
+		stroke: var(--palette_primary_normal);
+	}
+
+	&.color-secondary .path {
+		stroke: var(--palette_secondary_normal);
+	}
+
+}
