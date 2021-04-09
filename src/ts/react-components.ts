@@ -7,6 +7,7 @@ export * from "./components/InputField";
 export * from "./components/Layout";
 export * from "./components/List";
 export * from "./components/Menu";
+export * from "./components/Progress";
 export * from "./components/Radio";
 export * from "./components/Snackbar";
 export * from "./components/Switch";
