@@ -1,0 +1,45 @@
+{
+    "palette": {
+		"body": {
+			"background": "#fff",
+			"headline": "#060607",
+			"waves": "#06060730",
+			"hover": "#06060710",
+			"body": "#2e3338",
+			"subtitle": "#4f5660"
+		},
+        "primary": {
+            "light": "#a5b9ff",
+            "normal": "#7289DA",
+            "dark": "#3f5ca8",
+			"text": "#ffffff",
+			"faded": "#64b5f620",
+			"waves": "#ffffff66",
+			"fadedwaves": "#7289DA66"
+        },
+        "secondary": {
+            "light": "#78e8b1",
+            "normal": "#43b581",
+            "dark": "#008454",
+			"text": "#ffffff",
+			"faded": "#43b58120",
+			"waves": "#ffffff66",
+			"fadedwaves": "#43b58166"
+        },
+		"divider": "hsla(240,8%,3%,0.08)",
+		"error": "#f04747",
+		"sheet": {
+			"background": "#f2f3f5",
+			"body": "#2e3338"
+		},
+		"notification": {
+			"background": "#ffffff",
+			"text": "#2e3338"
+		}
+    },
+	"font": {
+		"interactive": "Uni Sans Heavy CAPS, sans-serif",
+		"headline": "Uni Sans Heavy CAPS, sans-serif",
+		"body": "Roboto, sans-serif"
+	}
+}

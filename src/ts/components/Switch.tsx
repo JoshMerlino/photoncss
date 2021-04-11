@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Switch({ children, labelPosition, color, waves, id, className = "", ...props }: InferProps<typeof Switch.propTypes>) : JSX.Element {
+export function Switch({ children, labelPosition, style, color, waves, id, className = "", ...props }: InferProps<typeof Switch.propTypes>) : JSX.Element {
 	const classes = classnames("photon-switch", `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
@@ -32,7 +32,7 @@ export function Switch({ children, labelPosition, color, waves, id, className = 
 	});
 
 	return (
-		<div className={classes}>
+		<div className={classes} {...{ style }}>
 			{ labelPosition === "before" && children && <label htmlFor={id}>{ children }</label> }
 			<input tabIndex={0} type="checkbox" id={id} {...props}/>
 			<div id={`${id}-ripple`} className={classnames("ripple", waves && "waves-effect waves-ink")}></div>
@@ -43,6 +43,7 @@ export function Switch({ children, labelPosition, color, waves, id, className = 
 
 Switch.propTypes = {
 	children: PropTypes.any,
+	style: PropTypes.any,
 	className: PropTypes.string,
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),

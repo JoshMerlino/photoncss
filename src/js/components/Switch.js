@@ -34,7 +34,7 @@ var jquery_1 = __importDefault(require("jquery"));
 var Waves_1 = __importDefault(require("../util/Waves"));
 /* ****************************************** */
 function Switch(_a) {
-    var children = _a.children, labelPosition = _a.labelPosition, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "color", "waves", "id", "className"]);
+    var children = _a.children, labelPosition = _a.labelPosition, style = _a.style, color = _a.color, waves = _a.waves, id = _a.id, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "labelPosition", "style", "color", "waves", "id", "className"]);
     var classes = classnames_1.default("photon-switch", "color-" + color, "labelposition-" + labelPosition, className);
     id = id || guid_1.default();
     setImmediate(function () {
@@ -51,7 +51,7 @@ function Switch(_a) {
             wrapper.removeClass("active");
         });
     });
-    return (react_1.default.createElement("div", { className: classes },
+    return (react_1.default.createElement("div", __assign({ className: classes }, { style: style }),
         labelPosition === "before" && children && react_1.default.createElement("label", { htmlFor: id }, children),
         react_1.default.createElement("input", __assign({ tabIndex: 0, type: "checkbox", id: id }, props)),
         react_1.default.createElement("div", { id: id + "-ripple", className: classnames_1.default("ripple", waves && "waves-effect waves-ink") }),
@@ -60,6 +60,7 @@ function Switch(_a) {
 exports.Switch = Switch;
 Switch.propTypes = {
     children: prop_types_1.default.any,
+    style: prop_types_1.default.any,
     className: prop_types_1.default.string,
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),

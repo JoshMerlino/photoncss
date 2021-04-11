@@ -1,0 +1,54 @@
+{
+    "palette": {
+		"body": {
+			"background": "#ffffff",
+			"headline": "#000000",
+			"waves": "#00000030",
+			"hover": "#00000010",
+			"body": "#000",
+			"subtitle": "#aaa"
+		},
+        "primary": {
+			"light": "#000",
+            "normal": "#000",
+            "dark": "#000",
+			"text": "#fff",
+			"faded": "#00000066",
+			"waves": "#ffffff66",
+			"fadedwaves": "#00000066"
+        },
+        "secondary": {
+            "light": "#000",
+            "normal": "#000",
+            "dark": "#000",
+			"text": "#fff",
+			"faded": "#00000066",
+			"waves": "#ffffff66",
+			"fadedwaves": "#00000066"
+        },
+		"divider": "#aaa",
+		"error": "#f00",
+		"sheet": {
+			"background": "#fff",
+			"body": "#000"
+		},
+		"notification": {
+			"background": "#000",
+			"text": "#fff"
+		}
+    },
+	"font": {
+		"interactive": "Roboto, sans-serif",
+		"headline": "Roboto, sans-serif",
+		"body": "Roboto, sans-serif"
+	},
+	"shape": "4px 4px 4px 4px",
+	"animation": {
+		"curve": "ease-in-out",
+		"speed": {
+			"fast": "125ms",
+			"medium": "200ms",
+			"slow": "300ms"
+		}
+	}
+}

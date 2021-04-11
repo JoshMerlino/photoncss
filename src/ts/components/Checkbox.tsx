@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Checkbox({ children, labelPosition, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes>) : JSX.Element {
+export function Checkbox({ children, labelPosition, style, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes>) : JSX.Element {
 	const classes = classnames("photon-checkbox", props.indeterminate === "true" && "indeterminate", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
@@ -32,7 +32,7 @@ export function Checkbox({ children, labelPosition, variant, color, waves, id, c
 	});
 
 	return (
-		<div className={classes}>
+		<div className={classes} {...{ style }}>
 			{ labelPosition === "before" && children && <label htmlFor={id}>{ children }</label> }
 			<input tabIndex={0} type="checkbox" id={id} {...props}/>
 			<div id={`${id}-ripple`} className={classnames("ripple", waves && "waves-effect waves-ink")}></div>
@@ -44,6 +44,7 @@ export function Checkbox({ children, labelPosition, variant, color, waves, id, c
 Checkbox.propTypes = {
 	children: PropTypes.any,
 	className: PropTypes.string,
+	style: PropTypes.any,
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
 	labelPosition: PropTypes.oneOf([ "before", "after" ]),
