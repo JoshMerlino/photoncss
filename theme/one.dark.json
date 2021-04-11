@@ -1,0 +1,40 @@
+{
+    "palette": {
+		"body": {
+			"background": "#282C34",
+			"headline": "#fafafa",
+			"waves": "#5C637030",
+			"hover": "#5C637010",
+			"body": "#ABB2BF",
+			"subtitle": "#828997"
+		},
+        "primary": {
+            "light": "#8dbbff",
+            "normal": "#528bff",
+            "dark": "#005fcb",
+			"text": "#ffffff",
+			"faded": "#528bff20",
+			"waves": "#ffffff66",
+			"fadedwaves": "#528bff66"
+        },
+        "secondary": {
+            "light": "#ffcb94",
+            "normal": "#d19a66",
+            "dark": "#9d6c3a",
+			"text": "#fafafa",
+			"faded": "#d19a6620",
+			"waves": "#ffffff66",
+			"fadedwaves": "#d19a6666"
+        },
+		"divider": "#5C6370",
+		"error": "#f05545",
+		"sheet": {
+			"background": "#303540",
+			"body": "#ABB2BF"
+		},
+		"notification": {
+			"background": "#303540",
+			"text": "#ABB2BF"
+		}
+    }
+}
