@@ -15,8 +15,6 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 
 	id = id || guid();
 
-	console.log($("#" +id), { dropdown });
-
 	setImmediate(function() {
 
 		// Define elements
@@ -105,7 +103,12 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 			</div>
 			{ dropdown !== null &&
 				<Menu id={`${id}-dropdown`}>
-					{ dropdown.map((item, key) => <ListItem tabIndex={key} key={key} onClick={ () => $(`#${id}`).val(item).trigger("keydown") }>{item}</ListItem>) }
+					{ dropdown.map((item, key) => <ListItem tabIndex={key} key={key} onClick={ () => {
+						const input = $(`#${id}`);
+						input.val(item);
+						input.addClass("contains-content");
+						"onChange" in props && props.onChange({ target: input[0], value: item });
+					}} >{item}</ListItem>) }
 				</Menu>
 			}
 		</>
