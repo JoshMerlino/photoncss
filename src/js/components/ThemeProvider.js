@@ -31,10 +31,10 @@ function ThemeProvider(_a) {
         // If invalid theme type
         else
             throw new Error("'" + typeof theme + "' is not a valid theme.");
-        finalTheme = __assign(__assign({}, require("../../../theme/default.light.json")), finalTheme);
+        finalTheme = __assign(__assign({}, require("../../../theme/default.base.json")), finalTheme);
     }
     catch (_d) {
-        finalTheme = require("../../../theme/default.light.json");
+        finalTheme = require("../../../theme/default.base.json");
     }
     // If it is the root theme
     if (global) {
