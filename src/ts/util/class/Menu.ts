@@ -32,7 +32,7 @@ export class Menu {
 	}
 
 
-	anchor(x: number | PhotonSelector, y: number): this {
+	anchor(x: number | PhotonSelector, y?: number): this {
 
 		this.explicitPosition = true;
 
@@ -43,9 +43,8 @@ export class Menu {
 
 			// If anchoring to element
 			const $anchor = $(x);
-			x = $anchor.offset().left;
-			y = $anchor.offset().top;
-			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+			const { top, left } = $anchor.offset() as any;
+			$menu.css({ top: top + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
 
 		} else {
 
@@ -59,7 +58,7 @@ export class Menu {
 		if(x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
 		if(x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
 		if(x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
-
+		
 		return this;
 
 	}

@@ -26,7 +26,22 @@
 		}
 	}
 
-	input.contains-content:not(:valid):not(:read-only):not(:disabled) {
+	&.photon-dropdown::after {
+		content: "expand_more";
+		font-family: "Material Icons";
+		position: absolute;
+		top: 46px;
+		right: 1rem;
+		color: var(--palette_body_subtitle);
+		font-size: 24px;
+	}
+
+	&.variant-normal.photon-dropdown::after {
+		top: 38px;
+		right: 0;
+	}
+
+	&:not(.photon-dropdown) input.contains-content:not(:valid):not(:disabled) {
 		caret-color: var(--palette_error)!important;
 		border-color: var(--palette_error)!important;
 		& ~ label,
@@ -46,7 +61,6 @@
 		}
 	}
 
-	input:read-only,
 	input:disabled {
 		border-bottom-style: dashed!important;
 		pointer-events: none;
@@ -89,7 +103,7 @@
 			transform: translateY(-54px) scale(0.75)!important;
 		}
 
-		input:focus:not(:read-only) ~ label {
+		input:focus ~ label {
 			color: var(--palette_body_body);
 		}
 
@@ -215,7 +229,6 @@
 		.bar {
 			display: none;
 		}
-		input:read-only,
 		input:disabled {
 			border-style: dashed!important;
 			pointer-events: none;
@@ -226,7 +239,7 @@
 		.bar {
 			background-color: var(--palette_primary_normal);
 		}
-		input:focus:not(:read-only) ~ label {
+		input:focus ~ label {
 			color: var(--palette_primary_normal);
 		}
 		input {
@@ -240,7 +253,7 @@
 		.bar {
 			background-color: var(--palette_secondary_normal);
 		}
-		input:focus:not(:read-only) ~ label {
+		input:focus ~ label {
 			color: var(--palette_secondary_normal);
 		}
 		input {

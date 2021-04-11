@@ -4,13 +4,18 @@ import classnames from "classnames";
 import guid from "../util/guid";
 import $ from "jquery";
 import getPointer from "../util/getPointer";
+import { Menu } from "./Menu";
+import { ListItem } from "./List";
+import { Menu as IMenu } from "../util/class/Menu";
 
 /* ****************************************** */
 
-export function InputField({ children, variant, prefix, suffix, subtitle, type = "text", color, id, className = "", ...props }: InferProps<typeof InputField.propTypes>): JSX.Element {
-	const classes = classnames("photon-input", `type-${type}`, `variant-${variant}`, `color-${color}`, className);
+export function InputField({ children, variant, dropdown, prefix, suffix, readOnly, subtitle, type = "text", color, id, className = "", ...props }: InferProps<typeof InputField.propTypes>): JSX.Element {
+	const classes = classnames("photon-input", dropdown !== null && "photon-dropdown", `type-${type}`, `variant-${variant}`, `color-${color}`, className);
 
 	id = id || guid();
+
+	console.log($("#" +id), { dropdown });
 
 	setImmediate(function() {
 
@@ -22,16 +27,18 @@ export function InputField({ children, variant, prefix, suffix, subtitle, type =
 		const suffix = wrapper.children(".suffix");
 		const prefix = wrapper.children(".prefix");
 
-		input.not(":read-only").off("blur").on("blur", () => {
+		input.off("blur").on("blur", () => {
 			bar.addClass("transitioning").css({ opacity: 0 });
 		});
 
-		input.not(":read-only").off("keyup keydown mouseleave").on("keyup keydown mouseleave", () => {
+		input.off("keyup keydown mouseleave").on("keyup keydown mouseleave", () => {
 			const containsContent = input.val() !== "";
 			input[containsContent ? "addClass":"removeClass"]("contains-content");
 		}).trigger("keydown");
 
-		input.not(":read-only").off("focus").on("focus", () => {
+		input.off("focus").on("focus", () => {
+
+			// Bar
 			const { x } = getPointer();
 			const { left } = wrapper.offset() as JQueryCoordinates;
 			bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: Math.min(x - left, wrapper.width() as number) });
@@ -69,17 +76,39 @@ export function InputField({ children, variant, prefix, suffix, subtitle, type =
 			}
 		}
 
+		// Menu stuff
+		if(dropdown === null) return;
+
+		const menu = new IMenu($(`#${id}-dropdown`));
+
+		input.on("focus", () => {
+			menu.anchor(input);
+			menu.open();
+		});
+
+		input.on("blur", () => {
+			const { isMouseDown } = getPointer();
+			if(!isMouseDown) menu.close();
+		});
+
 	});
 
 	return (
-		<div className={classes}>
-			<input tabIndex={0} type={type ? type : "text"} id={id} {...props}/>
-			{ prefix !== "" && <span className="prefix">{prefix}</span>}
-			{ suffix !== "" && <span className="suffix">{suffix}</span>}
-			<label htmlFor={id}>{children || "\u00A0"}</label>
-			<div className="bar"></div>
-			{ subtitle !== "" && <p className="subtitle">{subtitle}</p> }
-		</div>
+		<>
+			<div className={classes}>
+				<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly} id={id} {...props}/>
+				{ prefix !== "" && <span className="prefix">{prefix}</span>}
+				{ suffix !== "" && <span className="suffix">{suffix}</span>}
+				<label htmlFor={id}>{children || "\u00A0"}</label>
+				<div className="bar"></div>
+				{ subtitle !== "" && <p className="subtitle">{subtitle}</p> }
+			</div>
+			{ dropdown !== null &&
+				<Menu id={`${id}-dropdown`}>
+					{ dropdown.map((item, key) => <ListItem tabIndex={key} key={key} onClick={ () => $(`#${id}`).val(item).trigger("keydown") }>{item}</ListItem>) }
+				</Menu>
+			}
+		</>
 	);
 }
 
@@ -93,6 +122,8 @@ InputField.propTypes = {
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
 	variant: PropTypes.oneOf([ "normal", "filled", "outlined" ]),
+	dropdown: PropTypes.any,
+	readOnly: PropTypes.bool
 };
 
 InputField.defaultProps = {
@@ -101,5 +132,7 @@ InputField.defaultProps = {
 	variant: "normal",
 	suffix: "",
 	prefix: "",
-	subtitle: ""
+	subtitle: "",
+	dropdown: null,
+	readOnly: false
 };
