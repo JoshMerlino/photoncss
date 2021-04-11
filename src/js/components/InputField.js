@@ -40,7 +40,6 @@ function InputField(_a) {
     var children = _a.children, variant = _a.variant, dropdown = _a.dropdown, prefix = _a.prefix, suffix = _a.suffix, readOnly = _a.readOnly, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "dropdown", "prefix", "suffix", "readOnly", "subtitle", "type", "color", "id", "className"]);
     var classes = classnames_1.default("photon-input", dropdown !== null && "photon-dropdown", "type-" + type, "variant-" + variant, "color-" + color, className);
     id = id || guid_1.default();
-    console.log(jquery_1.default("#" + id), { dropdown: dropdown });
     setImmediate(function () {
         // Define elements
         var input = jquery_1.default("#" + id);
@@ -115,7 +114,12 @@ function InputField(_a) {
             react_1.default.createElement("div", { className: "bar" }),
             subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)),
         dropdown !== null &&
-            react_1.default.createElement(Menu_1.Menu, { id: id + "-dropdown" }, dropdown.map(function (item, key) { return react_1.default.createElement(List_1.ListItem, { tabIndex: key, key: key, onClick: function () { return jquery_1.default("#" + id).val(item).trigger("keydown"); } }, item); }))));
+            react_1.default.createElement(Menu_1.Menu, { id: id + "-dropdown" }, dropdown.map(function (item, key) { return react_1.default.createElement(List_1.ListItem, { tabIndex: key, key: key, onClick: function () {
+                    var input = jquery_1.default("#" + id);
+                    input.val(item);
+                    input.addClass("contains-content");
+                    "onChange" in props && props.onChange({ target: input[0], value: item });
+                } }, item); }))));
 }
 exports.InputField = InputField;
 InputField.propTypes = {
