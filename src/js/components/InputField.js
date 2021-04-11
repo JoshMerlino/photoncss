@@ -32,11 +32,15 @@ var classnames_1 = __importDefault(require("classnames"));
 var guid_1 = __importDefault(require("../util/guid"));
 var jquery_1 = __importDefault(require("jquery"));
 var getPointer_1 = __importDefault(require("../util/getPointer"));
+var Menu_1 = require("./Menu");
+var List_1 = require("./List");
+var Menu_2 = require("../util/class/Menu");
 /* ****************************************** */
 function InputField(_a) {
-    var children = _a.children, variant = _a.variant, prefix = _a.prefix, suffix = _a.suffix, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "prefix", "suffix", "subtitle", "type", "color", "id", "className"]);
-    var classes = classnames_1.default("photon-input", "type-" + type, "variant-" + variant, "color-" + color, className);
+    var children = _a.children, variant = _a.variant, dropdown = _a.dropdown, prefix = _a.prefix, suffix = _a.suffix, readOnly = _a.readOnly, subtitle = _a.subtitle, _b = _a.type, type = _b === void 0 ? "text" : _b, color = _a.color, id = _a.id, _c = _a.className, className = _c === void 0 ? "" : _c, props = __rest(_a, ["children", "variant", "dropdown", "prefix", "suffix", "readOnly", "subtitle", "type", "color", "id", "className"]);
+    var classes = classnames_1.default("photon-input", dropdown !== null && "photon-dropdown", "type-" + type, "variant-" + variant, "color-" + color, className);
     id = id || guid_1.default();
+    console.log(jquery_1.default("#" + id), { dropdown: dropdown });
     setImmediate(function () {
         // Define elements
         var input = jquery_1.default("#" + id);
@@ -45,14 +49,15 @@ function InputField(_a) {
         var label = wrapper.children("label");
         var suffix = wrapper.children(".suffix");
         var prefix = wrapper.children(".prefix");
-        input.not(":read-only").off("blur").on("blur", function () {
+        input.off("blur").on("blur", function () {
             bar.addClass("transitioning").css({ opacity: 0 });
         });
-        input.not(":read-only").off("keyup keydown mouseleave").on("keyup keydown mouseleave", function () {
+        input.off("keyup keydown mouseleave").on("keyup keydown mouseleave", function () {
             var containsContent = input.val() !== "";
             input[containsContent ? "addClass" : "removeClass"]("contains-content");
         }).trigger("keydown");
-        input.not(":read-only").off("focus").on("focus", function () {
+        input.off("focus").on("focus", function () {
+            // Bar
             var x = getPointer_1.default().x;
             var left = wrapper.offset().left;
             bar.removeClass("transitioning").css({ opacity: 1, width: 0, left: Math.min(x - left, wrapper.width()) });
@@ -87,14 +92,30 @@ function InputField(_a) {
                 input.css({ paddingRight: suffix.width() !== 0 ? suffix.width() + 24 : 16 });
             }
         }
+        // Menu stuff
+        if (dropdown === null)
+            return;
+        var menu = new Menu_2.Menu(jquery_1.default("#" + id + "-dropdown"));
+        input.on("focus", function () {
+            menu.anchor(input);
+            menu.open();
+        });
+        input.on("blur", function () {
+            var isMouseDown = getPointer_1.default().isMouseDown;
+            if (!isMouseDown)
+                menu.close();
+        });
     });
-    return (react_1.default.createElement("div", { className: classes },
-        react_1.default.createElement("input", __assign({ tabIndex: 0, type: type ? type : "text", id: id }, props)),
-        prefix !== "" && react_1.default.createElement("span", { className: "prefix" }, prefix),
-        suffix !== "" && react_1.default.createElement("span", { className: "suffix" }, suffix),
-        react_1.default.createElement("label", { htmlFor: id }, children || "\u00A0"),
-        react_1.default.createElement("div", { className: "bar" }),
-        subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)));
+    return (react_1.default.createElement(react_1.default.Fragment, null,
+        react_1.default.createElement("div", { className: classes },
+            react_1.default.createElement("input", __assign({ tabIndex: 0, type: type, readOnly: dropdown !== null || readOnly, id: id }, props)),
+            prefix !== "" && react_1.default.createElement("span", { className: "prefix" }, prefix),
+            suffix !== "" && react_1.default.createElement("span", { className: "suffix" }, suffix),
+            react_1.default.createElement("label", { htmlFor: id }, children || "\u00A0"),
+            react_1.default.createElement("div", { className: "bar" }),
+            subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)),
+        dropdown !== null &&
+            react_1.default.createElement(Menu_1.Menu, { id: id + "-dropdown" }, dropdown.map(function (item, key) { return react_1.default.createElement(List_1.ListItem, { tabIndex: key, key: key, onClick: function () { return jquery_1.default("#" + id).val(item).trigger("keydown"); } }, item); }))));
 }
 exports.InputField = InputField;
 InputField.propTypes = {
@@ -107,6 +128,8 @@ InputField.propTypes = {
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
     variant: prop_types_1.default.oneOf(["normal", "filled", "outlined"]),
+    dropdown: prop_types_1.default.any,
+    readOnly: prop_types_1.default.bool
 };
 InputField.defaultProps = {
     children: null,
@@ -114,6 +137,8 @@ InputField.defaultProps = {
     variant: "normal",
     suffix: "",
     prefix: "",
-    subtitle: ""
+    subtitle: "",
+    dropdown: null,
+    readOnly: false
 };
 //# sourceMappingURL=InputField.js.map

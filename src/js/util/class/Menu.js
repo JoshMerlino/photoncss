@@ -34,9 +34,8 @@ var Menu = /** @class */ (function () {
         if (y === undefined && typeof x !== "number") {
             // If anchoring to element
             var $anchor = jquery_1.default(x);
-            x = $anchor.offset().left;
-            y = $anchor.offset().top;
-            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+            var _a = $anchor.offset(), top_1 = _a.top, left = _a.left;
+            $menu.css({ top: top_1 + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left: left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
         }
         else {
             // If anchoring to a fixed position
