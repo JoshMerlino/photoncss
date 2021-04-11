@@ -36,19 +36,5 @@
 			"background": "#333333",
 			"text": "#ffffff"
 		}
-    },
-	"font": {
-		"interactive": "Roboto, sans-serif",
-		"headline": "Roboto, sans-serif",
-		"body": "Roboto, sans-serif"
-	},
-	"shape": "4px 4px 4px 4px",
-	"animation": {
-		"curve": "ease-in-out",
-		"speed": {
-			"fast": "125ms",
-			"medium": "200ms",
-			"slow": "300ms"
-		}
-	}
+    }
 }

@@ -1,12 +1,12 @@
 {
     "palette": {
 		"body": {
-			"background": "#212121",
+			"background": "#091932",
 			"headline": "#fafafa",
-			"waves": "#ffffff30",
-			"hover": "#ffffff10",
+			"waves": "#19294230",
+			"hover": "#19294210",
 			"body": "#e0e0e0",
-			"subtitle": "#797979"
+			"subtitle": "#52637d"
 		},
         "primary": {
             "light": "#9be7ff",
@@ -26,14 +26,14 @@
 			"waves": "#00000066",
 			"fadedwaves": "#00e67666"
         },
-		"divider": "hsla(0,0%,100%,0.06)",
+		"divider": "#1d2f4c",
 		"error": "#f05545",
 		"sheet": {
-			"background": "#303030",
+			"background": "#192942",
 			"body": "#e0e0e0"
 		},
 		"notification": {
-			"background": "#333333",
+			"background": "#192942",
 			"text": "#ffffff"
 		}
     }

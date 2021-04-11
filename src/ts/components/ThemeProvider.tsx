@@ -25,11 +25,11 @@ export function ThemeProvider({
 		// If invalid theme type
 		else throw new Error(`'${typeof theme}' is not a valid theme.`);
 
-		finalTheme = { ...require("../../../theme/default.light.json"), ...finalTheme };
+		finalTheme = { ...require("../../../theme/default.base.json"), ...finalTheme };
 
 	} catch {
 
-		finalTheme = require("../../../theme/default.light.json");
+		finalTheme = require("../../../theme/default.base.json");
 
 	}
 

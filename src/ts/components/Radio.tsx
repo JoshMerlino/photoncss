@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Radio({ children, labelPosition, color, waves, id, className = "", ...props }: InferProps<typeof Radio.propTypes>) : JSX.Element {
+export function Radio({ children, labelPosition, color, waves, style, id, className = "", ...props }: InferProps<typeof Radio.propTypes>) : JSX.Element {
 	const classes = classnames("photon-radio", `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
@@ -32,7 +32,7 @@ export function Radio({ children, labelPosition, color, waves, id, className = "
 	});
 
 	return (
-		<div className={classes}>
+		<div className={classes} {...{ style }}>
 			{ labelPosition === "before" && children && <label htmlFor={id}>{ children }</label> }
 			<input tabIndex={0} type="radio" id={id} {...props}/>
 			<div id={`${id}-ripple`} className={classnames("ripple", waves && "waves-effect waves-ink")}></div>
@@ -43,6 +43,7 @@ export function Radio({ children, labelPosition, color, waves, id, className = "
 
 Radio.propTypes = {
 	children: PropTypes.any,
+	style: PropTypes.any,
 	className: PropTypes.string,
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
