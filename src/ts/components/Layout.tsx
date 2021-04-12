@@ -54,3 +54,19 @@ Col.defaultProps = {
 	children: null,
 	sm: 12
 };
+
+/* ****************************************** */
+
+export function VHCenter({ children, className, ...props }: InferProps<typeof VHCenter.propTypes>) : JSX.Element {
+	const classes = classnames("vh-center", className);
+	return <div className={classes} {...props}>{ children }</div>;
+}
+
+VHCenter.propTypes = {
+	children: PropTypes.any,
+	className: PropTypes.string
+};
+
+VHCenter.defaultProps = {
+	children: null
+};
