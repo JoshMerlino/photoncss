@@ -25,7 +25,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Col = exports.Row = exports.Container = void 0;
+exports.VHCenter = exports.Col = exports.Row = exports.Container = void 0;
 var react_1 = __importDefault(require("react"));
 var prop_types_1 = __importDefault(require("prop-types"));
 var classnames_1 = __importDefault(require("classnames"));
@@ -75,5 +75,19 @@ Col.propTypes = {
 Col.defaultProps = {
     children: null,
     sm: 12
+};
+/* ****************************************** */
+function VHCenter(_a) {
+    var children = _a.children, className = _a.className, props = __rest(_a, ["children", "className"]);
+    var classes = classnames_1.default("vh-center", className);
+    return react_1.default.createElement("div", __assign({ className: classes }, props), children);
+}
+exports.VHCenter = VHCenter;
+VHCenter.propTypes = {
+    children: prop_types_1.default.any,
+    className: prop_types_1.default.string
+};
+VHCenter.defaultProps = {
+    children: null
 };
 //# sourceMappingURL=Layout.js.map
