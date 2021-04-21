@@ -10,6 +10,7 @@ exports.guid = guid_1.default;
 // Import waves
 require("./util/Waves.js");
 // Import active components
+var Dialog_1 = require("./util/class/Dialog");
 var Drawer_1 = require("./util/class/Drawer");
 var Menu_1 = require("./util/class/Menu");
 var Snackbar_1 = require("./util/class/Snackbar");
@@ -17,6 +18,7 @@ var Snackbar_1 = require("./util/class/Snackbar");
 var Photon = /** @class */ (function () {
     function Photon() {
     }
+    Photon.Dialog = function (target, options) { return new Dialog_1.Dialog(target, options); };
     Photon.Drawer = function (target) { return new Drawer_1.Drawer(target); };
     Photon.Menu = function (target) { return new Menu_1.Menu(target); };
     Photon.Snackbar = function (target, options) { return new Snackbar_1.Snackbar(target, options); };
