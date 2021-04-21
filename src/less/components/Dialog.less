@@ -1,0 +1,113 @@
+.photon-dialog-wrapper {
+	position: fixed;
+	display: grid;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: #00000052;
+	transition: none var(--animation_speed_fast) var(--animation_curve);
+	transition-property: opacity;
+	&.hidden {
+		pointer-events: none;
+		opacity: 0;
+		.photon-dialog {
+			pointer-events: hidden;
+			&.transition-grow {
+				transform: scale(.9);
+			}
+		}
+	}
+	.photon-dialog {
+		margin: auto;
+		&.size-fullscreen {
+			max-width: 100%;
+			max-height: 100%;
+		}
+		&.size-small {
+			max-width: 280px;
+		}
+		&.size-normal {
+			max-width: 444px;
+		}
+		&.size-large {
+			max-width: 600px;
+		}
+	}
+}
+
+.photon-dialog {
+	.raised-24();
+	border-radius: var(--shape);
+	background: var(--palette_sheet_background);
+	transition: none var(--animation_speed_fast) var(--animation_curve);
+	transition-property: opacity, transform;
+	color: var(--palette_sheet_body);
+	font-family: var(--font_body);
+	overflow: hidden;
+	display: flow-root;
+	transform: scale(1);
+	opacity: 1;
+	z-index: 2500;
+	margin: 8px;
+	max-height: calc(100% - 1rem);
+	width: calc(100% - 1rem);
+	.dialog-body {
+		flex: 1 1 auto;
+		padding: 8px 24px;
+		overflow-y: auto;
+		p {
+			margin: 0;
+			margin-bottom: 12px;
+			font-size: 1rem;
+			font-family: var(--font_body);
+			color: var(--palette_sheet_body);
+			opacity: 0.89;
+			font-weight: 400;
+			line-height: 1.5;
+			letter-spacing: 0.00938em;
+		}
+	}
+	.dialog-actions {
+		padding: 4px;
+		direction: rtl;
+		&.seperated {
+			border-top: 1px solid var(--palette_divider);
+		}
+		.photon-btn {
+			margin: 4px;
+			padding: 0 12px;
+		}
+		&.direction-left {
+			direction: ltr;
+		}
+	}
+	.dialog-title {
+		&.seperated {
+			border-bottom: 1px solid var(--palette_divider);
+			margin-bottom: 10px;
+		}
+		h1 {
+			padding: 16px 24px;
+			font-size: 1.25rem;
+			font-family: var(--font_headline);
+			font-weight: 500;
+			line-height: 1.6;
+			letter-spacing: 0.0075em;
+			margin: 0;
+		}
+		h2 {
+			font-size: 18px;
+			font-weight: 500;
+			margin: 1rem;
+			margin-bottom: 0;
+		}
+		h1 + h2 {
+			margin: 1rem;
+			margin-top: -1rem;
+			font-size: 16px;
+			opacity: 0.67;
+		}
+	}
+
+}

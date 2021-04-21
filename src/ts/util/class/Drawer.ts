@@ -1,11 +1,12 @@
+import { PhotonSelector } from "../../index";
 import $ from "jquery";
 import guid from "../guid";
 
 export class Drawer {
 
-	target: $;
+	target: JQuery;
 
-	constructor(target: $) {
+	constructor(target: PhotonSelector) {
 
 		// Define $nav and $swipe
 		this.target = $(target);
