@@ -45,8 +45,8 @@ List.defaultProps = {
 };
 /* ****************************************** */
 function ListItem(_a) {
-    var children = _a.children, round = _a.round, waves = _a.waves, icon = _a.icon, iconEnd = _a.iconEnd, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "round", "waves", "icon", "iconEnd", "className"]);
-    var classes = classnames_1.default("photon-list-item", round && "round", waves && "waves-effect", className);
+    var children = _a.children, round = _a.round, waves = _a.waves, active = _a.active, icon = _a.icon, iconEnd = _a.iconEnd, _b = _a.className, className = _b === void 0 ? "" : _b, props = __rest(_a, ["children", "round", "waves", "active", "icon", "iconEnd", "className"]);
+    var classes = classnames_1.default("photon-list-item", round && "round", active && "active", waves && "waves-effect", className);
     return (react_1.default.createElement("li", __assign({ className: classes }, props),
         react_1.default.createElement("div", { className: "list-item-name" },
             icon,
@@ -60,6 +60,7 @@ ListItem.propTypes = {
     iconEnd: prop_types_1.default.any,
     className: prop_types_1.default.string,
     round: prop_types_1.default.bool,
+    active: prop_types_1.default.bool,
     waves: prop_types_1.default.bool,
 };
 ListItem.defaultProps = {
@@ -67,6 +68,7 @@ ListItem.defaultProps = {
     icon: null,
     iconEnd: null,
     round: false,
+    active: false,
     waves: true
 };
 /* ****************************************** */

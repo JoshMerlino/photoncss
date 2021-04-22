@@ -20,8 +20,8 @@ List.defaultProps = {
 
 /* ****************************************** */
 
-export function ListItem({ children, round, waves, icon, iconEnd, className = "", ...props }: InferProps<typeof ListItem.propTypes>) : JSX.Element {
-	const classes = classnames("photon-list-item", round && "round", waves && "waves-effect", className);
+export function ListItem({ children, round, waves, active, icon, iconEnd, className = "", ...props }: InferProps<typeof ListItem.propTypes>) : JSX.Element {
+	const classes = classnames("photon-list-item", round && "round", active && "active", waves && "waves-effect", className);
 	return (
 		<li className={classes} {...props}>
 			<div className="list-item-name">
@@ -41,6 +41,7 @@ ListItem.propTypes = {
 	iconEnd: PropTypes.any,
 	className: PropTypes.string,
 	round: PropTypes.bool,
+	active: PropTypes.bool,
 	waves: PropTypes.bool,
 };
 
@@ -49,6 +50,7 @@ ListItem.defaultProps = {
 	icon: null,
 	iconEnd: null,
 	round: false,
+	active: false,
 	waves: true
 };
 
