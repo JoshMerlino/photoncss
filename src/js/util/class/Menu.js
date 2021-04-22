@@ -21,12 +21,18 @@ var Menu = /** @class */ (function () {
         // Append modal close target to DOM
         var id = $menu.attr("id") || guid_1.default();
         $menu.attr("id", id);
-        jquery_1.default("<div class=\"modal-close-area transparent\" modal=\"" + id + "\"></div>").appendTo(jquery_1.default("body"));
-        var $modal = jquery_1.default(".modal-close-area[modal=\"" + id + "\"]");
         // Close menu on click from menu or modal
-        [$modal, $menu.children(".photon-list").children(".photon-list-item")].map(function (e) { return e.on("click", function () { return _this.close(); }); });
+        $menu.children(".photon-list").children(".photon-list-item").on("click", function () { return _this.close(); });
         return this;
     }
+    Menu.prototype.__getModal = function (id) {
+        var _this = this;
+        if (jquery_1.default(".modal-close-area[modal=\"" + id + "\"]").length > 0)
+            return jquery_1.default(".modal-close-area[modal=\"" + id + "\"]");
+        jquery_1.default("<div class=\"modal-close-area transparent\" modal=\"" + id + "\"></div>").appendTo(jquery_1.default("body"));
+        var $modal = jquery_1.default(".modal-close-area[modal=\"" + id + "\"]");
+        return $modal.on("click", function () { return _this.close(); });
+    };
     Menu.prototype.anchor = function (x, y) {
         this.explicitPosition = true;
         // Get $menu
@@ -55,14 +61,16 @@ var Menu = /** @class */ (function () {
     Menu.prototype.open = function () {
         // Get $menu and $modal
         var $menu = this.target;
-        var $modal = jquery_1.default(".modal-close-area[modal=\"" + $menu.attr("id") + "\"]");
+        var $modal = this.__getModal($menu.attr("id"));
         if (!this.explicitPosition) {
             var x = getPointer_1.default().x;
             var y = getPointer_1.default().y;
             $menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
         }
         // Activate both
-        [$menu, $modal].map(function (e) { return e.addClass("active"); });
+        requestAnimationFrame(function () {
+            [$menu, $modal].map(function (e) { return e.addClass("active"); });
+        });
         return this;
     };
     Menu.prototype.close = function () {
@@ -71,6 +79,7 @@ var Menu = /** @class */ (function () {
         var $modal = jquery_1.default(".modal-close-area[modal=\"" + $menu.attr("id") + "\"]");
         // Deactivate both
         [$menu, $modal].map(function (e) { return e.removeClass("active"); });
+        setTimeout(function () { return $modal.remove(); }, 300);
         return this;
     };
     Object.defineProperty(Menu.prototype, "isOpen", {
