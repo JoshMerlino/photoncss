@@ -91,28 +91,26 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 
 	});
 
-	return (
-		<>
-			<div className={classes}>
-				<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly} id={id} {...props}/>
-				{ prefix !== "" && <span className="prefix">{prefix}</span>}
-				{ suffix !== "" && <span className="suffix">{suffix}</span>}
-				<label htmlFor={id}>{children || "\u00A0"}</label>
-				<div className="bar"></div>
-				{ subtitle !== "" && <p className="subtitle">{subtitle}</p> }
-			</div>
-			{ dropdown !== null &&
-				<Menu id={`${id}-dropdown`}>
-					{ dropdown.map((item, key) => <ListItem tabIndex={key} key={key} onClick={ () => {
-						const input = $(`#${id}`);
-						input.val(item);
-						input.addClass("contains-content");
-						"onChange" in props && props.onChange({ target: input[0], value: item });
-					}} >{item}</ListItem>) }
-				</Menu>
-			}
-		</>
-	);
+	return <>
+		<div className={classes}>
+			<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly} id={id} {...props}/>
+			{ prefix !== "" && <span className="prefix">{prefix}</span>}
+			{ suffix !== "" && <span className="suffix">{suffix}</span>}
+			<label htmlFor={id}>{children || "\u00A0"}</label>
+			<div className="bar"></div>
+			{ subtitle !== "" && <p className="subtitle">{subtitle}</p> }
+		</div>
+		{ dropdown !== null &&
+			<Menu id={`${id}-dropdown`}>
+				{ dropdown && dropdown.map((item, key) => <ListItem tabIndex={key} key={key} onClick={ () => {
+					const input = $(`#${id}`);
+					input.val(item);
+					input.addClass("contains-content");
+					"onChange" in props && props.onChange({ target: input[0], value: item });
+				}}>{item}</ListItem>) }
+			</Menu>
+		}
+	</>;
 }
 
 InputField.propTypes = {
@@ -125,7 +123,7 @@ InputField.propTypes = {
 	id: PropTypes.string,
 	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
 	variant: PropTypes.oneOf([ "normal", "filled", "outlined" ]),
-	dropdown: PropTypes.any,
+	dropdown: PropTypes.array,
 	readOnly: PropTypes.bool
 };
 
