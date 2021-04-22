@@ -105,7 +105,7 @@ function InputField(_a) {
                 menu.close();
         });
     });
-    return (react_1.default.createElement(react_1.default.Fragment, null,
+    return react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: classes },
             react_1.default.createElement("input", __assign({ tabIndex: 0, type: type, readOnly: dropdown !== null || readOnly, id: id }, props)),
             prefix !== "" && react_1.default.createElement("span", { className: "prefix" }, prefix),
@@ -114,12 +114,12 @@ function InputField(_a) {
             react_1.default.createElement("div", { className: "bar" }),
             subtitle !== "" && react_1.default.createElement("p", { className: "subtitle" }, subtitle)),
         dropdown !== null &&
-            react_1.default.createElement(Menu_1.Menu, { id: id + "-dropdown" }, dropdown.map(function (item, key) { return react_1.default.createElement(List_1.ListItem, { tabIndex: key, key: key, onClick: function () {
+            react_1.default.createElement(Menu_1.Menu, { id: id + "-dropdown" }, dropdown && dropdown.map(function (item, key) { return react_1.default.createElement(List_1.ListItem, { tabIndex: key, key: key, onClick: function () {
                     var input = jquery_1.default("#" + id);
                     input.val(item);
                     input.addClass("contains-content");
                     "onChange" in props && props.onChange({ target: input[0], value: item });
-                } }, item); }))));
+                } }, item); })));
 }
 exports.InputField = InputField;
 InputField.propTypes = {
@@ -132,7 +132,7 @@ InputField.propTypes = {
     id: prop_types_1.default.string,
     color: prop_types_1.default.oneOf(["none", "primary", "secondary"]),
     variant: prop_types_1.default.oneOf(["normal", "filled", "outlined"]),
-    dropdown: prop_types_1.default.any,
+    dropdown: prop_types_1.default.array,
     readOnly: prop_types_1.default.bool
 };
 InputField.defaultProps = {
