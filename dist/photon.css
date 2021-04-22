@@ -1996,10 +1996,6 @@
   src: local('Roboto Mono Bold'), local('RobotoMono-Bold'), url(./font/936869ba46988c2387481468c25686bc.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
-@font-face {
-  font-family: "Uni Sans Heavy CAPS";
-  src: url(./font/db6acce33b67751a4a203b3e90492e2b.woff2) format("woff2");
-}
 /* cyrillic-ext */
 @font-face {
   font-family: 'Roboto Slab';
@@ -2223,6 +2219,10 @@
   font-weight: 700;
   src: local('Roboto Slab Bold'), local('RobotoSlab-Bold'), url(./font/0eedf90320c431a54c20be1eb9b43945.woff2) format('woff2');
   unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: "Uni Sans Heavy CAPS";
+  src: url(./font/db6acce33b67751a4a203b3e90492e2b.woff2) format("woff2");
 }
 .raised-0 {
   box-shadow: none;
@@ -2580,180 +2580,6 @@ hr {
   transform: scale(0) translate(0, 0);
   pointer-events: none;
 }
-.photon-btn {
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  font-family: var(--font_interactive);
-  border-radius: var(--shape);
-  transition-property: background, box-shadow, border-color;
-  text-transform: uppercase;
-  text-align: center;
-  font-weight: 500;
-  margin: 8px;
-  letter-spacing: 0.02857em;
-  box-sizing: border-box;
-  display: inline-block;
-  min-width: 64px;
-  user-select: none;
-  cursor: pointer;
-  font-size: 0.875rem;
-  min-height: 36px;
-  line-height: 36px;
-  padding: 0 16px;
-  border: none;
-  white-space: nowrap;
-  outline: none;
-}
-.photon-btn.variant-contained,
-.photon-btn.variant-raised {
-  color: #212121;
-  background: #e0e0e0;
-}
-.photon-btn.variant-contained:focus,
-.photon-btn.variant-raised:focus,
-.photon-btn.variant-contained:hover,
-.photon-btn.variant-raised:hover {
-  background: #d1d1d1;
-}
-.photon-btn.variant-contained .waves-ripple,
-.photon-btn.variant-raised .waves-ripple {
-  background: #00000030;
-}
-.photon-btn.variant-contained.color-primary,
-.photon-btn.variant-raised.color-primary {
-  background: var(--palette_primary_normal);
-  color: var(--palette_primary_text);
-}
-.photon-btn.variant-contained.color-primary:focus,
-.photon-btn.variant-raised.color-primary:focus,
-.photon-btn.variant-contained.color-primary:hover,
-.photon-btn.variant-raised.color-primary:hover {
-  background: var(--palette_primary_dark);
-}
-.photon-btn.variant-contained.color-primary .waves-ripple,
-.photon-btn.variant-raised.color-primary .waves-ripple {
-  background: var(--palette_primary_waves);
-}
-.photon-btn.variant-contained.color-secondary,
-.photon-btn.variant-raised.color-secondary {
-  background: var(--palette_secondary_normal);
-  color: var(--palette_secondary_text);
-}
-.photon-btn.variant-contained.color-secondary:focus,
-.photon-btn.variant-raised.color-secondary:focus,
-.photon-btn.variant-contained.color-secondary:hover,
-.photon-btn.variant-raised.color-secondary:hover {
-  background: var(--palette_secondary_dark);
-}
-.photon-btn.variant-contained.color-secondary .waves-ripple,
-.photon-btn.variant-raised.color-secondary .waves-ripple {
-  background: var(--palette_secondary_waves);
-}
-.photon-btn.variant-raised {
-  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:hover {
-  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:focus {
-  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-raised:active {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-.photon-btn.variant-flat,
-.photon-btn.variant-outlined {
-  background: transparent;
-  color: var(--palette_body_headline);
-}
-.photon-btn.variant-flat:focus,
-.photon-btn.variant-outlined:focus,
-.photon-btn.variant-flat:hover,
-.photon-btn.variant-outlined:hover {
-  background: var(--palette_body_hover);
-}
-.photon-btn.variant-flat.color-primary,
-.photon-btn.variant-outlined.color-primary {
-  color: var(--palette_primary_normal);
-  border-color: var(--palette_primary_normal);
-}
-.photon-btn.variant-flat.color-primary:focus,
-.photon-btn.variant-outlined.color-primary:focus,
-.photon-btn.variant-flat.color-primary:hover,
-.photon-btn.variant-outlined.color-primary:hover {
-  background: var(--palette_primary_faded);
-}
-.photon-btn.variant-flat.color-primary .waves-ripple,
-.photon-btn.variant-outlined.color-primary .waves-ripple {
-  background: var(--palette_primary_fadedwaves);
-}
-.photon-btn.variant-flat.color-secondary,
-.photon-btn.variant-outlined.color-secondary {
-  color: var(--palette_secondary_normal);
-  border-color: var(--palette_secondary_normal);
-}
-.photon-btn.variant-flat.color-secondary:focus,
-.photon-btn.variant-outlined.color-secondary:focus,
-.photon-btn.variant-flat.color-secondary:hover,
-.photon-btn.variant-outlined.color-secondary:hover {
-  background: var(--palette_secondary_faded);
-}
-.photon-btn.variant-flat.color-secondary .waves-ripple,
-.photon-btn.variant-outlined.color-secondary .waves-ripple {
-  background: var(--palette_secondary_fadedwaves);
-}
-.photon-btn.variant-outlined {
-  border: 1px solid var(--palette_body_headline);
-  min-height: 34px;
-  line-height: 34px;
-  padding: 0 15px;
-}
-.photon-btn.size-dense {
-  padding: 0 8px;
-  font-size: 0.8125rem;
-  min-height: 32px;
-  line-height: 32px;
-}
-.photon-btn.size-dense.outlined {
-  min-height: 30px;
-  line-height: 30px;
-  padding: 0 7px;
-}
-.photon-btn.size-dense i.text-icon {
-  font-size: 20px;
-  transform: translateX(-2px) translateY(-1px);
-}
-.photon-btn.size-dense i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(2px) translateY(-1px);
-}
-.photon-btn.size-large {
-  padding: 0 24px;
-  font-size: 0.9375rem;
-  min-height: 42px;
-  line-height: 42px;
-}
-.photon-btn.size-large.outlined {
-  min-height: 40px;
-  line-height: 40px;
-  padding: 0 23px;
-}
-.photon-btn.size-large i.text-icon {
-  font-size: 28px;
-  transform: translateX(-6px) translateY(-1px);
-}
-.photon-btn.size-large i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(6px) translateY(-1px);
-}
-.photon-btn.display-block {
-  display: block;
-  width: calc(100% - 16px);
-}
-.photon-btn i.text-icon {
-  user-select: none;
-  transform: translateX(-3px) translateY(-1px);
-}
-.photon-btn i.text-icon:last-of-type:not(:first-of-type) {
-  transform: translateX(3px) translateY(-1px);
-}
 .photon-card {
   border-radius: var(--shape);
   transition: none var(--animation_speed_fast) var(--animation_curve);
@@ -2961,101 +2787,6 @@ hr {
   font-size: 16px;
   opacity: 0.67;
 }
-.photon-drawer {
-  z-index: 1200;
-  position: fixed;
-  transition: none var(--animation_speed_medium) var(--animation_curve);
-  transition-property: box-shadow;
-  background: var(--palette_sheet_background);
-}
-.photon-drawer ul.photon-list {
-  border: none;
-  overflow: visible auto;
-  height: calc(100% - 1rem);
-}
-.photon-drawer ul.photon-list li.photon-list-item {
-  font-weight: 500!important;
-  font-size: 0.875rem;
-}
-.photon-drawer .photon-swipe_target {
-  position: absolute;
-}
-.photon-drawer.transition {
-  transition-property: box-shadow, transform;
-}
-.photon-drawer.active,
-.photon-drawer.shadow {
-  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
-}
-.photon-drawer.from-left {
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: 300px;
-  transform: translateX(-100%);
-}
-.photon-drawer.from-left .drawer-swipe-target {
-  bottom: 0;
-  right: -16px;
-  top: 0;
-  width: 16px;
-}
-.photon-drawer.from-right {
-  top: 0;
-  right: 0;
-  bottom: 0;
-  width: 300px;
-  transform: translateX(100%);
-}
-.photon-drawer.from-right .drawer-swipe-target {
-  bottom: 0;
-  left: -16px;
-  top: 0;
-  width: 16px;
-}
-.photon-drawer.from-bottom {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: translateY(100%);
-}
-.photon-drawer.from-bottom .drawer-swipe-target {
-  top: -16px;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-.photon-drawer.from-top {
-  top: 0;
-  left: 0;
-  right: 0;
-  transform: translateY(-100%);
-}
-.photon-drawer.from-top .drawer-swipe-target {
-  bottom: -16px;
-  left: 0;
-  right: 0;
-  height: 16px;
-}
-.photon-drawer.active {
-  transform: translate(0px, 0px) !important;
-}
-.modal-close-area {
-  position: fixed;
-  z-index: 1150;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.32);
-  opacity: 0;
-  transition: opacity var(--animation_speed_medium) var(--animation_curve);
-  pointer-events: none;
-}
-.modal-close-area.active {
-  opacity: 1;
-  pointer-events: all;
-}
 .photon-checkbox {
   margin: 8px 0;
   height: 18px;
@@ -3163,6 +2894,275 @@ hr {
 .photon-checkbox.labelposition-before .ripple {
   right: -15px;
   left: auto;
+}
+.photon-btn {
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  font-family: var(--font_interactive);
+  border-radius: var(--shape);
+  transition-property: background, box-shadow, border-color;
+  text-transform: uppercase;
+  text-align: center;
+  font-weight: 500;
+  margin: 8px;
+  letter-spacing: 0.02857em;
+  box-sizing: border-box;
+  display: inline-block;
+  min-width: 64px;
+  user-select: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  min-height: 36px;
+  line-height: 36px;
+  padding: 0 16px;
+  border: none;
+  white-space: nowrap;
+  outline: none;
+}
+.photon-btn.variant-contained,
+.photon-btn.variant-raised {
+  color: #212121;
+  background: #e0e0e0;
+}
+.photon-btn.variant-contained:focus,
+.photon-btn.variant-raised:focus,
+.photon-btn.variant-contained:hover,
+.photon-btn.variant-raised:hover {
+  background: #d1d1d1;
+}
+.photon-btn.variant-contained .waves-ripple,
+.photon-btn.variant-raised .waves-ripple {
+  background: #00000030;
+}
+.photon-btn.variant-contained.color-primary,
+.photon-btn.variant-raised.color-primary {
+  background: var(--palette_primary_normal);
+  color: var(--palette_primary_text);
+}
+.photon-btn.variant-contained.color-primary:focus,
+.photon-btn.variant-raised.color-primary:focus,
+.photon-btn.variant-contained.color-primary:hover,
+.photon-btn.variant-raised.color-primary:hover {
+  background: var(--palette_primary_dark);
+}
+.photon-btn.variant-contained.color-primary .waves-ripple,
+.photon-btn.variant-raised.color-primary .waves-ripple {
+  background: var(--palette_primary_waves);
+}
+.photon-btn.variant-contained.color-secondary,
+.photon-btn.variant-raised.color-secondary {
+  background: var(--palette_secondary_normal);
+  color: var(--palette_secondary_text);
+}
+.photon-btn.variant-contained.color-secondary:focus,
+.photon-btn.variant-raised.color-secondary:focus,
+.photon-btn.variant-contained.color-secondary:hover,
+.photon-btn.variant-raised.color-secondary:hover {
+  background: var(--palette_secondary_dark);
+}
+.photon-btn.variant-contained.color-secondary .waves-ripple,
+.photon-btn.variant-raised.color-secondary .waves-ripple {
+  background: var(--palette_secondary_waves);
+}
+.photon-btn.variant-raised {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:hover {
+  box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2), 0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:focus {
+  box-shadow: 0px 3px 5px -1px rgba(0, 0, 0, 0.2), 0px 6px 10px 0px rgba(0, 0, 0, 0.14), 0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-raised:active {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.photon-btn.variant-flat,
+.photon-btn.variant-outlined {
+  background: transparent;
+  color: var(--palette_body_headline);
+}
+.photon-btn.variant-flat:focus,
+.photon-btn.variant-outlined:focus,
+.photon-btn.variant-flat:hover,
+.photon-btn.variant-outlined:hover {
+  background: var(--palette_body_hover);
+}
+.photon-btn.variant-flat.color-primary,
+.photon-btn.variant-outlined.color-primary {
+  color: var(--palette_primary_normal);
+  border-color: var(--palette_primary_normal);
+}
+.photon-btn.variant-flat.color-primary:focus,
+.photon-btn.variant-outlined.color-primary:focus,
+.photon-btn.variant-flat.color-primary:hover,
+.photon-btn.variant-outlined.color-primary:hover {
+  background: var(--palette_primary_faded);
+}
+.photon-btn.variant-flat.color-primary .waves-ripple,
+.photon-btn.variant-outlined.color-primary .waves-ripple {
+  background: var(--palette_primary_fadedwaves);
+}
+.photon-btn.variant-flat.color-secondary,
+.photon-btn.variant-outlined.color-secondary {
+  color: var(--palette_secondary_normal);
+  border-color: var(--palette_secondary_normal);
+}
+.photon-btn.variant-flat.color-secondary:focus,
+.photon-btn.variant-outlined.color-secondary:focus,
+.photon-btn.variant-flat.color-secondary:hover,
+.photon-btn.variant-outlined.color-secondary:hover {
+  background: var(--palette_secondary_faded);
+}
+.photon-btn.variant-flat.color-secondary .waves-ripple,
+.photon-btn.variant-outlined.color-secondary .waves-ripple {
+  background: var(--palette_secondary_fadedwaves);
+}
+.photon-btn.variant-outlined {
+  border: 1px solid var(--palette_body_headline);
+  min-height: 34px;
+  line-height: 34px;
+  padding: 0 15px;
+}
+.photon-btn.size-dense {
+  padding: 0 8px;
+  font-size: 0.8125rem;
+  min-height: 32px;
+  line-height: 32px;
+}
+.photon-btn.size-dense.outlined {
+  min-height: 30px;
+  line-height: 30px;
+  padding: 0 7px;
+}
+.photon-btn.size-dense i.text-icon {
+  font-size: 20px;
+  transform: translateX(-2px) translateY(-1px);
+}
+.photon-btn.size-dense i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(2px) translateY(-1px);
+}
+.photon-btn.size-large {
+  padding: 0 24px;
+  font-size: 0.9375rem;
+  min-height: 42px;
+  line-height: 42px;
+}
+.photon-btn.size-large.outlined {
+  min-height: 40px;
+  line-height: 40px;
+  padding: 0 23px;
+}
+.photon-btn.size-large i.text-icon {
+  font-size: 28px;
+  transform: translateX(-6px) translateY(-1px);
+}
+.photon-btn.size-large i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(6px) translateY(-1px);
+}
+.photon-btn.display-block {
+  display: block;
+  width: calc(100% - 16px);
+}
+.photon-btn i.text-icon {
+  user-select: none;
+  transform: translateX(-3px) translateY(-1px);
+}
+.photon-btn i.text-icon:last-of-type:not(:first-of-type) {
+  transform: translateX(3px) translateY(-1px);
+}
+.photon-drawer {
+  z-index: 1200;
+  position: fixed;
+  transition: none var(--animation_speed_medium) var(--animation_curve);
+  transition-property: box-shadow;
+  background: var(--palette_sheet_background);
+}
+.photon-drawer ul.photon-list {
+  border: none;
+  overflow: visible auto;
+  height: calc(100% - 1rem);
+}
+.photon-drawer ul.photon-list li.photon-list-item {
+  font-weight: 500!important;
+  font-size: 0.875rem;
+}
+.photon-drawer .photon-swipe_target {
+  position: absolute;
+}
+.photon-drawer.transition {
+  transition-property: box-shadow, transform;
+}
+.photon-drawer.active,
+.photon-drawer.shadow {
+  box-shadow: 0 8px 10px -5px rgba(0, 0, 0, 0.2), 0 16px 24px 2px rgba(0, 0, 0, 0.14), 0 6px 30px 5px rgba(0, 0, 0, 0.12);
+}
+.photon-drawer.from-left {
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 300px;
+  transform: translateX(-100%);
+}
+.photon-drawer.from-left .drawer-swipe-target {
+  bottom: 0;
+  right: -16px;
+  top: 0;
+  width: 16px;
+}
+.photon-drawer.from-right {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  transform: translateX(100%);
+}
+.photon-drawer.from-right .drawer-swipe-target {
+  bottom: 0;
+  left: -16px;
+  top: 0;
+  width: 16px;
+}
+.photon-drawer.from-bottom {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: translateY(100%);
+}
+.photon-drawer.from-bottom .drawer-swipe-target {
+  top: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+.photon-drawer.from-top {
+  top: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(-100%);
+}
+.photon-drawer.from-top .drawer-swipe-target {
+  bottom: -16px;
+  left: 0;
+  right: 0;
+  height: 16px;
+}
+.photon-drawer.active {
+  transform: translate(0px, 0px) !important;
+}
+.modal-close-area {
+  position: fixed;
+  z-index: 1150;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.32);
+  opacity: 0;
+  transition: opacity var(--animation_speed_medium) var(--animation_curve);
+  pointer-events: none;
+}
+.modal-close-area.active {
+  opacity: 1;
+  pointer-events: all;
 }
 .material-icons {
   font-family: 'Material Icons';
@@ -4320,40 +4320,6 @@ ul.photon-list li.photon-subheader:first-child,
 hr + ul.photon-list li.photon-subheader {
   margin-top: -8px;
 }
-.photon-menu {
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-  border-radius: 4px;
-  display: inline-block;
-  z-index: 1250;
-  position: absolute;
-  user-select: none;
-  background: var(--palette_sheet_background);
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: transform, opacity;
-  opacity: 0;
-  pointer-events: none;
-  transform: scale(0.9);
-}
-.photon-menu .photon-list {
-  border: none;
-}
-.photon-menu.active {
-  transform: scale(1);
-  pointer-events: all;
-  opacity: 1;
-}
-.photon-menu.anchor-tl {
-  transform-origin: top left;
-}
-.photon-menu.anchor-tr {
-  transform-origin: top right;
-}
-.photon-menu.anchor-bl {
-  transform-origin: bottom left;
-}
-.photon-menu.anchor-br {
-  transform-origin: bottom right;
-}
 .photon-spinner {
   animation: rotator 1.4s linear infinite;
   margin: 8px;
@@ -4414,6 +4380,67 @@ hr + ul.photon-list li.photon-subheader {
 }
 .photon-spinner.color-secondary .path {
   stroke: var(--palette_secondary_normal);
+}
+.photon-snackbar {
+  background-color: var(--palette_notification_background);
+  color: var(--palette_notification_text);
+  border-radius: var(--shape);
+  font-family: var(--palette_notification_text);
+  margin: 8px;
+  min-height: 48px;
+  min-width: 344px;
+  max-width: 640px;
+  overflow: hidden;
+  pointer-events: all;
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+}
+.photon-snackbar p {
+  padding: 15.5px 24px;
+  margin: 0;
+  color: inherit;
+  display: inline-block;
+  font-size: 14px;
+}
+.photon-snackbar .photon-btn {
+  margin: 6px;
+  margin-left: 48px;
+  padding: 0 12px;
+  float: right;
+}
+#photon-notification-container {
+  position: fixed;
+  padding-bottom: 8px;
+  top: 1rem;
+  right: 1rem;
+  z-index: 1500;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+}
+@media only screen and (min-width: 960px) {
+  #photon-notification-container {
+    top: 4rem;
+    right: 4rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  #photon-notification-container {
+    top: auto;
+    right: 0;
+    left: 0;
+    bottom: 0;
+  }
+}
+#photon-notification-container .photon-snackbar-wapper {
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: opacity, transform, margin-top;
+  margin-bottom: -8px;
+  margin-top: 0;
+}
+#photon-notification-container .photon-snackbar-wapper.hidden {
+  opacity: 0;
+  transform: scale(0.5);
+  margin-top: -56px;
 }
 .photon-radio {
   margin: 8px 0;
@@ -4510,67 +4537,6 @@ hr + ul.photon-list li.photon-subheader {
 .photon-radio.labelposition-before .ripple {
   right: -15px;
   left: auto;
-}
-.photon-snackbar {
-  background-color: var(--palette_notification_background);
-  color: var(--palette_notification_text);
-  border-radius: var(--shape);
-  font-family: var(--palette_notification_text);
-  margin: 8px;
-  min-height: 48px;
-  min-width: 344px;
-  max-width: 640px;
-  overflow: hidden;
-  pointer-events: all;
-  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
-}
-.photon-snackbar p {
-  padding: 15.5px 24px;
-  margin: 0;
-  color: inherit;
-  display: inline-block;
-  font-size: 14px;
-}
-.photon-snackbar .photon-btn {
-  margin: 6px;
-  margin-left: 48px;
-  padding: 0 12px;
-  float: right;
-}
-#photon-notification-container {
-  position: fixed;
-  padding-bottom: 8px;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1500;
-  pointer-events: none;
-  display: flex;
-  flex-direction: column;
-}
-@media only screen and (min-width: 960px) {
-  #photon-notification-container {
-    top: 4rem;
-    right: 4rem;
-  }
-}
-@media only screen and (max-width: 600px) {
-  #photon-notification-container {
-    top: auto;
-    right: 0;
-    left: 0;
-    bottom: 0;
-  }
-}
-#photon-notification-container .photon-snackbar-wapper {
-  transition: none var(--animation_speed_fast) var(--animation_curve);
-  transition-property: opacity, transform, margin-top;
-  margin-bottom: -8px;
-  margin-top: 0;
-}
-#photon-notification-container .photon-snackbar-wapper.hidden {
-  opacity: 0;
-  transform: scale(0.5);
-  margin-top: -56px;
 }
 .photon-switch {
   margin: 8px 0;
@@ -4680,6 +4646,40 @@ hr + ul.photon-list li.photon-subheader {
 }
 .photon-switch.labelposition-before input[type="checkbox"]:checked ~ .ripple {
   right: -14px;
+}
+.photon-menu {
+  box-shadow: 0px 5px 5px -3px rgba(0, 0, 0, 0.2), 0px 8px 10px 1px rgba(0, 0, 0, 0.14), 0px 3px 14px 2px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  display: inline-block;
+  z-index: 1250;
+  position: absolute;
+  user-select: none;
+  background: var(--palette_sheet_background);
+  transition: none var(--animation_speed_fast) var(--animation_curve);
+  transition-property: transform, opacity;
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.9);
+}
+.photon-menu .photon-list {
+  border: none;
+}
+.photon-menu.active {
+  transform: scale(1);
+  pointer-events: all;
+  opacity: 1;
+}
+.photon-menu.anchor-tl {
+  transform-origin: top left;
+}
+.photon-menu.anchor-tr {
+  transform-origin: top right;
+}
+.photon-menu.anchor-bl {
+  transform-origin: bottom left;
+}
+.photon-menu.anchor-br {
+  transform-origin: bottom right;
 }
 body {
   background-color: var(--palette_body_background);
