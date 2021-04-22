@@ -21,16 +21,20 @@ export class Menu {
 		// Append modal close target to DOM
 		const id = $menu.attr("id") || guid();
 		$menu.attr("id", id);
-		$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
-		const $modal = $(`.modal-close-area[modal="${id}"]`);
 
 		// Close menu on click from menu or modal
-		[ $modal, $menu.children(".photon-list").children(".photon-list-item") ].map(e => e.on("click", () => this.close()));
+		$menu.children(".photon-list").children(".photon-list-item").on("click", () => this.close());
 
 		return this;
 
 	}
 
+	__getModal(id: string): JQuery<HTMLElement> {
+		if($(`.modal-close-area[modal="${id}"]`).length > 0) return $(`.modal-close-area[modal="${id}"]`);
+		$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
+		const $modal = $(`.modal-close-area[modal="${id}"]`);
+		return $modal.on("click", () => this.close());
+	}
 
 	anchor(x: number | PhotonSelector, y?: number): this {
 
@@ -58,7 +62,7 @@ export class Menu {
 		if(x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
 		if(x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
 		if(x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
-		
+
 		return this;
 
 	}
@@ -67,7 +71,7 @@ export class Menu {
 
 		// Get $menu and $modal
 		const $menu = this.target;
-		const $modal = $(`.modal-close-area[modal="${$menu.attr("id")}"]`);
+		const $modal = this.__getModal($menu.attr("id"));
 
 		if(!this.explicitPosition) {
 			const x = getPointer().x;
@@ -76,7 +80,9 @@ export class Menu {
 		}
 
 		// Activate both
-		[ $menu, $modal ].map(e => e.addClass("active"));
+		requestAnimationFrame(function() {
+			[ $menu, $modal ].map(e => e.addClass("active"));
+		});
 
 		return this;
 
@@ -90,6 +96,7 @@ export class Menu {
 
 		// Deactivate both
 		[ $menu, $modal ].map(e => e.removeClass("active"));
+		setTimeout(() => $modal.remove(), 300);
 
 		return this;
 
