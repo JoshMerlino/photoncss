@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 /* ****************************************** */
 
-export function List({ children, className = "", ...props }: InferProps<typeof List.propTypes>) : JSX.Element {
+export function List({ children, className = "", ...props }: InferProps<typeof List.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-list", className);
 	return <ul className={classes} {...props}>{ children }</ul>;
 }
@@ -20,7 +20,7 @@ List.defaultProps = {
 
 /* ****************************************** */
 
-export function ListItem({ children, round, waves, active, icon, iconEnd, className = "", ...props }: InferProps<typeof ListItem.propTypes>) : JSX.Element {
+export function ListItem({ children, round, waves, active, icon, iconEnd, className = "", ...props }: InferProps<typeof ListItem.propTypes> & InferProps<any>) : JSX.Element {
 	const classes = classnames("photon-list-item", round && "round", active && "active", waves && "waves-effect", className);
 	return (
 		<li className={classes} {...props}>
@@ -56,7 +56,7 @@ ListItem.defaultProps = {
 
 /* ****************************************** */
 
-export function ListSubheader({ children, className = "", ...props }: InferProps<typeof ListSubheader.propTypes>) : JSX.Element {
+export function ListSubheader({ children, className = "", ...props }: InferProps<typeof ListSubheader.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-subheader", className);
 	return <li className={classes} {...props}>{ children }</li>;
 }

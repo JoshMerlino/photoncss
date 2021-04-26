@@ -5,7 +5,7 @@ import { List } from "./List";
 
 /* ****************************************** */
 
-export function Drawer({ children, from, swipe, className = "", ...props }: InferProps<typeof Drawer.propTypes>) : JSX.Element {
+export function Drawer({ children, from, swipe, className = "", ...props }: InferProps<typeof Drawer.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-drawer", swipe && "swipe-enabled", `from-${from}`, className);
 	return (
 		<aside className={classes} {...props}>

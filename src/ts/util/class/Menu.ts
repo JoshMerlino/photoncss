@@ -5,10 +5,10 @@ import { PhotonSelector } from "../../index";
 
 export class Menu {
 
-	target: $;
+	target: JQuery;
 	private explicitPosition = false;
 
-	constructor(target: $) {
+	constructor(target: JQuery) {
 
 		// Define $menu from target
 		this.target = $(target);
@@ -38,30 +38,57 @@ export class Menu {
 
 	anchor(x: number | PhotonSelector, y?: number): this {
 
+		let dX = x as number || 0;
+		let dY = y as number || 0;
+
 		this.explicitPosition = true;
 
 		// Get $menu
 		const $menu = this.target;
 
+		const mW = $menu.width() as number;
+		const mH = $menu.height() as number;
+
 		if(y === undefined && typeof x !== "number") {
 
 			// If anchoring to element
-			const $anchor = $(x);
-			const { top, left } = $anchor.offset() as any;
-			$menu.css({ top: top + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
+			const $anchor = $(x) as JQuery<HTMLElement>;
+			if($anchor[0].tagName.toLowerCase() === "input") {
+				const { top, left } = $anchor.offset() as any;
+				$menu.css({ top: top + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
+			} else {
+				dX = $anchor.offset()?.left as number;
+				dY = $anchor.offset()?.top as number;
+				$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+			}
+
+			let isFixed = false;
+			$anchor.parents().each(function() {
+				if($(this).css("position") === "fixed") {
+					if(isFixed) return;
+
+					$menu.css({ position: "fixed" });
+					dX -= $(document).scrollLeft() as number;
+					dY -= $(document).scrollTop() as number;
+					$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+
+					isFixed = true;
+				}
+			});
+
 
 		} else {
 
 			// If anchoring to a fixed position
-			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+			$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
 
 		}
 
 		// Determine anchor origin
-		if(x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
-		if(x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
-		if(x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
-		if(x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
+		if(dX < window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
+		if(dX > window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
+		if(dX < window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
+		if(dX > window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
 
 		return this;
 
@@ -71,12 +98,15 @@ export class Menu {
 
 		// Get $menu and $modal
 		const $menu = this.target;
-		const $modal = this.__getModal($menu.attr("id"));
+		const mW = $menu.width() as number;
+		const mH = $menu.height() as number;
+
+		const $modal = this.__getModal($menu.attr("id") as string);
 
 		if(!this.explicitPosition) {
 			const x = getPointer().x;
 			const y = getPointer().y;
-			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8), });
 		}
 
 		// Activate both

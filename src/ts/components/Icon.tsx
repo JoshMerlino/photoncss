@@ -7,7 +7,7 @@ import guid from "../util/guid";
 
 /* ****************************************** */
 
-export function TextIcon({ children, variant, ...props }: InferProps<typeof TextIcon.propTypes>) : JSX.Element {
+export function TextIcon({ children, variant, ...props }: InferProps<typeof TextIcon.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("material-icons", `variant-${variant}`, "text-icon");
 	return <i className={classes} {...props}>{ children }</i>;
 }
@@ -24,7 +24,7 @@ TextIcon.defaultProps = {
 
 /* ****************************************** */
 
-export function Icon({ children, variant, ink, ...props }: InferProps<typeof Icon.propTypes>) : JSX.Element {
+export function Icon({ children, variant, ink, ...props }: InferProps<typeof Icon.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("material-icons", `variant-${variant}`, ink && "waves-effect waves-ink");
 	const id = guid();
 

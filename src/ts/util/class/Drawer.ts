@@ -44,7 +44,7 @@ export class Drawer {
 		}());
 
 		// On click away from drawer
-		$modal.on("click touchstart", function(event: Event) {
+		$modal.on("click touchstart", function(event) {
 
 			// Stop event spread
 			event.stopPropagation();
@@ -77,19 +77,19 @@ export class Drawer {
 			// Determine next position
 			if($nav.hasClass("from-right")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-				const s = window.innerWidth - pos > $nav.width()/2;
+				const s = window.innerWidth - pos > ($nav.width() || 0) / 2;
 				$nav.css({ transform: s ? "translateX(0%)":"translateX(100%)" });
 			} else if($nav.hasClass("from-bottom")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-				const s = pos < $nav.height()/2;
+				const s = pos < ($nav.height() || 0) / 2;
 				$nav.css({ transform: s ? "translateY(0%)":"translateY(100%)" });
 			} else if($nav.hasClass("from-top")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
-				const s = $nav.height() + pos < $nav.height()/2;
+				const s = ($nav.height() || 0) + pos < ($nav.height() || 0) / 2;
 				$nav.css({ transform: s ? "translateY(-100%)":"translateY(0%)" });
 			} else {
-				const pos = $nav.width() + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
-				const s = pos < $nav.width()/2;
+				const pos = ($nav.width() || 0) + parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
+				const s = pos < ($nav.width() || 0) / 2;
 				$nav.css({ transform: s ? "translateX(-100%)":"translateX(0%)" });
 			}
 
@@ -99,7 +99,7 @@ export class Drawer {
 		});
 
 		// On drag
-		$swipe.on("touchmove", function(event: TouchEvent) {
+		$swipe.on("touchmove", function(event: JQuery.TouchMoveEvent) {
 
 			// Show drawer
 			$nav.removeClass("active");
@@ -111,10 +111,10 @@ export class Drawer {
 			const touch = event.touches[0];
 
 			// Determine where drag is and where to move drawer to
-			if($nav.hasClass("from-right")) $nav.css({ transform: `translateX(${Math.max(touch.clientX - Math.abs(window.innerWidth - $nav.width()), 0)}px)` });
-			else if($nav.hasClass("from-bottom")) $nav.css({ transform: `translateY(${Math.max(touch.clientY - Math.abs(window.innerHeight - $nav.height()), 0)}px)` });
-			else if($nav.hasClass("from-top")) $nav.css({ transform: `translateY(${Math.min(touch.clientY - $nav.height(), 0)}px)` });
-			else $nav.css({ transform: `translateX(${Math.min(touch.clientX - $nav.width(), 0)}px)` });
+			if($nav.hasClass("from-right")) $nav.css({ transform: `translateX(${Math.max(touch.clientX - Math.abs(window.innerWidth - ($nav.width() || 0)), 0)}px)` });
+			else if($nav.hasClass("from-bottom")) $nav.css({ transform: `translateY(${Math.max(touch.clientY - Math.abs(window.innerHeight - ($nav.height() || 0)), 0)}px)` });
+			else if($nav.hasClass("from-top")) $nav.css({ transform: `translateY(${Math.min(touch.clientY - ($nav.height() || 0), 0)}px)` });
+			else $nav.css({ transform: `translateX(${Math.min(touch.clientX - ($nav.width() || 0), 0)}px)` });
 
 		});
 

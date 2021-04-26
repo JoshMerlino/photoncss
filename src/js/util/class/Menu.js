@@ -34,38 +34,64 @@ var Menu = /** @class */ (function () {
         return $modal.on("click", function () { return _this.close(); });
     };
     Menu.prototype.anchor = function (x, y) {
+        var _a, _b;
+        var dX = x || 0;
+        var dY = y || 0;
         this.explicitPosition = true;
         // Get $menu
         var $menu = this.target;
+        var mW = $menu.width();
+        var mH = $menu.height();
         if (y === undefined && typeof x !== "number") {
             // If anchoring to element
             var $anchor = jquery_1.default(x);
-            var _a = $anchor.offset(), top_1 = _a.top, left = _a.left;
-            $menu.css({ top: top_1 + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left: left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
+            if ($anchor[0].tagName.toLowerCase() === "input") {
+                var _c = $anchor.offset(), top_1 = _c.top, left = _c.left;
+                $menu.css({ top: top_1 + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left: left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
+            }
+            else {
+                dX = (_a = $anchor.offset()) === null || _a === void 0 ? void 0 : _a.left;
+                dY = (_b = $anchor.offset()) === null || _b === void 0 ? void 0 : _b.top;
+                $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+            }
+            var isFixed_1 = false;
+            $anchor.parents().each(function () {
+                if (jquery_1.default(this).css("position") === "fixed") {
+                    if (isFixed_1)
+                        return;
+                    $menu.css({ position: "fixed" });
+                    dX -= jquery_1.default(document).scrollLeft();
+                    dY -= jquery_1.default(document).scrollTop();
+                    $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+                    isFixed_1 = true;
+                }
+            });
         }
         else {
             // If anchoring to a fixed position
-            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+            $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
         }
         // Determine anchor origin
-        if (x < window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8)
+        if (dX < window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8)
             $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
-        if (x > window.innerWidth - $menu.width() - 8 && y < window.innerHeight - $menu.height() - 8)
+        if (dX > window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8)
             $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
-        if (x < window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8)
+        if (dX < window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8)
             $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
-        if (x > window.innerWidth - $menu.width() - 8 && y > window.innerHeight - $menu.height() - 8)
+        if (dX > window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8)
             $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
         return this;
     };
     Menu.prototype.open = function () {
         // Get $menu and $modal
         var $menu = this.target;
+        var mW = $menu.width();
+        var mH = $menu.height();
         var $modal = this.__getModal($menu.attr("id"));
         if (!this.explicitPosition) {
             var x = getPointer_1.default().x;
             var y = getPointer_1.default().y;
-            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - $menu.width() - 8), 8), top: Math.max(Math.min(y, window.innerHeight - $menu.height() - 8), 8), });
+            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8), });
         }
         // Activate both
         requestAnimationFrame(function () {

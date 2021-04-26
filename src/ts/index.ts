@@ -3,7 +3,7 @@ import guid from "./util/guid";
 export { guid };
 
 // Set up PhotonSelector type
-export type PhotonSelector = string | JQuery<HTMLElement>;
+export type PhotonSelector = string & Element & JQuery;
 
 // Import waves
 import "./util/Waves.js";
@@ -16,8 +16,8 @@ import { Snackbar, SnackbarOptions } from "./util/class/Snackbar";
 
 // Export Photon
 export default class Photon {
-	static Dialog = (target: () => JSX.Element, options?: DialogOptions): Dialog => new Dialog(target, options);
+	static Dialog = (target: PhotonSelector & React.DOMElement<any, Element>, options?: DialogOptions): Dialog => new Dialog(target, options);
 	static Drawer = (target: PhotonSelector): Drawer => new Drawer(target);
 	static Menu = (target: PhotonSelector): Menu => new Menu(target);
-	static Snackbar = (target: () => JSX.Element, options?: SnackbarOptions): Snackbar => new Snackbar(target, options);
+	static Snackbar = (target: React.DOMElement<any, Element>, options?: SnackbarOptions): Snackbar => new Snackbar(target, options);
 }

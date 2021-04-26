@@ -25,7 +25,7 @@ function getNotificationContainer() {
     return jquery_1.default("#photon-notification-container");
 }
 var Snackbar = /** @class */ (function () {
-    function Snackbar(Toast, options) {
+    function Snackbar(element, options) {
         var _this = this;
         var _a;
         this.options = __assign(__assign({}, options), { duration: null, id: guid_1.default() });
@@ -33,9 +33,9 @@ var Snackbar = /** @class */ (function () {
         var container = getNotificationContainer();
         // Render the notification
         var notification = container.append("<div id=\"" + this.options.id + "\" class=\"photon-snackbar-wapper hidden\"></div>").children("#" + this.options.id);
-        react_dom_1.render(Toast, notification[0]);
+        react_dom_1.render(element, notification[0]);
         this.snackbar = jquery_1.default("#" + this.options.id);
-        setTimeout(function () { return _this.close(); }, (_a = this.options.duration) !== null && _a !== void 0 ? _a : 1e10);
+        setTimeout(function () { return _this.hide(); }, (_a = this.options.duration) !== null && _a !== void 0 ? _a : 1e10);
         return this.show();
     }
     Snackbar.prototype.show = function () {
@@ -45,7 +45,7 @@ var Snackbar = /** @class */ (function () {
         }, 50);
         return this;
     };
-    Snackbar.prototype.close = function () {
+    Snackbar.prototype.hide = function () {
         var _this = this;
         setTimeout(function () {
             _this.snackbar.addClass("hidden");

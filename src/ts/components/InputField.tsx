@@ -7,6 +7,7 @@ import getPointer from "../util/getPointer";
 import { Menu } from "./Menu";
 import { ListItem } from "./List";
 import { Menu as IMenu } from "../util/class/Menu";
+import { PhotonSelector } from "index";
 
 /* ****************************************** */
 
@@ -80,7 +81,7 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 		const menu = new IMenu($(`#${id}-dropdown`));
 
 		input.on("focus", () => {
-			menu.anchor(input);
+			menu.anchor(input as PhotonSelector);
 			menu.open();
 		});
 
@@ -93,7 +94,7 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 
 	return <>
 		<div className={classes}>
-			<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly} id={id} {...props}/>
+			<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly === null ? undefined : readOnly} id={id} {...props}/>
 			{ prefix !== "" && <span className="prefix">{prefix}</span>}
 			{ suffix !== "" && <span className="suffix">{suffix}</span>}
 			<label htmlFor={id}>{children || "\u00A0"}</label>
@@ -106,7 +107,8 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 					const input = $(`#${id}`);
 					input.val(item);
 					input.addClass("contains-content");
-					"onChange" in props && props.onChange({ target: input[0], value: item });
+					/* eslint no-extra-parens: 0 */
+					"onChange" in props && (props as any).onChange({ target: input[0], value: item });
 				}}>{item}</ListItem>) }
 			</Menu>
 		}

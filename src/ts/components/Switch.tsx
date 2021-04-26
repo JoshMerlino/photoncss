@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Switch({ children, labelPosition, style, color, waves, id, className = "", ...props }: InferProps<typeof Switch.propTypes>) : JSX.Element {
+export function Switch({ children, labelPosition, style, color, waves, id, className = "", ...props }: InferProps<typeof Switch.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-switch", `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();

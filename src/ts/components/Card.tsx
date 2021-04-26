@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 /* ****************************************** */
 
-export function Card({ children, display, variant, className = "", ...props }: InferProps<typeof Card.propTypes>) : JSX.Element {
+export function Card({ children, display, variant, className = "", ...props }: InferProps<typeof Card.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-card", `variant-${variant}`, `display-${display}`, className);
 	return <div tabIndex={0} className={classes} {...props}>{ children }</div>;
 }
@@ -24,7 +24,7 @@ Card.defaultProps = {
 
 /* ****************************************** */
 
-export function CardTitle({ children, subtitle, seperated, className = "", ...props }: InferProps<typeof CardTitle.propTypes>) : JSX.Element {
+export function CardTitle({ children, subtitle, seperated, className = "", ...props }: InferProps<typeof CardTitle.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("card-title", seperated && "seperated", className);
 	return (
 		<div className={classes} {...props}>
@@ -49,7 +49,7 @@ CardTitle.defaultProps = {
 
 /* ****************************************** */
 
-export function CardSubheader({ children, className = "", ...props }: InferProps<typeof CardSubheader.propTypes>) : JSX.Element {
+export function CardSubheader({ children, className = "", ...props }: InferProps<typeof CardSubheader.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("secondary", className);
 	return <p className={classes} {...props}>{ children }</p>;
 }
@@ -65,7 +65,7 @@ CardSubheader.defaultProps = {
 
 /* ****************************************** */
 
-export function CardSubtitle({ children, className = "", ...props }: InferProps<typeof CardSubtitle.propTypes>) : JSX.Element {
+export function CardSubtitle({ children, className = "", ...props }: InferProps<typeof CardSubtitle.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("card-subtitle", className);
 	return <h2 className={classes} {...props}>{ children }</h2>;
 }
@@ -81,7 +81,7 @@ CardSubtitle.defaultProps = {
 
 /* ****************************************** */
 
-export function CardBody({ children, className = "", ...props }: InferProps<typeof CardBody.propTypes>) : JSX.Element {
+export function CardBody({ children, className = "", ...props }: InferProps<typeof CardBody.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("card-body", className);
 	return <p className={classes} {...props}>{ children }</p>;
 }
@@ -97,7 +97,7 @@ CardBody.defaultProps = {
 
 /* ****************************************** */
 
-export function CardOverline({ children, className = "", ...props }: InferProps<typeof CardOverline.propTypes>) : JSX.Element {
+export function CardOverline({ children, className = "", ...props }: InferProps<typeof CardOverline.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("overline", className);
 	return <p className={classes} {...props}>{ children }</p>;
 }
@@ -113,7 +113,7 @@ CardOverline.defaultProps = {
 
 /* ****************************************** */
 
-export function CardActions({ children, direction, seperated, className = "", ...props }: InferProps<typeof CardActions.propTypes>) : JSX.Element {
+export function CardActions({ children, direction, seperated, className = "", ...props }: InferProps<typeof CardActions.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("card-actions", `direction-${direction}`, seperated && "seperated", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }

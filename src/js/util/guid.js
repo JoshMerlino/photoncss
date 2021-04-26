@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-// Generates a UUID in XXXXXXXXXXXX
+// Generates a UUID in XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 function guid() {
     // Generate a random 4 digit number in hex XXXX
     var s4 = function () { return Math.floor((1 + Math.random()) * 0x10000).toString(16).substring(1); };
