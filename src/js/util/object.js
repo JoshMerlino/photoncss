@@ -6,25 +6,26 @@ var __spreadArray = (this && this.__spreadArray) || function (to, from) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deepProp = exports.deepKeys = void 0;
-var deepKeys = function (t, path) {
+function deepKeys(t, path) {
     if (path === void 0) { path = []; }
     return Object(t) === t ? Object.entries(t).flatMap(function (_a) {
         var k = _a[0], v = _a[1];
-        return exports.deepKeys(v, __spreadArray(__spreadArray([], path), [k]));
+        return deepKeys(v, __spreadArray(__spreadArray([], path), [k]));
     }) : [path.join(".")];
-};
+}
 exports.deepKeys = deepKeys;
-var deepProp = function (object, propString) {
+function deepProp(object, propString) {
     var value = object;
     var props = propString.split(".");
     for (var index = 0; index < props.length; index += 1) {
         if (props[index] === undefined)
             break;
-        value = value[props[index]];
+        if (typeof value === "object")
+            value = value[props[index]];
     }
     return value;
-};
+}
 exports.deepProp = deepProp;
-Object.defineProperty(Object, "deepProp", { value: exports.deepProp, writable: false });
-Object.defineProperty(Object, "deepKeys", { value: exports.deepKeys, writable: false });
+Object.defineProperty(Object, "deepProp", { value: deepProp, writable: false });
+Object.defineProperty(Object, "deepKeys", { value: deepKeys, writable: false });
 //# sourceMappingURL=object.js.map

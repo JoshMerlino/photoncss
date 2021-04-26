@@ -5,7 +5,7 @@ import { List } from "./List";
 
 /* ****************************************** */
 
-export function Menu({ children, className = "", ...props }: InferProps<typeof Menu.propTypes>) : JSX.Element {
+export function Menu({ children, className = "", ...props }: InferProps<typeof Menu.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-menu", className);
 	return (
 		<div className={classes} {...props}>

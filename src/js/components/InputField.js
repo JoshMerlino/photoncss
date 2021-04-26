@@ -107,7 +107,7 @@ function InputField(_a) {
     });
     return react_1.default.createElement(react_1.default.Fragment, null,
         react_1.default.createElement("div", { className: classes },
-            react_1.default.createElement("input", __assign({ tabIndex: 0, type: type, readOnly: dropdown !== null || readOnly, id: id }, props)),
+            react_1.default.createElement("input", __assign({ tabIndex: 0, type: type, readOnly: dropdown !== null || readOnly === null ? undefined : readOnly, id: id }, props)),
             prefix !== "" && react_1.default.createElement("span", { className: "prefix" }, prefix),
             suffix !== "" && react_1.default.createElement("span", { className: "suffix" }, suffix),
             react_1.default.createElement("label", { htmlFor: id }, children || "\u00A0"),
@@ -118,6 +118,7 @@ function InputField(_a) {
                     var input = jquery_1.default("#" + id);
                     input.val(item);
                     input.addClass("contains-content");
+                    /* eslint no-extra-parens: 0 */
                     "onChange" in props && props.onChange({ target: input[0], value: item });
                 } }, item); })));
 }
