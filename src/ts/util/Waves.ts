@@ -2,9 +2,7 @@ import $ from "jquery";
 
 interface Offset { top: number, left: number }
 interface Position { x: number; y: number; }
-interface ClickEvent { type: string, button: number, pageX: number }
 interface WavesOptions { duration?: number; delay?: number; wait?: number; ink?: boolean; position?: null | Position }
-type WavesEvent = ClickEvent & MouseEvent & TouchEvent;
 
 export function arbitraryScale(element: Element, relativeX: number, relativeY: number): number {
 
@@ -84,10 +82,11 @@ function factory() {
 	const Effect = {
 		duration: 2000,	// Effect duration
 		delay: 50, 		// Effect delay (check for scroll before showing effect)
-		show(event: WavesEvent, element: Element) {
+		show(event: Event, element: Element) {
 
 			// Disable right click
-			if(event.button === 2) return false;
+			/* eslint no-extra-parens: 0 */
+			if((<MouseEvent>event).button === 2) return false;
 
 			element = element || this;
 
@@ -102,15 +101,15 @@ function factory() {
 			let relativeX = 0;
 
 			// Support for touch devices
-			if("touches" in event && event.touches.length) {
-				relativeX = event.touches[0].pageX - pos.left;
-				relativeY = event.touches[0].pageY - pos.top;
+			if("touches" in event && (<TouchEvent>event).touches.length) {
+				relativeX = (<TouchEvent>event).touches[0].pageX - pos.left;
+				relativeY = (<TouchEvent>event).touches[0].pageY - pos.top;
 			}
 
 			// Normal case
 			else {
-				relativeX = event.pageX - pos.left;
-				relativeY = event.pageY - pos.top;
+				relativeX = (<MouseEvent>event).pageX - pos.left;
+				relativeY = (<MouseEvent>event).pageY - pos.top;
 			}
 
 			// Support for synthetic events
@@ -149,7 +148,7 @@ function factory() {
 			ripple.setAttribute("style", convertStyle(rippleStyle));
 
 		},
-		hide(event: WavesEvent, element: Element) {
+		hide(event: Event, element: Element) {
 
 			element = element || this;
 
@@ -160,12 +159,12 @@ function factory() {
 			for(let i = 0, len = $ripple.length; i < len; i++) removeRipple(event, element, $ripple[i]);
 
 			if (isTouchAvailable) {
-				element.removeEventListener("touchend", Effect.hide);
-				element.removeEventListener("touchcancel", Effect.hide);
+				$(element).on("touchend", function(this: Element, event: any){ Effect.hide(event, this); });
+				$(element).on("touchcancel", function(this: Element, event: any){ Effect.hide(event, this); });
 			}
 
-			element.removeEventListener("mouseup", Effect.hide);
-			element.removeEventListener("mouseleave", Effect.hide);
+			$(element).on("mouseup", function(this: Element, event: any){ Effect.hide(event, this); });
+			$(element).on("mouseleave", function(this: Element, event: any){ Effect.hide(event, this); });
 
 		}
 	};
@@ -225,7 +224,7 @@ function factory() {
      * Hide the effect and remove the ripple. Must be
      * a separate function to pass the JSLint...
      */
-	function removeRipple(event: WavesEvent, element: Element, ripple: Element) {
+	function removeRipple(event: Event, element: Element, ripple: Element) {
 
 		// Check if the ripple still exist
 		if(!ripple) return;
@@ -324,7 +323,7 @@ function factory() {
 	/**
      * Bubble the click and show effect if .waves-effect elem was found
      */
-	function showEffect(event: WavesEvent) {
+	function showEffect(event: Event) {
 
 		// Disable effect if element has "disabled" property on it
 		// In some cases, the event is not triggered by the current element
@@ -350,7 +349,7 @@ function factory() {
 				Effect.show(event, element);
 			}, Effect.delay);
 
-			const hideEffect = function(hideEvent: WavesEvent): void {
+			const hideEffect = function(hideEvent: Event): void {
 
 				// if touch hasn't moved, and effect not yet started: start effect now
 				if (timer) {
@@ -366,7 +365,7 @@ function factory() {
 				removeListeners();
 			};
 
-			const touchMove = function(moveEvent: WavesEvent) {
+			const touchMove = function(moveEvent: Event) {
 				if(timer) {
 					clearTimeout(timer);
 					timer = null;
@@ -380,7 +379,7 @@ function factory() {
 			element.addEventListener("touchcancel", hideEffect, false);
 
 			const removeListeners = function() {
-				element.removeEventListener('touchmove', touchMove);
+				element.removeEventListener("touchmove", touchMove);
 				element.removeEventListener("touchend", hideEffect);
 				element.removeEventListener("touchcancel", hideEffect);
 			};
@@ -389,12 +388,12 @@ function factory() {
 			Effect.show(event, element);
 
 			if (isTouchAvailable) {
-				element.addEventListener('touchend', Effect.hide, false);
-				element.addEventListener('touchcancel', Effect.hide, false);
+				element.addEventListener("touchend", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
+				element.addEventListener("touchcancel", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
 			}
 
-			element.addEventListener('mouseup', Effect.hide, false);
-			element.addEventListener('mouseleave', Effect.hide, false);
+			element.addEventListener("mouseup", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
+			element.addEventListener("mouseleave", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
 		}
 	}
 
@@ -406,8 +405,8 @@ function factory() {
 			const body = document.body;
 			options = options || {};
 
-			if("duration" in options) Effect.duration = options.duration;
-			if("delay" in options) Effect.delay = options.delay;
+			if("duration" in options) Effect.duration = options.duration as number;
+			if("delay" in options) Effect.delay = options.delay as number;
 
 			if(isTouchAvailable) {
 				body.addEventListener("touchstart", showEffect, false);
@@ -476,7 +475,7 @@ function factory() {
 					button: 1
 				} as any;
 
-				const hideRipple = function(mouseup: WavesEvent, element: Element) {
+				const hideRipple = function(mouseup: Event, element: Element) {
 					return function() {
 						Effect.hide(mouseup, element);
 					};
@@ -503,7 +502,7 @@ function factory() {
 							type: "mouseup",
 							button: 1
 						};
-						setTimeout(hideRipple(mouseup as WavesEvent, element), options.wait);
+						setTimeout(hideRipple(<MouseEvent>mouseup, element), options.wait);
 					}
 				}
 			}
@@ -514,7 +513,7 @@ function factory() {
 	     */
 		calm(elements: Element | Element[]) {
 			elements = getWavesElements(elements);
-			const mouseup = { type: "mouseup", button: 1 } as WavesEvent;
+			const mouseup = <MouseEvent>{ type: "mouseup", button: 1 };
 			for(let i = 0, len = elements.length; i < len; i++) Effect.hide(mouseup, elements[i]);
 		}
 

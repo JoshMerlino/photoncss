@@ -8,17 +8,17 @@ export interface SnackbarOptions {
 }
 
 // Local function to get the notification container
-function getNotificationContainer(): $ {
+function getNotificationContainer(): JQuery {
 	if($("#photon-notification-container").length === 0) $("body").append("<div id=\"photon-notification-container\"></div>");
 	return $("#photon-notification-container");
 }
 
 export class Snackbar {
 
-	snackbar: $;
+	snackbar: JQuery;
 	options: SnackbarOptions;
 
-	constructor(Toast: () => JSX.Element, options?: SnackbarOptions) {
+	constructor(element: React.DOMElement<any, Element>, options?: SnackbarOptions) {
 
 		this.options = {
 			...options,
@@ -31,11 +31,11 @@ export class Snackbar {
 
 		// Render the notification
 		const notification = container.append(`<div id="${this.options.id}" class="photon-snackbar-wapper hidden"></div>`).children(`#${this.options.id}`);
-		render(Toast, notification[0]);
+		render(element, notification[0]);
 
 		this.snackbar = $(`#${this.options.id}`);
 
-		setTimeout(() => this.close(), this.options.duration ?? 1e10);
+		setTimeout(() => this.hide(), this.options.duration ?? 1e10);
 
 		return this.show();
 
@@ -49,7 +49,7 @@ export class Snackbar {
 		return this;
 	}
 
-	close(): this {
+	hide(): this {
 		setTimeout(() => {
 			this.snackbar.addClass("hidden");
 			setTimeout(() => this.snackbar.remove(), 500);

@@ -76,6 +76,7 @@ function factory() {
         delay: 50,
         show: function (event, element) {
             // Disable right click
+            /* eslint no-extra-parens: 0 */
             if (event.button === 2)
                 return false;
             element = element || this;
@@ -133,11 +134,11 @@ function factory() {
             for (var i = 0, len = $ripple.length; i < len; i++)
                 removeRipple(event, element, $ripple[i]);
             if (isTouchAvailable) {
-                element.removeEventListener("touchend", Effect.hide);
-                element.removeEventListener("touchcancel", Effect.hide);
+                jquery_1.default(element).on("touchend", function (event) { Effect.hide(event, this); });
+                jquery_1.default(element).on("touchcancel", function (event) { Effect.hide(event, this); });
             }
-            element.removeEventListener("mouseup", Effect.hide);
-            element.removeEventListener("mouseleave", Effect.hide);
+            jquery_1.default(element).on("mouseup", function (event) { Effect.hide(event, this); });
+            jquery_1.default(element).on("mouseleave", function (event) { Effect.hide(event, this); });
         }
     };
     /**
@@ -311,7 +312,7 @@ function factory() {
             element.addEventListener("touchend", hideEffect_1, false);
             element.addEventListener("touchcancel", hideEffect_1, false);
             var removeListeners_1 = function () {
-                element.removeEventListener('touchmove', touchMove_1);
+                element.removeEventListener("touchmove", touchMove_1);
                 element.removeEventListener("touchend", hideEffect_1);
                 element.removeEventListener("touchcancel", hideEffect_1);
             };
@@ -319,11 +320,11 @@ function factory() {
         else {
             Effect.show(event, element);
             if (isTouchAvailable) {
-                element.addEventListener('touchend', Effect.hide, false);
-                element.addEventListener('touchcancel', Effect.hide, false);
+                element.addEventListener("touchend", function (event) { Effect.hide(event, this); }, false);
+                element.addEventListener("touchcancel", function (event) { Effect.hide(event, this); }, false);
             }
-            element.addEventListener('mouseup', Effect.hide, false);
-            element.addEventListener('mouseleave', Effect.hide, false);
+            element.addEventListener("mouseup", function (event) { Effect.hide(event, this); }, false);
+            element.addEventListener("mouseleave", function (event) { Effect.hide(event, this); }, false);
         }
     }
     // Define waves

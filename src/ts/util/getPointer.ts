@@ -17,10 +17,12 @@ $("body").on("mouseup", function() {
 	isMouseDown = false;
 });
 
-export default function getPointer(): {
+export interface Pointer {
 	x: number;
 	y: number;
 	isMouseDown: boolean;
-}{
+}
+
+export default function getPointer(): Pointer {
 	return { x, y, isMouseDown };
 }

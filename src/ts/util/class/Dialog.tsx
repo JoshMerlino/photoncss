@@ -12,7 +12,7 @@ export class Dialog {
 	target: JQuery;
 	options: DialogOptions;
 
-	constructor(Popup: PhotonSelector | (() => JSX.Element), options?: DialogOptions) {
+	constructor(dialog: PhotonSelector & React.DOMElement<any, Element>, options?: DialogOptions) {
 
 		// Extend options
 		this.options = {
@@ -21,13 +21,13 @@ export class Dialog {
 		};
 
 		// If is JSX element
-		if(Popup?.$$typeof?.toString() === "Symbol(react.element)") {
+		if(dialog.hasOwnProperty("$$typeof")) {
 
 			// Get options
 			const { id } = this.options;
 
 			const wrapper = $("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`).children(`#${id}`);
-			render(Popup as FC, wrapper[0]);
+			render(dialog, wrapper[0]);
 
 			this.target = wrapper;
 
@@ -43,7 +43,7 @@ export class Dialog {
 		// If is jquery selector
 		else {
 
-			this.target = $(Popup).parents(".photon-dialog-wrapper");
+			this.target = $(dialog).parents(".photon-dialog-wrapper");
 
 		}
 

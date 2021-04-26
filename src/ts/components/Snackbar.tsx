@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 /* ****************************************** */
 
-export function Snackbar({ children, className = "", ...props }: InferProps<typeof Snackbar.propTypes>) : JSX.Element {
+export function Snackbar({ children, className = "", ...props }: InferProps<typeof Snackbar.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-snackbar", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }

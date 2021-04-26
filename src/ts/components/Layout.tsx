@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 /* ****************************************** */
 
-export function Container({ children, className, ...props }: InferProps<typeof Container.propTypes>) : JSX.Element {
+export function Container({ children, className, ...props }: InferProps<typeof Container.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("container", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }
@@ -20,7 +20,7 @@ Container.defaultProps = {
 
 /* ****************************************** */
 
-export function Row({ children, className, ...props }: InferProps<typeof Row.propTypes>) : JSX.Element {
+export function Row({ children, className, ...props }: InferProps<typeof Row.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("row", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }
@@ -36,7 +36,7 @@ Row.defaultProps = {
 
 /* ****************************************** */
 
-export function Col({ children, sm, md, lg, xl, className, ...props }: InferProps<typeof Col.propTypes>) : JSX.Element {
+export function Col({ children, sm, md, lg, xl, className, ...props }: InferProps<typeof Col.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("col", sm && `s${sm}`, `m${md}`, `l${lg}`, `xl${xl}`, className);
 	return <div className={classes} {...props}>{ children }</div>;
 }
@@ -57,7 +57,7 @@ Col.defaultProps = {
 
 /* ****************************************** */
 
-export function VHCenter({ children, className, ...props }: InferProps<typeof VHCenter.propTypes>) : JSX.Element {
+export function VHCenter({ children, className, ...props }: InferProps<typeof VHCenter.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("vh-center", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }

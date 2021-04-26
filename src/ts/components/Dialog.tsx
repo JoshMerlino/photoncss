@@ -4,7 +4,7 @@ import classnames from "classnames";
 
 /* ****************************************** */
 
-export function Dialog({ children, type, transition, size, className = "", ...props }: InferProps<typeof Dialog.propTypes>) : JSX.Element {
+export function Dialog({ children, type, transition, size, className = "", ...props }: InferProps<typeof Dialog.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-dialog", `size-${size}`, `transition-${transition}`, `type-${type}`, className);
 	return (
 		<div className={classes} {...props}>
@@ -30,7 +30,7 @@ Dialog.defaultProps = {
 
 /* ****************************************** */
 
-export function DialogTitle({ children, subtitle, seperated, className = "", ...props }: InferProps<typeof DialogTitle.propTypes>) : JSX.Element {
+export function DialogTitle({ children, subtitle, seperated, className = "", ...props }: InferProps<typeof DialogTitle.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("dialog-title", seperated && "seperated", className);
 	return (
 		<div className={classes} {...props}>
@@ -55,7 +55,7 @@ DialogTitle.defaultProps = {
 
 /* ****************************************** */
 
-export function DialogActions({ children, direction, seperated, className = "", ...props }: InferProps<typeof DialogActions.propTypes>) : JSX.Element {
+export function DialogActions({ children, direction, seperated, className = "", ...props }: InferProps<typeof DialogActions.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("dialog-actions", `direction-${direction}`, seperated && "seperated", className);
 	return <div className={classes} {...props}>{ children }</div>;
 }

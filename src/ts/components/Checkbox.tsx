@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Checkbox({ children, labelPosition, style, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes>) : JSX.Element {
+export function Checkbox({ children, labelPosition, style, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-checkbox", props.indeterminate === "true" && "indeterminate", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();

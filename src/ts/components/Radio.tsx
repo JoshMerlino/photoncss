@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Radio({ children, labelPosition, color, waves, style, id, className = "", ...props }: InferProps<typeof Radio.propTypes>) : JSX.Element {
+export function Radio({ children, labelPosition, color, waves, style, id, className = "", ...props }: InferProps<typeof Radio.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-radio", `color-${color}`, `labelposition-${labelPosition}`, className);
 
 	id = id || guid();
