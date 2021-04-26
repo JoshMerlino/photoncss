@@ -1,0 +1,88 @@
+.photon-toolbar {
+	width: 100%;
+    display: flex;
+    z-index: 1100;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    flex-direction: column;
+	height: 64px;
+	padding: 4px 12px;
+	position: fixed;
+	left: 0;
+	top: 0;
+	background: var(--palette_header_background);
+	color: var(--palette_header_text);
+	transition: none var(--animation_speed_fast) var(--animation_curve);
+	transition-property: box-shadow;
+	&.position-bottom {
+		top: auto;
+		bottom: 0;
+	}
+	&.variant-raised {
+		.raised-4();
+	}
+	&.color-primary {
+		background: var(--palette_primary_normal);
+		color: var(--palette_primary_text);
+	}
+	&.color-secondary {
+		background: var(--palette_secondary_normal);
+		color: var(--palette_secondary_text);
+	}
+	.photon-toolbartitle {
+		font-size: 1.25rem;
+		font-family: var(--font_interactive);
+		font-weight: 500;
+		line-height: 1.6;
+		margin: 12px;
+		max-width: 50%;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: inline-block;
+		&.contains-subtitle {
+			margin: 6px 12px;
+			letter-spacing: .00625em;
+		    font-size: 1rem;
+		    font-weight: 500;
+		    line-height: 1.5rem;
+			padding: 2px 0;
+			.subtitle {
+				letter-spacing: .025em;
+			    font-size: .75rem;
+			    font-weight: 400;
+			    line-height: 1rem;
+			}
+		}
+	}
+	i.material-icons {
+		padding: 12px;
+		margin: 4px -4px;
+		border-radius: 50%;
+		position: relative;
+		& + .photon-toolbartitle {
+			transform: translateY(-56px);
+			margin-left: 52px;
+		}
+	}
+	.photon-toolbaractions {
+		position: absolute;
+		top: 0;
+		right: 0;
+		text-align: right;
+		vertical-align: middle;
+		line-height: 64px;
+		max-height: 64px;
+		font-size: 0;
+		padding: 0 8px;
+		.btn {
+			transform: translateY(-7px);
+		}
+		i.material-icons {
+			margin: 8px;
+		}
+
+		.btn, i.material-icons {
+			margin-right: 0px;
+		}
+	}
+}
