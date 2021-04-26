@@ -35,6 +35,10 @@
 		"notification": {
 			"background": "#ffffff",
 			"text": "#2e3338"
+		},
+		"header": {
+			"background": "#18191c",
+			"text": "#fff"
 		}
     },
 	"font": {
