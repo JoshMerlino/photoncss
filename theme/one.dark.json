@@ -18,13 +18,13 @@
 			"fadedwaves": "#528bff66"
         },
         "secondary": {
-            "light": "#ffcb94",
-            "normal": "#d19a66",
-            "dark": "#9d6c3a",
-			"text": "#fafafa",
-			"faded": "#d19a6620",
+			"light": "#8dbbff",
+            "normal": "#528bff",
+            "dark": "#005fcb",
+			"text": "#ffffff",
+			"faded": "#528bff20",
 			"waves": "#ffffff66",
-			"fadedwaves": "#d19a6666"
+			"fadedwaves": "#528bff66"
         },
 		"divider": "#5C6370",
 		"error": "#f05545",
@@ -35,6 +35,10 @@
 		"notification": {
 			"background": "#303540",
 			"text": "#ABB2BF"
+		},
+		"header": {
+			"background": "#1b1e23",
+			"text": "#fff"
 		}
     }
 }

@@ -13,3 +13,4 @@ export * from "./components/Radio";
 export * from "./components/Snackbar";
 export * from "./components/Switch";
 export * from "./components/ThemeProvider";
+export * from "./components/Toolbar";
