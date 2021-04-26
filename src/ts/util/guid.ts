@@ -1,4 +1,4 @@
-// Generates a UUID in XXXXXXXXXXXX
+// Generates a UUID in XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 export default function guid() : string {
 
 	// Generate a random 4 digit number in hex XXXX

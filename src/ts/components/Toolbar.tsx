@@ -6,7 +6,7 @@ import $ from "jquery";
 
 /* ****************************************** */
 
-export function Toolbar({ children, color, variant, size, position, id, className = "", ...props }: InferProps<typeof Toolbar.propTypes>) : JSX.Element {
+export function Toolbar({ children, color, variant, size, position, id, className = "", ...props }: InferProps<typeof Toolbar.propTypes> & InferProps<any>): JSX.Element {
 
 	id = id || guid();
 
@@ -54,7 +54,7 @@ Toolbar.defaultProps = {
 
 /* ****************************************** */
 
-export function ToolbarTitle({ children, subtitle, ...props }: InferProps<typeof ToolbarTitle.propTypes>) : JSX.Element {
+export function ToolbarTitle({ children, subtitle, ...props }: InferProps<typeof ToolbarTitle.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-toolbartitle", subtitle !== null && "contains-subtitle");
 	return (
 		<div className={classes} {...props}>
@@ -76,7 +76,7 @@ ToolbarTitle.defaultProps = {
 
 /* ****************************************** */
 
-export function ToolbarActions({ children, ...props }: InferProps<typeof ToolbarActions.propTypes>) : JSX.Element {
+export function ToolbarActions({ children, ...props }: InferProps<typeof ToolbarActions.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-toolbaractions");
 	return <div className={classes} {...props}>{ children }</div>;
 }

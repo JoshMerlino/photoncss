@@ -19,17 +19,16 @@ var jquery_1 = __importDefault(require("jquery"));
 var guid_1 = __importDefault(require("../guid"));
 var react_dom_1 = require("react-dom");
 var Dialog = /** @class */ (function () {
-    function Dialog(Popup, options) {
+    function Dialog(dialog, options) {
         var _this = this;
-        var _a;
         // Extend options
         this.options = __assign(__assign({}, options), { id: guid_1.default() });
         // If is JSX element
-        if (((_a = Popup === null || Popup === void 0 ? void 0 : Popup.$$typeof) === null || _a === void 0 ? void 0 : _a.toString()) === "Symbol(react.element)") {
+        if (dialog.hasOwnProperty("$$typeof")) {
             // Get options
             var id = this.options.id;
             var wrapper_1 = jquery_1.default("body").append("<div id=\"" + id + "\" class=\"photon-dialog-wrapper hidden\"></div>").children("#" + id);
-            react_dom_1.render(Popup, wrapper_1[0]);
+            react_dom_1.render(dialog, wrapper_1[0]);
             this.target = wrapper_1;
             // Close menu on click from menu or modal
             jquery_1.default(document.body).on("click", function (event) {
@@ -40,7 +39,7 @@ var Dialog = /** @class */ (function () {
         }
         // If is jquery selector
         else {
-            this.target = jquery_1.default(Popup).parents(".photon-dialog-wrapper");
+            this.target = jquery_1.default(dialog).parents(".photon-dialog-wrapper");
         }
     }
     Dialog.prototype.close = function () {
