@@ -72,3 +72,19 @@ DialogActions.defaultProps = {
 	direction: "right",
 	seperated: false
 };
+
+/* ****************************************** */
+
+export function DialogBody({ children, className = "", ...props }: InferProps<typeof DialogBody.propTypes> & InferProps<any>): JSX.Element {
+	const classes = classnames("dialog-body", className);
+	return <div className={classes} {...props}>{ children }</div>;
+}
+
+DialogBody.propTypes = {
+	children: PropTypes.any,
+	className: PropTypes.string
+};
+
+DialogBody.defaultProps = {
+	children: null
+};
