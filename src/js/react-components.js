@@ -15,6 +15,7 @@ __exportStar(require("./components/Card"), exports);
 __exportStar(require("./components/Checkbox"), exports);
 __exportStar(require("./components/Dialog"), exports);
 __exportStar(require("./components/Drawer"), exports);
+__exportStar(require("./components/Footer"), exports);
 __exportStar(require("./components/Icon"), exports);
 __exportStar(require("./components/InputField"), exports);
 __exportStar(require("./components/Layout"), exports);
