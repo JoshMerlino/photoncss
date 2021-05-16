@@ -2,7 +2,8 @@
     "name": "photoncss",
     "version": "12.17.1",
     "description": "Go from 0 to app in seconds",
-    "main": "src/js/index.js",
+    "main": "src/js/",
+    "types": "src/js/",
     "author": "Josh Merlino",
     "license": "ISC",
     "scripts": {
@@ -10,7 +11,8 @@
         "watch-wp": "webpack --config webpack.conf.cjs -w",
         "dev": "concurrently \"npm:watch-*\"",
         "start": "node .",
-        "build": "tsc; webpack --config webpack.conf.cjs"
+        "build": "tsc; webpack --config webpack.conf.cjs",
+        "prepare": "npm run build"
     },
     "keywords": [
         "Material Design",
@@ -27,9 +29,9 @@
         "CSS"
     ],
     "homepage": "https://photoncss.github.io",
-    "repository": "https://github.com/PhotonCSS/Photon",
+    "repository": "https://github.com/JoshMerlino/photoncss",
     "bugs": {
-        "url": "https://github.com/PhotonCSS/Photon/issues",
+        "url": "https://github.com/JoshMerlino/photoncss/issues",
         "email": "teh.picix@gmail.com"
     },
     "devDependencies": {
