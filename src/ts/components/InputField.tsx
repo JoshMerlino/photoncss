@@ -7,7 +7,7 @@ import getPointer from "../util/getPointer";
 import { Menu } from "./Menu";
 import { ListItem } from "./List";
 import { Menu as IMenu } from "../util/class/Menu";
-import { PhotonSelector } from "index";
+import { PhotonSelector } from "..";
 
 /* ****************************************** */
 
