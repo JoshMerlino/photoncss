@@ -14,9 +14,7 @@
         "noUnusedParameters": true,
         "allowUnreachableCode": false,
         "preserveConstEnums": false,
-        "resolveJsonModule": true,
-        "declaration": true
+        "resolveJsonModule": true
     },
-
 	"include": ["src/ts/**/*"]
 }
