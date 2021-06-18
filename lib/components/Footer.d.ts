@@ -1,11 +1,13 @@
 import PropTypes, { InferProps } from "prop-types";
-export declare function Footer({ children, className, ...props }: InferProps<typeof Footer.propTypes> & InferProps<any>): JSX.Element;
+export declare function Footer({ children, className, offset, ...props }: InferProps<typeof Footer.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Footer {
     var propTypes: {
         children: PropTypes.Requireable<any>;
+        offset: PropTypes.Requireable<number>;
     };
     var defaultProps: {
         children: null;
+        offset: number;
     };
 }
 export declare function FooterCopyright({ children, className, ...props }: InferProps<typeof FooterCopyright.propTypes> & InferProps<any>): JSX.Element;

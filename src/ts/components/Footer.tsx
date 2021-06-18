@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
 import { Container } from "./Layout";
@@ -6,7 +6,7 @@ import guid from "../util/guid";
 
 /* ****************************************** */
 
-export function Footer({ children, className, ...props }: InferProps<typeof Footer.propTypes> & InferProps<any>): JSX.Element {
+export function Footer({ children, className, offset, ...props }: InferProps<typeof Footer.propTypes> & InferProps<any>): JSX.Element {
 
 	const id = guid();
 
@@ -16,7 +16,7 @@ export function Footer({ children, className, ...props }: InferProps<typeof Foot
 		const footer = $(`#${id}`);
 		const main = footer.siblings("main");
 		if(main.length === 0) return;
-		main.css("min-height", window.innerHeight - footer[0].clientHeight - 24);
+		main.css("min-height", window.innerHeight - footer[0].clientHeight - offset!);
 	}
 
 	setImmediate(function() {
@@ -31,11 +31,13 @@ export function Footer({ children, className, ...props }: InferProps<typeof Foot
 }
 
 Footer.propTypes = {
-	children: PropTypes.any
+	children: PropTypes.any,
+	offset: PropTypes.number
 };
 
 Footer.defaultProps = {
-	children: null
+	children: null,
+	offset: 24
 };
 
 /* ****************************************** */
