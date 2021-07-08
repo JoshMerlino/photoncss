@@ -1,7 +1,7 @@
 import $ from "jquery";
 import guid from "../guid";
 import getPointer from "../getPointer";
-import { PhotonSelector } from "../../index";
+import { PhotonSelector, UnityPhotonSelector } from "../../index";
 
 export class Menu {
 
@@ -12,11 +12,11 @@ export class Menu {
 	constructor(target: PhotonSelector) {
 
 		// Define $menu from target
-		this.target = $(target);
+		this.target = $(target as UnityPhotonSelector);
 		const $menu = this.target;
 
 		// Make sure were not adding listeners that are already there
-		if ($menu.is("[md]")) return this;
+		if ($menu.is("[md]")) return;
 		$menu.attr("md", "");
 
 		// Append modal close target to DOM
@@ -26,8 +26,6 @@ export class Menu {
 		// Close menu on click from menu or modal
 		$menu.children(".photon-list").children(".photon-list-item")
 			.on("click", () => this.close());
-
-		return this;
 
 	}
 
@@ -54,7 +52,7 @@ export class Menu {
 		if (y === undefined && typeof x !== "number") {
 
 			// If anchoring to element
-			const $anchor = $(x) as JQuery<HTMLElement>;
+			const $anchor = $(x as UnityPhotonSelector);
 			if ($anchor[0].tagName.toLowerCase() === "input") {
 				const { top, left } = $anchor.offset() as any;
 				$menu.css({ top: top + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
