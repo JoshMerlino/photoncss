@@ -24,7 +24,7 @@ class Snackbar {
         react_dom_1.render(element, notification[0]);
         this.snackbar = jquery_1.default(`#${this.options.id}`);
         setTimeout(() => this.hide(), this.options.duration ?? 1e10);
-        return this.show();
+        this.show();
     }
     show() {
         setTimeout(() => {
