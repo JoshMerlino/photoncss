@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Container({ children, className, ...props }: InferProps<typeof Container.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Container {

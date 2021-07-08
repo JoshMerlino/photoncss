@@ -4,25 +4,19 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.guid = void 0;
-// Import submodules/helper functions
-var guid_1 = __importDefault(require("./util/guid"));
+const guid_1 = __importDefault(require("./util/guid"));
 exports.guid = guid_1.default;
-// Import waves
+console.log("test");
 require("./util/Waves.js");
-// Import active components
-var Dialog_1 = require("./util/class/Dialog");
-var Drawer_1 = require("./util/class/Drawer");
-var Menu_1 = require("./util/class/Menu");
-var Snackbar_1 = require("./util/class/Snackbar");
-// Export Photon
-var Photon = /** @class */ (function () {
-    function Photon() {
-    }
-    Photon.Dialog = function (target, options) { return new Dialog_1.Dialog(target, options); };
-    Photon.Drawer = function (target) { return new Drawer_1.Drawer(target); };
-    Photon.Menu = function (target) { return new Menu_1.Menu(target); };
-    Photon.Snackbar = function (target, options) { return new Snackbar_1.Snackbar(target, options); };
-    return Photon;
-}());
+const Dialog_1 = require("./util/class/Dialog");
+const Drawer_1 = require("./util/class/Drawer");
+const Menu_1 = require("./util/class/Menu");
+const Snackbar_1 = require("./util/class/Snackbar");
+class Photon {
+}
 exports.default = Photon;
+Photon.Dialog = (target, options) => new Dialog_1.Dialog(target, options);
+Photon.Drawer = (target) => new Drawer_1.Drawer(target);
+Photon.Menu = (target) => new Menu_1.Menu(target);
+Photon.Snackbar = (target, options) => new Snackbar_1.Snackbar(target, options);
 //# sourceMappingURL=index.js.map

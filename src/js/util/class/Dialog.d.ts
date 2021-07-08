@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { PhotonSelector } from "../../index";
 export interface DialogOptions {
     id: string;

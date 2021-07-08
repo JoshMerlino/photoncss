@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function List({ children, className, ...props }: InferProps<typeof List.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace List {

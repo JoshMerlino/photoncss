@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Button({ children, color, display, variant, size, waves, className, ...props }: InferProps<typeof Button.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Button {
