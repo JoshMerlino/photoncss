@@ -1,4 +1,4 @@
-import { PhotonSelector } from "../../index";
+import { PhotonSelector, UnityPhotonSelector } from "../../index";
 import $ from "jquery";
 import guid from "../guid";
 
@@ -9,12 +9,12 @@ export class Drawer {
 	constructor(target: PhotonSelector) {
 
 		// Define $nav and $swipe
-		this.target = $(target);
+		this.target = $(target as UnityPhotonSelector);
 		const $nav = this.target;
 		const $swipe = this.target.children(".drawer-swipe-target");
 
 		// Make sure were not adding listeners that are already there
-		if($nav.is("[md]")) return this;
+		if ($nav.is("[md]")) return;
 		$nav.attr("md", "");
 
 		// Give the drawer a unique id if it dosnt already have one
@@ -53,9 +53,9 @@ export class Drawer {
 			$nav.addClass("transition").removeClass("active");
 
 			// Determine the transform of the closed state drawer
-			if($nav.hasClass("from-right")) $nav.css({ transform: "translateX(100%)" });
-			else if($nav.hasClass("from-bottom")) $nav.css({ transform: "translateY(100%)" });
-			else if($nav.hasClass("from-top")) $nav.css({ transform: "translateY(-100%)" });
+			if ($nav.hasClass("from-right")) $nav.css({ transform: "translateX(100%)" });
+			else if ($nav.hasClass("from-bottom")) $nav.css({ transform: "translateY(100%)" });
+			else if ($nav.hasClass("from-top")) $nav.css({ transform: "translateY(-100%)" });
 			else $nav.css({ transform: "translateX(-100%)" });
 
 			// End animation
@@ -75,15 +75,15 @@ export class Drawer {
 			$nav.addClass("transition");
 
 			// Determine next position
-			if($nav.hasClass("from-right")) {
+			if ($nav.hasClass("from-right")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
 				const s = window.innerWidth - pos > ($nav.width() || 0) / 2;
 				$nav.css({ transform: s ? "translateX(0%)":"translateX(100%)" });
-			} else if($nav.hasClass("from-bottom")) {
+			} else if ($nav.hasClass("from-bottom")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 				const s = pos < ($nav.height() || 0) / 2;
 				$nav.css({ transform: s ? "translateY(0%)":"translateY(100%)" });
-			} else if($nav.hasClass("from-top")) {
+			} else if ($nav.hasClass("from-top")) {
 				const pos = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 				const s = ($nav.height() || 0) + pos < ($nav.height() || 0) / 2;
 				$nav.css({ transform: s ? "translateY(-100%)":"translateY(0%)" });
@@ -105,20 +105,18 @@ export class Drawer {
 			$nav.removeClass("active");
 
 			// If it is not in drag mode, return
-			if(!state) return;
+			if (!state) return;
 
 			// Get touch from drag event
 			const touch = event.touches[0];
 
 			// Determine where drag is and where to move drawer to
-			if($nav.hasClass("from-right")) $nav.css({ transform: `translateX(${Math.max(touch.clientX - Math.abs(window.innerWidth - ($nav.width() || 0)), 0)}px)` });
-			else if($nav.hasClass("from-bottom")) $nav.css({ transform: `translateY(${Math.max(touch.clientY - Math.abs(window.innerHeight - ($nav.height() || 0)), 0)}px)` });
-			else if($nav.hasClass("from-top")) $nav.css({ transform: `translateY(${Math.min(touch.clientY - ($nav.height() || 0), 0)}px)` });
+			if ($nav.hasClass("from-right")) $nav.css({ transform: `translateX(${Math.max(touch.clientX - Math.abs(window.innerWidth - ($nav.width() || 0)), 0)}px)` });
+			else if ($nav.hasClass("from-bottom")) $nav.css({ transform: `translateY(${Math.max(touch.clientY - Math.abs(window.innerHeight - ($nav.height() || 0)), 0)}px)` });
+			else if ($nav.hasClass("from-top")) $nav.css({ transform: `translateY(${Math.min(touch.clientY - ($nav.height() || 0), 0)}px)` });
 			else $nav.css({ transform: `translateX(${Math.min(touch.clientX - ($nav.width() || 0), 0)}px)` });
 
 		});
-
-		return this;
 
 	}
 

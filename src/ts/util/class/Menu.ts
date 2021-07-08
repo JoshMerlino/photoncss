@@ -6,16 +6,17 @@ import { PhotonSelector } from "../../index";
 export class Menu {
 
 	target: JQuery;
+
 	private explicitPosition = false;
 
-	constructor(target: JQuery) {
+	constructor(target: PhotonSelector) {
 
 		// Define $menu from target
 		this.target = $(target);
 		const $menu = this.target;
 
 		// Make sure were not adding listeners that are already there
-		if($menu.is("[md]")) return this;
+		if ($menu.is("[md]")) return this;
 		$menu.attr("md", "");
 
 		// Append modal close target to DOM
@@ -23,14 +24,15 @@ export class Menu {
 		$menu.attr("id", id);
 
 		// Close menu on click from menu or modal
-		$menu.children(".photon-list").children(".photon-list-item").on("click", () => this.close());
+		$menu.children(".photon-list").children(".photon-list-item")
+			.on("click", () => this.close());
 
 		return this;
 
 	}
 
 	__getModal(id: string): JQuery<HTMLElement> {
-		if($(`.modal-close-area[modal="${id}"]`).length > 0) return $(`.modal-close-area[modal="${id}"]`);
+		if ($(`.modal-close-area[modal="${id}"]`).length > 0) return $(`.modal-close-area[modal="${id}"]`);
 		$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
 		const $modal = $(`.modal-close-area[modal="${id}"]`);
 		return $modal.on("click", () => this.close());
@@ -49,46 +51,45 @@ export class Menu {
 		const mW = $menu.width() as number;
 		const mH = $menu.height() as number;
 
-		if(y === undefined && typeof x !== "number") {
+		if (y === undefined && typeof x !== "number") {
 
 			// If anchoring to element
 			const $anchor = $(x) as JQuery<HTMLElement>;
-			if($anchor[0].tagName.toLowerCase() === "input") {
+			if ($anchor[0].tagName.toLowerCase() === "input") {
 				const { top, left } = $anchor.offset() as any;
 				$menu.css({ top: top + $anchor[0].clientHeight + parseInt($anchor.css("border-width")) + 2, left, width: $anchor[0].clientWidth + parseInt($anchor.css("border-width")) * 2 });
 			} else {
 				dX = $anchor.offset()?.left as number;
 				dY = $anchor.offset()?.top as number;
-				$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+				$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
 			}
 
 			let isFixed = false;
 			$anchor.parents().each(function() {
-				if($(this).css("position") === "fixed") {
-					if(isFixed) return;
+				if ($(this).css("position") === "fixed") {
+					if (isFixed) return;
 
 					$menu.css({ position: "fixed" });
 					dX -= $(document).scrollLeft() as number;
 					dY -= $(document).scrollTop() as number;
-					$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+					$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
 
 					isFixed = true;
 				}
 			});
 
-
 		} else {
 
 			// If anchoring to a fixed position
-			$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+			$menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
 
 		}
 
 		// Determine anchor origin
-		if(dX < window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
-		if(dX > window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
-		if(dX < window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
-		if(dX > window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
+		if (dX < window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
+		if (dX > window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tr");
+		if (dX < window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-bl");
+		if (dX > window.innerWidth - mW - 8 && dY > window.innerHeight - mH - 8) $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-br");
 
 		return this;
 
@@ -103,10 +104,10 @@ export class Menu {
 
 		const $modal = this.__getModal($menu.attr("id") as string);
 
-		if(!this.explicitPosition) {
+		if (!this.explicitPosition) {
 			const x = getPointer().x;
 			const y = getPointer().y;
-			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8), });
+			$menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8) });
 		}
 
 		// Activate both

@@ -84,7 +84,6 @@ function factory() {
             relativeX = relativeX >= 0 ? relativeX : 0;
             relativeY = relativeY >= 0 ? relativeY : 0;
             if (jquery_1.default(element).hasClass("waves-ink")) {
-                console.log(element);
                 relativeX = element.clientWidth / 2;
                 relativeY = element.clientHeight / 2;
             }
@@ -102,7 +101,7 @@ function factory() {
             ripple.classList.add("waves-notransition");
             ripple.setAttribute("style", convertStyle(rippleStyle));
             ripple.classList.remove("waves-notransition");
-            rippleStyle["transform"] = `${scale} ${translate}`;
+            rippleStyle.transform = `${scale} ${translate}`;
             rippleStyle.transform = `${scale} ${translate}`;
             rippleStyle.opacity = "1";
             const duration = event.type === "mousemove" ? 2500 : Effect.duration;
@@ -115,11 +114,23 @@ function factory() {
             for (let i = 0, len = $ripple.length; i < len; i++)
                 removeRipple(event, element, $ripple[i]);
             if (isTouchAvailable) {
-                jquery_1.default(element).on("touchend", function (event) { Effect.hide(event, this); });
-                jquery_1.default(element).on("touchcancel", function (event) { Effect.hide(event, this); });
+                jquery_1.default(element).off("touchend")
+                    .on("touchend", function (event) {
+                    Effect.hide(event, this);
+                });
+                jquery_1.default(element).off("touchcancel")
+                    .on("touchcancel", function (event) {
+                    Effect.hide(event, this);
+                });
             }
-            jquery_1.default(element).on("mouseup", function (event) { Effect.hide(event, this); });
-            jquery_1.default(element).on("mouseleave", function (event) { Effect.hide(event, this); });
+            jquery_1.default(element).off("mouseup")
+                .on("mouseup", function (event) {
+                Effect.hide(event, this);
+            });
+            jquery_1.default(element).off("mouseleave")
+                .on("mouseleave", function (event) {
+                Effect.hide(event, this);
+            });
         }
     };
     const TagWrapper = {
@@ -259,11 +270,19 @@ function factory() {
         else {
             Effect.show(event, element);
             if (isTouchAvailable) {
-                element.addEventListener("touchend", function (event) { Effect.hide(event, this); }, false);
-                element.addEventListener("touchcancel", function (event) { Effect.hide(event, this); }, false);
+                element.addEventListener("touchend", function (event) {
+                    Effect.hide(event, this);
+                }, false);
+                element.addEventListener("touchcancel", function (event) {
+                    Effect.hide(event, this);
+                }, false);
             }
-            element.addEventListener("mouseup", function (event) { Effect.hide(event, this); }, false);
-            element.addEventListener("mouseleave", function (event) { Effect.hide(event, this); }, false);
+            element.addEventListener("mouseup", function (event) {
+                Effect.hide(event, this);
+            }, false);
+            element.addEventListener("mouseleave", function (event) {
+                Effect.hide(event, this);
+            }, false);
         }
     }
     const Waves = {
