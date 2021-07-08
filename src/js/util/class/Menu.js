@@ -13,13 +13,12 @@ class Menu {
         this.target = jquery_1.default(target);
         const $menu = this.target;
         if ($menu.is("[md]"))
-            return this;
+            return;
         $menu.attr("md", "");
         const id = $menu.attr("id") || guid_1.default();
         $menu.attr("id", id);
         $menu.children(".photon-list").children(".photon-list-item")
             .on("click", () => this.close());
-        return this;
     }
     __getModal(id) {
         if (jquery_1.default(`.modal-close-area[modal="${id}"]`).length > 0)
