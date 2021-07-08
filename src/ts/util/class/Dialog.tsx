@@ -1,7 +1,7 @@
 import $ from "jquery";
 import guid from "../guid";
 import { render } from "react-dom";
-import { PhotonSelector } from "../../index";
+import { PhotonSelector, UnityPhotonSelector } from "../../index";
 
 export interface DialogOptions {
 	id: string;
@@ -10,9 +10,10 @@ export interface DialogOptions {
 export class Dialog {
 
 	target: JQuery;
+
 	options: DialogOptions;
 
-	constructor(dialog: PhotonSelector & React.DOMElement<any, Element>, options?: DialogOptions) {
+	constructor(dialog: PhotonSelector | React.DOMElement<any, Element>, options?: DialogOptions) {
 
 		// Extend options
 		this.options = {
@@ -21,19 +22,20 @@ export class Dialog {
 		};
 
 		// If is JSX element
-		if(dialog.hasOwnProperty("$$typeof")) {
+		if (dialog.hasOwnProperty("$$typeof")) {
 
 			// Get options
 			const { id } = this.options;
 
-			const wrapper = $("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`).children(`#${id}`);
-			render(dialog, wrapper[0]);
+			const wrapper = $("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`)
+				.children(`#${id}`);
+			render(dialog as React.DOMElement<any, Element>, wrapper[0]);
 
 			this.target = wrapper;
 
 			// Close menu on click from menu or modal
 			$(document.body).on("click", (event: JQuery.ClickEvent) => {
-				if(event.target === wrapper[0]) {
+				if (event.target === wrapper[0]) {
 					this.close();
 				}
 			});
@@ -43,7 +45,7 @@ export class Dialog {
 		// If is jquery selector
 		else {
 
-			this.target = $(dialog).parents(".photon-dialog-wrapper");
+			this.target = $(dialog as UnityPhotonSelector).parents(".photon-dialog-wrapper");
 
 		}
 

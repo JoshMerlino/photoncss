@@ -9,13 +9,14 @@ export interface SnackbarOptions {
 
 // Local function to get the notification container
 function getNotificationContainer(): JQuery {
-	if($("#photon-notification-container").length === 0) $("body").append("<div id=\"photon-notification-container\"></div>");
+	if ($("#photon-notification-container").length === 0) $("body").append("<div id=\"photon-notification-container\"></div>");
 	return $("#photon-notification-container");
 }
 
 export class Snackbar {
 
 	snackbar: JQuery;
+
 	options: SnackbarOptions;
 
 	constructor(element: React.DOMElement<any, Element>, options?: SnackbarOptions) {
@@ -37,7 +38,7 @@ export class Snackbar {
 
 		setTimeout(() => this.hide(), this.options.duration ?? 1e10);
 
-		return this.show();
+		this.show();
 
 	}
 

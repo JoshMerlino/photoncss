@@ -17,7 +17,8 @@ class Menu {
         $menu.attr("md", "");
         const id = $menu.attr("id") || guid_1.default();
         $menu.attr("id", id);
-        $menu.children(".photon-list").children(".photon-list-item").on("click", () => this.close());
+        $menu.children(".photon-list").children(".photon-list-item")
+            .on("click", () => this.close());
         return this;
     }
     __getModal(id) {
@@ -43,7 +44,7 @@ class Menu {
             else {
                 dX = $anchor.offset()?.left;
                 dY = $anchor.offset()?.top;
-                $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+                $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
             }
             let isFixed = false;
             $anchor.parents().each(function () {
@@ -53,13 +54,13 @@ class Menu {
                     $menu.css({ position: "fixed" });
                     dX -= jquery_1.default(document).scrollLeft();
                     dY -= jquery_1.default(document).scrollTop();
-                    $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+                    $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
                     isFixed = true;
                 }
             });
         }
         else {
-            $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8), });
+            $menu.css({ left: Math.max(Math.min(dX, window.innerWidth - mW * 1.12 - 8), 8), top: Math.max(Math.min(dY, window.innerHeight - mH - 8), 8) });
         }
         if (dX < window.innerWidth - mW - 8 && dY < window.innerHeight - mH - 8)
             $menu.removeClass("anchor-tl anchor-tr anchor-bl anchor-br").addClass("anchor-tl");
@@ -79,7 +80,7 @@ class Menu {
         if (!this.explicitPosition) {
             const x = getPointer_1.default().x;
             const y = getPointer_1.default().y;
-            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8), });
+            $menu.css({ left: Math.max(Math.min(x, window.innerWidth - mW - 8), 8), top: Math.max(Math.min(y, window.innerHeight - mH - 8), 8) });
         }
         requestAnimationFrame(function () {
             [$menu, $modal].map(e => e.addClass("active"));

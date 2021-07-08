@@ -12,7 +12,7 @@ class Drawer {
         const $nav = this.target;
         const $swipe = this.target.children(".drawer-swipe-target");
         if ($nav.is("[md]"))
-            return this;
+            return;
         $nav.attr("md", "");
         const id = $nav.attr("id") || guid_1.default();
         $nav.attr("id", id);
@@ -80,7 +80,6 @@ class Drawer {
             else
                 $nav.css({ transform: `translateX(${Math.min(touch.clientX - ($nav.width() || 0), 0)}px)` });
         });
-        return this;
     }
     open() {
         const $nav = this.target;

@@ -2,7 +2,7 @@ import { PhotonSelector } from "../../index";
 export declare class Menu {
     target: JQuery;
     private explicitPosition;
-    constructor(target: JQuery);
+    constructor(target: PhotonSelector);
     __getModal(id: string): JQuery<HTMLElement>;
     anchor(x: number | PhotonSelector, y?: number): this;
     open(): this;

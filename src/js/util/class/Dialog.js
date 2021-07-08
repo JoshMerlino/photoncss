@@ -15,7 +15,8 @@ class Dialog {
         };
         if (dialog.hasOwnProperty("$$typeof")) {
             const { id } = this.options;
-            const wrapper = jquery_1.default("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`).children(`#${id}`);
+            const wrapper = jquery_1.default("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`)
+                .children(`#${id}`);
             react_dom_1.render(dialog, wrapper[0]);
             this.target = wrapper;
             jquery_1.default(document.body).on("click", (event) => {
