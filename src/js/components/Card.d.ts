@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Card({ children, display, variant, className, ...props }: InferProps<typeof Card.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Card {

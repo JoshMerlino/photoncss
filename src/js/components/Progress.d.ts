@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Spinner({ size, color, className, ...props }: InferProps<typeof Spinner.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Spinner {

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Radio({ children, labelPosition, color, waves, style, id, className, ...props }: InferProps<typeof Radio.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Radio {

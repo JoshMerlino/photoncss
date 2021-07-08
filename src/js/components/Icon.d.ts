@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function TextIcon({ children, variant, ...props }: InferProps<typeof TextIcon.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace TextIcon {
