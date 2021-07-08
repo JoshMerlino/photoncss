@@ -17,10 +17,10 @@ export function ThemeProvider({
 	try {
 
 		// If theme is Theme
-		if(typeof theme === "object") finalTheme = theme;
+		if (typeof theme === "object") finalTheme = theme;
 
 		// If theme is string
-		else if(typeof theme === "string") finalTheme = require(`../../../theme/${theme}.json`);
+		else if (typeof theme === "string") finalTheme = require(`../../../theme/${theme}.json`);
 
 		// If invalid theme type
 		else throw new Error(`'${typeof theme}' is not a valid theme.`);
@@ -34,7 +34,7 @@ export function ThemeProvider({
 	}
 
 	// If it is the root theme
-	if(global) {
+	if (global) {
 
 		// Render CSS
 		const style = render(finalTheme) as { [key: string]: string };
@@ -45,14 +45,12 @@ export function ThemeProvider({
 		// Render children
 		return <>{children}</>;
 
-	} else {
-
-		// Render CSS
-		const style = render(finalTheme);
-
-		// Create context of theme
-		return <span style={style}>{children}</span>;
-
 	}
+
+	// Render CSS
+	const style = render(finalTheme);
+
+	// Create context of theme
+	return <span style={style}>{children}</span>;
 
 }

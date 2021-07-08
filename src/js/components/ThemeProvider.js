@@ -25,10 +25,8 @@ function ThemeProvider({ theme = "default.light", global = false, children }) {
         Object.keys(style).map((key) => document.documentElement.style.setProperty(key, style[key]));
         return react_1.default.createElement(react_1.default.Fragment, null, children);
     }
-    else {
-        const style = theme_1.render(finalTheme);
-        return react_1.default.createElement("span", { style: style }, children);
-    }
+    const style = theme_1.render(finalTheme);
+    return react_1.default.createElement("span", { style: style }, children);
 }
 exports.ThemeProvider = ThemeProvider;
 //# sourceMappingURL=ThemeProvider.js.map
