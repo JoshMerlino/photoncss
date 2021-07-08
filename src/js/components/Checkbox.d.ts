@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Checkbox({ children, labelPosition, style, variant, color, waves, id, className, ...props }: InferProps<typeof Checkbox.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Checkbox {

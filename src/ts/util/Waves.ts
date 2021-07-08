@@ -116,6 +116,12 @@ function factory() {
 			relativeX = relativeX >= 0 ? relativeX : 0;
 			relativeY = relativeY >= 0 ? relativeY : 0;
 
+			if($(element).hasClass("waves-ink")) {
+				console.log(element)
+				relativeX = element.clientWidth / 2;
+				relativeY = element.clientHeight / 2;
+			}
+
 			// Custom PhotonCSS ripple scale function
 			const scale = `scale(${arbitraryScale(element, relativeX, relativeY)})`;
 			const translate = "translate(0,0)";
@@ -518,6 +524,10 @@ function factory() {
 		}
 
 	};
+
+	$(function() {
+		Waves.init();
+	})
 
 	return Waves;
 }

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import { Theme } from "../util/theme";
 export declare function ThemeProvider({ theme, global, children }: {
     theme: string | Theme;

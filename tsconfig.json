@@ -4,7 +4,7 @@
         "module": "commonjs",
         "target": "es2020",
         "types": ["node"],
-        "outDir": "lib",
+        "outDir": "src/js",
         "jsx": "react",
         "removeComments": true,
         "sourceMap": true,
@@ -14,7 +14,8 @@
         "noUnusedParameters": true,
         "allowUnreachableCode": false,
         "preserveConstEnums": false,
-        "resolveJsonModule": true
+        "resolveJsonModule": true,
+		"declaration": true
     },
 	"include": ["src/ts/**/*"]
 }

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Dialog({ children, type, transition, size, className, ...props }: InferProps<typeof Dialog.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Dialog {

@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Drawer({ children, from, swipe, className, ...props }: InferProps<typeof Drawer.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Drawer {
