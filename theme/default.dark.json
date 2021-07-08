@@ -38,7 +38,8 @@
 		},
 		"header": {
 			"background": "#191919",
-			"text": "#fff"
+			"text": "#fff",
+			"waves": "#ffffff20"
 		}
     }
 }
