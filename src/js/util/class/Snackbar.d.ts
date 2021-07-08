@@ -1,4 +1,3 @@
-/// <reference types="react" />
 export interface SnackbarOptions {
     duration?: number | null;
     id?: string;

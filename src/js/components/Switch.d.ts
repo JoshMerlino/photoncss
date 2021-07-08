@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Switch({ children, labelPosition, style, color, waves, id, className, ...props }: InferProps<typeof Switch.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Switch {

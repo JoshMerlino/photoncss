@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function InputField({ children, variant, dropdown, prefix, suffix, readOnly, subtitle, type, color, id, className, ...props }: InferProps<typeof InputField.propTypes>): JSX.Element;
 export declare namespace InputField {

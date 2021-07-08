@@ -1,4 +1,3 @@
-/// <reference types="react" />
 import PropTypes, { InferProps } from "prop-types";
 export declare function Toolbar({ children, color, variant, size, position, id, className, ...props }: InferProps<typeof Toolbar.propTypes> & InferProps<any>): JSX.Element;
 export declare namespace Toolbar {
