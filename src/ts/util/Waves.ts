@@ -11,22 +11,22 @@ export function arbitraryScale(element: Element, relativeX: number, relativeY: n
 	const { clientHeight, clientWidth } = element;
 
 	// If waves ink,
-	if($elem.hasClass("waves-ink")) return 0.48;
+	if ($elem.hasClass("waves-ink")) return 0.48;
 
 	//
 	let x = relativeX;
 	let y = relativeY;
 
 	//
-	if(x > clientWidth / 2)  x = clientWidth - x;
-	if(y > clientHeight / 2) y = clientHeight - y;
+	if (x > clientWidth / 2) x = clientWidth - x;
+	if (y > clientHeight / 2) y = clientHeight - y;
 
 	//
 	x = clientWidth - x;
 	y = clientHeight - y;
 
 	// If square element
-	if(clientHeight === clientWidth) {
+	if (clientHeight === clientWidth) {
 		return (clientWidth - Math.abs(clientWidth - (clientHeight - (clientWidth - x) - (clientHeight - y)) - clientWidth)) / 50;
 	}
 
@@ -59,8 +59,8 @@ function factory() {
 
 	function getWavesElements(nodes: Element | string | Element[]): Element[] {
 		const asString = toString.call(nodes);
-		if(asString === "[object String]") return Array.from($$(nodes as string));
-		if(isObject(nodes) && /^\[object (Array|HTMLCollection|NodeList|Object)\]$/.test(asString) && nodes.hasOwnProperty("length")) return [ nodes as Element ];
+		if (asString === "[object String]") return Array.from($$(nodes as string));
+		if (isObject(nodes) && /^\[object (Array|HTMLCollection|NodeList|Object)\]$/.test(asString) && nodes.hasOwnProperty("length")) return [ nodes as Element ];
 		if (isDOMNode(nodes)) return [ nodes as Element ];
 		return [];
 	}
@@ -86,7 +86,7 @@ function factory() {
 
 			// Disable right click
 			/* eslint no-extra-parens: 0 */
-			if((<MouseEvent>event).button === 2) return false;
+			if ((<MouseEvent>event).button === 2) return false;
 
 			element = element || this;
 
@@ -101,7 +101,7 @@ function factory() {
 			let relativeX = 0;
 
 			// Support for touch devices
-			if("touches" in event && (<TouchEvent>event).touches.length) {
+			if ("touches" in event && (<TouchEvent>event).touches.length) {
 				relativeX = (<TouchEvent>event).touches[0].pageX - pos.left;
 				relativeY = (<TouchEvent>event).touches[0].pageY - pos.top;
 			}
@@ -116,8 +116,7 @@ function factory() {
 			relativeX = relativeX >= 0 ? relativeX : 0;
 			relativeY = relativeY >= 0 ? relativeY : 0;
 
-			if($(element).hasClass("waves-ink")) {
-				console.log(element)
+			if ($(element).hasClass("waves-ink")) {
 				relativeX = element.clientWidth / 2;
 				relativeY = element.clientHeight / 2;
 			}
@@ -144,7 +143,7 @@ function factory() {
 			ripple.classList.remove("waves-notransition");
 
 			// Scale the ripple
-			rippleStyle["transform"] = `${scale} ${translate}`;
+			rippleStyle.transform = `${scale} ${translate}`;
 			rippleStyle.transform = `${scale} ${translate}`;
 			rippleStyle.opacity = "1";
 
@@ -162,15 +161,27 @@ function factory() {
 			const $ripple = element.getElementsByClassName("waves-rippling");
 
 			// Remove all ripples
-			for(let i = 0, len = $ripple.length; i < len; i++) removeRipple(event, element, $ripple[i]);
+			for (let i = 0, len = $ripple.length; i < len; i++) removeRipple(event, element, $ripple[i]);
 
 			if (isTouchAvailable) {
-				$(element).on("touchend", function(this: Element, event: any){ Effect.hide(event, this); });
-				$(element).on("touchcancel", function(this: Element, event: any){ Effect.hide(event, this); });
+				$(element).off("touchend")
+					.on("touchend", function(this: Element, event: any){
+						Effect.hide(event, this);
+					});
+				$(element).off("touchcancel")
+					.on("touchcancel", function(this: Element, event: any){
+						Effect.hide(event, this);
+					});
 			}
 
-			$(element).on("mouseup", function(this: Element, event: any){ Effect.hide(event, this); });
-			$(element).on("mouseleave", function(this: Element, event: any){ Effect.hide(event, this); });
+			$(element).off("mouseup")
+				.on("mouseup", function(this: Element, event: any){
+					Effect.hide(event, this);
+				});
+			$(element).off("mouseleave")
+				.on("mouseleave", function(this: Element, event: any){
+					Effect.hide(event, this);
+				});
 
 		}
 	};
@@ -188,7 +199,7 @@ function factory() {
 			const parent = element.parentNode as Element;
 
 			// If input already have parent just pass through
-			if(parent.tagName.toLowerCase() === "i" && parent.classList.contains("waves-effect")) return;
+			if (parent.tagName.toLowerCase() === "i" && parent.classList.contains("waves-effect")) return;
 
 			// Put element class and style to the specified parent
 			const wrapper = document.createElement("i");
@@ -215,10 +226,10 @@ function factory() {
 			const parent = element.parentNode as Element;
 
 			// If input already have parent just pass through
-			if (parent.tagName.toLowerCase() === "i" && parent.classList.contains("waves-effect"))return;
+			if (parent.tagName.toLowerCase() === "i" && parent.classList.contains("waves-effect")) return;
 
 			// Put element as child
-			const wrapper  = document.createElement("i");
+			const wrapper = document.createElement("i");
 			parent.replaceChild(wrapper, element);
 			wrapper.appendChild(element);
 
@@ -233,7 +244,7 @@ function factory() {
 	function removeRipple(event: Event, element: Element, ripple: Element) {
 
 		// Check if the ripple still exist
-		if(!ripple) return;
+		if (!ripple) return;
 
 		ripple.classList.remove("waves-rippling");
 
@@ -246,8 +257,8 @@ function factory() {
 		const diff = Date.now() - Number(ripple.getAttribute("data-hold"));
 		let delay = 350 - diff;
 
-		if(delay < 0) delay = 0;
-		if(event.type === "mousemove") delay = 150;
+		if (delay < 0) delay = 0;
+		if (event.type === "mousemove") delay = 150;
 
 		// Fade out ripple after delay
 		const duration = event.type === "mousemove" ? 2500 : Effect.duration;
@@ -277,36 +288,34 @@ function factory() {
 		}, delay);
 	}
 
-
 	/**
      * Disable mousedown event for 500ms during and after touch
      */
 	const TouchHandler = {
 
-		/* uses an integer rather than bool so there's no issues with
+		/* Uses an integer rather than bool so there's no issues with
          * needing to clear timeouts if another touch event occurred
          * within the 500ms. Cannot mouseup between touchstart and
          * touchend, nor in the 500ms after touchend. */
 		touches: 0,
 		allowEvent(event: Event): boolean {
-			if(/^(mousedown|mousemove)$/.test(event.type) && TouchHandler.touches) return false;
+			if (/^(mousedown|mousemove)$/.test(event.type) && TouchHandler.touches) return false;
 			return true;
 		},
 		registerEvent(event: Event) {
 			const { type } = event;
 
-			if(type === "touchstart") TouchHandler.touches += 1; // push
+			if (type === "touchstart") TouchHandler.touches += 1; // Push
 
 			else if (/^(touchend|touchcancel)$/.test(type)) {
 
 				setTimeout(function() {
-					if (TouchHandler.touches) TouchHandler.touches -= 1; // pop after 500ms
+					if (TouchHandler.touches) TouchHandler.touches -= 1; // Pop after 500ms
 				}, 500);
 
 			}
 		}
 	};
-
 
 	/**
      * Delegated click handler for .waves-effect element.
@@ -316,8 +325,8 @@ function factory() {
 		if (TouchHandler.allowEvent(event) === false) return null;
 		let element = null;
 		let target = event.target as Element;
-		while(target.parentElement) {
-			if(!(target instanceof SVGElement) && target.classList.contains("waves-effect")) {
+		while (target.parentElement) {
+			if (!(target instanceof SVGElement) && target.classList.contains("waves-effect")) {
 				element = target;
 				break;
 			}
@@ -333,20 +342,20 @@ function factory() {
 
 		// Disable effect if element has "disabled" property on it
 		// In some cases, the event is not triggered by the current element
-		// if (e.target.getAttribute('disabled') !== null) {
-		//     return;
+		// If (e.target.getAttribute('disabled') !== null) {
+		//     Return;
 		// }
 
 		const element = getWavesEffectElement(event);
 
-		if(element === null) return;
+		if (element === null) return;
 
 		// Make it sure the element has either disabled property, disabled attribute or 'disabled' class
-		if(element.getAttribute("disabled") || element.classList.contains("disabled")) return;
+		if (element.getAttribute("disabled") || element.classList.contains("disabled")) return;
 
 		TouchHandler.registerEvent(event);
 
-		if(event.type === "touchstart" && Effect.delay) {
+		if (event.type === "touchstart" && Effect.delay) {
 
 			let hidden = false;
 
@@ -357,7 +366,7 @@ function factory() {
 
 			const hideEffect = function(hideEvent: Event): void {
 
-				// if touch hasn't moved, and effect not yet started: start effect now
+				// If touch hasn't moved, and effect not yet started: start effect now
 				if (timer) {
 					clearTimeout(timer);
 					timer = null;
@@ -372,7 +381,7 @@ function factory() {
 			};
 
 			const touchMove = function(moveEvent: Event) {
-				if(timer) {
+				if (timer) {
 					clearTimeout(timer);
 					timer = null;
 				}
@@ -394,12 +403,20 @@ function factory() {
 			Effect.show(event, element);
 
 			if (isTouchAvailable) {
-				element.addEventListener("touchend", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
-				element.addEventListener("touchcancel", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
+				element.addEventListener("touchend", function(this: Element, event: Event) {
+					Effect.hide(event, this);
+				}, false);
+				element.addEventListener("touchcancel", function(this: Element, event: Event) {
+					Effect.hide(event, this);
+				}, false);
 			}
 
-			element.addEventListener("mouseup", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
-			element.addEventListener("mouseleave", function(this: Element, event: Event) { Effect.hide(event, this); }, false);
+			element.addEventListener("mouseup", function(this: Element, event: Event) {
+				Effect.hide(event, this);
+			}, false);
+			element.addEventListener("mouseleave", function(this: Element, event: Event) {
+				Effect.hide(event, this);
+			}, false);
 		}
 	}
 
@@ -411,10 +428,10 @@ function factory() {
 			const body = document.body;
 			options = options || {};
 
-			if("duration" in options) Effect.duration = options.duration as number;
-			if("delay" in options) Effect.delay = options.delay as number;
+			if ("duration" in options) Effect.duration = options.duration as number;
+			if ("delay" in options) Effect.delay = options.delay as number;
 
-			if(isTouchAvailable) {
+			if (isTouchAvailable) {
 				body.addEventListener("touchstart", showEffect, false);
 				body.addEventListener("touchcancel", TouchHandler.registerEvent, false);
 				body.addEventListener("touchend", TouchHandler.registerEvent, false);
@@ -467,10 +484,10 @@ function factory() {
 
 			options = options || {};
 			options.wait = options.wait || 0;
-			options.position = options.position || null; // default = centre of element
+			options.position = options.position || null; // Default = centre of element
 			options.ink = options.ink || false;
 
-			if(length) {
+			if (length) {
 				let element;
 				let pos;
 				let off;
@@ -520,14 +537,14 @@ function factory() {
 		calm(elements: Element | Element[]) {
 			elements = getWavesElements(elements);
 			const mouseup = <MouseEvent>{ type: "mouseup", button: 1 };
-			for(let i = 0, len = elements.length; i < len; i++) Effect.hide(mouseup, elements[i]);
+			for (let i = 0, len = elements.length; i < len; i++) Effect.hide(mouseup, elements[i]);
 		}
 
 	};
 
 	$(function() {
 		Waves.init();
-	})
+	});
 
 	return Waves;
 }
