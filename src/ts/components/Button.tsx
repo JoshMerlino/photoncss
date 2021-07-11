@@ -7,7 +7,7 @@ import Waves from "../util/Waves";
 
 export function Button({ children, color, display, variant, size, waves, className = "", ...props }: InferProps<typeof Button.propTypes> & InferProps<any>): JSX.Element {
 	const classes = classnames("photon-btn", `variant-${variant}`, `display-${display}`, `color-${color}`, `size-${size}`, waves && "waves-effect", className);
-	if(waves) setImmediate(Waves.init);
+	if (waves) setImmediate(Waves.init);
 	return <button className={classes} {...props}>{ children }</button>;
 }
 

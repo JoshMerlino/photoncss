@@ -1,4 +1,4 @@
-import React  from "react";
+import React from "react";
 import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
 import Waves from "../util/Waves";

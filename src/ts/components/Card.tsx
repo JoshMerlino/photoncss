@@ -13,13 +13,13 @@ Card.propTypes = {
 	children: PropTypes.any,
 	className: PropTypes.string,
 	variant: PropTypes.oneOf([ "raised", "outlined" ]),
-	display: PropTypes.oneOf([ "inline", "block" ]),
+	display: PropTypes.oneOf([ "inline", "block" ])
 };
 
 Card.defaultProps = {
 	children: null,
 	variant: "raised",
-	display: "block",
+	display: "block"
 };
 
 /* ****************************************** */

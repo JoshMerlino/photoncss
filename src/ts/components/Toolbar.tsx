@@ -17,10 +17,10 @@ export function Toolbar({ children, color, variant, size, position, id, classNam
 		const spacer = $(`[data-toolbar="${id}"]`);
 		spacer.height(toolbar.height() || 0);
 
-		if(variant === "float") {
+		if (variant === "float") {
 			$(document).on("scroll", () => {
 				const scroll = $(document).scrollTop() as number;
-				if(scroll > 0) {
+				if (scroll > 0) {
 					toolbar.removeClass("variant-flat").addClass("variant-raised");
 				} else {
 					toolbar.addClass("variant-flat").removeClass("variant-raised");
@@ -49,7 +49,7 @@ Toolbar.defaultProps = {
 	color: "none",
 	variant: "float",
 	size: "normal",
-	position: "top",
+	position: "top"
 };
 
 /* ****************************************** */
