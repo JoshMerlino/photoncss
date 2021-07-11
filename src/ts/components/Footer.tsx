@@ -15,13 +15,13 @@ export function Footer({ children, className, offset, ...props }: InferProps<typ
 	function resize() {
 		const footer = $(`#${id}`);
 		const main = footer.siblings("main");
-		if(main.length === 0) return;
+		if (main.length === 0) return;
 		main.css("min-height", window.innerHeight - footer[0].clientHeight - offset!);
 	}
 
 	setImmediate(function() {
 		(function frame() {
-			if($(`#${id}`).length === 0) return;
+			if ($(`#${id}`).length === 0) return;
 			resize();
 			requestAnimationFrame(frame);
 		}());

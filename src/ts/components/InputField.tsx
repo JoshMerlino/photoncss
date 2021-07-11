@@ -33,7 +33,8 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 		input.off("keyup keydown mouseleave").on("keyup keydown mouseleave", () => {
 			const containsContent = input.val() !== "";
 			input[containsContent ? "addClass":"removeClass"]("contains-content");
-		}).trigger("keydown");
+		})
+			.trigger("keydown");
 
 		input.off("focus").on("focus", () => {
 
@@ -46,37 +47,37 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 			});
 		});
 
-		if(wrapper.hasClass("variant-normal")) {
-			if(prefix.length === 1) {
+		if (wrapper.hasClass("variant-normal")) {
+			if (prefix.length === 1) {
 				input.css({ paddingLeft: prefix.width() as number !== 0 ? prefix.width() as number + 8 : 0 });
 				label.css({ marginLeft: prefix.width() as number !== 0 ? prefix.width() as number + 8 : 0 });
 			}
 
-			if(suffix.length === 1) {
+			if (suffix.length === 1) {
 				input.css({ paddingRight: suffix.width() as number !== 0 ? suffix.width() as number + 8 : 0 });
 			}
-		} else if(wrapper.hasClass("variant-outlined")) {
-			if(prefix.length === 1) {
+		} else if (wrapper.hasClass("variant-outlined")) {
+			if (prefix.length === 1) {
 				input.css({ paddingLeft: prefix.width() as number !== 0 ? prefix.width() as number + 23.5 : 15.5 });
 				label.css({ marginLeft: prefix.width() as number !== 0 ? prefix.width() as number + 23.5 : 15.5 });
 			}
 
-			if(suffix.length === 1) {
+			if (suffix.length === 1) {
 				input.css({ paddingRight: suffix.width() as number !== 0 ? suffix.width() as number + 23.5 : 15.5 });
 			}
 		} else {
-			if(prefix.length === 1) {
+			if (prefix.length === 1) {
 				input.css({ paddingLeft: prefix.width() as number !== 0 ? prefix.width() as number + 24 : 16 });
 				label.css({ marginLeft: prefix.width() as number !== 0 ? prefix.width() as number + 24 : 16 });
 			}
 
-			if(suffix.length === 1) {
+			if (suffix.length === 1) {
 				input.css({ paddingRight: suffix.width() as number !== 0 ? suffix.width() as number + 24 : 16 });
 			}
 		}
 
 		// Menu stuff
-		if(dropdown === null) return;
+		if (dropdown === null) return;
 
 		const menu = new IMenu($(`#${id}-dropdown`));
 
@@ -87,7 +88,7 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 
 		input.on("blur", () => {
 			const { isMouseDown } = getPointer();
-			if(!isMouseDown) menu.close();
+			if (!isMouseDown) menu.close();
 		});
 
 	});

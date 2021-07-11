@@ -11,7 +11,7 @@ export function Snackbar({ children, className = "", ...props }: InferProps<type
 
 Snackbar.propTypes = {
 	children: PropTypes.any,
-	className: PropTypes.string,
+	className: PropTypes.string
 };
 
 Snackbar.defaultProps = {
