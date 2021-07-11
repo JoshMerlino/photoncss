@@ -2,8 +2,8 @@
     "name": "photoncss",
     "version": "12.19.2",
     "description": "Go from 0 to app in seconds",
-    "main": "src/js/",
-    "types": "src/js/",
+    "main": "dist/index.js",
+    "types": "lib",
     "author": "Josh Merlino",
     "license": "ISC",
     "scripts": {
