@@ -63,7 +63,6 @@ rules:
   no-extra-bind: error
   no-extra-label: warn
   no-implied-eval: warn
-  no-invalid-this: error
   no-iterator: error
   no-lone-blocks: warn
   no-loop-func: error

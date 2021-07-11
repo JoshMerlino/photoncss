@@ -42,7 +42,7 @@ ListItem.propTypes = {
 	className: PropTypes.string,
 	round: PropTypes.bool,
 	active: PropTypes.bool,
-	waves: PropTypes.bool,
+	waves: PropTypes.bool
 };
 
 ListItem.defaultProps = {

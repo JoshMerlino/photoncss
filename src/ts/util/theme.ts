@@ -56,7 +56,6 @@ export interface Theme {
 	}
 }
 
-
 export function render(theme: Theme): CSSProperties {
 
 	// Get theme keys
