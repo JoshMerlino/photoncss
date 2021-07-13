@@ -1,31 +1,48 @@
-import React from "react";
-import PropTypes, { InferProps } from "prop-types";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Button({ children, color, display, variant, size, waves, className = "", ...props }: InferProps<typeof Button.propTypes> & InferProps<any>): JSX.Element {
-	const classes = classnames("photon-btn", `variant-${variant}`, `display-${display}`, `color-${color}`, `size-${size}`, waves && "waves-effect", className);
-	if (waves) setImmediate(Waves.init);
-	return <button className={classes} {...props}>{ children }</button>;
+type Props = {
+	children: ReactNode;
+	className?: string;
+	color?: "none" | "primary" | "secondary";
+	size?: "normal" | "dense" | "large";
+	variant?: "contained" | "flat" | "outlined" | "raised";
+	display?: "inline" | "block";
+	waves?: boolean;
+	[key: string]: any;
 }
 
-Button.propTypes = {
-	children: PropTypes.any,
-	className: PropTypes.string,
-	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
-	size: PropTypes.oneOf([ "normal", "dense", "large" ]),
-	variant: PropTypes.oneOf([ "contained", "flat", "outlined", "raised" ]),
-	display: PropTypes.oneOf([ "inline", "block" ]),
-	waves: PropTypes.bool
-};
+export function Button({
+	children,
+	color = "none",
+	display = "inline",
+	variant = "contained",
+	size = "normal",
+	waves = true,
+	className = "",
+	...props
+}: Props): JSX.Element {
 
-Button.defaultProps = {
-	children: null,
-	color: "none",
-	variant: "contained",
-	size: "normal",
-	display: "inline",
-	waves: true
-};
+	// Get className for node
+	const classes = classnames(
+		"photon-btn",
+		`variant-${variant}`,
+		`display-${display}`,
+		`color-${color}`,
+		`size-${size}`,
+		waves && "waves-effect",
+		className
+	);
+
+	// If waves is enabled, initialize
+	if (waves) setImmediate(Waves.init);
+
+	// Return component
+	return (
+		<button className={classes} {...props}>{ children }</button>
+	);
+
+}

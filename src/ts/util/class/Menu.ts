@@ -29,7 +29,7 @@ export class Menu {
 
 	}
 
-	__getModal(id: string): JQuery<HTMLElement> {
+	private __getModal(id: string): JQuery<HTMLElement> {
 		if ($(`.modal-close-area[modal="${id}"]`).length > 0) return $(`.modal-close-area[modal="${id}"]`);
 		$(`<div class="modal-close-area transparent" modal="${id}"></div>`).appendTo($("body"));
 		const $modal = $(`.modal-close-area[modal="${id}"]`);
@@ -135,4 +135,9 @@ export class Menu {
 		return this.target.hasClass("active");
 	}
 
+}
+
+// Export runtime constructor
+export default function(target: PhotonSelector): Menu {
+	return new Menu(target);
 }

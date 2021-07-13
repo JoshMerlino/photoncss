@@ -1,1 +1,1 @@
-module.exports = require("./src/js/react");
+module.exports = require("./lib/react.js");

@@ -1,34 +1,34 @@
-// Import submodules/helper functions
+// Import everything
 import guid from "./util/guid";
 export { guid };
+
+import Waves from "./util/Waves.js";
+export { Waves };
+
+import Dialog from "./util/class/Dialog";
+export { Dialog };
+
+import Drawer from "./util/class/Drawer";
+export { Drawer };
+
+import Menu from "./util/class/Menu";
+export { Menu };
+
+import Snackbar from "./util/class/Snackbar";
+export { Snackbar };
 
 // Set up PhotonSelector type
 export type PhotonSelector = string | Element | JQuery;
 export type UnityPhotonSelector = string & Element & JQuery;
 
-// Import waves
-import Waves from "./util/Waves.js";
-export { Waves };
-
-// Import active components
-import { Dialog, DialogOptions } from "./util/class/Dialog";
-export { Dialog, DialogOptions } from "./util/class/Dialog";
-import { Drawer } from "./util/class/Drawer";
-export { Drawer } from "./util/class/Drawer";
-import { Menu } from "./util/class/Menu";
-export { Menu } from "./util/class/Menu";
-import { Snackbar, SnackbarOptions } from "./util/class/Snackbar";
-export { Snackbar, SnackbarOptions } from "./util/class/Snackbar";
-
 // Export Photon
-export default class Photon {
+export default {
 
-	static Dialog = (target: PhotonSelector | React.DOMElement<any, Element>, options?: DialogOptions): Dialog => new Dialog(target, options);
+	guid,
 
-	static Drawer = (target: PhotonSelector): Drawer => new Drawer(target);
+	Dialog,
+	Drawer,
+	Menu,
+	Snackbar
 
-	static Menu = (target: PhotonSelector): Menu => new Menu(target);
-
-	static Snackbar = (target: React.DOMElement<any, Element>, options?: SnackbarOptions): Snackbar => new Snackbar(target, options);
-
-}
+};
