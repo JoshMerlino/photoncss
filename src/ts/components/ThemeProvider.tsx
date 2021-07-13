@@ -20,16 +20,16 @@ export function ThemeProvider({
 		if (typeof theme === "object") finalTheme = theme;
 
 		// If theme is string
-		else if (typeof theme === "string") finalTheme = require(`../../../theme/${theme}.json`);
+		else if (typeof theme === "string") finalTheme = require(`../../theme/${theme}.json`);
 
 		// If invalid theme type
 		else throw new Error(`'${typeof theme}' is not a valid theme.`);
 
-		finalTheme = { ...require("../../../theme/default.base.json"), ...finalTheme };
+		finalTheme = { ...require("../../theme/default.base.json"), ...finalTheme };
 
 	} catch {
 
-		finalTheme = require("../../../theme/default.base.json");
+		finalTheme = require("../../theme/default.base.json");
 
 	}
 
