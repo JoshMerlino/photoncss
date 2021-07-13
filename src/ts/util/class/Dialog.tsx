@@ -70,3 +70,7 @@ export class Dialog {
 	}
 
 }
+
+export default function(target: PhotonSelector | React.DOMElement<any, Element>, options?: DialogOptions): Dialog {
+	return new Dialog(target, options);
+}

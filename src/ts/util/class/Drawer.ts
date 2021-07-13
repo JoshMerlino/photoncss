@@ -151,3 +151,7 @@ export class Drawer {
 	}
 
 }
+
+export default function(target: PhotonSelector): Drawer {
+	return new Drawer(target);
+}
