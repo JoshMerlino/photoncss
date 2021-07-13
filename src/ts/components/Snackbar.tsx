@@ -1,19 +1,28 @@
-import React from "react";
-import PropTypes, { InferProps } from "prop-types";
+import React, { ReactNode } from "react";
 import classnames from "classnames";
 
 /* ****************************************** */
 
-export function Snackbar({ children, className = "", ...props }: InferProps<typeof Snackbar.propTypes> & InferProps<any>): JSX.Element {
-	const classes = classnames("photon-snackbar", className);
-	return <div className={classes} {...props}>{ children }</div>;
+type Props = {
+	children: ReactNode;
+	className?: string;
+	[key: string]: any;
 }
 
-Snackbar.propTypes = {
-	children: PropTypes.any,
-	className: PropTypes.string
-};
+export function Snackbar({
+	children,
+	className = "",
+	...props
+}: Props): JSX.Element {
 
-Snackbar.defaultProps = {
-	children: null
-};
+	// Get className for node
+	const classes = classnames(
+		"photon-snackbar",
+		className
+	);
+
+	// Return component
+	return (
+		<div className={classes} {...props}>{ children }</div>
+	);
+}

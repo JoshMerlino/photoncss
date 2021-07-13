@@ -2,28 +2,31 @@ import $ from "jquery";
 import guid from "../guid";
 import { render } from "react-dom";
 
+// Export options interface
 export interface SnackbarOptions {
-	duration?: number | null,
+	duration?: number,
 	id?: string
 }
 
 // Local function to get the notification container
-function getNotificationContainer(): JQuery {
+export function getNotificationContainer(): JQuery {
 	if ($("#photon-notification-container").length === 0) $("body").append("<div id=\"photon-notification-container\"></div>");
 	return $("#photon-notification-container");
 }
 
+// Export constructor class
 export class Snackbar {
 
 	snackbar: JQuery;
 
 	options: SnackbarOptions;
 
-	constructor(element: React.DOMElement<any, Element>, options?: SnackbarOptions) {
+	constructor(element: JSX.Element, options?: SnackbarOptions) {
 
+		// Merge default options
 		this.options = {
 			...options,
-			duration: null,
+			duration: 1e10,
 			id: guid()
 		};
 
@@ -31,13 +34,18 @@ export class Snackbar {
 		const container = getNotificationContainer();
 
 		// Render the notification
-		const notification = container.append(`<div id="${this.options.id}" class="photon-snackbar-wapper hidden"></div>`).children(`#${this.options.id}`);
+		const notification = container
+			.append(`<div id="${this.options.id}" class="photon-snackbar-wapper hidden"></div>`)
+			.children(`#${this.options.id}`);
 		render(element, notification[0]);
 
+		// Set local snackbar
 		this.snackbar = $(`#${this.options.id}`);
 
-		setTimeout(() => this.hide(), this.options.duration ?? 1e10);
+		// Queue auto hidew
+		setTimeout(() => this.hide(), this.options.duration);
 
+		// Show snackbar
 		this.show();
 
 	}
@@ -63,4 +71,9 @@ export class Snackbar {
 		return !this.snackbar.hasClass("hidden");
 	}
 
+}
+
+// Export runtime constructor
+export default function(target: JSX.Element, options?: SnackbarOptions): Snackbar {
+	return new Snackbar(target, options);
 }
