@@ -25,9 +25,9 @@ export class Snackbar {
 
 		// Merge default options
 		this.options = {
-			...options,
 			duration: 1e10,
-			id: guid()
+			id: guid(),
+			...options
 		};
 
 		// Get the notification container
