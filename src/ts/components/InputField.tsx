@@ -11,8 +11,43 @@ import { PhotonSelector } from "..";
 
 /* ****************************************** */
 
-export function InputField({ children, variant, dropdown, prefix, suffix, readOnly, subtitle, type = "text", color, id, className = "", ...props }: InferProps<typeof InputField.propTypes>): JSX.Element {
-	const classes = classnames("photon-input", dropdown !== null && "photon-dropdown", `type-${type}`, `variant-${variant}`, `color-${color}`, className);
+type Props = {
+	children?: string;
+	className?: string;
+	subtitle?: string;
+	suffix?: string;
+	prefix?: string;
+	color?: "none" | "primary" | "secondary";
+	variant?: "normal" | "filled" | "outlined";
+	dropdown?: string[] | null;
+	readOnly?: boolean;
+	[key: string]: any;
+}
+
+export function InputField({
+	children,
+	variant = "normal",
+	dropdown = null,
+	prefix = "",
+	suffix = "",
+	readOnly = false,
+	subtitle = "",
+	type = "text",
+	color = "none",
+	id,
+	className = "",
+	...props
+}: Props): JSX.Element {
+
+	// Get className for node
+	const classes = classnames(
+		"photon-input",
+		dropdown !== null && "photon-dropdown",
+		`type-${type}`,
+		`variant-${variant}`,
+		`color-${color}`,
+		className
+	);
 
 	id = id || guid();
 
@@ -115,28 +150,3 @@ export function InputField({ children, variant, dropdown, prefix, suffix, readOn
 		}
 	</>;
 }
-
-InputField.propTypes = {
-	children: PropTypes.any,
-	type: PropTypes.any,
-	className: PropTypes.string,
-	subtitle: PropTypes.string,
-	suffix: PropTypes.string,
-	prefix: PropTypes.string,
-	id: PropTypes.string,
-	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
-	variant: PropTypes.oneOf([ "normal", "filled", "outlined" ]),
-	dropdown: PropTypes.array,
-	readOnly: PropTypes.bool
-};
-
-InputField.defaultProps = {
-	children: null,
-	color: "none",
-	variant: "normal",
-	suffix: "",
-	prefix: "",
-	subtitle: "",
-	dropdown: null,
-	readOnly: false
-};
