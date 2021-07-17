@@ -1,14 +1,46 @@
-import React from "react";
-import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
-import guid from "../util/guid";
 import $ from "jquery";
+import React, { CSSProperties, ReactNode } from "react";
+import guid from "../util/guid";
 import Waves from "../util/Waves";
 
 /* ****************************************** */
 
-export function Checkbox({ children, labelPosition, style, variant, color, waves, id, className = "", ...props }: InferProps<typeof Checkbox.propTypes> & InferProps<any>): JSX.Element {
-	const classes = classnames("photon-checkbox", props.indeterminate === "true" && "indeterminate", `variant-${variant}`, `color-${color}`, `labelposition-${labelPosition}`, className);
+type Props = {
+	children?: ReactNode;
+	className?: string;
+	style?: CSSProperties;
+	id?: string;
+	color?: "none" | "primary" | "secondary";
+	labelPosition?: "before" | "after";
+	variant?: "normal" | "round";
+	waves?: boolean;
+	indeterminate?: boolean;
+	[key: string]: any;
+}
+
+export function Checkbox({
+	children = null,
+	labelPosition = "after",
+	style,
+	variant = "normal",
+	indeterminate = false,
+	color = "none",
+	waves = true,
+	id,
+	className = "",
+	...props
+}: Props): JSX.Element {
+
+	// Get className for node
+	const classes = classnames(
+		"photon-checkbox",
+		indeterminate && "indeterminate",
+		`variant-${variant}`,
+		`color-${color}`,
+		`labelposition-${labelPosition}`,
+		className
+	);
 
 	id = id || guid();
 
@@ -40,24 +72,3 @@ export function Checkbox({ children, labelPosition, style, variant, color, waves
 		</div>
 	);
 }
-
-Checkbox.propTypes = {
-	children: PropTypes.any,
-	className: PropTypes.string,
-	style: PropTypes.any,
-	id: PropTypes.string,
-	color: PropTypes.oneOf([ "none", "primary", "secondary" ]),
-	labelPosition: PropTypes.oneOf([ "before", "after" ]),
-	variant: PropTypes.oneOf([ "normal", "round" ]),
-	waves: PropTypes.bool,
-	indeterminate: PropTypes.oneOf([ "true", "false" ])
-};
-
-Checkbox.defaultProps = {
-	children: null,
-	color: "none",
-	variant: "normal",
-	labelPosition: "after",
-	waves: true,
-	indeterminate: "false"
-};
