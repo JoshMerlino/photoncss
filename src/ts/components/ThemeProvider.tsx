@@ -1,15 +1,17 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import { Theme, render } from "../util/theme";
+
+type Props = {
+	theme?: string | Theme;
+	global?: boolean;
+	children?: ReactNode
+}
 
 export function ThemeProvider({
 	theme = "default.light",
 	global = false,
 	children
-}: {
-	theme: string | Theme;
-	global: boolean;
-	children?: JSX.Element
-}): JSX.Element {
+}: Props): JSX.Element {
 
 	// Initialize theme
 	let finalTheme: Theme;
