@@ -1,10 +1,10 @@
 import $ from "jquery";
-import guid from "../guid";
 import { render } from "react-dom";
-import { PhotonSelector, UnityPhotonSelector } from "../../index";
+import guid from "../guid";
 
 export interface DialogOptions {
-	id: string;
+	id?: string;
+	closeOnBlur?: boolean;
 }
 
 export class Dialog {
@@ -13,41 +13,32 @@ export class Dialog {
 
 	options: DialogOptions;
 
-	constructor(dialog: PhotonSelector | React.DOMElement<any, Element>, options?: DialogOptions) {
+	constructor(dialog: JSX.Element, options?: DialogOptions) {
 
 		// Extend options
 		this.options = {
-			...options,
-			id: guid()
+			id: guid(),
+			closeOnBlur: true,
+			...options
 		};
 
-		// If is JSX element
-		if (dialog.hasOwnProperty("$$typeof")) {
+		// Get options
+		const { id } = this.options;
 
-			// Get options
-			const { id } = this.options;
+		const wrapper = $("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`)
+			.children(`#${id}`);
+		render(dialog, wrapper[0]);
 
-			const wrapper = $("body").append(`<div id="${id}" class="photon-dialog-wrapper hidden"></div>`)
-				.children(`#${id}`);
-			render(dialog as React.DOMElement<any, Element>, wrapper[0]);
+		this.target = wrapper;
 
-			this.target = wrapper;
-
-			// Close menu on click from menu or modal
-			$(document.body).on("click", (event: JQuery.ClickEvent) => {
-				if (event.target === wrapper[0]) {
+		// Close menu on click from menu or modal
+		$(document.body).on("click", (event: JQuery.ClickEvent) => {
+			if (event.target === wrapper[0]) {
+				if (this.options.closeOnBlur) {
 					this.close();
 				}
-			});
-
-		}
-
-		// If is jquery selector
-		else {
-
-			this.target = $(dialog as UnityPhotonSelector).parents(".photon-dialog-wrapper");
-
-		}
+			}
+		});
 
 	}
 
@@ -71,6 +62,6 @@ export class Dialog {
 
 }
 
-export default function(target: PhotonSelector | React.DOMElement<any, Element>, options?: DialogOptions): Dialog {
+export default function(target: JSX.Element, options?: DialogOptions): Dialog {
 	return new Dialog(target, options);
 }
