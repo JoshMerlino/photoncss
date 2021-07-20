@@ -45,7 +45,7 @@
         "babel-loader": "^8.2.2",
         "bable-loader": "0.0.1-security",
         "concurrently": "^6.0.0",
-        "css-loader": "^5.2.0",
+        "css-loader": "^6.2.0",
         "eslint": "^7.21.0",
         "eslint-plugin-react": "^7.24.0",
         "file-loader": "^6.2.0",
