@@ -51,6 +51,8 @@ export function InputField({
 
 	id = id || guid();
 
+	if (dropdown !== null) readOnly = true;
+
 	setImmediate(function() {
 
 		// Define elements
@@ -130,7 +132,7 @@ export function InputField({
 
 	return <>
 		<div className={classes}>
-			<input tabIndex={0} type={type} readOnly={dropdown !== null || readOnly === null ? undefined : readOnly} id={id} {...props}/>
+			<input tabIndex={0} type={type} readOnly={readOnly} id={id} {...props}/>
 			{ prefix !== "" && <span className="prefix">{prefix}</span>}
 			{ suffix !== "" && <span className="suffix">{suffix}</span>}
 			<label htmlFor={id}>{children || "\u00A0"}</label>
