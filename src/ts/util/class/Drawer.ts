@@ -32,14 +32,20 @@ export class Drawer {
 		// Compare transform positions on every frame
 		(function frame() {
 
-			$nav.length !== 0 && requestAnimationFrame(frame);
+			if ($nav.length !== 0) requestAnimationFrame(frame);
 
 			// Get current transform positions
 			const tX = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[4]);
 			const tY = parseInt($nav.css("transform").split("(")[1].split(")")[0].split(",")[5]);
 
 			// Determine by transform if it is open or closed
-			Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2 ? $nav.removeClass("shadow") && $modal.removeClass("active") : $nav.addClass("shadow") && $modal.addClass("active");
+			if (Math.abs(tX - aX) < 2 && Math.abs(tY - aY) < 2) {
+				$nav.removeClass("shadow");
+				$modal.removeClass("active");
+			} else {
+				$nav.addClass("shadow");
+				$modal.addClass("active");
+			}
 
 		}());
 
