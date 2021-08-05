@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
 import guid from "../util/guid";
 import $ from "jquery";
@@ -146,7 +145,9 @@ export function InputField({
 					input.val(item);
 					input.addClass("contains-content");
 					/* eslint no-extra-parens: 0 */
-					"onChange" in props && (props as any).onChange({ target: input[0], value: item });
+					if ("onChange" in props) {
+						props.onChange({ target: input[0], value: item });
+					}
 				}}>{item}</ListItem>) }
 			</Menu>
 		}
