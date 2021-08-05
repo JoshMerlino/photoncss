@@ -75,13 +75,13 @@ function factory() {
 
 	function convertStyle(styleObj: { [key: string]: string; }) {
 		const style: string[] = [];
-		for (const prop in styleObj) styleObj.hasOwnProperty(prop) && style.push(`${prop}:${styleObj[prop]};`);
+		for (const prop in styleObj) if (styleObj.hasOwnProperty(prop)) style.push(`${prop}:${styleObj[prop]};`);
 		return style.join("");
 	}
 
 	const Effect = {
-		duration: 2000,	// Effect duration
-		delay: 50, 		// Effect delay (check for scroll before showing effect)
+		duration: 2000,
+		delay: 50,
 		show(event: Event, element: Element) {
 
 			// Disable right click
@@ -104,10 +104,7 @@ function factory() {
 			if ("touches" in event && (<TouchEvent>event).touches.length) {
 				relativeX = (<TouchEvent>event).touches[0].pageX - pos.left;
 				relativeY = (<TouchEvent>event).touches[0].pageY - pos.top;
-			}
-
-			// Normal case
-			else {
+			} else {
 				relativeX = (<MouseEvent>event).pageX - pos.left;
 				relativeY = (<MouseEvent>event).pageY - pos.top;
 			}
@@ -305,12 +302,12 @@ function factory() {
 		registerEvent(event: Event) {
 			const { type } = event;
 
-			if (type === "touchstart") TouchHandler.touches += 1; // Push
+			if (type === "touchstart") TouchHandler.touches += 1;
 
 			else if (/^(touchend|touchcancel)$/.test(type)) {
 
 				setTimeout(function() {
-					if (TouchHandler.touches) TouchHandler.touches -= 1; // Pop after 500ms
+					if (TouchHandler.touches) TouchHandler.touches -= 1;
 				}, 500);
 
 			}
@@ -484,7 +481,7 @@ function factory() {
 
 			options = options || {};
 			options.wait = options.wait || 0;
-			options.position = options.position || null; // Default = centre of element
+			options.position = options.position || null;
 			options.ink = options.ink || false;
 
 			if (length) {
