@@ -1,12 +1,12 @@
-import React from "react";
-import PropTypes, { InferProps } from "prop-types";
 import classnames from "classnames";
-import { Container } from "./Layout";
+import React, { ReactNode } from "react";
 import guid from "../util/guid";
+import { Container } from "./Layout";
 
 /* ****************************************** */
 
-export function Footer({ children, className, offset, ...props }: InferProps<typeof Footer.propTypes> & InferProps<any>): JSX.Element {
+export type FooterProps = { children: ReactNode, className?: string, offset?: number };
+export function Footer({ children, className = "", offset = 24, ...props }: FooterProps): JSX.Element {
 
 	const id = guid();
 
@@ -16,7 +16,11 @@ export function Footer({ children, className, offset, ...props }: InferProps<typ
 		const footer = $(`#${id}`);
 		const main = footer.siblings("main");
 		if (main.length === 0) return;
-		main.css("min-height", window.innerHeight - footer[0].clientHeight - offset!);
+		main.css("min-height", main.parent().height()! - footer.height()! - offset);
+
+		const overflow = main.parent().prop("scrollHeight") > main.parent().height()!;
+		console.log(overflow);
+		footer.css("margin-top", `${overflow ? 0 : 8}px`);
 	}
 
 	setImmediate(function() {
@@ -30,19 +34,10 @@ export function Footer({ children, className, offset, ...props }: InferProps<typ
 	return <footer className={classes} {...props} id={id}>{ children }</footer>;
 }
 
-Footer.propTypes = {
-	children: PropTypes.any,
-	offset: PropTypes.number
-};
-
-Footer.defaultProps = {
-	children: null,
-	offset: 24
-};
-
 /* ****************************************** */
 
-export function FooterCopyright({ children, className = "", ...props }: InferProps<typeof FooterCopyright.propTypes> & InferProps<any>): JSX.Element {
+export type FooterCopyrightProps = { className?: string, children: ReactNode };
+export function FooterCopyright({ children, className = "", ...props }: FooterCopyrightProps): JSX.Element {
 	const classes = classnames("footer-copyright", className);
 	return (
 		<div className={classes} {...props}>
@@ -51,17 +46,10 @@ export function FooterCopyright({ children, className = "", ...props }: InferPro
 	);
 }
 
-FooterCopyright.propTypes = {
-	children: PropTypes.any
-};
-
-FooterCopyright.defaultProps = {
-	children: null
-};
-
 /* ****************************************** */
 
-export function FooterHeader({ children }: InferProps<typeof FooterHeader.propTypes> & InferProps<any>): JSX.Element {
+export type FooterContentProps = { children: ReactNode };
+export function FooterHeader({ children }: FooterContentProps): JSX.Element {
 	return (
 		<Container>
 			<h2 style={{ marginLeft: 0 }}>{ children }</h2>
@@ -69,26 +57,10 @@ export function FooterHeader({ children }: InferProps<typeof FooterHeader.propTy
 	);
 }
 
-FooterHeader.propTypes = {
-	children: PropTypes.any
-};
-
-FooterHeader.defaultProps = {
-	children: null
-};
-
 /* ****************************************** */
 
-export function FooterBody({ children }: InferProps<typeof FooterBody.propTypes> & InferProps<any>): JSX.Element {
+export function FooterBody({ children }: FooterContentProps): JSX.Element {
 	return (
 		<Container style={{ marginBottom: 16 }}>{ children }</Container>
 	);
 }
-
-FooterBody.propTypes = {
-	children: PropTypes.any
-};
-
-FooterBody.defaultProps = {
-	children: null
-};
