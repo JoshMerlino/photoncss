@@ -6,7 +6,7 @@ import { Container } from "./Layout";
 /* ****************************************** */
 
 export type FooterProps = { children: ReactNode, className?: string, offset?: number };
-export function Footer({ children, className = "", offset = 16, ...props }: FooterProps): JSX.Element {
+export function Footer({ children, className = "", ...props }: FooterProps): JSX.Element {
 
 	const id = guid();
 
@@ -16,7 +16,7 @@ export function Footer({ children, className = "", offset = 16, ...props }: Foot
 		const footer = $(`#${id}`);
 		const main = footer.siblings("main");
 		if (main.length === 0) return;
-		main.css("min-height", main.parent().height()! - footer.height()! - offset);
+		main.css("min-height", window.innerHeight - footer[0].clientHeight - 24);
 	}
 
 	setImmediate(function() {
