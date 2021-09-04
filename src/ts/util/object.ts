@@ -12,5 +12,5 @@ export function deepProp(object: { [key: string]: any; } | string, propString: s
 	return value;
 }
 
-Object.defineProperty(Object, "deepProp", { value: deepProp, writable: false });
-Object.defineProperty(Object, "deepKeys", { value: deepKeys, writable: false });
+Object.defineProperty(Object, "deepProp", { value: deepProp });
+Object.defineProperty(Object, "deepKeys", { value: deepKeys });
