@@ -5,7 +5,12 @@ import { Container } from "./Layout";
 
 /* ****************************************** */
 
-export type FooterProps = { children: ReactNode, className?: string, offset?: number };
+type FooterProps = {
+	children: ReactNode;
+	className?: string;
+	offset?: number;
+	[key: string]: any;
+};
 export function Footer({ children, className = "", ...props }: FooterProps): JSX.Element {
 
 	const id = guid();
@@ -32,7 +37,11 @@ export function Footer({ children, className = "", ...props }: FooterProps): JSX
 
 /* ****************************************** */
 
-export type FooterCopyrightProps = { className?: string, children: ReactNode };
+type FooterCopyrightProps = {
+	className?: string;
+	children: ReactNode;
+	[key: string]: any;
+};
 export function FooterCopyright({ children, className = "", ...props }: FooterCopyrightProps): JSX.Element {
 	const classes = classnames("footer-copyright", className);
 	return (
