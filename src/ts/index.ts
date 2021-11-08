@@ -2,6 +2,9 @@
 import guid from "./util/guid";
 export { guid };
 
+import resize from "./util/resize";
+export { resize };
+
 import Waves from "./util/Waves.js";
 export { Waves };
 
@@ -25,6 +28,7 @@ export type UnityPhotonSelector = string & Element & JQuery;
 export default {
 
 	guid,
+	resize,
 
 	Dialog,
 	Drawer,

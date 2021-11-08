@@ -12,27 +12,8 @@ type FooterProps = {
 	[key: string]: any;
 };
 export function Footer({ children, className = "", ...props }: FooterProps): JSX.Element {
-
-	const id = guid();
-
 	const classes = classnames("footer", className);
-
-	function resize() {
-		const footer = $(`#${id}`);
-		const main = footer.siblings("main");
-		if (main.length === 0) return;
-		main.css("min-height", window.innerHeight - footer[0].clientHeight - 24);
-	}
-
-	setImmediate(function() {
-		(function frame() {
-			if ($(`#${id}`).length === 0) return;
-			resize();
-			requestAnimationFrame(frame);
-		}());
-	});
-
-	return <footer className={classes} {...props} id={id}>{ children }</footer>;
+	return <footer className={classes} {...props}>{ children }</footer>;
 }
 
 /* ****************************************** */
