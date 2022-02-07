@@ -12,5 +12,5 @@ export function deepProp(object: { [key: string]: any; } | string, propString: s
 	return value;
 }
 
-Object.defineProperty(Object, "deepProp", { value: deepProp });
-Object.defineProperty(Object, "deepKeys", { value: deepKeys });
+if (!Object.hasOwnProperty("deepProp")) Object.defineProperty(Object, "deepProp", { value: deepProp });
+if (!Object.hasOwnProperty("deepKeys")) Object.defineProperty(Object, "deepKeys", { value: deepKeys });
