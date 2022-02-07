@@ -8,7 +8,7 @@ export default function resize(): void {
 	if (footer[0]) {
 		main.css("min-height", window.innerHeight - footer[0].clientHeight - 20);
 	} else {
-		main.css("min-height", window.innerHeight);
+		main.css("min-height", window.innerHeight - 16);
 	}
 }
 
