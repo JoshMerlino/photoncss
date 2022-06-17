@@ -1,6 +1,6 @@
 {
     "name": "photoncss",
-    "version": "19.0.2",
+    "version": "19.0.3",
     "description": "Go from 0 to app in seconds",
     "main": "lib/",
     "types": "lib/",
