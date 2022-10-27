@@ -42,7 +42,7 @@
         "@types/react-dom": "^18.0.0",
         "@typescript-eslint/eslint-plugin": "^4.22.0",
         "@typescript-eslint/parser": "^4.17.0",
-        "babel-loader": "^8.2.2",
+        "babel-loader": "^9.0.0",
         "bable-loader": "0.0.1-security",
         "concurrently": "^7.0.0",
         "css-loader": "^6.2.0",
